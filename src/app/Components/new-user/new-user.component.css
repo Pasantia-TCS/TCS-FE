@@ -1,0 +1,85 @@
+#container{
+    align-self: center;
+    position: fixed;
+    width: 48%;
+    margin-top: 80px;
+    margin-left: 375px;
+    border-radius: 40px ;
+    min-height: 500px;
+    background-color: white;
+    border-width: 1px;
+    border-style: solid;
+    border-color: black;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+#title_new_user h1{
+    margin-top: 8%;
+   padding-left: 45%;
+   padding-bottom: 15px;
+}
+div ::placeholder{
+    text-align: center;
+}
+.div1 #name{
+    width: 270px;
+    height: 38px;
+    border-radius: 28px;
+    border-width: 1px;
+    outline: none;
+    margin-top: 2%;
+    margin-left: 8%;
+    margin-right: 10%;
+}
+.div1 #last_name{
+    margin-top: 2%;
+    width: 270px;
+    height: 38px;
+    border-radius: 28px;
+    border-width: 1px;
+}
+.div2 #email{
+    width: 270px;
+    height: 38px;
+    border-radius: 28px;
+    border-width: 1px;
+    margin-top: 2%;
+    margin-left: 8%;
+    margin-right: 10%;
+}
+.div2 #ultimatix{
+    margin-top: 2%;
+    width: 270px;
+    height: 38px;
+    border-radius: 28px;
+    border-width: 1px;
+}
+.div3 #phone{
+    width: 270px;
+    height: 38px;
+    border-radius: 28px;
+    border-width: 1px;
+    margin-top: 2%;
+    margin-left: 8%;
+    margin-right: 10%;
+}
+.div3 #password{
+    margin-top: 2%;
+    width: 270px;
+    height: 38px;
+    border-radius: 28px;
+    border-width: 1px;
+}
+#button{
+    width: 200px;
+    border-radius: 28px;
+    border-width: 1px;
+    height: 38px;
+    margin-top: 8%;
+    margin-left: 37%;
+}
+
+#link_login{
+    margin-top: 10px;
+    margin-left: 35%;
+}
