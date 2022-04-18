@@ -5,12 +5,10 @@
 }
 
 body{
-    background: linear-gradient(to top right, #f3b05a,#a3586d);
-}
-body{
     position: relative;
     padding-top: 10%;
     padding-bottom: 18%;
+    background: linear-gradient(220deg, #A3586DB3 0%, #F3B05ACC 100%);
 }
 
 @font-face {
@@ -35,12 +33,12 @@ body{
     width: 48%;
     margin-top: 80px;
     margin-left: 420px;
-    border-radius: 40px;
+    border-radius: 70px;
     min-height: 500px;
     border-width: 1px;
     border-style: solid;
-    border-color: black;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    border-color: rgb(255, 255, 255);
+    box-shadow: 0px 10px 40px #00000099;
 }
 
 input {
@@ -142,16 +140,16 @@ div ::placeholder {
     color: white !important;
     font-size: 18px;
     font-weight: 500;
-    background: #f3b05a;
+    background: #a3586d;
+    border-color: #a3586d;
     border: 1px solid;
-    border-color: #f3b05a;
     transition: all 1s ease;
     position: relative;
     font-family: "Nexa_Light";
   }
   .boton3:hover {
-    background: #a3586d;
-    border-color: #a3586d;
+    background: #f3b05a;
+    border-color: #f3b05a;
     color: #fff !important;
   }
   
