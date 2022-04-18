@@ -6,7 +6,7 @@ import {SelectionComponent} from './Components/selection/selection.component'
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent, pathMatch: 'full' },
-  { path: 'nuevo-usuario', component: NewUserComponent },
+  { path: 'register', component: NewUserComponent },
   { path: 'selection', component: SelectionComponent },
   { path: '**', redirectTo: 'login' }
 ];

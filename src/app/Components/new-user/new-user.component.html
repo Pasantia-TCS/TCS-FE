@@ -8,7 +8,7 @@
   </head>
   <body>
     <form>
-      <div id="container">
+      <div id="container_form">
         <div id="title_new_user"><h1>Registro</h1></div>
         <div class="input__container">
           <input id="name" type="text" placeholder="Nombre" />
@@ -18,9 +18,10 @@
           <input id="ultimatix" type="text" placeholder="Ultimatix" />
           <input id="password" type="text" placeholder="Contraseña" />
         </div>
-        <button type="submit" class="boton3">Registrar</button>
+        <button type="submit" class="boton_submit">Registrar</button>
         <div id="link_login">
           Ya tienes una cuenta?
+          <!--Link al login-->  
           <a [routerLink]="['/login']"><strong>Inicia Sesion</strong></a>
         </div>
       </div>

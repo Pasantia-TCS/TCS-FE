@@ -3,11 +3,11 @@
   padding: 0;
   box-sizing: border-box;
 }
-
 body {
+  background-attachment: fixed;
   position: relative;
-  padding-top: 10%;
-  padding-bottom: 18%;
+  padding-bottom: 50%;
+  padding-top: 7%;
   background: linear-gradient(220deg, #a3586db3 0%, #f3b05acc 100%);
 }
 
@@ -27,12 +27,15 @@ body {
   font-family: "SagoeUI";
   src: url("../../fonts/segoe-ui.ttf");
 }
-#container {
+#container_form {
+  display: block;
   align-self: center;
+  position: relative;
   background-color: rgb(243, 243, 243);
   width: 48%;
-  margin-top: 80px;
-  margin-left: 420px;
+  padding-top: 5%;
+  margin-top: 7%;
+  margin-left: 28%;
   border-radius: 70px;
   min-height: 500px;
   border-width: 1px;
@@ -42,6 +45,7 @@ body {
 }
 
 input {
+ 
   outline: none;
   border: 1px solid #ccc;
   transition: 0.2s all ease;
@@ -64,9 +68,9 @@ input:active {
 
 #title_new_user h1 {
   text-transform: uppercase;
-  margin-top: 8%;
-  padding-left: 39%;
-  padding-bottom: 15px;
+  margin: auto;
+  padding-left: 40%;
+  padding-bottom: 4%;
   font-family: "Nexa_ExtraBold";
 }
 
@@ -77,20 +81,21 @@ div ::placeholder {
 }
 
 .input__container {
+  padding-left: 6%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  row-gap: 27px;
 }
 
 .input__container > input {
   border-radius: 28px;
   border-width: 1px;
-  width: 290px;
-  height: 38px;
+  width: 85%;
+  height: 160%;
 }
 
-.boton3 {
-  width: 200px;
+.boton_submit {
+  width: 25%;
   height: 41px;
   margin-top: 6%;
   margin-left: 35%;
@@ -106,14 +111,14 @@ div ::placeholder {
   position: relative;
   font-family: "Nexa_Light";
 }
-.boton3:hover {
+.boton_submit:hover {
   background: #f3b05a;
   border-color: #f3b05a;
   color: #fff !important;
 }
 
 #link_login {
-  margin-top: 10px;
+  margin-top: 2%;
   margin-left: 32%;
   font-family: "Nexa_Light";
 }
