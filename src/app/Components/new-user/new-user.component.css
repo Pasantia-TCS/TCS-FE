@@ -1,167 +1,124 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-body{
-    position: relative;
-    padding-top: 10%;
-    padding-bottom: 18%;
-    background: linear-gradient(220deg, #A3586DB3 0%, #F3B05ACC 100%);
+body {
+  position: relative;
+  padding-top: 10%;
+  padding-bottom: 18%;
+  background: linear-gradient(220deg, #a3586db3 0%, #f3b05acc 100%);
 }
 
 @font-face {
-    font-family:'Nexa_Bold';
-    src: url("../../fonts/NexaTextDemo-Bold.ttf");
+  font-family: "Nexa_Bold";
+  src: url("../../fonts/NexaTextDemo-Bold.ttf");
 }
 @font-face {
-    font-family: 'Nexa_Light';
-    src: url("../../fonts/Nexa-Trial-Light.ttf");
+  font-family: "Nexa_Light";
+  src: url("../../fonts/Nexa-Trial-Light.ttf");
 }
 @font-face {
-    font-family: 'Nexa_ExtraBold';
-    src: url("../../fonts/NexaText-Trial-ExtraBold.ttf");
+  font-family: "Nexa_ExtraBold";
+  src: url("../../fonts/NexaText-Trial-ExtraBold.ttf");
 }
 @font-face {
-    font-family: 'SagoeUI';
-    src: url("../../fonts/segoe-ui.ttf");
+  font-family: "SagoeUI";
+  src: url("../../fonts/segoe-ui.ttf");
 }
 #container {
-    align-self: center;
-    background-color: rgb(243, 243, 243);
-    width: 48%;
-    margin-top: 80px;
-    margin-left: 420px;
-    border-radius: 70px;
-    min-height: 500px;
-    border-width: 1px;
-    border-style: solid;
-    border-color: rgb(255, 255, 255);
-    box-shadow: 0px 10px 40px #00000099;
+  align-self: center;
+  background-color: rgb(243, 243, 243);
+  width: 48%;
+  margin-top: 80px;
+  margin-left: 420px;
+  border-radius: 70px;
+  min-height: 500px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(255, 255, 255);
+  box-shadow: 0px 10px 40px #00000099;
 }
 
 input {
-    outline: none;
-    border: 1px solid #ccc;
-    transition: 0.2s all ease;
-    text-align: center;
-    background-color: rgba(233, 231, 231, 0.8);
-    border-color: rgba(233, 231, 231, 0.8);
+  outline: none;
+  border: 1px solid #ccc;
+  transition: 0.2s all ease;
+  text-align: center;
+  background-color: rgba(233, 231, 231, 0.8);
+  border-color: rgba(233, 231, 231, 0.8);
 }
 
-input:hover{
-    transform: scale(1.10,1.10);
+input:hover {
+  transform: scale(1.1, 1.1);
 }
 
 input:focus,
 input:active {
-    border: 1px solid;
-    box-shadow: 0 0 0 0.1rem #f3b05a;
-    transform: scale(1.10,1.10);
-    border-color: #f3b05a;
-} 
-
+  border: 1px solid;
+  box-shadow: 0 0 0 0.1rem #f3b05a;
+  transform: scale(1.1, 1.1);
+  border-color: #f3b05a;
+}
 
 #title_new_user h1 {
-    text-transform: uppercase;
-    margin-top: 8%;
-    padding-left: 39%;
-    padding-bottom: 15px;
-    font-family: 'Nexa_ExtraBold';
+  text-transform: uppercase;
+  margin-top: 8%;
+  padding-left: 39%;
+  padding-bottom: 15px;
+  font-family: "Nexa_ExtraBold";
 }
 
 div ::placeholder {
-    text-align: center;
-    font-family: "Nexa_Light";
-    font-size: 18px;
+  text-align: center;
+  font-family: "Nexa_Light";
+  font-size: 18px;
 }
 
-.div1 #name {
-    width: 290px;
-    height: 38px;
-    border-radius: 28px;
-    border-width: 1px;
-    margin-top: 2%;
-    margin-left: 9%;
-    margin-right: 5%;
+.input__container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
 }
 
-.div1 #last_name {
-    margin-top: 2%;
-    width: 290px;
-    height: 38px;
-    border-radius: 28px;
-    border-width: 1px;
-}
-
-.div2 #email {
-    margin-top: 2%;
-    width: 290px;
-    height: 38px;
-    border-radius: 28px;
-    border-width: 1px;
-}
-.div2 #phone {
-    width: 290px;
-    height: 38px;
-    border-radius: 28px;
-    border-width: 1px;
-    margin-top: 2%;
-    margin-left: 9%;
-    margin-right: 5%;
-}
-
-.div3 #ultimatix {
-    width: 290px;
-    height: 38px;
-    border-radius: 28px;
-    border-width: 1px;
-    margin-top: 2%;
-    margin-left: 9%;
-    margin-right: 5%;
-}
-
-.div3 #password {
-    margin-top: 2%;
-    width: 290px;
-    height: 38px;
-    border-radius: 28px;
-    border-width: 1px;
+.input__container > input {
+  border-radius: 28px;
+  border-width: 1px;
+  width: 290px;
+  height: 38px;
 }
 
 .boton3 {
-    width: 200px;
-    height: 41px;
-    margin-top: 6%;
-    margin-left: 35%;
-    border-radius: 28px;
-    text-align: center;
-    color: white !important;
-    font-size: 18px;
-    font-weight: 500;
-    background: #a3586d;
-    border-color: #a3586d;
-    border: 1px solid;
-    transition: all 1s ease;
-    position: relative;
-    font-family: "Nexa_Light";
-  }
-  .boton3:hover {
-    background: #f3b05a;
-    border-color: #f3b05a;
-    color: #fff !important;
-  }
-  
+  width: 200px;
+  height: 41px;
+  margin-top: 6%;
+  margin-left: 35%;
+  border-radius: 28px;
+  text-align: center;
+  color: white !important;
+  font-size: 18px;
+  font-weight: 500;
+  background: #a3586d;
+  border-color: #a3586d;
+  border: 1px solid;
+  transition: all 1s ease;
+  position: relative;
+  font-family: "Nexa_Light";
+}
+.boton3:hover {
+  background: #f3b05a;
+  border-color: #f3b05a;
+  color: #fff !important;
+}
 
 #link_login {
-    margin-top: 10px;
-    margin-left: 32%;
-    font-family: "Nexa_Light";
+  margin-top: 10px;
+  margin-left: 32%;
+  font-family: "Nexa_Light";
 }
 
-#link_login a{
-    color: black;
-    font-family: "Nexa_Bold"
+#link_login a {
+  color: black;
+  font-family: "Nexa_Bold";
 }
-
