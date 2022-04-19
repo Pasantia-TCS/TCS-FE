@@ -2,32 +2,11 @@
   background: linear-gradient(220deg, #A3586DB3 0%, #F3B05ACC 100%);
 }
 
-
-@font-face {
-    font-family:'Nexa_Bold';
-    src: url("../../fonts/NexaTextDemo-Bold.ttf");
-}
-@font-face {
-    font-family: 'Nexa_Light';
-    src: url("../../fonts/Nexa-Trial-Light.ttf");
-}
-@font-face {
-    font-family: 'Nexa_ExtraBold';
-    src: url("../../fonts/NexaText-Trial-ExtraBold.ttf");
-}
-@font-face {
-    font-family: 'SagoeUI';
-    src: url("../../fonts/segoe-ui.ttf");
-}
 .card {
   width: 410px;
   height: 350px;
   border-radius: 10%;
   box-shadow: 0px 10px 40px #00000099;
-}
-
-.custom_lt {
-  font-family: "Nexa_ExtraBold";
 }
 
 .custom-link {
@@ -65,6 +44,5 @@
 }
 
 ::placeholder {
-  /*font-family: "Nexa_Light";*/
-  opacity: 0.7;
+  opacity: 0.9;
 }

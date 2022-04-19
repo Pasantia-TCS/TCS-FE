@@ -396,19 +396,3 @@ html {
 *:after {
   box-sizing: inherit;
 }
-
-/* Fonts */
-@font-face {
-  font-family: 'Nexa_Bold';
-  src: url("./app/fonts/NexaTextDemo-Bold.ttf");
-}
-
-@font-face {
-  font-family: 'Nexa_Light';
-  src: url("./app/fonts/Nexa-Trial-Light.ttf");
-}
-
-@font-face {
-  font-family: 'Nexa_ExtraBold';
-  src: url("./app/fonts/NexaText-Trial-ExtraBold.ttf");
-}

@@ -1,32 +1,21 @@
-* {
+/* * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
 body {
   background-attachment: fixed;
   position: relative;
   padding-bottom: 50%;
   padding-top: 7%;
   background: linear-gradient(220deg, #a3586db3 0%, #f3b05acc 100%);
+} */
+
+.gradient-custom {
+  background: linear-gradient(220deg, #A3586DB3 0%, #F3B05ACC 100%);
 }
 
-@font-face {
-  font-family: "Nexa_Bold";
-  src: url("../../fonts/NexaTextDemo-Bold.ttf");
-}
-@font-face {
-  font-family: "Nexa_Light";
-  src: url("../../fonts/Nexa-Trial-Light.ttf");
-}
-@font-face {
-  font-family: "Nexa_ExtraBold";
-  src: url("../../fonts/NexaText-Trial-ExtraBold.ttf");
-}
-@font-face {
-  font-family: "SagoeUI";
-  src: url("../../fonts/segoe-ui.ttf");
-}
 #container_form {
   display: block;
   align-self: center;
@@ -45,7 +34,6 @@ body {
 }
 
 input {
- 
   outline: none;
   border: 1px solid #ccc;
   transition: 0.2s all ease;
@@ -71,12 +59,10 @@ input:active {
   margin: auto;
   padding-left: 40%;
   padding-bottom: 4%;
-  font-family: "Nexa_ExtraBold";
 }
 
 div ::placeholder {
   text-align: center;
-  font-family: "Nexa_Light";
   font-size: 18px;
 }
 
@@ -87,7 +73,7 @@ div ::placeholder {
   row-gap: 27px;
 }
 
-.input__container > input {
+.input__container>input {
   border-radius: 28px;
   border-width: 1px;
   width: 85%;
@@ -109,8 +95,8 @@ div ::placeholder {
   border: 1px solid;
   transition: all 1s ease;
   position: relative;
-  font-family: "Nexa_Light";
 }
+
 .boton_submit:hover {
   background: #f3b05a;
   border-color: #f3b05a;
@@ -120,10 +106,8 @@ div ::placeholder {
 #link_login {
   margin-top: 2%;
   margin-left: 32%;
-  font-family: "Nexa_Light";
 }
 
 #link_login a {
   color: black;
-  font-family: "Nexa_Bold";
 }
