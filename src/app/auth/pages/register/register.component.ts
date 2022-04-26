@@ -2,12 +2,30 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
+import { RegisterService } from 'src/app/services/register.service';
+import { user } from 'src/app/interfaces/user';
+
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+
+  user: user = {
+    ultimatix: 0,
+    clave : "",
+    nombre: "",
+    apellido: "",
+    telefono: "",
+    correo: "",
+    rol: "",
+    timestamp: "",
+    status : 0,
+    error: "",
+    path: ""
+  };
 
   myForm: FormGroup = this.fb.group({
     name: ['', [Validators.required, Validators.maxLength(30)]],
@@ -18,9 +36,28 @@ export class RegisterComponent implements OnInit {
     password: ['', [Validators.required, Validators.minLength(8)]]
   });
 
-  constructor(private fb: FormBuilder, private router: Router) { }
+  constructor(private service: RegisterService, private fb: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
+    this.service.register().subscribe((data: user) =>  {
+      this.user.ultimatix = data.ultimatix;
+      this.user.clave = data.clave;
+      this.user.nombre = data.nombre;
+      this.user.apellido = data.apellido;
+      this.user.telefono = data.telefono;
+      this.user.correo = data.correo;
+      this.user.rol = data.rol;
+
+      this.user.timestamp = data.timestamp;
+      this.user.status = data.status;
+      this.user.error = data.error;
+      this.user.path = data.path;
+
+      console.log("User data received")
+      console.log(this.user)
+   
+
+    });
   }
 
   get email() {
