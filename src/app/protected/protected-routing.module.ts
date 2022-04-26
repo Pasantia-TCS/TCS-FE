@@ -1,6 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AssetsComponent } from './pages/assets/assets.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { AssetsComponent } from './modules/assets/assets.component';
+import { FormsComponent } from './modules/forms/forms.component';
+import { TasksComponent } from './modules/tasks/tasks.component';
+// import { AssetsComponent } from './pages/assets/assets.component';
+
 import { SelectionComponent } from './pages/selection/selection.component';
 
 const routes: Routes = [
@@ -9,11 +14,25 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: SelectionComponent
+        component: SelectionComponent,
       },
       {
-        path: 'assets',
-        component: AssetsComponent
+        path: 'dashboard',
+        component: SidebarComponent,
+        children: [
+          {
+            path: 'assets',
+            component: AssetsComponent
+          },
+          {
+            path: 'tasks',
+            component: TasksComponent
+          },
+          {
+            path: 'forms',
+            component: FormsComponent
+          },
+        ]
       },
       {
         path: '**',

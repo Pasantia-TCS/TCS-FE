@@ -15,17 +15,17 @@ export class SelectionComponent implements OnInit {
 
   toAssets() {
     // TODO: validate user type
-    this.router.navigateByUrl('/pages/assets');
+    this.router.navigateByUrl('/pages/dashboard/assets');
   }
 
   toTasks() {
     // TODO: validate user type
-    this.router.navigateByUrl('/pages/tasks');
+    this.router.navigateByUrl('/pages/dashboard/tasks');
   }
 
   toForms() {
     // TODO: validate user type
-    this.router.navigateByUrl('/pages/forms');
+    this.router.navigateByUrl('/pages/dashboard/forms');
   }
 
 }

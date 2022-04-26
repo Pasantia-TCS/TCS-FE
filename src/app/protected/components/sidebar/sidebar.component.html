@@ -6,7 +6,7 @@
       <span [hidden]="collapse">MENÚ</span>
     </div>
 
-    <div mat-menu-item *ngFor="let item of sideMenu" [routerLink]="['/pages/', item.route]" class="with-icon padded"
+    <div mat-menu-item *ngFor="let item of sideMenu" [routerLink]="['/pages/dashboard/', item.route]" class="with-icon padded"
       (click)="$event.stopPropagation()">
       <mat-icon [matTooltip]="item.toolTip">{{ item.icon }}</mat-icon>&nbsp;
       <span [hidden]="collapse">{{ item.name }}</span>
@@ -14,7 +14,7 @@
   </mat-sidenav>
 
   <mat-sidenav-content class="padded">
-    sidebar works!
+    <router-outlet></router-outlet>
   </mat-sidenav-content>
 
 </mat-sidenav-container>
