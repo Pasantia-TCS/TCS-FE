@@ -21,7 +21,11 @@ export class LoginComponent implements OnInit {
     apellido: "",
     telefono: "",
     correo: "",
-    rol: ""
+    rol: "",
+    timestamp: "",
+    status : 0,
+    error: "",
+    path: ""
   };
 
   myForm: FormGroup = this.fb.group({
@@ -32,21 +36,6 @@ export class LoginComponent implements OnInit {
   constructor(private service : LoginService, private fb: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
-    this.service.authenticate().subscribe((data: user) =>  {
-      this.user.ultimatix = data.ultimatix;
-      this.user.clave = data.clave;
-      this.user.nombre = data.nombre;
-      this.user.apellido = data.apellido;
-      this.user.telefono = data.telefono;
-      this.user.correo = data.correo;
-      this.user.rol = data.rol;
-
-      console.log("User data received")
-      console.log(this.user)
-   
-
-    });
-
   }
 
   valid_field(field_name: string) {
@@ -64,6 +53,28 @@ export class LoginComponent implements OnInit {
       this.router.navigateByUrl('/pages/selection');
       this.myForm.reset();
     }
+
+    this.service.authenticate().subscribe((data: user) =>  {
+      this.user.ultimatix = data.ultimatix;
+      this.user.clave = data.clave;
+      this.user.nombre = data.nombre;
+      this.user.apellido = data.apellido;
+      this.user.telefono = data.telefono;
+      this.user.correo = data.correo;
+      this.user.rol = data.rol;
+
+      this.user.timestamp = data.timestamp;
+      this.user.status = data.status;
+      this.user.error = data.error;
+      this.user.path = data.path;
+
+      console.log("User data received")
+      console.log(this.user)
+   
+
+    });
+
+
   }
 
 }
