@@ -4,17 +4,23 @@
 <form form [formGroup]="myForm" (ngSubmit)="login()" autocomplete="off">
   <!-- Ultimatix -->
   <div class="mb-3">
-    <input formControlName="ultimatix" type="number"
-      class="form-control rounded-pill shadow-sm border-0 custom-input" placeholder="Ultimatix" />
+    <input formControlName="ultimatix" type="text" class="form-control rounded-pill shadow-sm border-0 custom-input"
+      placeholder="Ultimatix" />
+    <span class="form-text text-danger float-start" *ngIf="valid_field('ultimatix')">
+      * Introduce tu número de Ultimatix
+    </span>
   </div>
 
   <!-- Password -->
   <div class="mb-4">
     <input formControlName="password" type="password" class="form-control rounded-pill shadow-sm border-0 custom-input"
       placeholder="Contraseña" />
+    <span class="form-text text-danger float-start" *ngIf="valid_field('password')">
+      * Introduce tu contraseña
+    </span>
   </div>
 
-  <!--  Login -->
+  <!-- Login -->
   <div class="mb-3">
     <button type="submit" class="btn rounded-pill w-50 custom-btn">
       Inicia sesión

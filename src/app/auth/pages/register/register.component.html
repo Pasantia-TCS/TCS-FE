@@ -5,46 +5,81 @@
 
   <div class="row">
     <!-- Name -->
-    <div class="col-12 col-md-6">
-      <input formControlName="name" type="text" class="form-control rounded-pill shadow-sm border-0 mb-3 custom-input"
+    <div class="col-12 col-md-6 mb-3">
+      <input formControlName="name" type="text" class="form-control rounded-pill shadow-sm border-0 custom-input"
         placeholder="Nombre" />
+      <span class="form-text text-danger float-start" *ngIf="valid_field('name')">
+        * Introduce tu nombre.
+      </span>
     </div>
 
     <!-- Lastame -->
-    <div class="col-12 col-md-6">
-      <input formControlName="lastname" type="text"
-        class="form-control rounded-pill shadow-sm border-0 mb-3 custom-input" placeholder="Apellido" />
+    <div class="col-12 col-md-6 mb-3">
+      <input formControlName="lastname" type="text" class="form-control rounded-pill shadow-sm border-0 custom-input"
+        placeholder="Apellido" />
+      <span class="form-text text-danger float-start" *ngIf="valid_field('lastname')">
+        * Introduce tu apellido.
+      </span>
     </div>
   </div>
 
   <div class="row">
     <!-- Phone -->
-    <div class="col-12 col-md-6">
-      <input formControlName="phone" type="number"
-        class="form-control rounded-pill shadow-sm border-0 mb-3 custom-input" placeholder="Teléfono" />
+    <div class="col-12 col-md-6 mb-3">
+      <input formControlName="phone" type="text" class="form-control rounded-pill shadow-sm border-0 custom-input"
+        placeholder="Teléfono" />
+      <div *ngIf="(phone?.invalid && phone?.touched) || phone?.dirty">
+        <span class="form-text text-danger float-start" *ngIf="phone?.errors?.['required']">
+          * Introduce tu número de teléfono.
+        </span>
+        <span class="form-text text-danger float-start" *ngIf="phone?.errors?.['pattern']">
+          * Por favor ingresa un número de teléfono válido.
+        </span>
+      </div>
     </div>
 
     <!-- Email -->
-    <div class="col-12 col-md-6">
-      <input formControlName="email" type="text" class="form-control rounded-pill shadow-sm border-0 mb-3 custom-input"
+    <div class="col-12 col-md-6 mb-3">
+      <input formControlName="email" type="text" class="form-control rounded-pill shadow-sm border-0 custom-input"
         placeholder="Correo electrónico" />
+      <div *ngIf="(email?.invalid && email?.touched) || email?.dirty">
+        <span class="form-text text-danger float-start" *ngIf="email?.errors?.['required']">
+          * Introduce tu correo electrónico.
+        </span>
+        <span class="form-text text-danger float-start" *ngIf="email?.errors?.['pattern']">
+          * Por favor ingresa una dirección de correo electrónico válida.
+        </span>
+      </div>
     </div>
   </div>
 
   <div class="row">
     <!-- Ultimatix -->
-    <div class="col-12 col-md-6">
-      <input formControlName="ultimatix" type="text"
-        class="form-control rounded-pill shadow-sm border-0 mb-3 custom-input" placeholder="Ultimatix" />
+    <div class="col-12 col-md-6 mb-3">
+      <input formControlName="ultimatix" type="text" class="form-control rounded-pill shadow-sm border-0 custom-input"
+        placeholder="Ultimatix" />
+      <span class="form-text text-danger float-start" *ngIf="valid_field('ultimatix')">
+        * Introduce tu número de ultimatix.
+      </span>
     </div>
-    <div class="col-12 col-md-6">
+
+    <!-- Password -->
+    <div class="col-12 col-md-6 mb-3">
       <input formControlName="password" type="password"
-        class="form-control rounded-pill shadow-sm border-0 custom-input mb-4" placeholder="Contraseña" />
+        class="form-control rounded-pill shadow-sm border-0 custom-input" placeholder="Contraseña" />
+      <div *ngIf="(password?.invalid && password?.touched) || password?.dirty">
+        <span class="form-text text-danger float-start" *ngIf="password?.errors?.['required']">
+          * Introduce tu contraseña
+        </span>
+        <span class="form-text text-danger float-start" *ngIf="password?.errors?.['minlength']">
+          * Por favor ingresa una combinación de al menos ocho números, letras y signos de puntuación.
+        </span>
+      </div>
     </div>
   </div>
 
   <!-- Register -->
-  <div class="mb-3">
+  <div class="mb-3 mt-1">
     <button type="submit" class="btn rounded-pill w-50 custom-btn">
       Registro
     </button>
