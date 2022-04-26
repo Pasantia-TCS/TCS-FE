@@ -1,0 +1,73 @@
+<!-- Body -->
+<section class="vh-100 vw-100 gradient-custom">
+  <div class="container h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-6">
+        <!-- Card -->
+        <div class="card" style="border-radius: 2rem;">
+          <div class="card-body px-5 text-center">
+            <!-- Title -->
+            <h1 class="mt-4 mb-4 fs-2">BIENVENIDO</h1>
+
+            <!--  Activos -->
+            <div class="mb-3">
+              <button type="button" class="btn rounded-pill w-100 row custom-btn" (click)="toAssets()">
+                <span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: white">
+                    <path
+                      d="M21 5c0-1.103-.897-2-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2V5zM5 19V5h14l.002 14H5z">
+                    </path>
+                    <path d="M7 7h1.998v2H7zm4 0h6v2h-6zm-4 4h1.998v2H7zm4 0h6v2h-6zm-4 4h1.998v2H7zm4 0h6v2h-6z">
+                    </path>
+                  </svg>
+                </span>
+                Registro de activos
+              </button>
+            </div>
+
+            <!--  Asignacion -->
+            <div class="mb-3">
+              <button type="button" class="btn rounded-pill w-100 row custom-btn" (click)="toTasks()">
+                <span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: white">
+                    <path
+                      d="M19 4h-3V2h-2v2h-4V2H8v2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2zM5 20V7h14V6l.002 14H5z" />
+                    <path d="M7 9h10v2H7zm0 4h5v2H7z" />
+                  </svg>
+                </span>
+                Asignación de trabajos
+              </button>
+            </div>
+
+            <!--  Formularios -->
+            <div class="mb-4">
+              <button type="button" class="btn rounded-pill w-100 row custom-btn" (click)="toForms()">
+                <span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: white">
+                    <path
+                      d="M19 3H5c-1.103 0-2 .897-2 2v4h18V5c0-1.103-.897-2-2-2zM3 19c0 1.103.897 2 2 2h8V11H3v8zm12 2h4c1.103 0 2-.897 2-2v-8h-6v10z">
+                    </path>
+                  </svg>
+                </span>
+                Formularios Dinámicos
+              </button>
+            </div>
+
+            <!-- Log Out -->
+            <div class="flex-column">
+              <span class="">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgb(0, 0, 0)">
+                  <path d="M16 13v-2H7V8l-5 4 5 4v-3z"></path>
+                  <path
+                    d="M20 3h-9c-1.103 0-2 .897-2 2v4h2V5h9v14h-9v-4H9v4c0 1.103.897 2 2 2h9c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2z">
+                  </path>
+                </svg>
+              </span>
+              <a [routerLink]="['/auth/login']" class="custom-link">Cerrar sesión</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

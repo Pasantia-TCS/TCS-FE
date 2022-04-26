@@ -1,0 +1,29 @@
+<!-- Title -->
+<h1 class="mt-4 mb-4 fs-2">INICIAR SESIÓN</h1>
+
+<form form [formGroup]="myForm" (ngSubmit)="login()" autocomplete="off">
+  <!-- Ultimatix -->
+  <div class="mb-3">
+    <input formControlName="ultimatix" type="number"
+      class="form-control rounded-pill shadow-sm border-0 custom-input" placeholder="Ultimatix" />
+  </div>
+
+  <!-- Password -->
+  <div class="mb-4">
+    <input formControlName="password" type="password" class="form-control rounded-pill shadow-sm border-0 custom-input"
+      placeholder="Contraseña" />
+  </div>
+
+  <!--  Login -->
+  <div class="mb-3">
+    <button type="submit" class="btn rounded-pill w-50 custom-btn">
+      Inicia sesión
+    </button>
+  </div>
+
+  <!-- Register -->
+  <span>
+    ¿No tienes una cuenta?
+    <a [routerLink]="['/auth/register']" class="custom-link"><strong>Regístrate</strong></a>
+  </span>
+</form>

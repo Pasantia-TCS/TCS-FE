@@ -396,3 +396,38 @@ html {
 *:after {
   box-sizing: inherit;
 }
+
+/* General styles */
+.gradient-custom {
+  background: linear-gradient(220deg, #A3586DB3 0%, #F3B05ACC 100%);
+}
+
+.custom-input {
+  height: 3rem;
+  background-color: var(--bg_field);
+}
+
+.custom-input:focus,
+.custom-input:active {
+  background-color: var(--bg_field);
+}
+
+.custom-btn {
+  height: 3rem;
+  background-color: var(--primary);
+  color: white;
+}
+
+.custom-btn:hover {
+  background-color: var(--secondary);
+  color: white;
+}
+
+.custom-link {
+  text-decoration: underline;
+  color: black;
+}
+
+a:visited {
+  color: black;
+}
