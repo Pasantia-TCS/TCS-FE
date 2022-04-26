@@ -1,1 +1,20 @@
-<p>assets works!</p>
+<mat-sidenav-container class="full-height" autosize="true">
+  <mat-sidenav mode="side" opened (click)="toggleSidebar()">
+
+    <div mat-menu-item (click)="toggleSidebar()" class="with-icon padded">
+      <mat-icon matTooltip="Alternar menú lateral">menu</mat-icon>
+      <span [hidden]="collapse">MENÚ</span>
+    </div>
+
+    <div mat-menu-item *ngFor="let item of sideMenu" [routerLink]="['/pages/', item.route]" class="with-icon padded"
+      (click)="$event.stopPropagation()">
+      <mat-icon [matTooltip]="item.toolTip">{{ item.icon }}</mat-icon>&nbsp;
+      <span [hidden]="collapse">{{ item.name }}</span>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="padded">
+    sidebar works!
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

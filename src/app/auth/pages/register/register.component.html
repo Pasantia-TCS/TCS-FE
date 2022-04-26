@@ -69,7 +69,7 @@
         class="form-control rounded-pill shadow-sm border-0 custom-input" placeholder="Contraseña" />
       <div *ngIf="(password?.invalid && password?.touched) || password?.dirty">
         <span class="form-text text-danger float-start" *ngIf="password?.errors?.['required']">
-          * Introduce tu contraseña
+          * Introduce tu contraseña.
         </span>
         <span class="form-text text-danger float-start" *ngIf="password?.errors?.['minlength']">
           * Por favor ingresa una combinación de al menos ocho números, letras y signos de puntuación.
