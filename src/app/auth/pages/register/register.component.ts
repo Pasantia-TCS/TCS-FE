@@ -18,10 +18,10 @@ export class RegisterComponent implements OnInit {
   myForm: FormGroup = this.fb.group({
     name: ['Sayayin', [Validators.required, Validators.maxLength(30)]],
     lastname: ['Goku', [Validators.required, Validators.maxLength(30)]],
-    phone: ['0986457999', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern("(09)[8-9]{1}[0-9]{7}")]],
-    email: ['goku@hotmail.com', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
+    phone: ['0986457999', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('(09)[8-9]{1}[0-9]{7}')]],
+    email: ['goku@hotmail.com', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
     ultimatix: ['2213249', [Validators.required]],
-    password: ['password', [Validators.required, Validators.minLength(8)]]
+    password: ['pAssw0rd!', [Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*]).{8,}$')]]
   });
 
   constructor(private service: RegisterService, private fb: FormBuilder, private router: Router) { }

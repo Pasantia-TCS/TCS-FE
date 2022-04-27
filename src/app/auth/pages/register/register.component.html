@@ -40,7 +40,7 @@
 
     <!-- Email -->
     <div class="col-12 col-md-6 mb-3">
-      <input formControlName="email" type="text" class="form-control rounded-pill shadow-sm border-0 custom-input"
+      <input formControlName="email" type="email" class="form-control rounded-pill shadow-sm border-0 custom-input"
         placeholder="Correo electrónico" />
       <div *ngIf="(email?.invalid && email?.touched) || email?.dirty">
         <span class="form-text text-danger float-start" *ngIf="email?.errors?.['required']">
@@ -65,13 +65,15 @@
 
     <!-- Password -->
     <div class="col-12 col-md-6 mb-3">
-      <input formControlName="password" type="password"
-        class="form-control rounded-pill shadow-sm border-0 custom-input" placeholder="Contraseña" />
+      <div class="input-group">
+        <input formControlName="password" type="password"
+          class="form-control rounded-pill shadow-sm border-0 custom-input" placeholder="Contraseña" />
+      </div>
       <div *ngIf="(password?.invalid && password?.touched) || password?.dirty">
         <span class="form-text text-danger float-start" *ngIf="password?.errors?.['required']">
           * Introduce tu contraseña.
         </span>
-        <span class="form-text text-danger float-start" *ngIf="password?.errors?.['minlength']">
+        <span class="form-text text-danger float-start" *ngIf="password?.errors?.['pattern']">
           * Por favor ingresa una combinación de al menos ocho números, letras y signos de puntuación.
         </span>
       </div>
