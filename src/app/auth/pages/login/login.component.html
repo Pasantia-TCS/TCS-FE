@@ -5,7 +5,7 @@
   <!-- Ultimatix -->
   <div class="mb-3">
     <input formControlName="ultimatix" type="text" class="form-control rounded-pill shadow-sm border-0 custom-input"
-      placeholder="Ultimatix" />
+      placeholder="Ultimatix" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" />
     <span class="form-text text-danger float-start" *ngIf="valid_field('ultimatix')">
       * Introduce tu número de Ultimatix
     </span>

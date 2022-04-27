@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit {
     lastname: ['Goku', [Validators.required, Validators.maxLength(30)]],
     phone: ['0986457999', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('(09)[8-9]{1}[0-9]{7}')]],
     email: ['goku@hotmail.com', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
-    ultimatix: ['2213249', [Validators.required]],
+    ultimatix: ['2213249', [Validators.required, Validators.minLength(7)]],
     password: ['pAssw0rd!', [Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*]).{8,}$')]]
   });
 
@@ -40,6 +40,10 @@ export class RegisterComponent implements OnInit {
 
   get password() {
     return this.myForm.get('password');
+  }
+
+  get ultimatix() {
+    return this.myForm.get('ultimatix');
   }
 
   valid_field(field_name: string) {
