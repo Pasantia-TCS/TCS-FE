@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+import { catchError, retry, tap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
+import { user } from 'src/app/interfaces/user';
+
 
 @Injectable({
   providedIn: 'root'
@@ -9,14 +12,17 @@ import { catchError, retry } from 'rxjs/operators';
 export class RegisterService {
 
 
-  private url = 'assets/loginTest_1.json';
-  //private url = 'http://localhost:8080/TCS-FE';
+  private baseUrl: string = environment.baseUrl;
 
   constructor( private http : HttpClient ) { }
 
-  public register(): Observable<any>{
-    return this.http.get(this.url);
-
+  register(id_numero_Ultimatix: string, clave: string, nombre: string, apellido: string, telefono: string, correo: string) {
+    const url: string = `${this.baseUrl}/asociados/agregarAsociado`
+    const body = { id_numero_Ultimatix, clave, nombre, apellido, telefono, correo }
+    return this.http.post<user>(url, body)
+      .pipe(
+        tap(resp => console.log(resp))
+      )
   }
 
 }
