@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
 export class LoginService {
 
   private url = 'http://localhost:8081/asociados/tcs-login';
-  private baseUrl: string = environment.baseUrl;
+  //private baseUrl: string = environment.baseUrl;
 
   constructor(private http: HttpClient) { }
 
