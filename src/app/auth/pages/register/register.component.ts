@@ -58,12 +58,12 @@ export class RegisterComponent implements OnInit {
       return;
     } else {
       this.service.register(ultimatix, password, name, lastname, phone, email)
-        .subscribe(obj => {
-          if (obj.status === 409) {
-            Swal.fire('Error', obj.mensaje, 'error')
-          } else {
+        .subscribe({
+          next: () => {
+            Swal.fire('Éxito', 'Usuario registrado con éxito', 'success');
             this.router.navigateByUrl('/');
-          }
+          },
+          error: err => Swal.fire('Error', err.error.mensaje, 'info')
         })
     }
   }

@@ -19,10 +19,7 @@ export class RegisterService {
   register(id_numero_Ultimatix: string, clave: string, nombre: string, apellido: string, telefono: string, correo: string) {
     const url: string = `${this.baseUrl}/asociados/agregarAsociado`
     const body = { id_numero_Ultimatix, clave, nombre, apellido, telefono, correo }
-    return this.http.post<user>(url, body)
-      .pipe(
-        tap(resp => console.log(resp))
-      )
+    return this.http.post<user>(url, body);
   }
 
 }
