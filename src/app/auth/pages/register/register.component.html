@@ -30,7 +30,7 @@
         placeholder="Teléfono" />
       <div *ngIf="(phone?.invalid && phone?.touched) || phone?.dirty">
         <span class="form-text text-danger float-start" *ngIf="phone?.errors?.['required']">
-          * Introduce tu número de teléfono.
+          * Introduce un número de teléfono.
         </span>
         <span class="form-text text-danger float-start" *ngIf="phone?.errors?.['pattern']">
           * Por favor ingresa un número de teléfono válido.
@@ -44,7 +44,7 @@
         placeholder="Correo electrónico" />
       <div *ngIf="(email?.invalid && email?.touched) || email?.dirty">
         <span class="form-text text-danger float-start" *ngIf="email?.errors?.['required']">
-          * Introduce tu correo electrónico.
+          * Introduce un correo electrónico.
         </span>
         <span class="form-text text-danger float-start" *ngIf="email?.errors?.['pattern']">
           * Por favor ingresa una dirección de correo electrónico válida.
@@ -69,10 +69,10 @@
         class="form-control rounded-pill shadow-sm border-0 custom-input" placeholder="Contraseña" />
       <div *ngIf="(password?.invalid && password?.touched) || password?.dirty">
         <span class="form-text text-danger float-start" *ngIf="password?.errors?.['required']">
-          * Introduce tu contraseña.
+          * Introduce una contraseña.
         </span>
         <span class="form-text text-danger float-start" *ngIf="password?.errors?.['minlength']">
-          * Por favor ingresa una combinación de al menos ocho números, letras y signos de puntuación.
+          * La contraseña debe tener por lo menos 8 caracteres, una letra minúscula, una letra mayúscula, un número y un caracter especial (.,/$@). Ejemplo: Tcs.@2022.
         </span>
       </div>
     </div>
@@ -81,7 +81,7 @@
   <!-- Register -->
   <div class="mb-3 mt-1">
     <button type="submit" class="btn rounded-pill w-50 custom-btn">
-      Registro
+      Registrar
     </button>
   </div>
 
