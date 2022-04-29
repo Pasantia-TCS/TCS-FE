@@ -26,13 +26,16 @@
   <div class="row">
     <!-- Phone -->
     <div class="col-12 col-md-6 mb-3">
-      <input formControlName="phone" type="text" class="form-control rounded-pill shadow-sm border-0 custom-input"
-        placeholder="Teléfono" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" />
-      <div *ngIf="(phone?.invalid && phone?.touched) || phone?.dirty">
-        <span class="form-text text-danger float-start" *ngIf="phone?.errors?.['required']">
-          * Introduce tu número de teléfono.
-        </span>
-        <span class="form-text text-danger float-start" *ngIf="phone?.errors?.['pattern']">
+      <ngx-intl-tel-input [cssClass]="'custom'" [enableAutoCountrySelect]="true" [enablePlaceholder]="true"
+        [searchCountryFlag]="true" [preferredCountries]="[CountryISO.Ecuador]" [searchCountryField]="[
+            SearchCountryField.Iso2,
+            SearchCountryField.Name
+          ]" searchCountryPlaceholder="Buscar país" customPlaceholder="Teléfono"
+        [selectedCountryISO]="CountryISO.Ecuador" [maxLength]="15" [phoneValidation]="true" [separateDialCode]="true"
+        [numberFormat]="PhoneNumberFormat.National" name="phone" formControlName="phone">
+      </ngx-intl-tel-input>
+      <div *ngIf="phone?.invalid && phone?.touched">
+        <span class="form-text text-danger float-start" *ngIf="phone?.invalid">
           * Por favor ingresa un número de teléfono válido.
         </span>
       </div>

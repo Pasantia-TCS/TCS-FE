@@ -7,6 +7,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MainComponent } from './pages/main/main.component';
+import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { MainComponent } from './pages/main/main.component';
     CommonModule,
     AuthRoutingModule,
     ReactiveFormsModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    NgxIntlTelInputModule
   ]
 })
 export class AuthModule { }

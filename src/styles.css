@@ -399,7 +399,7 @@ html {
 
 /* General styles */
 .gradient-custom {
-  background: linear-gradient(220deg, #9B11BF99 300px, #EE398499, #F7071299 , #F4732699 , #FFC70899  );
+  background: linear-gradient(220deg, #9B11BF99 300px, #EE398499, #F7071299, #F4732699, #FFC70899);
 }
 
 .custom-input {
@@ -430,4 +430,49 @@ html {
 
 a:visited {
   color: black;
+}
+
+/*****************************************************
+	Custom styling (phone field)
+*****************************************************/
+
+.iti {
+  display: block !important;
+}
+
+.iti .dropdown-menu.country-dropdown {
+  border-radius: 2rem;
+  margin-top: -1px;
+}
+
+.iti .iti__country-list {
+  box-shadow: none;
+  margin-left: 0;
+  width: 100%;
+  max-height: 15rem;
+  overflow: auto;
+}
+
+.iti .dropdown-menu.country-dropdown {
+  width: 215%;
+}
+
+.iti .search-container input {
+  font-size: 1rem;
+}
+
+.iti .search-container input:focus {
+  outline: none;
+}
+
+ngx-intl-tel-input input {
+  display: block;
+  width: 100%;
+  height: 3rem;
+  padding: 10px;
+  border-radius: 50rem;
+  font-size: 1rem;
+  background-color: var(--bg_field);
+  border: 0;
+  box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075);
 }
