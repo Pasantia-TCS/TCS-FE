@@ -27,7 +27,7 @@
     <!-- Phone -->
     <div class="col-12 col-md-6 mb-3">
       <input formControlName="phone" type="text" class="form-control rounded-pill shadow-sm border-0 custom-input"
-        placeholder="Teléfono" />
+        placeholder="Teléfono" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" />
       <div *ngIf="(phone?.invalid && phone?.touched) || phone?.dirty">
         <span class="form-text text-danger float-start" *ngIf="phone?.errors?.['required']">
           * Introduce un número de teléfono.
@@ -40,7 +40,7 @@
 
     <!-- Email -->
     <div class="col-12 col-md-6 mb-3">
-      <input formControlName="email" type="text" class="form-control rounded-pill shadow-sm border-0 custom-input"
+      <input formControlName="email" type="email" class="form-control rounded-pill shadow-sm border-0 custom-input"
         placeholder="Correo electrónico" />
       <div *ngIf="(email?.invalid && email?.touched) || email?.dirty">
         <span class="form-text text-danger float-start" *ngIf="email?.errors?.['required']">
@@ -57,16 +57,23 @@
     <!-- Ultimatix -->
     <div class="col-12 col-md-6 mb-3">
       <input formControlName="ultimatix" type="text" class="form-control rounded-pill shadow-sm border-0 custom-input"
-        placeholder="Ultimatix" />
-      <span class="form-text text-danger float-start" *ngIf="valid_field('ultimatix')">
-        * Introduce tu número de ultimatix.
-      </span>
+        placeholder="Ultimatix" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" />
+      <div *ngIf="(ultimatix?.invalid && ultimatix?.touched) || ultimatix?.dirty">
+        <span class="form-text text-danger float-start" *ngIf="ultimatix?.errors?.['required']">
+          * Introduce tu número de ultimatix.
+        </span>
+        <span class="form-text text-danger float-start" *ngIf="ultimatix?.errors?.['minlength']">
+          * Introduce un número de ultimatix válido.
+        </span>
+      </div>
     </div>
 
     <!-- Password -->
     <div class="col-12 col-md-6 mb-3">
-      <input formControlName="password" type="password"
-        class="form-control rounded-pill shadow-sm border-0 custom-input" placeholder="Contraseña" />
+      <div class="input-group">
+        <input formControlName="password" type="password"
+          class="form-control rounded-pill shadow-sm border-0 custom-input" placeholder="Contraseña" />
+      </div>
       <div *ngIf="(password?.invalid && password?.touched) || password?.dirty">
         <span class="form-text text-danger float-start" *ngIf="password?.errors?.['required']">
           * Introduce una contraseña.

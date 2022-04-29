@@ -2,8 +2,8 @@
 
 /* Colors */
 :root {
-  --primary: #A3586D;
-  --secondary: #F3B05A;
+  --primary: #9B11BF;
+  --secondary: #F47326;
   --bg_field: #EBEBEB;
 }
 
@@ -399,7 +399,7 @@ html {
 
 /* General styles */
 .gradient-custom {
-  background: linear-gradient(220deg, #A3586DB3 0%, #F3B05ACC 100%);
+  background: linear-gradient(220deg, #9B11BF99 300px, #EE398499, #F7071299 , #F4732699 , #FFC70899  );
 }
 
 .custom-input {

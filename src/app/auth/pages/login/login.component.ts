@@ -16,8 +16,8 @@ export class LoginComponent implements OnInit {
 
 
   myForm: FormGroup = this.fb.group({
-    ultimatix: ['', [Validators.required]],
-    password: ['', [Validators.required]]
+    ultimatix: ['2213249', [Validators.required]],
+    password: ['password', [Validators.required]]
   });
 
   constructor(private service: LoginService, private fb: FormBuilder, private router: Router) { }
@@ -30,23 +30,17 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-
     const { ultimatix, password } = this.myForm.value;
-
     if (this.myForm.invalid) {
       this.myForm.markAllAsTouched();
       return;
     } else {
       this.service.login(ultimatix, password)
-        .subscribe(status => {
-          if (status === 404) {
-            this.router.navigateByUrl('/pages');
-          } else {
-            Swal.fire('Error', status, 'error')
-          }
+        .subscribe({
+          next: () => this.router.navigateByUrl('/pages'),
+          error: err => Swal.fire('Error', err.error.mensaje, 'error')
         });
     }
-
   }
 
 }

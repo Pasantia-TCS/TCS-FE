@@ -11,18 +11,14 @@ import { environment } from 'src/environments/environment';
 export class LoginService {
 
   private url = 'http://localhost:8081/asociados/tcs-login';
-  private baseUrl: string = environment.baseUrl;
+  //private baseUrl: string = environment.baseUrl;
 
   constructor(private http: HttpClient) { }
 
   login(id_numero_Ultimatix: string, clave: string) {
     const body = { id_numero_Ultimatix, clave }
 
-    return this.http.post<user>(this.url, body)
-      .pipe(
-        map(resp => resp.status),
-        catchError(err => of(err.error.mensaje))
-      )
+    return this.http.post<any>(this.url, body);
   }
 
 }
