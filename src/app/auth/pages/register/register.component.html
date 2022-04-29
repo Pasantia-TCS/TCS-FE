@@ -47,7 +47,7 @@
         placeholder="Correo electrónico" />
       <div *ngIf="(email?.invalid && email?.touched) || email?.dirty">
         <span class="form-text text-danger float-start" *ngIf="email?.errors?.['required']">
-          * Introduce tu correo electrónico.
+          * Introduce un correo electrónico.
         </span>
         <span class="form-text text-danger float-start" *ngIf="email?.errors?.['pattern']">
           * Por favor ingresa una dirección de correo electrónico válida.
@@ -66,7 +66,7 @@
           * Introduce tu número de ultimatix.
         </span>
         <span class="form-text text-danger float-start" *ngIf="ultimatix?.errors?.['minlength']">
-          * Mínimo siete dígitos necesarios.
+          * Introduce un número de ultimatix válido.
         </span>
       </div>
     </div>
@@ -79,11 +79,11 @@
       </div>
       <div *ngIf="(password?.invalid && password?.touched) || password?.dirty">
         <span class="form-text text-danger float-start" *ngIf="password?.errors?.['required']">
-          * Introduce tu contraseña.
+          * Introduce una contraseña.
         </span>
         <span class="form-text text-danger float-start" *ngIf="password?.errors?.['pattern']">
-          * Por favor ingresar una contraseña con al menos 8 caracteres que contengan letras, números y caracteres
-          especiales. Ej -> Tcs.@2022
+          * La contraseña debe tener por lo menos 8 caracteres, una letra minúscula, una letra mayúscula, un número y un
+          caracter especial (.,/$@). Ejemplo: Tcs.@2022.
         </span>
       </div>
     </div>
@@ -92,7 +92,7 @@
   <!-- Register -->
   <div class="mb-3 mt-1">
     <button type="submit" class="btn rounded-pill w-50 custom-btn">
-      Registro
+      Registrar
     </button>
   </div>
 

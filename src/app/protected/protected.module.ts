@@ -27,6 +27,8 @@ import { CustomButtonComponent } from './components/header/custom-button/custom-
     MatSidenavModule,
     MatIconModule,
     MatTooltipModule
+  ], exports: [
+    CustomButtonComponent
   ]
 })
 export class ProtectedModule { }
