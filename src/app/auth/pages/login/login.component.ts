@@ -38,12 +38,9 @@ export class LoginComponent implements OnInit {
       return;
     } else {
       this.service.login(ultimatix, password)
-        .subscribe(status => {
-          if (status === 404) {
-            this.router.navigateByUrl('/pages');
-          } else {
-            Swal.fire('Error', status, 'error')
-          }
+        .subscribe({
+          next: () => this.router.navigateByUrl('/pages'),
+          error: err => Swal.fire('Error', err.error.mensaje, 'error')
         });
     }
 

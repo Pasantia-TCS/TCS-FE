@@ -17,12 +17,7 @@ export class LoginService {
 
   login(id_numero_Ultimatix: string, clave: string) {
     const body = { id_numero_Ultimatix, clave }
-
-    return this.http.post<user>(this.url, body)
-      .pipe(
-        map(resp => resp.status),
-        catchError(err => of(err.error.mensaje))
-      )
+    return this.http.post<user>(this.url, body);
   }
 
 }
