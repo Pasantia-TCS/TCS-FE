@@ -1,0 +1,160 @@
+nav {
+  display: block;
+}
+
+.wrapper {
+  width: 100%;
+  height: 100vh;
+}
+
+#sidebar {
+  min-width: 276px;
+  max-width: 276px;
+  background: transparent linear-gradient(194deg, #9B11BFB3 0%, #EE3984B3 34%, #F70712B3 53%, #F47326B3 69%, #FFC708B3 100%) 0% 0% no-repeat padding-box;
+  color: white;
+}
+
+#sidebar.active {
+  min-width: 80px;
+  max-width: 80px;
+  text-align: center;
+}
+
+#sidebar.active ul.components li {
+  font-size: 14px;
+}
+
+#sidebar.active ul.components li a {
+  padding: 10px 0;
+}
+
+#sidebar.active ul.components li a span {
+  display: block;
+  margin-right: 0;
+}
+
+#sidebar .bars {
+  padding: 10px 3px;
+}
+
+#sidebar.active .bars {
+  padding: 10px 0;
+}
+
+#sidebar.active .footer {
+  display: none;
+}
+
+.bars {
+  display: block;
+}
+
+#sidebar ul li {
+  font-size: 1rem;
+}
+
+#sidebar ul li>ul {
+  margin-left: 10px;
+}
+
+#sidebar ul li>ul li {
+  font-size: 14px;
+}
+
+#sidebar ul li a {
+  padding: 10px 30px;
+  display: block;
+  color: white;
+}
+
+#sidebar ul li a span {
+  margin-right: 1rem;
+}
+
+@media (max-width: 991.98px) {
+  #sidebar ul li a span {
+    display: block;
+  }
+}
+
+#sidebar ul li a:hover {
+  color: #fff;
+}
+
+#sidebar ul li.active>a {
+  background: transparent;
+  color: white;
+}
+
+@media (max-width: 991.98px) {
+  #sidebar {
+    min-width: 80px;
+    max-width: 80px;
+    text-align: center;
+    margin-left: -80px !important;
+  }
+
+  #sidebar.active {
+    margin-left: 0 !important;
+  }
+}
+
+@media (max-width: 991.98px) {
+  #sidebarCollapse span {
+    display: none;
+  }
+}
+
+.footer {
+  padding: 0 30px;
+}
+
+@media (max-width: 991.98px) {
+  .footer {
+    display: none;
+  }
+}
+
+a {
+  text-decoration: none;
+  background-color: transparent;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:not([href]):not([tabindex]) {
+  text-decoration: none;
+}
+
+a:not([href]):not([tabindex]):hover,
+a:not([href]):not([tabindex]):focus {
+  text-decoration: none;
+}
+
+a:not([href]):not([tabindex]):focus {
+  outline: 0;
+}
+
+/* Profile */
+.profile {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+}
+
+/* Body */
+#content {
+  width: 100%;
+  padding: 0;
+  min-height: 100vh;
+}
+
+nav button {
+  border: none;
+  outline: none;
+  box-shadow: none;
+}

@@ -1,13 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { HeaderComponent } from './components/header/header.component';
-import { AssetsComponent } from './modules/assets/assets.component';
-import { FormsComponent } from './modules/forms/forms.component';
-import { TasksComponent } from './modules/tasks/tasks.component';
-// import { AssetsComponent } from './pages/assets/assets.component';
 
-import { SelectionComponent } from './pages/selection/selection.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { AssetsComponent } from './components/assets/assets.component';
+import { TasksComponent } from './components/tasks/tasks.component';
+import { FormsComponent } from './components/forms/forms.component';
+import { SelectionComponent } from './components/selection/selection.component';
 
 const routes: Routes = [
   {
@@ -19,7 +17,7 @@ const routes: Routes = [
       },
       {
         path: 'dashboard',
-        component: SidebarComponent,
+        component: DashboardComponent,
         children: [
           {
             path: 'assets',
