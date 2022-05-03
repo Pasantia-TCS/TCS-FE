@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { pipe, tap } from 'rxjs';
+import { ActivosService } from '../../services/activos.service';
 
 @Component({
   selector: 'app-assets',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AssetsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private rg: ActivosService) { }
 
   ngOnInit(): void {
+  }
+
+  activos = [];
+
+  registrar() {
+    this.rg.register().subscribe(pipe(
+      tap((resp: any) => console.log(resp))
+    ));
   }
 
 }
