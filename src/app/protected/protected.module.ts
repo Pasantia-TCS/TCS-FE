@@ -10,8 +10,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HeaderComponent } from './components/header/header.component';
-import { CustomButtonComponent } from './components/header/custom-button/custom-button.component';
-
+import { CustomButtonComponent } from './components/custom-button/custom-button.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +27,8 @@ import { CustomButtonComponent } from './components/header/custom-button/custom-
     MatIconModule,
     MatTooltipModule
   ], exports: [
-    CustomButtonComponent
+    CustomButtonComponent,
+    HeaderComponent
   ]
 })
 export class ProtectedModule { }
