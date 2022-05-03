@@ -14,7 +14,7 @@ export class SidebarComponent implements OnInit {
   }
 
   sideMenu = menuList;
-  collapse = false;
+  collapse = true;
   
   toggleSidebar() {
     this.collapse = !this.collapse;
