@@ -20,7 +20,10 @@ export class AssetsComponent implements OnInit {
 
   registrar() {
     this.rg.register().subscribe({
-      next: resp => Swal.fire('Éxito', 'Activo registrado', 'success'),
+      next: resp => {
+        this.activos = resp;
+        Swal.fire('Éxito', 'Activo registrado con éxito.', 'success')
+      },
       error: err => {
         Swal.fire('Error', err.error.mensaje, 'error')
       }
@@ -28,29 +31,63 @@ export class AssetsComponent implements OnInit {
   }
 
   actualizar() {
-    this.rg.actualizar().subscribe({
-      next: resp => console.log(resp),
-      error: err => {
-        Swal.fire('Error', err.error.mensaje, 'error')
+
+    Swal.fire({
+      title: '¿Quieres actualizar el activo?',
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Sí',
+      denyButtonText: 'No',
+      cancelButtonText: 'Cancelar',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.rg.actualizar().subscribe({
+          next: resp => {
+            this.activos = resp;
+            Swal.fire('Éxito', 'Activo actualizado con éxito.', 'success')
+          },
+          error: err => {
+            Swal.fire('Error', err.error.mensaje, 'error')
+          }
+        });
+      } else if (result.isDenied) {
+        Swal.fire('El activo no se ha actualizado.', '', 'info')
       }
-    });
+    })
+
   }
 
   eliminar() {
-    this.rg.eliminar().subscribe({
-      next: resp => console.log(resp),
-      error: err => {
-        Swal.fire('Error', err.error.mensaje, 'error')
+    Swal.fire({
+      title: '¿Quieres eliminar el activo?',
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Sí',
+      denyButtonText: 'No',
+      cancelButtonText: 'Cancelar',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.rg.eliminar().subscribe({
+          next: resp => {
+            this.activos = resp;
+            Swal.fire('Éxito', 'Activo eliminado con éxito.', 'success')
+          },
+          error: err => {
+            Swal.fire('Error', err.error.mensaje, 'error')
+          }
+        });
+      } else if (result.isDenied) {
+        Swal.fire('El activo no se ha eliminado.', '', 'info')
       }
-    });
+    })
   }
 
   mostrar() {
     this.rg.mostrarActivos().subscribe({
-      // next: resp => {
-      //   this.activos = resp;
-      // },
-      next: resp => console.log(resp),
+      next: resp => {
+        this.activos = resp;
+      },
+      // next: resp => console.log(resp),
       error: err => {
         Swal.fire('Error', err.error.mensaje, 'error')
       }

@@ -6,3 +6,5 @@
 <button class="btn btn-primary" (click)="actualizar()">Actualizar</button>
 <button class="btn btn-primary" (click)="eliminar()">Eliminar</button>
 <button class="btn btn-primary" (click)="mostrar()">Mostrar</button>
+
+<p *ngFor="let activos of activos"> {{activos|json}}</p>
