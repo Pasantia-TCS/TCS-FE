@@ -87,15 +87,10 @@ export class AssetsComponent implements OnInit {
       next: resp => {
         this.activos = resp;
       },
-      // next: resp => console.log(resp),
       error: err => {
         Swal.fire('Error', err.error.mensaje, 'error')
       }
     });
   }
-
-
-
-
 
 }
