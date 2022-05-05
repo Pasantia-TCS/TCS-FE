@@ -58,4 +58,14 @@ export class ActivosService {
     const url: string = `${this.baseUrl}/buscarUltimatix`;
     return this.http.post<activo[]>(url, { id_ultimatix: "0000000" });
   }
+
+  getSkills() {
+    const url: string = `${this.baseUrl}/skills`;
+    return this.http.get<string[]>(url);
+  }
+
+  getMySkills(ultimatix: string) {
+    const url: string = '';
+    return this.http.post<string[]>(url, {id_ultimatix: ultimatix});
+  }
 }

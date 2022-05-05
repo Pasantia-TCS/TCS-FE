@@ -16,6 +16,8 @@ import { AssetsComponent } from './components/assets/assets.component';
 import { TasksComponent } from './components/tasks/tasks.component';
 import { FormsComponent } from './components/forms/forms.component';
 import { SelectionComponent } from './components/selection/selection.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { SelectionComponent } from './components/selection/selection.component';
     AssetsComponent,
     TasksComponent,
     FormsComponent,
-    SelectionComponent
+    SelectionComponent,
+    ProfileComponent
   ],
   imports: [
     CommonModule,
@@ -34,7 +37,8 @@ import { SelectionComponent } from './components/selection/selection.component';
     SharedModule,
     MatSidenavModule,
     MatIconModule,
-    MatTooltipModule
+    MatTooltipModule,
+    ReactiveFormsModule
   ], exports: [
     CustomButtonComponent,
     HeaderComponent

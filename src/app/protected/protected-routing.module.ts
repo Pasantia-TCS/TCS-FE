@@ -6,6 +6,7 @@ import { AssetsComponent } from './components/assets/assets.component';
 import { TasksComponent } from './components/tasks/tasks.component';
 import { FormsComponent } from './components/forms/forms.component';
 import { SelectionComponent } from './components/selection/selection.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 const routes: Routes = [
   {
@@ -19,6 +20,10 @@ const routes: Routes = [
         path: 'dashboard',
         component: DashboardComponent,
         children: [
+          {
+            path: 'profile',
+            component: ProfileComponent
+          },
           {
             path: 'assets',
             component: AssetsComponent

@@ -1,0 +1,213 @@
+<section class="h-100">
+  <div class="container h-100 p-0">
+    <div class="col">
+      <!-- User info -->
+      <div class="card custom-card mb-3">
+        <div class="row">
+
+          <div class="col-md-3 d-flex flex-column align-items-center text-center pt-3">
+            <img src="./../../../../assets/images/user.jpg" alt="Admin" class="rounded-circle" width="150">
+            <h1 class="mb-0">David Vega</h1>
+            <p class="text-secondary mb-1">Full Stack Developer</p>
+          </div>
+
+          <div class="col-md-9 pt-3">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-3">
+                  <span class="mb-0 fw-bold">Nombre completo:</span>
+                </div>
+                <div class="col-sm-9 text-secondary">David Vega</div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <span class="mb-0 fw-bold">Ultimatix:</span>
+                </div>
+                <div class="col-sm-9 text-secondary">2254785</div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <span class="mb-0 fw-bold">Correo electrónico:</span>
+                </div>
+                <div class="col-sm-9 text-secondary">david@tcs.com</div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <span class="mb-0 fw-bold">Teléfono:</span>
+                </div>
+                <div class="col-sm-9 text-secondary">+593985968685</div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-12">
+                  <button type="button" class="btn custom-btn rounded-pill float-end" data-bs-toggle="modal"
+                    data-bs-target="#updateUserInfo" disabled>
+                    <span class="mx-3">Editar</span>
+                    <span>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-pencil-fill" viewBox="0 0 16 16">
+                        <path
+                          d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
+                      </svg>
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="updateUserInfo" tabindex="-1" aria-labelledby="updateUserInfoLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title fs-5" id="exampleModalLabel">Editar infomación</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- About me -->
+      <div class="card custom-card p-3 mb-3">
+        <div class="card-body">
+          <h5 class="card-title fs-2">Sobre mí</h5>
+          <p class="card-text">{{aboutMe}}</p>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <button type="button" class="btn custom-btn rounded-pill float-end" data-bs-toggle="modal"
+              data-bs-target="#updateAboutMe" disabled>
+              <span class="mx-3">Editar</span>
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                  class="bi bi-pencil-fill" viewBox="0 0 16 16">
+                  <path
+                    d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
+                </svg>
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="updateAboutMe" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="updateAboutMeLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title fs-5" id="exampleModalLabel">Editar infomación</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">
+                  Puedes escribir sobre tus años de experiencia, industria, logros o habilidades.
+                </label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn custom-btn rounded-pill float-end"
+                data-bs-dismiss="modal">Cerrar</button>
+              <button type="button" class="btn custom-btn rounded-pill float-end" (click)="updateAboutMe()">Guardar
+                cambios</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Skills -->
+      <div class="card custom-card p-3 mb-3">
+        <div class="card-body">
+          <h5 class="card-title fs-2 mb-3">Habilidades</h5>
+          <span class="form-text text-warning" *ngIf="mySkillsList.length === 0">
+            * No se han registrado habilidades
+          </span>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item" *ngFor="let skill of mySkillsList">{{skill}}</li>
+          </ul>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <button type="button" class="btn custom-btn rounded-pill float-end" data-bs-toggle="modal"
+              data-bs-target="#updateSkills" (click)="getMySkills()">
+              <span class="mx-3">Editar</span>
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                  class="bi bi-pencil-fill" viewBox="0 0 16 16">
+                  <path
+                    d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
+                </svg>
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="updateSkills" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title fs-5" id="exampleModalLabel">Editar infomación</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+              <form [formGroup]="skillsForm">
+                <!-- Add new skill -->
+                <div class="row mb-3">
+                  <label class="col-sm-3 col-form-label">Habilidades:</label>
+                  <div class="col-sm-9">
+                    <div class="input-group">
+                      <select class=" form-select" formControlName="skills">
+                        <option value="">Seleccione una habilidad</option>
+                        <option [ngValue]="skill" *ngFor="let skill of skillsList">{{skill}}</option>
+                      </select>
+                      <button type="button" (click)="addSkill()" class="btn btn-outline-primary">Añadir</button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- My skills list -->
+                <div class="row mb-3">
+                  <label class="col-sm-3 col-form-label">Mis habilidades:</label>
+                  <div class="col-sm-9">
+                    <div class="input-group mb-1" *ngFor="let mySkill of tempSkillsList; let i = index">
+                      <span class="input-group-text" id="addon-wrapping">{{i + 1}}</span>
+                      <input type="text" class="form-control" disabled [value]="mySkill">
+                      <button type="button" class="btn btn-outline-danger" (click)="deleteSkill(i)">Eliminar</button>
+                    </div>
+                  </div>
+                </div>
+
+              </form>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn custom-btn rounded-pill float-end"
+                data-bs-dismiss="modal">Cerrar</button>
+              <button type="button" class="btn custom-btn rounded-pill float-end" (click)="updateSkills()">Guardar
+                cambios</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
