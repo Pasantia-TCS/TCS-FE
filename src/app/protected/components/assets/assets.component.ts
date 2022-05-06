@@ -83,7 +83,7 @@ export class AssetsComponent implements OnInit {
   }
 
   mostrar() {
-    this.rg.mostrarActivos().subscribe({
+    this.rg.mostrarActivos("0000000").subscribe({
       next: resp => {
         this.activos = resp;
       },

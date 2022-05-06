@@ -34,8 +34,8 @@ export class ActivosService {
     "id_ultimatix": "0000000"
   }
 
-  // baseUrl: string = 'http://localhost:8081/activos';
-  private baseUrl: string = 'http://54.91.126.120:8081/activos';
+  baseUrl: string = 'http://localhost:8081/activos';
+  //private baseUrl: string = 'http://54.91.126.120:8081/activos';
 
   constructor(private http: HttpClient) { }
 
@@ -54,9 +54,9 @@ export class ActivosService {
     return this.http.post<activo[]>(url, { id_activo: "18", id_ultimatix: "0000000" });
   }
 
-  mostrarActivos() {
+  mostrarActivos(ultimatix: string) {
     const url: string = `${this.baseUrl}/buscarUltimatix`;
-    return this.http.post<activo[]>(url, { id_ultimatix: "0000000" });
+    return this.http.post<activo[]>(url, { id_ultimatix: ultimatix });
   }
 
   getSkills() {

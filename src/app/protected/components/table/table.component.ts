@@ -1,36 +1,54 @@
 import { Component, OnInit } from '@angular/core';
-import { activo } from '../../interfaces/activo'
+import Swal from 'sweetalert2';
+import { activo } from '../../interfaces/activo';
+import { ActivosService } from '../../services/activos.service';
 
 @Component({
-    selector: 'p-table',
-    templateUrl: './table.component.html'
+  selector: 'p-table',
+  templateUrl: './table.component.html'
 })
 export class TableBasic implements OnInit {
 
-    tableData1: any[] =  [
-        { id_activo: "17", area: "Seguridad", edificio: "Inluxor", piso: "2", tipo: "Computador", usuario_red: "@networkuser", hostname: "hostname", direccion_mac: "10:FF:C3:65:E4:60", direccion_ip: "172.16.1.0", reservada_ip: "false", id_ultimatix: "0000000"},
-        { id_activo: "18", area: "CTB", edificio: "Centrum", piso: "3", tipo: "Computador", usuario_red: "@networkuser", hostname: "hostname", direccion_mac: "10:FF:C3:65:E4:61", direccion_ip: "172.16.1.1", reservada_ip: "false", id_ultimatix: "0000000"},
-        { id_activo: "19", area: "IT", edificio: "Luxor", piso: "4", tipo: "Computador", usuario_red: "@networkuser", hostname: "hostname", direccion_mac: "10:FF:C3:65:E4:62", direccion_ip: "172.16.1.2", reservada_ip: "false", id_ultimatix: "0000000"},
-    
-    ]
+  ultimatix: string = '0000000';
 
-    tableKey: any = [];
-    tableValue: any = [];
-    getData(){
-        this.tableData1.forEach((element: any) => {
-            this.tableKey = Object.keys(element);
-            this.tableValue.push(Object.values(element));
-           // console.log(element)
-        });
-        //console.log(this.tableKey)
-        //console.log(this.tableValue)
-    }
+  tableData: any[] = [];
+  tableKey: any = [];
+  tableValue: any = [];
 
 
-    constructor() { 
-        this.getData(); 
-    }
+  constructor(private activosService: ActivosService) {
+    this.load();
+    this.getData();
+  }
 
-    ngOnInit(): void {
-    }  
+  ngOnInit(): void {
+
+
+  }
+
+  load() {
+    // console.log("load");
+    this.activosService.mostrarActivos(this.ultimatix).subscribe({
+      next: resp => {
+        this.tableData = resp;
+        // console.log(this.tableData);
+      },
+      error: err => {
+        Swal.fire('Error', err.error.mensaje, 'error')
+      }
+    });
+  }
+
+  getData() {
+    console.log("getData");
+    this.tableData.forEach((element: any) => {
+
+      this.tableKey = Object.keys(element);
+      this.tableValue.push(Object.values(element));
+      //console.log(element)
+    });
+    //console.log(this.tableKey)
+    //console.log(this.tableValue)
+  }
+
 }

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-custom-button',
@@ -10,9 +11,25 @@ export class CustomButtonComponent implements OnInit {
   @Input () buttonName = '';
   @Input () iconName = '';
 
-  constructor() { }
+  nuevoActivoForm: FormGroup = this.fb.group({
+    area: ['', Validators.required],
+    tipo: ['', Validators.required],
+    edificio: ['', Validators.required],
+    piso: ['', Validators.required],
+    netuser: ['', Validators.required],
+    hostname: ['', Validators.required],
+    mac: ['', Validators.required],
+    ip: ['', Validators.required],
+    ipReservada: ['', Validators.required]
+  })
+
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
+  }
+
+  guardarActivos() {
+    
   }
 
 }

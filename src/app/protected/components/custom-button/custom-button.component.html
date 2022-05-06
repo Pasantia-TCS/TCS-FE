@@ -1,8 +1,92 @@
-<button type="button" class="btn rounded-pill w-50 row custom-btn">
+<button type="button" class="btn rounded-pill w-50 row custom-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
     <span class="d-flex justify-content-center" style="column-gap: 10%;">
         <mat-icon>{{iconName}}</mat-icon>
         {{buttonName}}
-
     </span>
 </button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title fs-2 text-center" id="exampleModalLabel">Nuevo activo</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="nuevoActivoForm">
+              <div class="row">
+                  <div class="col mb-3">
+                    <select class="form-select rounded-pill">
+                        <option selected>Área</option>
+                        <option value="1">CTB</option>
+                        <option value="2">RTB</option>
+                    </select>
+                  </div>
+                  <div class="col mb-3">
+                    <select class="form-select rounded-pill">
+                        <option selected>Tipo</option>
+                        <option value="1">Computador</option>
+                        <option value="2">Monitor</option>
+                        <option value="3">Mouse</option>
+                      </select>
+                  </div>
+              </div>
+              <div>
+                <div class="row">
+                    <div class="col mb-3">
+                      <select class="form-select rounded-pill">
+                          <option selected>Edificio</option>
+                          <option value="1">Centrum</option>
+                          <option value="2">Inluxor</option>
+                        </select>
+                    </div>
+                    <div class="col mb-3">
+                      <select class="form-select rounded-pill">
+                          <option selected>Piso</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                          <option value="7">7</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col mb-3">
+                        <input type="text" class="form-control rounded-pill" placeholder="Usuario de red">
+                    </div>
+                    <div class="col mb-3">
+                        <input type="text" class="form-control rounded-pill" placeholder="Hostname">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col mb-3">
+                        <input type="text" class="form-control rounded-pill" placeholder="Dirección MAC">
+                    </div>
+                    <div class="col mb-3">
+                        <input type="text" class="form-control rounded-pill" placeholder="Dirección IP">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col mb-3">
+                        <select class="form-select rounded-pill" placeholder="IP reservada">
+                            <option value="" selected>IP reservada</option>
+                            <option [value]="true">Sí</option>
+                            <option [value]="false">No</option>
+                        </select>
+                    </div>
+                </div>
+              </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn custom-btn rounded-pill" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn custom-btn rounded-pill" (click)="guardarActivos()">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
