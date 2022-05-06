@@ -6,16 +6,15 @@
         <table class="table table-hover align-middle ">
             <thead class="bg-light">
                 <tr>
-                    <th *ngFor="let key of tableKey">{{key}}</th>
                     <th > Acciones </th>
-
+                    <th *ngFor="let key of tableKey">{{key}}</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let activo of tableValue">
+                    <td> <mat-icon [ngStyle]="{'color':'#9B11BF99'}">edit</mat-icon><mat-icon [ngStyle]="{'color':'#F7071299'}">delete</mat-icon>
+                    </td>
                     <td *ngFor="let value of activo">{{value}}</td>
-                    <td > Edit</td>
-
                 </tr>
             </tbody>
           </table>
