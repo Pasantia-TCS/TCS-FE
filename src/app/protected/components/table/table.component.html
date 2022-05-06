@@ -1,5 +1,6 @@
-<!-- <p-table responsiveLayout="scroll"> -->
+<!-- <p-table responsiveLayout="scroll">
     <ng-template pTemplate="header">
+        <h2>q</h2>
         <tr>
             <th>Code</th>
             <th>Name</th>
@@ -9,10 +10,30 @@
     </ng-template>
     <ng-template pTemplate="body" let-product>
         <tr>
-            <td>{{product.code}}</td>
-            <td>{{product.name}}</td>
-            <td>{{product.category}}</td>
-            <td>{{product.quantity}}</td>
+            <td>{{product.code}} hh</td>
+            <td>{{product.name}} hh</td>
+            <td>{{product.category}} hh</td>
+            <td>{{product.quantity}} hh</td>
         </tr>
     </ng-template>
-<!-- </p-table> -->
+</p-table> -->
+
+<div class="card shadow p-3 mb-5" style="border-radius: 2rem;">
+    <div class="card-body px-3 text-center table-responsive">
+        <table class="table table-hover align-middle ">
+            <thead class="bg-light">
+                <tr>
+                    <th *ngFor="let key of tableKey">{{key}}</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let activo of tableValue">
+                    <td *ngFor="let value of activo">{{value}}</td>
+                </tr>
+            </tbody>
+          </table>
+
+    </div>
+</div>
+

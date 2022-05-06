@@ -18,6 +18,7 @@ import { FormsComponent } from './components/forms/forms.component';
 import { SelectionComponent } from './components/selection/selection.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TableBasic } from './components/table/table.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     TasksComponent,
     FormsComponent,
     SelectionComponent,
-    ProfileComponent
+    ProfileComponent, 
+    TableBasic
   ],
   imports: [
     CommonModule,
