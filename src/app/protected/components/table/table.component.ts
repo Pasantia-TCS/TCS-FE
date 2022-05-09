@@ -4,6 +4,10 @@ import { UserService } from 'src/app/shared/services/user.service';
 import { ActivosService } from '../../services/activos.service';
 import { Output, EventEmitter } from '@angular/core';
 import { activo } from '../../interfaces/activo';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
+import { ActivosService2 } from 'src/app/shared/services/activos.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'p-table',
@@ -22,10 +26,39 @@ export class TableBasic implements OnInit {
 
   tableHeader: string[] = ['Acciones', 'ID', 'Área', 'Edificio', 'Piso', 'Tipo', 'Usuario de red', 'Hostname', 'Dirección MAC', 'Dirección IP', 'IP Reservada'];
 
+  areas: string[] = ['CTB', 'EnP', 'Librarian', 'Panamá', 'Seguridad', 'SES', 'Otras'];
+  tipos: string[] = ['Computador'];
+  pisos: string[] = ['Piso 1', 'Piso 2', 'Piso 3', 'Piso 4', 'Piso 5', 'Piso 6'];
+  edificios: string[] = ['Centrum', 'Inluxor'];
 
-  constructor(private activosService: ActivosService, private userService: UserService) {
+  currentAsset: activo = {};
 
+  actualizarActivoForm: FormGroup = this.fb.group({
+    area: [''],
+    tipo: [''],
+    edificio: [''],
+    piso: [''],
+    usuario_red: [''],
+    hostname: [''],
+    direccion_mac: [''],
+    direccion_ip: [''],
+    reservada_ip: [''],
+    id_activo: ['']
+  });
+
+  clickEventSubscription: Subscription;
+
+  constructor(private activosService: ActivosService, private userService: UserService, private fb: FormBuilder, private commonService: ActivosService2) {
+    this.clickEventSubscription = this.activosService.getClickEvent().subscribe((resp) => {
+      setTimeout(() => {
+        this.load();
+      }, 1000);
+    })
   }
+
+  /** */
+  
+  /** */
 
   ngOnInit(): void {
     this.currentUser = this.userService.getUserData();
@@ -33,34 +66,63 @@ export class TableBasic implements OnInit {
     this.load();
   }
 
-  // load() {
-  //   this.activosService.mostrarActivos(this.ultimatix).subscribe({
-  //     next: resp => {
-  //       this.tableData = resp;
-  //     },
-  //     error: err => {
-  //       Swal.fire('Error', err.error.mensaje, 'error')
-  //     }
-  //   });
-  // }
-
   load() {
     this.activosService.mostrarActivos(this.ultimatix).then((result) => {
-      this.tableData = [];
       this.tableData = result;
-      // this.getData();
     });
   }
-
-  // getData() {
-  //   this.tableData.forEach((element: any) => {
-  //     this.tableKey = Object.keys(element);
-  //     this.tableValue.push(Object.values(element));
-  //   });
-  // }
 
   deleteItem(index: string) {
     this.indexToDelete.emit(index);
   }
+
+  updateItem(): void {
+
+    this.currentAsset = { ...this.actualizarActivoForm.value };
+    this.currentAsset.id_ultimatix = this.ultimatix;
+    
+    this.load();
+
+    Swal.fire({
+      title: '¿Quieres actualizar el activo?',
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Sí',
+      denyButtonText: 'No',
+      cancelButtonText: 'Cancelar',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.activosService.actualizar(this.currentAsset).subscribe({
+          next: () => {
+            this.load()
+            Swal.fire('Éxito', 'Activo actualizado con éxito.', 'success')
+          },
+          error: err => {
+            Swal.fire('Error', err.error.mensaje, 'error')
+          }
+        });
+      } else if (result.isDenied) {
+        Swal.fire('El activo no se ha actualizado.', '', 'info')
+      }
+    })
+  }
+
+  activoActual(activo: activo) {
+    this.currentAsset = activo;
+    this.actualizarActivoForm.patchValue({
+      area: activo.area,
+      tipo: activo.tipo,
+      edificio: activo.edificio,
+      piso: activo.piso,
+      usuario_red: activo.usuario_red,
+      hostname: activo.hostname,
+      direccion_mac: activo.direccion_mac,
+      direccion_ip: activo.direccion_ip,
+      reservada_ip: activo.reservada_ip,
+      id_activo: activo.id_activo
+    });
+  }
+
+
 
 }

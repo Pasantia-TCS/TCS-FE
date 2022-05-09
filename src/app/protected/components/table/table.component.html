@@ -1,5 +1,3 @@
-<button class="btn custom-btn rounded-pill mb-3" (click)="load()">Refrescar</button>
-
 <div class="card shadow p-3 mb-5 overflow-auto" style="border-radius: 2rem; max-height: 60%;">
   <div class="card-body px-3 text-center table-responsive">
     <table class="table table-hover align-middle ">
@@ -9,20 +7,9 @@
         </tr>
       </thead>
       <tbody>
-        <!-- <tr *ngFor="let activo of tableValue">
-          <td>
-            <button mat-icon-button>
-              <mat-icon [ngStyle]="{'color':'#9B11BF99'}">edit</mat-icon>
-            </button>
-            <button mat-icon-button (click)="deleteItem(activo[0])">
-              <mat-icon [ngStyle]="{'color':'#F7071299'}">delete</mat-icon>
-            </button>
-          </td>
-          <td *ngFor="let value of activo">{{value}}</td>
-        </tr> -->
         <tr *ngFor="let activo of tableData">
           <td>
-            <button mat-icon-button>
+            <button mat-icon-button data-bs-toggle="modal" data-bs-target="#updateItem" (click)="activoActual(activo)">
               <mat-icon [ngStyle]="{'color':'#9B11BF99'}">edit</mat-icon>
             </button>
             <button mat-icon-button (click)="deleteItem(activo.id_activo!)">
@@ -43,5 +30,87 @@
       </tbody>
     </table>
 
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="updateItem" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title fs-2 text-center" id="exampleModalLabel">Actualizar activo</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="actualizarActivoForm">
+          <div class="row">
+            <div class="col mb-3">
+              <select class="form-select rounded-pill" formControlName="area">
+                <option selected value="">Área</option>
+                <option [value]="area" *ngFor="let area of areas">{{area}}</option>
+              </select>
+            </div>
+            <div class="col mb-3">
+              <select class="form-select rounded-pill" formControlName="tipo">
+                <option selected value="">Tipo</option>
+                <option [value]="tipo" *ngFor="let tipo of tipos">{{tipo}}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col mb-3">
+              <select class="form-select rounded-pill" formControlName="edificio">
+                <option selected value="">Edificio</option>
+                <option [value]="edificio" *ngFor="let edificio of edificios">{{edificio}}</option>
+              </select>
+            </div>
+            <div class="col mb-3">
+              <select class="form-select rounded-pill" formControlName="piso">
+                <option selected value="">Piso</option>
+                <option [value]="piso" *ngFor="let piso of pisos">{{piso}}</option>
+              </select>
+            </div>
+          </div>
+          <div *ngIf="actualizarActivoForm.get('tipo')?.value ==='Computador'">
+            <div class="row">
+              <div class="col mb-3">
+                <input type="text" class="form-control rounded-pill" placeholder="Usuario de red"
+                  formControlName="usuario_red">
+              </div>
+              <div class="col mb-3">
+                <input type="text" class="form-control rounded-pill" placeholder="Hostname" formControlName="hostname">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col mb-3">
+                <input type="text" class="form-control rounded-pill" placeholder="Dirección MAC"
+                  formControlName="direccion_mac">
+              </div>
+              <div class="col mb-3">
+                <input type="text" class="form-control rounded-pill" placeholder="Dirección IP"
+                  formControlName="direccion_ip">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col mb-3">
+                <select class="form-select rounded-pill" placeholder="IP reservada" formControlName="reservada_ip">
+                  <option value="" selected>IP reservada</option>
+                  <option [value]="true">Sí</option>
+                  <option [value]="false">No</option>
+                </select>
+              </div>
+              <div class="col mb-3">
+                <input type="text" class="form-control rounded-pill" placeholder="Activo" formControlName="id_activo">
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn custom-btn rounded-pill" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn custom-btn rounded-pill" (click)="updateItem()">Actualizar</button>
+      </div>
+    </div>
   </div>
 </div>
