@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, throwError, tap, map, of } from 'rxjs';
 import { user } from '../interfaces/user';
 import { catchError, retry } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -10,8 +11,8 @@ import { catchError, retry } from 'rxjs/operators';
 })
 export class LoginService {
 
-  private baseUrl: string = 'http://54.91.126.120:8081';
-  //private baseUrl: string = environment.baseUrl;
+  // private baseUrl: string = 'http://54.91.126.120:8081';
+  private baseUrl: string = environment.baseUrl;
 
   constructor( private http : HttpClient ) { }
 

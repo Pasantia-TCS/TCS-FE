@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { lastValueFrom } from 'rxjs';
 import { activo } from '../interfaces/activo';
 
 @Injectable({
@@ -39,9 +40,14 @@ export class ActivosService {
 
   constructor(private http: HttpClient) { }
 
-  register() {
+  obtenerCatalogo(tipo: string) {
+    const url: string = `${this.baseUrl}/${tipo}`;
+    return this.http.get(url);
+  }
+
+  register(activo: activo) {
     const url: string = `${this.baseUrl}/agregarActivo`;
-    return this.http.post<activo[]>(url, this.registro1);
+    return this.http.post<activo[]>(url, activo);
   }
 
   actualizar() {
@@ -49,14 +55,21 @@ export class ActivosService {
     return this.http.post<activo[]>(url, this.registro)
   }
 
-  eliminar() {
+  eliminar(id_activo: string, ultimatix: string) {
     const url: string = `${this.baseUrl}/eliminarActivo`;
-    return this.http.post<activo[]>(url, { id_activo: "18", id_ultimatix: "0000000" });
+    return this.http.post<activo[]>(url, { id_activo: id_activo, id_ultimatix: ultimatix });
   }
 
-  mostrarActivos(ultimatix: string) {
+  // mostrarActivos(ultimatix: string) {
+  //   const url: string = `${this.baseUrl}/buscarUltimatix`;
+  //   return this.http.post<activo[]>(url, { id_ultimatix: ultimatix });
+  // }
+
+  async mostrarActivos(ultimatix: string | undefined) {
     const url: string = `${this.baseUrl}/buscarUltimatix`;
-    return this.http.post<activo[]>(url, { id_ultimatix: ultimatix });
+    const source$ = this.http.post<activo[]>(url, { id_ultimatix: ultimatix });
+    const result = await lastValueFrom(source$);
+    return result;
   }
 
   getSkills() {

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { user } from 'src/app/interfaces/user';
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-selection',
@@ -8,9 +10,12 @@ import { Router } from '@angular/router';
 })
 export class SelectionComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  currentUser: user = {};
+
+  constructor(private router: Router, private userService: UserService) { }
 
   ngOnInit(): void {
+    this.currentUser = this.userService.getUserData();
   }
 
   toAssets() {

@@ -1,24 +1,47 @@
-<button class="btn btn-primary" (click)="getData()">Mostrar</button>
-<br>
+<button class="btn custom-btn rounded-pill mb-3" (click)="load()">Refrescar</button>
 
-<div class="card shadow p-3 mb-5" style="border-radius: 2rem;">
-    <div class="card-body px-3 text-center table-responsive">
-        <table class="table table-hover align-middle ">
-            <thead class="bg-light">
-                <tr>
-                    <th > Acciones </th>
-                    <th *ngFor="let key of tableKey">{{key}}</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let activo of tableValue">
-                    <td> <mat-icon [ngStyle]="{'color':'#9B11BF99'}">edit</mat-icon><mat-icon [ngStyle]="{'color':'#F7071299'}">delete</mat-icon>
-                    </td>
-                    <td *ngFor="let value of activo">{{value}}</td>
-                </tr>
-            </tbody>
-          </table>
+<div class="card shadow p-3 mb-5 overflow-auto" style="border-radius: 2rem; max-height: 60%;">
+  <div class="card-body px-3 text-center table-responsive">
+    <table class="table table-hover align-middle ">
+      <thead class="bg-light">
+        <tr>
+          <th *ngFor="let key of tableHeader">{{key}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- <tr *ngFor="let activo of tableValue">
+          <td>
+            <button mat-icon-button>
+              <mat-icon [ngStyle]="{'color':'#9B11BF99'}">edit</mat-icon>
+            </button>
+            <button mat-icon-button (click)="deleteItem(activo[0])">
+              <mat-icon [ngStyle]="{'color':'#F7071299'}">delete</mat-icon>
+            </button>
+          </td>
+          <td *ngFor="let value of activo">{{value}}</td>
+        </tr> -->
+        <tr *ngFor="let activo of tableData">
+          <td>
+            <button mat-icon-button>
+              <mat-icon [ngStyle]="{'color':'#9B11BF99'}">edit</mat-icon>
+            </button>
+            <button mat-icon-button (click)="deleteItem(activo.id_activo!)">
+              <mat-icon [ngStyle]="{'color':'#F7071299'}">delete</mat-icon>
+            </button>
+          </td>
+          <td>{{activo.id_activo}}</td>
+          <td>{{activo.area}}</td>
+          <td>{{activo.edificio}}</td>
+          <td>{{activo.piso}}</td>
+          <td>{{activo.tipo}}</td>
+          <td>{{activo.usuario_red}}</td>
+          <td>{{activo.hostname}}</td>
+          <td>{{activo.direccion_mac}}</td>
+          <td>{{activo.direccion_ip}}</td>
+          <td>{{activo.reservada_ip}}</td>
+        </tr>
+      </tbody>
+    </table>
 
-    </div>
+  </div>
 </div>
-

@@ -2,12 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ProtectedRoutingModule } from './protected-routing.module';
-// import { SelectionComponent } from './pages/selection/selection.component';
 import { SharedModule } from '../shared/shared.module';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
-import {MatIconModule} from '@angular/material/icon';
-import {MatTooltipModule} from '@angular/material/tooltip';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HeaderComponent } from './components/header/header.component';
 import { CustomButtonComponent } from './components/custom-button/custom-button.component';
@@ -20,6 +19,8 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TableBasic } from './components/table/table.component';
 
+import { MatButtonModule } from '@angular/material/button';
+
 @NgModule({
   declarations: [
     SidebarComponent,
@@ -30,7 +31,7 @@ import { TableBasic } from './components/table/table.component';
     TasksComponent,
     FormsComponent,
     SelectionComponent,
-    ProfileComponent, 
+    ProfileComponent,
     TableBasic
   ],
   imports: [
@@ -40,8 +41,10 @@ import { TableBasic } from './components/table/table.component';
     MatSidenavModule,
     MatIconModule,
     MatTooltipModule,
+    MatButtonModule,
     ReactiveFormsModule
-  ], exports: [
+  ],
+  exports: [
     CustomButtonComponent,
     HeaderComponent
   ]

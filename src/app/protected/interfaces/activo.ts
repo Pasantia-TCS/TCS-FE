@@ -13,4 +13,4 @@ export interface activo {
     mensaje?: string,
     status?: string,
     timestamp?: string,
-    }
+}

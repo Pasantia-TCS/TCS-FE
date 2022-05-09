@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import Swal from 'sweetalert2';
-import { activo } from '../../interfaces/activo';
+import { user } from 'src/app/interfaces/user';
+import { UserService } from 'src/app/shared/services/user.service';
 import { ActivosService } from '../../services/activos.service';
+import { Output, EventEmitter } from '@angular/core';
+import { activo } from '../../interfaces/activo';
 
 @Component({
   selector: 'p-table',
@@ -9,46 +11,56 @@ import { ActivosService } from '../../services/activos.service';
 })
 export class TableBasic implements OnInit {
 
-  ultimatix: string = '0000000';
+  @Output() indexToDelete = new EventEmitter<string>();
 
-  tableData: any[] = [];
+  currentUser: user = {}
+  ultimatix: string | undefined = '';
+
+  tableData: activo[] = [];
   tableKey: any = [];
   tableValue: any = [];
 
+  tableHeader: string[] = ['Acciones', 'ID', 'Área', 'Edificio', 'Piso', 'Tipo', 'Usuario de red', 'Hostname', 'Dirección MAC', 'Dirección IP', 'IP Reservada'];
 
-  constructor(private activosService: ActivosService) {
-    this.load();
-    this.getData();
+
+  constructor(private activosService: ActivosService, private userService: UserService) {
+
   }
 
   ngOnInit(): void {
-
-
+    this.currentUser = this.userService.getUserData();
+    this.ultimatix = this.currentUser.id_numero_Ultimatix;
+    this.load();
   }
+
+  // load() {
+  //   this.activosService.mostrarActivos(this.ultimatix).subscribe({
+  //     next: resp => {
+  //       this.tableData = resp;
+  //     },
+  //     error: err => {
+  //       Swal.fire('Error', err.error.mensaje, 'error')
+  //     }
+  //   });
+  // }
 
   load() {
-    // console.log("load");
-    this.activosService.mostrarActivos(this.ultimatix).subscribe({
-      next: resp => {
-        this.tableData = resp;
-        // console.log(this.tableData);
-      },
-      error: err => {
-        Swal.fire('Error', err.error.mensaje, 'error')
-      }
+    this.activosService.mostrarActivos(this.ultimatix).then((result) => {
+      this.tableData = [];
+      this.tableData = result;
+      // this.getData();
     });
   }
 
-  getData() {
-    console.log("getData");
-    this.tableData.forEach((element: any) => {
+  // getData() {
+  //   this.tableData.forEach((element: any) => {
+  //     this.tableKey = Object.keys(element);
+  //     this.tableValue.push(Object.values(element));
+  //   });
+  // }
 
-      this.tableKey = Object.keys(element);
-      this.tableValue.push(Object.values(element));
-      //console.log(element)
-    });
-    //console.log(this.tableKey)
-    //console.log(this.tableValue)
+  deleteItem(index: string) {
+    this.indexToDelete.emit(index);
   }
 
 }

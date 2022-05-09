@@ -3,6 +3,8 @@ import { pipe, tap } from 'rxjs';
 import Swal from 'sweetalert2';
 import { ActivosService } from '../../services/activos.service';
 import { activo } from '../../interfaces/activo';
+import { user } from 'src/app/interfaces/user';
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-assets',
@@ -11,26 +13,43 @@ import { activo } from '../../interfaces/activo';
 })
 export class AssetsComponent implements OnInit {
 
-  constructor(private rg: ActivosService) { }
+  activos: activo[] = [];
+  currentUser: user = {};
+
+  constructor(private rg: ActivosService, private userService: UserService) { }
 
   ngOnInit(): void {
+    this.loadUser();
+    this.loadAssets(this.currentUser.id_numero_Ultimatix);
+    // setTimeout(() => {
+    //   console.log('Activos fuera:', this.activos);
+    // }, 1000);
   }
 
-  activos: activo[] = [];
 
-  registrar() {
-    this.rg.register().subscribe({
-      next: resp => {
-        this.activos = resp;
-        Swal.fire('Éxito', 'Activo registrado con éxito.', 'success')
-      },
-      error: err => {
-        Swal.fire('Error', err.error.mensaje, 'error')
-      }
+  // registrar() {
+  //   this.rg.register().subscribe({
+  //     next: resp => {
+  //       this.activos = resp;
+  //       Swal.fire('Éxito', 'Activo registrado con éxito.', 'success')
+  //     },
+  //     error: err => {
+  //       Swal.fire('Error', err.error.mensaje, 'error')
+  //     }
+  //   });
+  // }
+
+  loadUser(): void {
+    this.currentUser = this.userService.getUserData();
+  }
+
+  loadAssets(ultimatix: string | undefined): void {
+    this.rg.mostrarActivos(ultimatix).then(resp => {
+      this.activos = resp;
     });
   }
 
-  actualizar() {
+  actualizar(): void {
 
     Swal.fire({
       title: '¿Quieres actualizar el activo?',
@@ -57,7 +76,12 @@ export class AssetsComponent implements OnInit {
 
   }
 
-  eliminar() {
+  deleteItem(id_activo: string): void {
+
+    const ultimatix = this.currentUser.id_numero_Ultimatix!;
+
+    console.log()
+
     Swal.fire({
       title: '¿Quieres eliminar el activo?',
       showDenyButton: true,
@@ -67,7 +91,7 @@ export class AssetsComponent implements OnInit {
       cancelButtonText: 'Cancelar',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.rg.eliminar().subscribe({
+        this.rg.eliminar(id_activo, ultimatix).subscribe({
           next: resp => {
             this.activos = resp;
             Swal.fire('Éxito', 'Activo eliminado con éxito.', 'success')
@@ -82,15 +106,17 @@ export class AssetsComponent implements OnInit {
     })
   }
 
-  mostrar() {
-    this.rg.mostrarActivos("0000000").subscribe({
-      next: resp => {
-        this.activos = resp;
-      },
-      error: err => {
-        Swal.fire('Error', err.error.mensaje, 'error')
-      }
-    });
-  }
+  // mostrar() {
+  //   this.rg.mostrarActivos("0000000").subscribe({
+  //     next: resp => {
+  //       this.activos = resp;
+  //     },
+  //     error: err => {
+  //       Swal.fire('Error', err.error.mensaje, 'error')
+  //     }
+  //   });
+  // }
+
+
 
 }
