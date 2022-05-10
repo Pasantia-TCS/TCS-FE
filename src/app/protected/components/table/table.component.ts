@@ -8,6 +8,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { ActivosService2 } from 'src/app/shared/services/activos.service';
 import { Subscription } from 'rxjs';
+import { DatePipe } from '@angular/common';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'p-table',
@@ -45,6 +47,12 @@ export class TableBasic implements OnInit {
     reservada_ip: [''],
     id_activo: ['']
   });
+
+  pipe = new DatePipe('en-US');
+  date = this.pipe.transform(Date.now(), 'dd-MM-yyyy');
+
+  fileName: string = 'Reporte Activos ' + this.date + '.xlsx';
+
 
   clickEventSubscription: Subscription;
 
@@ -121,6 +129,21 @@ export class TableBasic implements OnInit {
       reservada_ip: activo.reservada_ip,
       id_activo: activo.id_activo
     });
+  }
+
+  exportTable(): void{
+
+    let element = document.getElementById('tableActivos');
+    
+    const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
+ 
+    // Generar archivo
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+    
+    // Save
+    XLSX.writeFile(wb, this.fileName);  
+  
   }
 
 
