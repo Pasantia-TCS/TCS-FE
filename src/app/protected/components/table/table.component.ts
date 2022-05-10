@@ -8,6 +8,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { ActivosService2 } from 'src/app/shared/services/activos.service';
 import { Subscription } from 'rxjs';
+import { DatePipe } from '@angular/common';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'p-table',
@@ -33,6 +35,25 @@ export class TableBasic implements OnInit {
 
   currentAsset: activo = {};
 
+  actualizarActivoForm: FormGroup = this.fb.group({
+    area: [''],
+    tipo: [''],
+    edificio: [''],
+    piso: [''],
+    usuario_red: [''],
+    hostname: [''],
+    direccion_mac: [''],
+    direccion_ip: [''],
+    reservada_ip: [''],
+    id_activo: ['']
+  });
+
+  pipe = new DatePipe('en-US');
+  date = this.pipe.transform(Date.now(), 'dd-MM-yyyy');
+
+  fileName: string = 'Reporte Activos ' + this.date + '.xlsx';
+
+
   // clickEventSubscription: Subscription;
 
   constructor(private activosService: ActivosService, private userService: UserService, private fb: FormBuilder, private commonService: ActivosService2) {
@@ -57,6 +78,21 @@ export class TableBasic implements OnInit {
 
   deleteItem(index: string) {
     this.indexToDelete.emit(index);
+  }
+
+  exportTable(): void{
+
+    let element = document.getElementById('tableActivos');
+    
+    const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
+ 
+    // Generar archivo
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+    
+    // Save
+    XLSX.writeFile(wb, this.fileName);  
+  
   }
 
 }

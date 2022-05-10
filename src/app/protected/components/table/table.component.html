@@ -1,6 +1,8 @@
 <div class="card shadow p-3 mb-5 overflow-auto" style="border-radius: 2rem; max-height: 60%;">
   <div class="card-body px-3 text-center table-responsive">
-    <table class="table table-hover align-middle ">
+    <button class="btn custom-btn rounded-pill" (click)="exportTable()">Generar Reporte</button>
+    <br><br>
+    <table id="tableActivos" class="table table-hover align-middle ">
       <thead class="bg-light">
         <tr>
           <th *ngFor="let key of tableHeader">{{key}}</th>
