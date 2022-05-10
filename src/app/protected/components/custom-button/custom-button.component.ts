@@ -28,13 +28,11 @@ export class CustomButtonComponent implements OnInit {
     tipo: ['', Validators.required],
     edificio: ['', Validators.required],
     piso: ['', Validators.required],
-    usuario_red: ['', Validators.required],
     hostname: ['', Validators.required],
-    direccion_mac: ['', [Validators.required]],
-    direccion_ip: ['', [Validators.required]],
-    // direccion_mac: ['', [Validators.required, Validators.pattern('^([0-9A-F]{2}[:-]){5}([0-9A-F]{2})$')]],
-    // direccion_ip: ['', [Validators.required, Validators.pattern('^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)(\.(?!$)|$)){4}$')]],
-    reservada_ip: ['', Validators.required]
+    direccion_mac: ['', [Validators.required, Validators.pattern('^([0-9A-F]{2}[:-]){5}([0-9A-F]{2})$')]],
+    direccion_ip: ['', [Validators.required, Validators.pattern("^(?:(?:^|\.)(?:2(?:5[0-5]|[0-4]\\d)|1?\\d?\\d)){4}$")]],
+    reservada_ip: ['', Validators.required],
+    date: ['', Validators.required]
   })
 
   activos: activo = {};
@@ -49,6 +47,10 @@ export class CustomButtonComponent implements OnInit {
     this.activosService.sendClickEvent();
   }
   /* */
+
+  getControl(controlName: string) {
+    return this.nuevoActivoForm.get("controlName");
+  }
 
   guardarActivos() {
     if (this.nuevoActivoForm.invalid) {

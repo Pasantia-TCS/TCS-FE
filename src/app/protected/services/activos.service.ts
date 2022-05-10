@@ -8,8 +8,8 @@ import { activo } from '../interfaces/activo';
 })
 export class ActivosService {
 
-  // baseUrl: string = 'http://localhost:8081/activos';
-  private baseUrl: string = 'http://54.91.126.120:8081/activos';
+  private baseUrl: string = 'http://localhost:8081/activos';
+  // private baseUrl: string = 'http://54.91.126.120:8081/activos';
 
   constructor(private http: HttpClient) { }
 
@@ -32,11 +32,6 @@ export class ActivosService {
     const url: string = `${this.baseUrl}/eliminarActivo`;
     return this.http.post<activo[]>(url, { id_activo: id_activo, id_ultimatix: ultimatix });
   }
-
-  // mostrarActivos(ultimatix: string) {
-  //   const url: string = `${this.baseUrl}/buscarUltimatix`;
-  //   return this.http.post<activo[]>(url, { id_ultimatix: ultimatix });
-  // }
 
   async mostrarActivos(ultimatix: string | undefined) {
     const url: string = `${this.baseUrl}/buscarUltimatix`;

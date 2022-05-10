@@ -11,8 +11,8 @@ import { environment } from 'src/environments/environment';
 })
 export class LoginService {
 
-  private baseUrl: string = 'http://54.91.126.120:8081';
-  // private baseUrl: string = environment.baseUrl;
+  // private baseUrl: string = 'http://54.91.126.120:8081';
+  private baseUrl: string = environment.baseUrl;
 
   constructor( private http : HttpClient ) { }
 

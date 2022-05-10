@@ -20,9 +20,9 @@ export class AssetsComponent implements OnInit, AfterViewInit {
   activoActual: activo = {};
 
   @ViewChild(TableBasic) table: any;
-  
+
   constructor(private rg: ActivosService, private userService: UserService, private fb: FormBuilder) { }
-  
+
   ngAfterViewInit(): void {
     this.table.load();
   }
@@ -42,40 +42,6 @@ export class AssetsComponent implements OnInit, AfterViewInit {
     });
   }
 
-  // updateItem(id_activo: string): void {
-
-  //   this.activos.forEach(item => {
-  //     if (item.id_activo === id_activo) {
-  //       this.activoActual = item;
-  //     }
-  //   })
-
-  //   this.activoActual.id_ultimatix = this.currentUser.id_numero_Ultimatix;    
-
-  //   Swal.fire({
-  //     title: '¿Quieres actualizar el activo?',
-  //     showDenyButton: true,
-  //     showCancelButton: true,
-  //     confirmButtonText: 'Sí',
-  //     denyButtonText: 'No',
-  //     cancelButtonText: 'Cancelar',
-  //   }).then((result) => {
-  //     if (result.isConfirmed) {
-  //       this.rg.actualizar(this.activoActual).subscribe({
-  //         next: resp => {
-  //           this.activos = resp;
-  //           Swal.fire('Éxito', 'Activo actualizado con éxito.', 'success')
-  //         },
-  //         error: err => {
-  //           Swal.fire('Error', err.error.mensaje, 'error')
-  //         }
-  //       });
-  //     } else if (result.isDenied) {
-  //       Swal.fire('El activo no se ha actualizado.', '', 'info')
-  //     }
-  //   })
-  // }
-
   deleteItem(id_activo: string): void {
 
     const ultimatix = this.currentUser.id_numero_Ultimatix!;
@@ -92,7 +58,6 @@ export class AssetsComponent implements OnInit, AfterViewInit {
         this.rg.eliminar(id_activo, ultimatix).subscribe({
           next: resp => {
             this.activos = resp;
-            // TODO: ejecute load()
             this.table.load();
             Swal.fire('Éxito', 'Activo eliminado con éxito.', 'success')
           },
@@ -105,18 +70,4 @@ export class AssetsComponent implements OnInit, AfterViewInit {
       }
     })
   }
-
-  // mostrar() {
-  //   this.rg.mostrarActivos("0000000").subscribe({
-  //     next: resp => {
-  //       this.activos = resp;
-  //     },
-  //     error: err => {
-  //       Swal.fire('Error', err.error.mensaje, 'error')
-  //     }
-  //   });
-  // }
-
-
-
 }
