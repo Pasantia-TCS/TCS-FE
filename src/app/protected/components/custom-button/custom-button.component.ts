@@ -7,11 +7,11 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class CustomButtonComponent implements OnInit {
 
-
   @Input() buttonName = '';
   @Input() iconName = '';
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

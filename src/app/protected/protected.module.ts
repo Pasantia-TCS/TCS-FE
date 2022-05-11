@@ -19,8 +19,8 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TableBasic } from './components/table/table.component';
 import { TableAsignacion } from './components/tableAsignacion/tableAsignacion.component';
-
 import { MatButtonModule } from '@angular/material/button';
+import { NewAssetComponent } from './components/new-asset/new-asset.component';
 
 @NgModule({
   declarations: [
@@ -33,8 +33,9 @@ import { MatButtonModule } from '@angular/material/button';
     FormsComponent,
     SelectionComponent,
     ProfileComponent,
-    TableBasic, 
-    TableAsignacion
+    TableBasic,
+    TableAsignacion,
+    NewAssetComponent
   ],
   imports: [
     CommonModule,
