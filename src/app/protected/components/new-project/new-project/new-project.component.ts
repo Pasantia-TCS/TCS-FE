@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserService } from 'src/app/shared/services/user.service';
 import { user } from 'src/app/interfaces/user';
-
+import { asignacion } from 'src/app/protected/interfaces/asignacion';
+import { AsignacionService } from 'src/app/protected/services/asignacion.service';
 @Component({
   selector: 'app-new-project',
   templateUrl: './new-project.component.html',
@@ -14,7 +17,8 @@ export class NewProjectComponent implements OnInit {
 
   tableHeader: string[] = ['Acciones', 'Ultimatix', 'Nombre', 'Habilidades', 'Asignacion'];
 
-  constructor() { }
+  asignacion: asignacion = {};
+  constructor(private asignacionService: AsignacionService, private userService: UserService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
   }
