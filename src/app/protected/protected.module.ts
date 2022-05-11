@@ -21,6 +21,9 @@ import { TableBasic } from './components/table/table.component';
 import { TableAsignacion } from './components/tableAsignacion/tableAsignacion.component';
 import { MatButtonModule } from '@angular/material/button';
 import { NewAssetComponent } from './components/new-asset/new-asset.component';
+import { SearchComponent } from './components/search/search.component';
+import { NewTemplateComponent } from './components/new-template/new-template.component';
+import { NewFormComponent } from './components/new-form/new-form.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,10 @@ import { NewAssetComponent } from './components/new-asset/new-asset.component';
     ProfileComponent,
     TableBasic,
     TableAsignacion,
-    NewAssetComponent
+    NewAssetComponent,
+    SearchComponent,
+    NewTemplateComponent,
+    NewFormComponent
   ],
   imports: [
     CommonModule,
