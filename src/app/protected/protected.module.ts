@@ -23,8 +23,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { NewAssetComponent } from './components/new-asset/new-asset.component';
 import { SearchComponent } from './components/search/search.component';
 import { NewTemplateComponent } from './components/new-template/new-template.component';
-import { NewFormComponent } from './components/new-form/new-form.component';
-import { NewProjectComponent } from './components/new-project/new-project/new-project.component';
+import { CardComponent } from './components/card/card.component';
 
 @NgModule({
   declarations: [
@@ -42,8 +41,7 @@ import { NewProjectComponent } from './components/new-project/new-project/new-pr
     NewAssetComponent,
     SearchComponent,
     NewTemplateComponent,
-    NewFormComponent,
-    NewProjectComponent
+    CardComponent
   ],
   imports: [
     CommonModule,
