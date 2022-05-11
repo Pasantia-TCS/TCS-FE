@@ -1,7 +1,32 @@
 <div class="card shadow p-3 mb-5 overflow-auto" style="border-radius: 2rem; max-height: 60%;">
   <div class="card-body px-3 text-center table-responsive">
-    <button (click)="exportTable()">Generar Reporte</button>
-    <br><br>
+    
+    <!-- Add new item -->
+    <div class="row">
+      <div class="col col-sm-3 mx-auto mb-4">
+        <button type="button" class="btn rounded-pill w-100 custom-btn" data-bs-toggle="modal" data-bs-target="#addItem">
+          <span class="d-flex justify-content-center" style="column-gap: 10%;">
+            <mat-icon>add_circle</mat-icon>
+            Añadir proyecto
+          </span>
+        </button>
+      </div>
+      <div class="col col-sm-3 mx-auto mb-4">
+          <button type="button" class="btn rounded-pill w-100 custom-btn" (click)="exportTable()">
+            <span class="d-flex justify-content-center" style="column-gap: 10%;">
+              Generar Reporte
+            </span>
+          </button>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="addItem" tabindex="-1">
+      <app-new-project></app-new-project>
+    </div>
+
+    
+
     <table id="tableAsignacion" class="table table-hover align-middle ">
       <thead class="bg-light">
         <tr>

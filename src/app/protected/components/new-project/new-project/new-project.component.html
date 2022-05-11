@@ -1,0 +1,171 @@
+<div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content modal-lg">
+  
+      <!-- Header -->
+      <div class="modal-header">
+        <h5 class="modal-title fs-2">Nuevo proyecto</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+  
+      <!-- Body -->
+      <div class="modal-body">
+        <form>
+  
+          <div class="row">
+            <!-- Project Name -->
+            <div class="col mb-3">
+                <input type="text" class="form-control rounded-pill" placeholder="Nombre del proyecto">
+            </div>
+
+            <!-- Type field -->
+            <div class="col mb-3">
+              <select class="form-select rounded-pill" formControlName="tipo">
+                <option selected value="">Tipo</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <!-- Usuario de red -->
+            <div class="col mb-3">
+                <input type="text" class="form-control rounded-pill" placeholder="Usuario de red">
+            </div>
+  
+            <!-- Asignacion field -->
+            <div class="col mb-3">
+              <select class="form-select rounded-pill" formControlName="asignacion">
+                <option selected value="">Asignación</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <!-- Date start field  -->
+            <div class="col mb-3">
+                <label class="col-sm-6 col-form-label text-end">Fecha inicio:</label>
+            </div>
+            <div class="col-sm-6">
+                <input type="date" class="form-control rounded-pill" formControlName="date">
+            </div>
+          </div>
+
+          <div class="row">
+            <!-- Date end field  -->
+            <div class="col mb-3">
+                <label class="col-sm-6 col-form-label text-end">Fecha fin:</label>
+            </div>
+            <div class="col-sm-6">
+                <input type="date" class="form-control rounded-pill" formControlName="date">
+            </div>
+          </div>
+
+            <div class="row">
+                <!-- Chose members-->
+                <div class="card shadow p-3 mb-5 overflow-auto" style="border-radius: 2rem; max-height: 60%;">
+                    <div class="card-body px-3 text-center table-responsive">
+                        <h2>Añadir miembros</h2>
+                        <table class="table table-hover align-middle ">
+                            <thead class="bg-light">
+                              <tr>
+                                <th >Acciones</th>
+                                <th >Ultimatix</th>
+                                <th >Nombre</th>
+                                <th >Habilidades</th>
+                                <th >Asignación</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>
+                                  <button mat-icon-button>
+                                    <mat-icon [ngStyle]="{'color':'#9B11BF99'}">add_circle</mat-icon>
+                                  </button>
+                                </td>
+                                <td>001</td>
+                                <td>Juan</td>
+                                <td>Java</td>
+                                <td>25%</td>
+                              </tr>
+                              
+                            </tbody>
+                          </table>
+                    </div>  
+                </div>                 
+            </div>
+
+            <div class="row">
+                <!-- Team members-->
+                <div class="card shadow p-3 mb-5 overflow-auto" style="border-radius: 2rem; max-height: 60%;">
+                    <div class="card-body px-3 text-center table-responsive">
+                        <h2>Miembros seleccionados</h2>
+                        <table class="table table-hover align-middle ">
+                            <thead class="bg-light">
+                              <tr>
+                                <th >Acciones</th>
+                                <th >Ultimatix</th>
+                                <th >Nombre</th>
+                                <th >Asignación</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>
+                                  <button mat-icon-button>
+                                    <mat-icon [ngStyle]="{'color':'#9B11BF99'}">add_circle</mat-icon>
+                                  </button>
+                                  
+                                </td>
+                                <td>001</td>
+                                <td>Juan</td>
+                                <td>25%</td>
+                              </tr>
+                              
+                            </tbody>
+                          </table>
+                    </div>  
+                </div>                 
+            </div>
+
+            
+
+          
+
+          <div class="row">
+            <!-- Project leader field -->
+            <div class="col mb-3">
+                <select class="form-select rounded-pill" formControlName="Líder técnico">
+                    <option selected value="">Líder del proyecto</option>
+                  </select>
+            </div>
+  
+            <!-- Leader field -->
+            <div class="col mb-3">
+              <select class="form-select rounded-pill" formControlName="Líder técnico">
+                <option selected value="">Líder técnico</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <!-- Descripcion field -->
+            <input type="text" class="form-control rounded-pill" placeholder="Descripcion del proyecto">
+          </div>
+
+
+          
+        </form>
+     </div>
+
+        
+  
+
+
+  
+      <!-- Footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn custom-btn rounded-pill" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn custom-btn rounded-pill">Guardar</button>
+      </div>
+
+    </div>
+  </div>
