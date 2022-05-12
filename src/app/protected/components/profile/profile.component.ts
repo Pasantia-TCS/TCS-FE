@@ -11,13 +11,6 @@ import { ActivosService } from '../../services/activos.service';
 })
 export class ProfileComponent {
 
-  ultimatix: string = '4444444';
-
-  // Personal info
-
-  // About me
-  aboutMe: string = '';
-
   // Skills
   skillsList: string[] = [];
   mySkillsList: string[] = [];
@@ -71,6 +64,10 @@ export class ProfileComponent {
 
   updateAboutMe() {
 
+  }
+
+  updateUserInfo() {
+    
   }
 
 }

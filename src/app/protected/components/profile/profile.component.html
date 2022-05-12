@@ -4,47 +4,51 @@
       <!-- User info -->
       <div class="card custom-card mb-3">
         <div class="row">
-
-          <div class="col-md-3 d-flex flex-column align-items-center text-center pt-3">
-            <img src="./../../../../assets/images/user.jpg" alt="Admin" class="rounded-circle" width="150">
-            <h1 class="mb-0">David Vega</h1>
-            <p class="text-secondary mb-1">Full Stack Developer</p>
+          <!-- User photo -->
+          <div class="col-md-3 my-auto">
+            <span class="row">
+              <svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" fill="currentColor"
+                class="mt-2 bi bi-person-circle" viewBox="0 0 16 16">
+                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                <path fill-rule="evenodd"
+                  d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+              </svg>
+            </span>
+            <h1 class="row justify-content-center mt-2 mb-0">David Vega</h1>
           </div>
 
+          <!-- Form -->
           <div class="col-md-9 pt-3">
             <div class="card-body">
               <div class="row">
-                <div class="col-sm-3">
-                  <span class="mb-0 fw-bold">Nombre completo:</span>
-                </div>
-                <div class="col-sm-9 text-secondary">David Vega</div>
-              </div>
-              <hr>
-              <div class="row">
-                <div class="col-sm-3">
-                  <span class="mb-0 fw-bold">Ultimatix:</span>
-                </div>
+                <span class="col-sm-3 mb-0 fw-bold">Ultimatix:</span>
                 <div class="col-sm-9 text-secondary">2254785</div>
               </div>
               <hr>
               <div class="row">
-                <div class="col-sm-3">
-                  <span class="mb-0 fw-bold">Correo electrónico:</span>
-                </div>
+                <span class="col-sm-3 mb-0 fw-bold">Correo electrónico:</span>
                 <div class="col-sm-9 text-secondary">david@tcs.com</div>
               </div>
               <hr>
               <div class="row">
-                <div class="col-sm-3">
-                  <span class="mb-0 fw-bold">Teléfono:</span>
-                </div>
+                <span class="col-sm-3 mb-0 fw-bold">Teléfono:</span>
                 <div class="col-sm-9 text-secondary">+593985968685</div>
+              </div>
+              <hr>
+              <div class="row">
+                <span class="col-sm-3 mb-0 fw-bold">Usuario de red:</span>
+                <div class="col-sm-9 text-secondary">@netuser</div>
+              </div>
+              <hr>
+              <div class="row">
+                <span class="col-sm-3 mb-0 fw-bold">Asignación (%):</span>
+                <div class="col-sm-9 text-secondary">{{0 | percent}}</div>
               </div>
               <hr>
               <div class="row">
                 <div class="col-sm-12">
                   <button type="button" class="btn custom-btn rounded-pill float-end" data-bs-toggle="modal"
-                    data-bs-target="#updateUserInfo" disabled>
+                    data-bs-target="#updateUserInfo">
                     <span class="mx-3">Editar</span>
                     <span>
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -64,18 +68,69 @@
       <!-- Modal -->
       <div class="modal fade" id="updateUserInfo" tabindex="-1" aria-labelledby="updateUserInfoLabel"
         aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-dialog-centered modal-lg rounded-pill">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title fs-5" id="exampleModalLabel">Editar infomación</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              ...
+              <form>
+                <div class="row">
+                  <div class="col col-sm-6">
+                    <div class="form-floating mb-3">
+                      <input type="text" class="form-control rounded-pill" id="floatingInput"
+                        value="David Alexander García Vega" disabled>
+                      <label for="floatingInput">Nombres completos</label>
+                    </div>
+                  </div>
+                  <div class="col col-sm-6">
+                    <div class="form-floating mb-3">
+                      <input type="text" class="form-control rounded-pill" id="floatingInput" value="2254678" disabled>
+                      <label for="floatingInput">Ultimatix</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <!-- Email -->
+                  <div class="col col-sm-6">
+                    <div class="form-floating mb-3">
+                      <input type="email" class="form-control rounded-pill" id="floatingInput"
+                        value="david.vega@tcs.com">
+                      <label for="floatingInput">Correo electrónico</label>
+                    </div>
+                  </div>
+                  <!-- Phone -->
+                  <div class="col col-sm-6">
+                    <div class="form-floating mb-3">
+                      <input type="phone" class="form-control rounded-pill" id="floatingInput" value="+593984931874">
+                      <label for="floatingInput">Teléfono</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <!-- Email -->
+                  <div class="col col-sm-6">
+                    <div class="form-floating mb-3">
+                      <input type="text" class="form-control rounded-pill" id="floatingInput" value="@netuser">
+                      <label for="floatingInput">Usuario de red</label>
+                    </div>
+                  </div>
+                  <!-- Phone -->
+                  <div class="col col-sm-6">
+                    <div class="form-floating mb-3">
+                      <input type="phone" class="form-control rounded-pill" id="floatingInput" value="0" disabled>
+                      <label for="floatingInput">Porcentaje de asignación</label>
+                    </div>
+                  </div>
+                </div>
+              </form>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
+              <button type="button" class="btn custom-btn rounded-pill float-end"
+                data-bs-dismiss="modal">Cerrar</button>
+              <button type="button" class="btn custom-btn rounded-pill float-end" (click)="updateUserInfo()">Guardar
+                cambios</button>
             </div>
           </div>
         </div>
@@ -85,12 +140,12 @@
       <div class="card custom-card p-3 mb-3">
         <div class="card-body">
           <h5 class="card-title fs-2">Sobre mí</h5>
-          <p class="card-text">{{aboutMe}}</p>
+          <p class="card-text">about me</p>
         </div>
         <div class="row">
           <div class="col-sm-12">
             <button type="button" class="btn custom-btn rounded-pill float-end" data-bs-toggle="modal"
-              data-bs-target="#updateAboutMe" disabled>
+              data-bs-target="#updateAboutMe">
               <span class="mx-3">Editar</span>
               <span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -115,10 +170,10 @@
             </div>
             <div class="modal-body">
               <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label">
+                <label for="textAreaAboutMe" class="form-label">
                   Puedes escribir sobre tus años de experiencia, industria, logros o habilidades.
                 </label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <textarea class="form-control" id="textAreaAboutMe" rows="3"></textarea>
               </div>
             </div>
             <div class="modal-footer">
@@ -132,7 +187,7 @@
       </div>
 
       <!-- Skills -->
-      <div class="card custom-card p-3 mb-3">
+      <div class="card custom-card p-3">
         <div class="card-body">
           <h5 class="card-title fs-2 mb-3">Habilidades</h5>
           <span class="form-text text-warning" *ngIf="mySkillsList.length === 0">

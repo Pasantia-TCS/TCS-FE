@@ -7,7 +7,6 @@ import { SharedModule } from '../shared/shared.module';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HeaderComponent } from './components/header/header.component';
 import { CustomButtonComponent } from './components/custom-button/custom-button.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -28,7 +27,6 @@ import { NewProjectComponent } from './components/new-project/new-project/new-pr
 
 @NgModule({
   declarations: [
-    SidebarComponent,
     HeaderComponent,
     CustomButtonComponent,
     DashboardComponent,
@@ -42,7 +40,7 @@ import { NewProjectComponent } from './components/new-project/new-project/new-pr
     NewAssetComponent,
     SearchComponent,
     NewTemplateComponent,
-    CardComponent, 
+    CardComponent,
     NewProjectComponent
   ],
   imports: [
