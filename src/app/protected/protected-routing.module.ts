@@ -7,6 +7,7 @@ import { TasksComponent } from './components/tasks/tasks.component';
 import { FormsComponent } from './components/forms/forms.component';
 import { SelectionComponent } from './components/selection/selection.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { ValidateTokenGuard } from '../auth/guards/validate-token.guard';
 
 const routes: Routes = [
   {

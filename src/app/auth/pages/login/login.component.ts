@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 
 import { LoginService } from 'src/app/services/login.service';
 import { UserService } from 'src/app/shared/services/user.service';
+
 import { user } from 'src/app/interfaces/user';
 
 
@@ -43,6 +44,7 @@ export class LoginComponent implements OnInit {
       this.service.login(ultimatix, password)
         .subscribe({
           next: resp => {
+            sessionStorage.setItem('token', resp.id_numero_Ultimatix!);
             this.userService.updateUser(resp);
             this.router.navigateByUrl('/pages');
           },
