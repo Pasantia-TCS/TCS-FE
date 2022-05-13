@@ -18,6 +18,7 @@ import * as XLSX from 'xlsx';
 export class TableBasic implements OnInit {
 
   @Output() indexToDelete = new EventEmitter<string>();
+  @Output() indexToDeliver = new EventEmitter<string>();
 
   currentUser: user = {}
   ultimatix: string | undefined = '';
@@ -33,35 +34,22 @@ export class TableBasic implements OnInit {
   pisos: string[] = ['Piso 1', 'Piso 2', 'Piso 3', 'Piso 4', 'Piso 5', 'Piso 6'];
   edificios: string[] = ['Centrum', 'Inluxor'];
 
-  currentAsset: activo = {};
-
-  actualizarActivoForm: FormGroup = this.fb.group({
-    area: [''],
-    tipo: [''],
-    edificio: [''],
-    piso: [''],
-    usuario_red: [''],
-    hostname: [''],
-    direccion_mac: [''],
-    direccion_ip: [''],
-    reservada_ip: [''],
-    id_activo: ['']
-  });
+  asset: activo = {};
 
   pipe = new DatePipe('en-US');
   date = this.pipe.transform(Date.now(), 'dd-MM-yyyy');
 
   fileName: string = 'Reporte Activos ' + this.date + '.xlsx';
 
+  clickEventSubscription: Subscription;
 
-  // clickEventSubscription: Subscription;
+  deliverForm: FormGroup = this.fb.group({
+    fecha_devolucion: ['', Validators.required]
+  });
 
-  constructor(private activosService: ActivosService, private userService: UserService, private fb: FormBuilder, private commonService: ActivosService2) {
-    // this.clickEventSubscription = this.activosService.getClickEvent().subscribe((resp) => {
-    //   setTimeout(() => {
-    //     this.load();
-    //   }, 1000);
-    // })
+  constructor(private activosService: ActivosService, private userService: UserService, private fb: FormBuilder) {
+    this.clickEventSubscription = this.activosService.getClickEvent()
+      .subscribe(() => setTimeout(() => this.load(), 500))
   }
 
   ngOnInit(): void {
@@ -80,19 +68,37 @@ export class TableBasic implements OnInit {
     this.indexToDelete.emit(index);
   }
 
-  exportTable(): void{
+  currentAsset(activo: activo) {
+    this.asset = activo;
+  }
+
+  exportTable(): void {
 
     let element = document.getElementById('tableActivos');
-    
-    const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
- 
+
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
+
     // Generar archivo
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-    
+
     // Save
-    XLSX.writeFile(wb, this.fileName);  
-  
+    XLSX.writeFile(wb, this.fileName);
+
+  }
+
+  deliverAsset() {
+    if (this.deliverForm.invalid) {
+      this.deliverForm.markAllAsTouched()
+      return;
+    } else {
+      const { fecha_devolucion } = this.deliverForm.value;
+      this.activosService.setAssetStatus(this.asset.id_activo?.toString()!, this.currentUser.id_numero_Ultimatix?.toString()!, fecha_devolucion)
+        .subscribe({
+          next: resp => this.tableData = resp
+        });
+    }
   }
 
 }
+

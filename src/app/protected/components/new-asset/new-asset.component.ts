@@ -19,15 +19,15 @@ export class NewAssetComponent implements OnInit {
   edificios: string[] = ['Centrum', 'Inluxor'];
 
   nuevoActivoForm: FormGroup = this.fb.group({
-    area: ['', Validators.required],
-    tipo: ['', Validators.required],
-    edificio: ['', Validators.required],
-    piso: ['', Validators.required],
-    hostname: ['', Validators.required],
-    direccion_mac: ['', [Validators.required, Validators.pattern('^([0-9A-F]{2}[:-]){5}([0-9A-F]{2})$')]],
-    direccion_ip: ['', [Validators.required, Validators.pattern("^(?:(?:^|\.)(?:2(?:5[0-5]|[0-4]\\d)|1?\\d?\\d)){4}$")]],
-    reservada_ip: ['', Validators.required],
-    date: ['', Validators.required]
+    area: ['CTB', Validators.required],
+    tipo: ['Computador', Validators.required],
+    edificio: ['Inluxor', Validators.required],
+    piso: ['Piso 3', Validators.required],
+    hostname: ['hostname', Validators.required],
+    direccion_mac: ['00-00-00-00-00-00', [Validators.required, Validators.pattern('^([0-9A-F]{2}[:-]){5}([0-9A-F]{2})$')]],
+    direccion_ip: ['192.168.1.1', [Validators.required, Validators.pattern("^(?:(?:^|\.)(?:2(?:5[0-5]|[0-4]\\d)|1?\\d?\\d)){4}$")]],
+    reservada_ip: ['true', Validators.required],
+    fecha_entrega: ['', Validators.required]
   });
 
   activo: activo = {};
@@ -41,7 +41,7 @@ export class NewAssetComponent implements OnInit {
     this.activosService.sendClickEvent();
   }
 
-  guardarActivos() {
+  guardarActivo() {
     if (this.nuevoActivoForm.invalid) {
       this.nuevoActivoForm.markAllAsTouched();
       return;
@@ -49,6 +49,7 @@ export class NewAssetComponent implements OnInit {
       this.activo = this.nuevoActivoForm.value;
       const userC: user = this.userService.getUserData();
       this.activo.id_ultimatix = userC.id_numero_Ultimatix;
+      console.log(this.activo);
       this.activosService.register(this.activo).subscribe({
         next: () => {
           this.clickMe();

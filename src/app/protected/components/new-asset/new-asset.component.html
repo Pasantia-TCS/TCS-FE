@@ -144,10 +144,11 @@
           <!-- Date field -->
           <label class="col-sm-6 col-form-label text-end">Fecha de entrega:</label>
           <div class="col-sm-6">
-            <input type="date" class="form-control rounded-pill" formControlName="date">
+            <input type="date" class="form-control rounded-pill" formControlName="fecha_entrega">
             <div
-              *ngIf="(nuevoActivoForm.get('date')?.invalid && nuevoActivoForm.get('date')?.touched) || nuevoActivoForm.get('date')?.dirty">
-              <span class="form-text text-danger float-start" *ngIf="nuevoActivoForm.get('date')?.errors?.['required']">
+              *ngIf="(nuevoActivoForm.get('fecha_entrega')?.invalid && nuevoActivoForm.get('fecha_entrega')?.touched) || nuevoActivoForm.get('fecha_entrega')?.dirty">
+              <span class="form-text text-danger float-start"
+                *ngIf="nuevoActivoForm.get('fecha_entrega')?.errors?.['required']">
                 * Seleccione una fecha válida.
               </span>
             </div>
@@ -159,7 +160,7 @@
     <!-- Footer -->
     <div class="modal-footer">
       <button type="button" class="btn custom-btn rounded-pill" data-bs-dismiss="modal">Cerrar</button>
-      <button type="button" class="btn custom-btn rounded-pill" (click)="guardarActivos()">Guardar</button>
+      <button type="button" class="btn custom-btn rounded-pill" (click)="guardarActivo()">Guardar</button>
     </div>
   </div>
 </div>

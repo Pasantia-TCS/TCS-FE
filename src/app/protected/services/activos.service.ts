@@ -50,5 +50,9 @@ export class ActivosService {
     return this.subject.asObservable();
   }
 
-  
+  setAssetStatus(id: string, ultimatix: string, deliveryDate: string) {
+    const url: string = `${this.baseUrl}/devolverActivo`;
+    const body = { id_activo: id, id_ultimatix: ultimatix, fecha_devolucion: deliveryDate };
+    return this.http.post<activo[]>(url, body);
+  }
 }

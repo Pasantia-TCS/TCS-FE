@@ -24,6 +24,7 @@ import { SearchComponent } from './components/search/search.component';
 import { NewTemplateComponent } from './components/new-template/new-template.component';
 import { CardComponent } from './components/card/card.component';
 import { NewProjectComponent } from './components/new-project/new-project/new-project.component';
+import { DeliverModalComponent } from './components/deliver-modal/deliver-modal.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { NewProjectComponent } from './components/new-project/new-project/new-pr
     SearchComponent,
     NewTemplateComponent,
     CardComponent,
-    NewProjectComponent
+    NewProjectComponent,
+    DeliverModalComponent
   ],
   imports: [
     CommonModule,

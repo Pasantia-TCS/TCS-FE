@@ -10,7 +10,9 @@ export interface activo {
     direccion_ip?: string,
     reservada_ip?: string,
     id_ultimatix?: string,
-    mensaje?: string,
-    status?: string,
-    timestamp?: string,
+    fecha_registro?: string,
+    fecha_entrega?: string,
+    fecha_devolucion?: string,
+    estado?: boolean,
+    borrado_logico?: boolean
 }
