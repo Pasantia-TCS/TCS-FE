@@ -40,16 +40,6 @@ export class ActivosService {
     return result;
   }
 
-  getSkills() {
-    const url: string = `${this.baseUrl}/skills`;
-    return this.http.get<string[]>(url);
-  }
-
-  getMySkills(ultimatix: string) {
-    const url: string = '';
-    return this.http.post<string[]>(url, { id_ultimatix: ultimatix });
-  }
-
   private subject = new Subject<any>();
 
   sendClickEvent() {
@@ -59,4 +49,6 @@ export class ActivosService {
   getClickEvent(): Observable<any> {
     return this.subject.asObservable();
   }
+
+  
 }

@@ -14,7 +14,7 @@
                   d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
               </svg>
             </span>
-            <h1 class="row justify-content-center mt-2 mb-0">David Vega</h1>
+            <h1 class="row justify-content-center mt-2 mb-0">{{profile.nombres_completos}}</h1>
           </div>
 
           <!-- Form -->
@@ -22,33 +22,33 @@
             <div class="card-body">
               <div class="row">
                 <span class="col-sm-3 mb-0 fw-bold">Ultimatix:</span>
-                <div class="col-sm-9 text-secondary">2254785</div>
+                <div class="col-sm-9 text-secondary">{{ultimatix}}</div>
               </div>
               <hr>
               <div class="row">
                 <span class="col-sm-3 mb-0 fw-bold">Correo electrónico:</span>
-                <div class="col-sm-9 text-secondary">david@tcs.com</div>
+                <div class="col-sm-9 text-secondary">{{currentUser.correo}}</div>
               </div>
               <hr>
               <div class="row">
                 <span class="col-sm-3 mb-0 fw-bold">Teléfono:</span>
-                <div class="col-sm-9 text-secondary">+593985968685</div>
+                <div class="col-sm-9 text-secondary">{{currentUser.telefono}}</div>
               </div>
               <hr>
               <div class="row">
                 <span class="col-sm-3 mb-0 fw-bold">Usuario de red:</span>
-                <div class="col-sm-9 text-secondary">@netuser</div>
+                <div class="col-sm-9 text-secondary">{{profile.usuario_red}}</div>
               </div>
               <hr>
               <div class="row">
                 <span class="col-sm-3 mb-0 fw-bold">Asignación (%):</span>
-                <div class="col-sm-9 text-secondary">{{0 | percent}}</div>
+                <div class="col-sm-9 text-secondary">{{profile.asignacion_usuario}}</div>
               </div>
               <hr>
               <div class="row">
                 <div class="col-sm-12">
                   <button type="button" class="btn custom-btn rounded-pill float-end" data-bs-toggle="modal"
-                    data-bs-target="#updateUserInfo">
+                    data-bs-target="#updateUserInfo" (click)="loadUserInfo()">
                     <span class="mx-3">Editar</span>
                     <span>
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -66,61 +66,64 @@
       </div>
 
       <!-- Modal -->
-      <div class="modal fade" id="updateUserInfo" tabindex="-1" aria-labelledby="updateUserInfoLabel"
-        aria-hidden="true">
+      <div class="modal fade" id="updateUserInfo" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered modal-lg rounded-pill">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title fs-5" id="exampleModalLabel">Editar infomación</h5>
+              <h5 class="modal-title fs-5" id="updateUserInfoLabel">Editar infomación</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <form>
+              <form [formGroup]="userInfoForm">
                 <div class="row">
                   <div class="col col-sm-6">
                     <div class="form-floating mb-3">
-                      <input type="text" class="form-control rounded-pill" id="floatingInput"
-                        value="David Alexander García Vega" disabled>
-                      <label for="floatingInput">Nombres completos</label>
+                      <input type="text" class="form-control rounded-pill" id="floatingFullname"
+                        [value]="profile.nombres_completos" disabled>
+                      <label for="floatingFullname">Nombres completos</label>
                     </div>
                   </div>
                   <div class="col col-sm-6">
                     <div class="form-floating mb-3">
-                      <input type="text" class="form-control rounded-pill" id="floatingInput" value="2254678" disabled>
-                      <label for="floatingInput">Ultimatix</label>
+                      <input type="text" class="form-control rounded-pill" id="floatingUltimatix" [value]="ultimatix"
+                        disabled>
+                      <label for="floatingUltimatix">Ultimatix</label>
                     </div>
                   </div>
                 </div>
+
                 <div class="row">
                   <!-- Email -->
                   <div class="col col-sm-6">
                     <div class="form-floating mb-3">
-                      <input type="email" class="form-control rounded-pill" id="floatingInput"
-                        value="david.vega@tcs.com">
-                      <label for="floatingInput">Correo electrónico</label>
+                      <input type="email" class="form-control rounded-pill" id="floatingEmail" formControlName="email">
+                      <label for="floatingEmail">Correo electrónico</label>
                     </div>
                   </div>
                   <!-- Phone -->
                   <div class="col col-sm-6">
                     <div class="form-floating mb-3">
-                      <input type="phone" class="form-control rounded-pill" id="floatingInput" value="+593984931874">
-                      <label for="floatingInput">Teléfono</label>
+                      <input type="phone" class="form-control rounded-pill" id="floatingPhone" formControlName="phone">
+                      <label for="floatingPhone">Teléfono</label>
                     </div>
                   </div>
                 </div>
+
                 <div class="row">
                   <!-- Email -->
                   <div class="col col-sm-6">
                     <div class="form-floating mb-3">
-                      <input type="text" class="form-control rounded-pill" id="floatingInput" value="@netuser">
-                      <label for="floatingInput">Usuario de red</label>
+                      <input type="text" class="form-control rounded-pill" id="floatingNetuser"
+                        [value]="profile.usuario_red" formControlName="netuser">
+                      <label for="floatingNetuser">Usuario de red</label>
                     </div>
                   </div>
-                  <!-- Phone -->
+                  <!-- Asignation (%) -->
                   <div class="col col-sm-6">
                     <div class="form-floating mb-3">
-                      <input type="phone" class="form-control rounded-pill" id="floatingInput" value="0" disabled>
-                      <label for="floatingInput">Porcentaje de asignación</label>
+                      <input type="number" class="form-control rounded-pill" id="floatingAsignation"
+                        [value]="profile.asignacion_usuario" disabled>
+                      <label for="floatingAsignation">Porcentaje de asignación</label>
                     </div>
                   </div>
                 </div>
@@ -140,7 +143,7 @@
       <div class="card custom-card p-3 mb-3">
         <div class="card-body">
           <h5 class="card-title fs-2">Sobre mí</h5>
-          <p class="card-text">about me</p>
+          <p class="card-text">{{profile.sobreMi}}</p>
         </div>
         <div class="row">
           <div class="col-sm-12">
@@ -168,19 +171,21 @@
               <h5 class="modal-title fs-5" id="exampleModalLabel">Editar infomación</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-              <div class="mb-3">
+            <div class="modal-body mb-3">
+              <form [formGroup]="aboutMeForm">
                 <label for="textAreaAboutMe" class="form-label">
                   Puedes escribir sobre tus años de experiencia, industria, logros o habilidades.
                 </label>
-                <textarea class="form-control" id="textAreaAboutMe" rows="3"></textarea>
-              </div>
+                <textarea class="form-control" id="textAreaAboutMe" rows="3" [value]="profile.sobreMi"
+                  formControlName="aboutMe"></textarea>
+              </form>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn custom-btn rounded-pill float-end"
                 data-bs-dismiss="modal">Cerrar</button>
-              <button type="button" class="btn custom-btn rounded-pill float-end" (click)="updateAboutMe()">Guardar
-                cambios</button>
+              <button type="button" class="btn custom-btn rounded-pill float-end" (click)="loadAboutMe()">
+                Guardar cambios
+              </button>
             </div>
           </div>
         </div>
@@ -190,17 +195,14 @@
       <div class="card custom-card p-3">
         <div class="card-body">
           <h5 class="card-title fs-2 mb-3">Habilidades</h5>
-          <span class="form-text text-warning" *ngIf="mySkillsList.length === 0">
-            * No se han registrado habilidades
-          </span>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item" *ngFor="let skill of mySkillsList">{{skill}}</li>
+            <li class="list-group-item" *ngFor="let skill of profile.habilidades">{{skill}}</li>
           </ul>
         </div>
         <div class="row">
           <div class="col-sm-12">
             <button type="button" class="btn custom-btn rounded-pill float-end" data-bs-toggle="modal"
-              data-bs-target="#updateSkills" (click)="getMySkills()">
+              data-bs-target="#updateSkills">
               <span class="mx-3">Editar</span>
               <span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -230,7 +232,7 @@
                   <label class="col-sm-3 col-form-label">Habilidades:</label>
                   <div class="col-sm-9">
                     <div class="input-group">
-                      <select class=" form-select" formControlName="skills">
+                      <select class=" form-select" id="skills" formControlName="skills">
                         <option value="">Seleccione una habilidad</option>
                         <option [ngValue]="skill" *ngFor="let skill of skillsList">{{skill}}</option>
                       </select>
@@ -253,12 +255,17 @@
 
               </form>
 
+              <span *ngIf="!savedSkills" class="form-text text-danger float-end">
+                * Cambios sin guardar
+              </span>
+
             </div>
             <div class="modal-footer">
               <button type="button" class="btn custom-btn rounded-pill float-end"
                 data-bs-dismiss="modal">Cerrar</button>
-              <button type="button" class="btn custom-btn rounded-pill float-end" (click)="updateSkills()">Guardar
-                cambios</button>
+              <button type="button" class="btn custom-btn rounded-pill float-end" (click)="loadSkills()">
+                Guardar cambios
+              </button>
             </div>
           </div>
         </div>
