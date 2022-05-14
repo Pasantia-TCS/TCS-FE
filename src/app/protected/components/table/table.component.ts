@@ -5,10 +5,9 @@ import { ActivosService } from '../../services/activos.service';
 import { Output, EventEmitter } from '@angular/core';
 import { activo } from '../../interfaces/activo';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import Swal from 'sweetalert2';
-import { ActivosService2 } from 'src/app/shared/services/activos.service';
 import { Subscription } from 'rxjs';
 import { DatePipe } from '@angular/common';
+import Swal from 'sweetalert2';
 import * as XLSX from 'xlsx';
 
 @Component({
@@ -95,7 +94,11 @@ export class TableBasic implements OnInit {
       const { fecha_devolucion } = this.deliverForm.value;
       this.activosService.setAssetStatus(this.asset.id_activo?.toString()!, this.currentUser.id_numero_Ultimatix?.toString()!, fecha_devolucion)
         .subscribe({
-          next: resp => this.tableData = resp
+          next: resp => {
+            this.tableData = resp;
+            Swal.fire('¡Éxito!', 'Se ha registrado con éxito la devolución del activo.', 'success');
+          },
+          error: err => Swal.fire('¡Error!', err.error.mensaje, 'error')
         });
     }
   }

@@ -1,82 +1,55 @@
 <div class="modal-dialog modal-dialog-centered">
   <div class="modal-content">
-
     <!-- Header -->
     <div class="modal-header">
-      <h5 class="modal-title fs-2">Nuevo activo</h5>
+      <h5 class="modal-title">Nuevo activo</h5>
       <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
     </div>
-
     <!-- Body -->
     <div class="modal-body">
-      <form [formGroup]="nuevoActivoForm">
+      <form [formGroup]="nuevoActivoForm" autocomplete="off">
 
         <div class="row">
           <!--Type field -->
-          <div class="col mb-3">
-            <select class="form-select rounded-pill" formControlName="tipo">
-              <option selected value="">Tipo</option>
+          <div class="col form-floating mb-3">
+            <select id="floatingType" class="form-select rounded-pill" formControlName="tipo">
               <option [value]="tipo" *ngFor="let tipo of tipos">{{tipo}}</option>
             </select>
-            <div
-              *ngIf="(nuevoActivoForm.get('tipo')?.invalid && nuevoActivoForm.get('tipo')?.touched) || nuevoActivoForm.get('tipo')?.dirty">
-              <span class="form-text text-danger float-start" *ngIf="nuevoActivoForm.get('tipo')?.errors?.['required']">
-                * Seleccione una opción válida.
-              </span>
-            </div>
+            <label for="floatingType">Tipo</label>
           </div>
-
           <!-- Area field -->
-          <div class="col mb-3">
-            <select class="form-select rounded-pill" formControlName="area">
-              <option selected value="">Área</option>
+          <div class="col form-floating mb-3">
+            <select id="floatingArea" class="form-select rounded-pill" formControlName="area">
               <option [value]="area" *ngFor="let area of areas">{{area}}</option>
             </select>
-            <div
-              *ngIf="(nuevoActivoForm.get('area')?.invalid && nuevoActivoForm.get('area')?.touched) || nuevoActivoForm.get('area')?.dirty">
-              <span class="form-text text-danger float-start" *ngIf="nuevoActivoForm.get('area')?.errors?.['required']">
-                * Seleccione una opción válida.
-              </span>
-            </div>
+            <label for="floatingArea">Área</label>
           </div>
         </div>
 
         <div class="row">
           <!-- Building field-->
-          <div class="col mb-3">
-            <select class="form-select rounded-pill" formControlName="edificio">
-              <option selected value="">Edificio</option>
+          <div class="col form-floating mb-3">
+            <select id="floatingBuilding" class="form-select rounded-pill" formControlName="edificio">
               <option [value]="edificio" *ngFor="let edificio of edificios">{{edificio}}</option>
             </select>
-            <div
-              *ngIf="(nuevoActivoForm.get('edificio')?.invalid && nuevoActivoForm.get('edificio')?.touched) || nuevoActivoForm.get('edificio')?.dirty">
-              <span class="form-text text-danger float-start"
-                *ngIf="nuevoActivoForm.get('edificio')?.errors?.['required']">
-                * Seleccione una opción válida.
-              </span>
-            </div>
+            <label for="floatingBuilding">Edificio</label>
           </div>
-
           <!-- Floor field -->
-          <div class="col mb-3">
+          <div class="col form-floating mb-3">
             <select class="form-select rounded-pill" formControlName="piso">
-              <option selected value="">Piso</option>
-              <option [value]="piso" *ngFor="let piso of pisos">{{piso}}</option>
+              <option id="floatingFloor" [value]="piso" *ngFor="let piso of pisos">{{piso}}</option>
             </select>
-            <div
-              *ngIf="(nuevoActivoForm.get('piso')?.invalid && nuevoActivoForm.get('piso')?.touched) || nuevoActivoForm.get('piso')?.dirty">
-              <span class="form-text text-danger float-start" *ngIf="nuevoActivoForm.get('piso')?.errors?.['required']">
-                * Seleccione una opción válida.
-              </span>
-            </div>
+            <label for="floatingFloor">Piso</label>
           </div>
         </div>
 
-        <div *ngIf="nuevoActivoForm.get('tipo')?.value ==='Computador'">
+        <div *ngIf="nuevoActivoForm.get('tipo')?.value === 'Computador'">
           <div class="row">
             <!-- Hostname field-->
-            <div class="col mb-3">
-              <input type="text" class="form-control rounded-pill" placeholder="Hostname" formControlName="hostname">
+            <div class="col form-floating mb-3">
+              <input id="floatingHostname" type="text" class="form-control rounded-pill" placeholder="Hostname"
+                formControlName="hostname">
+              <label for="floatingHostname">Hostname</label>
               <div
                 *ngIf="(nuevoActivoForm.get('hostname')?.invalid && nuevoActivoForm.get('hostname')?.touched) || nuevoActivoForm.get('hostname')?.dirty">
                 <span class="form-text text-danger float-start"
@@ -85,11 +58,11 @@
                 </span>
               </div>
             </div>
-
             <!-- MAC address field -->
-            <div class="col mb-3">
-              <input type="text" class="form-control rounded-pill" placeholder="Dirección MAC"
+            <div class="col form-floating mb-3">
+              <input id="floatingMAC" type="text" class="form-control rounded-pill" placeholder="Dirección MAC"
                 formControlName="direccion_mac">
+              <label for="floatingMAC">Dirección MAC</label>
               <div
                 *ngIf="(nuevoActivoForm.get('direccion_mac')?.invalid && nuevoActivoForm.get('direccion_mac')?.touched) || nuevoActivoForm.get('direccion_mac')?.dirty">
                 <span class="form-text text-danger float-start"
@@ -106,9 +79,10 @@
 
           <div class="row">
             <!-- IP address field -->
-            <div class="col mb-3">
-              <input type="text" class="form-control rounded-pill" placeholder="Dirección IP"
+            <div class="col form-floating mb-3">
+              <input id="floatingIP" type="text" class="form-control rounded-pill" placeholder="Dirección IP"
                 formControlName="direccion_ip">
+              <label for="floatingIP">Dirección IP</label>
               <div
                 *ngIf="(nuevoActivoForm.get('direccion_ip')?.invalid && nuevoActivoForm.get('direccion_ip')?.touched) || nuevoActivoForm.get('direccion_ip')?.dirty">
                 <span class="form-text text-danger float-start"
@@ -121,30 +95,22 @@
                 </span>
               </div>
             </div>
-
             <!-- Reserved IP field -->
-            <div class="col mb-3">
-              <select class="form-select rounded-pill" formControlName="reservada_ip">
-                <option value="" selected>IP reservada</option>
+            <div class="col form-floating mb-3">
+              <select id="floatingReservedIP" class="form-select rounded-pill" formControlName="reservada_ip">
                 <option [value]="true">Sí</option>
                 <option [value]="false">No</option>
               </select>
-              <div
-                *ngIf="(nuevoActivoForm.get('reservada_ip')?.invalid && nuevoActivoForm.get('reservada_ip')?.touched) || nuevoActivoForm.get('reservada_ip')?.dirty">
-                <span class="form-text text-danger float-start"
-                  *ngIf="nuevoActivoForm.get('reservada_ip')?.errors?.['required']">
-                  * Seleccione una fecha válida.
-                </span>
-              </div>
+              <label for="floatingReservedIP">Dirección IP reservada</label>
             </div>
           </div>
         </div>
 
         <div class="row">
           <!-- Date field -->
-          <label class="col-sm-6 col-form-label text-end">Fecha de entrega:</label>
-          <div class="col-sm-6">
-            <input type="date" class="form-control rounded-pill" formControlName="fecha_entrega">
+          <div class="col-6 form-floating">
+            <input id="floatingDate" type="date" class="form-control rounded-pill" formControlName="fecha_entrega">
+            <label for="floatingDate">Fecha de entrega</label>
             <div
               *ngIf="(nuevoActivoForm.get('fecha_entrega')?.invalid && nuevoActivoForm.get('fecha_entrega')?.touched) || nuevoActivoForm.get('fecha_entrega')?.dirty">
               <span class="form-text text-danger float-start"
@@ -160,7 +126,7 @@
     <!-- Footer -->
     <div class="modal-footer">
       <button type="button" class="btn custom-btn rounded-pill" data-bs-dismiss="modal">Cerrar</button>
-      <button type="button" class="btn custom-btn rounded-pill" (click)="guardarActivo()">Guardar</button>
+      <button type="button" class="btn custom-btn rounded-pill" (click)="saveAsset()">Guardar</button>
     </div>
   </div>
 </div>

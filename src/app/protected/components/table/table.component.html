@@ -1,8 +1,12 @@
-<div class="card shadow p-3 mb-5 overflow-auto" style="border-radius: 2rem; max-height: 60%;">
+<div class="card shadow p-3 mb-5 overflow-auto" style="border-radius: 2rem; max-height: 70%;">
   <div class="card-body px-3 text-center table-responsive">
-    <button class="btn custom-btn rounded-pill" (click)="exportTable()">Generar Reporte</button>
-    <br><br>
-    <table id="tableActivos" class="table table-hover align-middle ">
+    <button class="btn custom-btn rounded-pill mb-3 w-25 justify-content-end float-end" (click)="exportTable()">
+      <span class="d-flex justify-content-center" style="column-gap: 10%;">
+        <mat-icon>save_alt</mat-icon> Generar Reporte
+      </span>
+    </button>
+
+    <table id="tableActivos" class="table table-hover align-middle">
       <thead class="bg-light">
         <tr>
           <th *ngFor="let key of tableHeader">{{key}}</th>
@@ -25,11 +29,10 @@
           <td>{{activo.edificio}}</td>
           <td>{{activo.tipo}}</td>
           <td>{{activo.fecha_entrega}}</td>
-          <td>{{activo.estado}}</td>
+          <td [ngStyle]="{color: activo.estado ? 'green' : 'red'}">{{activo.estado ? 'Devuelto': 'No devuelto'}}</td>
         </tr>
       </tbody>
     </table>
-
   </div>
 </div>
 
@@ -38,12 +41,16 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Fecha de devolución</h5>
+        <h5 class="modal-title">Registro de devolución de activo</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <form [formGroup]="deliverForm">
-          <input type="date" class="form-control rounded-pill" formControlName="fecha_devolucion">
+          <div class="form-floating">
+            <input id="floatingDeliverDate" type="date" class="form-control rounded-pill"
+              formControlName="fecha_devolucion">
+            <label for="floatingDeliverDate">Fecha de devolución</label>
+          </div>
         </form>
         <div
           *ngIf="(deliverForm.get('fecha_devolucion')?.invalid && deliverForm.get('fecha_devolucion')?.touched) || deliverForm.get('fecha_devolucion')?.dirty">

@@ -71,7 +71,7 @@
 
       <!-- Logout -->
       <li class="mt-5 pt-4">
-        <a [routerLink]="['/']">
+        <a (click)="toLogin()" style="cursor: pointer;">
           <span>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: white">
               <path d="M16 13v-2H7V8l-5 4 5 4v-3z"></path>
