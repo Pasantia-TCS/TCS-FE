@@ -1,10 +1,11 @@
 <div class="card shadow p-3 mb-5 overflow-auto" style="border-radius: 2rem; max-height: 60%;">
   <div class="card-body px-3 text-center table-responsive">
-    
+
     <!-- Add new item -->
     <div class="row">
       <div class="col col-sm-3 mx-auto mb-4">
-        <button type="button" class="btn rounded-pill w-100 custom-btn" data-bs-toggle="modal" data-bs-target="#addItem">
+        <button type="button" class="btn rounded-pill w-100 custom-btn" data-bs-toggle="modal" data-bs-target="#addItem"
+          (click)="cargarUsuarios()">
           <span class="d-flex justify-content-center" style="column-gap: 10%;">
             <mat-icon>add_circle</mat-icon>
             Añadir proyecto
@@ -12,11 +13,11 @@
         </button>
       </div>
       <div class="col col-sm-3 mx-auto mb-4">
-          <button type="button" class="btn rounded-pill w-100 custom-btn" (click)="exportTable()">
-            <span class="d-flex justify-content-center" style="column-gap: 10%;">
-              Generar Reporte
-            </span>
-          </button>
+        <button type="button" class="btn rounded-pill w-100 custom-btn" (click)="exportTable()">
+          <span class="d-flex justify-content-center" style="column-gap: 10%;">
+            Generar Reporte
+          </span>
+        </button>
       </div>
     </div>
 
@@ -25,7 +26,7 @@
       <app-new-project></app-new-project>
     </div>
 
-    
+
 
     <table id="tableAsignacion" class="table table-hover align-middle ">
       <thead class="bg-light">
@@ -36,27 +37,26 @@
       <tbody>
         <tr *ngFor="let asignacion of tableData">
           <td>
-            <button mat-icon-button data-bs-toggle="modal" data-bs-target="#updateItem">
+            <button mat-icon-button data-bs-toggle="modal" data-bs-placement="right" title="Editar proyecto"
+              data-bs-toggle="modal" data-bs-target="" (click)="editItem(asignacion)">
               <mat-icon [ngStyle]="{'color':'#9B11BF99'}">edit</mat-icon>
             </button>
-            <button mat-icon-button>
+            <button mat-icon-button (click)="deleteItem(asignacion.id_asignacion!)" data-bs-toggle="tooltip"
+              data-bs-placement="right" title="Eliminar asignacion" [disabled]="asignacion.estado">
               <mat-icon [ngStyle]="{'color':'#F7071299'}">delete</mat-icon>
             </button>
           </td>
           <td>{{asignacion.id_asignacion}}</td>
-          <td>{{asignacion.proyecto}}</td>
+          <td>{{asignacion.nombre}}</td>
           <td>{{asignacion.descripcion}}</td>
           <td>{{asignacion.fecha_inicio}}</td>
           <td>{{asignacion.fecha_fin}}</td>
           <td>{{asignacion.asignacion}}</td>
-       
+
         </tr>
-        
+
       </tbody>
     </table>
 
-    
-
   </div>
 </div>
-
