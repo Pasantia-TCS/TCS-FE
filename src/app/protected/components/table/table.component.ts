@@ -8,7 +8,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { DatePipe } from '@angular/common';
 import Swal from 'sweetalert2';
-import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'p-table',
@@ -26,7 +25,7 @@ export class TableBasic implements OnInit {
   tableKey: any = [];
   tableValue: any = [];
 
-  tableHeader: string[] = ['Acciones', 'ID', 'Tipo', 'Área', 'Edificio', 'Fecha de entrega', 'Estado'];
+  tableHeader: string[] = ['Acciones', 'ID', 'Tipo', 'Área', 'Edificio', 'Fecha de adjudicación', 'Fecha de devolución', 'Estado'];
 
   areas: string[] = ['CTB', 'EnP', 'Librarian', 'Panamá', 'Seguridad', 'SES', 'Otras'];
   tipos: string[] = ['Computador'];
@@ -34,11 +33,6 @@ export class TableBasic implements OnInit {
   edificios: string[] = ['Centrum', 'Inluxor'];
 
   asset: activo = {};
-
-  pipe = new DatePipe('en-US');
-  date = this.pipe.transform(Date.now(), 'dd-MM-yyyy');
-
-  fileName: string = 'Reporte Activos ' + this.date + '.xlsx';
 
   clickEventSubscription: Subscription;
 
@@ -69,21 +63,6 @@ export class TableBasic implements OnInit {
 
   currentAsset(activo: activo) {
     this.asset = activo;
-  }
-
-  exportTable(): void {
-
-    let element = document.getElementById('tableActivos');
-
-    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
-
-    // Generar archivo
-    const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-
-    // Save
-    XLSX.writeFile(wb, this.fileName);
-
   }
 
   deliverAsset() {

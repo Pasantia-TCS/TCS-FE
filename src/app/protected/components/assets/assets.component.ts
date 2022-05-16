@@ -5,6 +5,8 @@ import { user } from 'src/app/interfaces/user';
 import { UserService } from 'src/app/shared/services/user.service';
 import { TableBasic } from '../table/table.component';
 import Swal from 'sweetalert2';
+import * as XLSX from 'xlsx';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-assets',
@@ -16,6 +18,11 @@ export class AssetsComponent implements OnInit, AfterViewInit {
   activos: activo[] = [];
   currentUser: user = {};
   activoActual: activo = {};
+
+  pipe = new DatePipe('en-US');
+  date = this.pipe.transform(Date.now(), 'dd-MM-yyyy');
+
+  fileName: string = 'Reporte Activos ' + this.date + '.xlsx';
 
   @ViewChild(TableBasic) table: any;
 
@@ -67,6 +74,21 @@ export class AssetsComponent implements OnInit, AfterViewInit {
         Swal.fire('El activo no se ha eliminado.', '', 'info')
       }
     })
+  }
+
+  exportTable(): void {
+
+    let element = document.getElementById('tableActivos');
+
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
+
+    // Generar archivo
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+    // Save
+    XLSX.writeFile(wb, this.fileName);
+
   }
 
 }
