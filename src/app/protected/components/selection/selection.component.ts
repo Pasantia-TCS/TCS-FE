@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { user } from 'src/app/interfaces/user';
 import { UserService } from 'src/app/shared/services/user.service';
 
@@ -12,7 +13,7 @@ export class SelectionComponent implements OnInit {
 
   currentUser: user = {};
 
-  constructor(private router: Router, private userService: UserService) { }
+  constructor(private router: Router, private userService: UserService, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.currentUser = this.userService.getUserData();
@@ -31,6 +32,11 @@ export class SelectionComponent implements OnInit {
   toForms() {
     // TODO: validate user type
     this.router.navigateByUrl('/pages/dashboard/forms');
+  }
+
+  toLogin() {
+    this.router.navigateByUrl('/');
+    this.authService.logout();
   }
 
 }

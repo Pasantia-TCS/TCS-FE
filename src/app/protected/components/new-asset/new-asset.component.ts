@@ -22,11 +22,11 @@ export class NewAssetComponent implements OnInit {
     area: ['CTB', Validators.required],
     tipo: ['Computador', Validators.required],
     edificio: ['Inluxor', Validators.required],
-    piso: ['Piso 3', Validators.required],
+    piso: ['Piso 1', Validators.required],
     hostname: ['hostname', Validators.required],
     direccion_mac: ['00-00-00-00-00-00', [Validators.required, Validators.pattern('^([0-9A-F]{2}[:-]){5}([0-9A-F]{2})$')]],
     direccion_ip: ['192.168.1.1', [Validators.required, Validators.pattern("^(?:(?:^|\.)(?:2(?:5[0-5]|[0-4]\\d)|1?\\d?\\d)){4}$")]],
-    reservada_ip: ['true', Validators.required],
+    reservada_ip: ['false', Validators.required],
     fecha_entrega: ['', Validators.required]
   });
 
@@ -41,7 +41,7 @@ export class NewAssetComponent implements OnInit {
     this.activosService.sendClickEvent();
   }
 
-  guardarActivo() {
+  saveAsset() {
     if (this.nuevoActivoForm.invalid) {
       this.nuevoActivoForm.markAllAsTouched();
       return;
@@ -49,24 +49,21 @@ export class NewAssetComponent implements OnInit {
       this.activo = this.nuevoActivoForm.value;
       const userC: user = this.userService.getUserData();
       this.activo.id_ultimatix = userC.id_numero_Ultimatix;
-      console.log(this.activo);
-      this.activosService.register(this.activo).subscribe({
-        next: () => {
-          this.clickMe();
-          this.nuevoActivoForm.reset();
-          this.nuevoActivoForm.patchValue({
-            area: "CTB",
-            tipo: "Computador",
-            edificio: "Centrum",
-            piso: "Piso 1",
-            reservada_ip: "No"
-          });
-          Swal.fire('Éxito', 'Activo registrado con éxito.', 'success');
-        },
-        error: err => {
-          Swal.fire('Error', err.error.mensaje, 'error');
-        }
-      });
+      this.activosService.register(this.activo)
+        .subscribe({
+          next: () => {
+            this.clickMe();
+            this.nuevoActivoForm.reset({
+              area: ['CTB'],
+              tipo: 'Computador',
+              edificio: ['Inluxor'],
+              piso: ['Piso 1'],
+              reservada_ip: ['false'],
+            });
+            Swal.fire('¡Éxito!', 'Activo registrado con éxito.', 'success');
+          },
+          error: err => Swal.fire('¡Error!', err.error.mensaje, 'error')
+        });
     }
   }
 

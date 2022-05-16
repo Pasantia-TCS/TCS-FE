@@ -63,7 +63,7 @@
                   </path>
                 </svg>
               </span>
-              <a [routerLink]="['/auth/login']" class="custom-link">Cerrar sesión</a>
+              <a (click)="toLogin()" class="custom-link" style="cursor: pointer;">Cerrar sesión</a>
             </div>
           </div>
         </div>

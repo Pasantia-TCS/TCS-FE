@@ -5,11 +5,9 @@ import { ActivosService } from '../../services/activos.service';
 import { Output, EventEmitter } from '@angular/core';
 import { activo } from '../../interfaces/activo';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import Swal from 'sweetalert2';
-import { ActivosService2 } from 'src/app/shared/services/activos.service';
 import { Subscription } from 'rxjs';
 import { DatePipe } from '@angular/common';
-import * as XLSX from 'xlsx';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'p-table',
@@ -27,7 +25,7 @@ export class TableBasic implements OnInit {
   tableKey: any = [];
   tableValue: any = [];
 
-  tableHeader: string[] = ['Acciones', 'ID', 'Tipo', 'Área', 'Edificio', 'Fecha de entrega', 'Estado'];
+  tableHeader: string[] = ['Acciones', 'ID', 'Tipo', 'Área', 'Edificio', 'Fecha de adjudicación', 'Fecha de devolución', 'Estado'];
 
   areas: string[] = ['CTB', 'EnP', 'Librarian', 'Panamá', 'Seguridad', 'SES', 'Otras'];
   tipos: string[] = ['Computador'];
@@ -35,11 +33,6 @@ export class TableBasic implements OnInit {
   edificios: string[] = ['Centrum', 'Inluxor'];
 
   asset: activo = {};
-
-  pipe = new DatePipe('en-US');
-  date = this.pipe.transform(Date.now(), 'dd-MM-yyyy');
-
-  fileName: string = 'Reporte Activos ' + this.date + '.xlsx';
 
   clickEventSubscription: Subscription;
 
@@ -72,21 +65,6 @@ export class TableBasic implements OnInit {
     this.asset = activo;
   }
 
-  exportTable(): void {
-
-    let element = document.getElementById('tableActivos');
-
-    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
-
-    // Generar archivo
-    const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-
-    // Save
-    XLSX.writeFile(wb, this.fileName);
-
-  }
-
   deliverAsset() {
     if (this.deliverForm.invalid) {
       this.deliverForm.markAllAsTouched()
@@ -95,7 +73,11 @@ export class TableBasic implements OnInit {
       const { fecha_devolucion } = this.deliverForm.value;
       this.activosService.setAssetStatus(this.asset.id_activo?.toString()!, this.currentUser.id_numero_Ultimatix?.toString()!, fecha_devolucion)
         .subscribe({
-          next: resp => this.tableData = resp
+          next: resp => {
+            this.tableData = resp;
+            Swal.fire('¡Éxito!', 'Se ha registrado con éxito la devolución del activo.', 'success');
+          },
+          error: err => Swal.fire('¡Error!', err.error.mensaje, 'error')
         });
     }
   }
