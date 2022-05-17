@@ -1,201 +1,206 @@
 <div class="modal-dialog modal-lg modal-dialog-centered">
-    <div class="modal-content modal-lg">
-  
-      <!-- Header -->
-      <div class="modal-header">
-        <h5 class="modal-title fs-2">Nuevo proyecto</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-  
-      <!-- Body -->
-      <div class="modal-body">
-        <form [formGroup]="nuevoAsignacionForm">
-  
-          <div class="row">
-            <!-- Project Name -->
-            <div class="col mb-3">
-                <input type="text" class="form-control rounded-pill" placeholder="Nombre del proyecto" formControlName="nombre">
-            </div>
+  <div class="modal-content modal-lg">
 
-            <!-- Type field -->
-            <div class="col mb-3">
-              <select class="form-select rounded-pill" formControlName="tipo">
-                <option selected value="">Tipo</option>
-                <option [value]="tipo" *ngFor="let tipo of tipos">{{tipo}}</option>
-              </select>
-              <div
-              *ngIf="(nuevoAsignacionForm.get('tipo')?.invalid && nuevoAsignacionForm.get('tipo')?.touched) || nuevoAsignacionForm.get('tipo')?.dirty">
-              <span class="form-text text-danger float-start" *ngIf="nuevoAsignacionForm.get('tipo')?.errors?.['required']">
-                * Seleccione una opción válida.
-              </span>
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <!-- Usuario de red -->
-            <div class="col mb-3">
-                <input type="text" class="form-control rounded-pill" placeholder="Usuario de red">
-            </div>
-  
-            <!-- Asignacion field -->
-            <div class="col mb-3">
-              <select class="form-select rounded-pill" formControlName="asignacion">
-                <option selected value="">Asignación</option>
-                <option [value]="asignacion" *ngFor="let asignacion of asignaciones">{{asignacion}}</option>
-              </select>
-              <div
-              *ngIf="(nuevoAsignacionForm.get('asignacion')?.invalid && nuevoAsignacionForm.get('asignacion')?.touched) || nuevoAsignacionForm.get('asignacion')?.dirty">
-              <span class="form-text text-danger float-start" *ngIf="nuevoAsignacionForm.get('asignacion')?.errors?.['required']">
-                * Seleccione una opción válida.
-              </span>
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <!-- Date start field  -->
-            <div class="col mb-3">
-                <label class="col-sm-6 col-form-label text-end">Fecha inicio:</label>
-            </div>
-            <div class="col-sm-6">
-                <input type="date" class="form-control rounded-pill" formControlName="fecha_inicio">
-                <div
-                *ngIf="(nuevoAsignacionForm.get('fecha_inicio')?.invalid && nuevoAsignacionForm.get('fecha_inicio')?.touched) || nuevoAsignacionForm.get('fecha_inicio')?.dirty">
-                <span class="form-text text-danger float-start"
-                  *ngIf="nuevoAsignacionForm.get('fecha_inicio')?.errors?.['required']">
-                  * Seleccione una fecha válida.
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <!-- Date end field  -->
-            <div class="col mb-3">
-                <label class="col-sm-6 col-form-label text-end">Fecha fin:</label>
-            </div>
-            <div class="col-sm-6">
-              <input type="date" class="form-control rounded-pill" formControlName="fecha_fin">
-              <div
-                *ngIf="(nuevoAsignacionForm.get('fecha_fin')?.invalid && nuevoAsignacionForm.get('fecha_fin')?.touched) || nuevoAsignacionForm.get('fecha_fin')?.dirty">
-                <span class="form-text text-danger float-start"
-                  *ngIf="nuevoAsignacionForm.get('fecha_fin')?.errors?.['required']">
-                  * Seleccione una fecha válida.
-                </span>
-              </div>
-            </div>
-          </div>
-
-            <div class="row">
-                <!-- Chose members-->
-                <div class="card shadow p-3 mb-5 overflow-auto" style="border-radius: 2rem; max-height: 60%;">
-                    <div class="card-body px-3 text-center table-responsive">
-                        <h2>Añadir miembros</h2>
-                        <table class="table table-hover align-middle ">
-                            <thead class="bg-light">
-                              <tr>
-                                <th >Acciones</th>
-                                <th >Ultimatix</th>
-                                <th >Nombre</th>
-                                <th >Habilidades</th>
-                                <th >Asignación</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td>
-                                  <button mat-icon-button> add</button>
-                                </td>
-                                <td>001</td>
-                                <td>Juan</td>
-                                <td>Java</td>
-                                <td>25%</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                    </div>  
-                </div>                 
-            </div>
-
-            <div class="row">
-                <!-- Team members-->
-                <div class="card shadow p-3 mb-5 overflow-auto" style="border-radius: 2rem; max-height: 60%;">
-                    <div class="card-body px-3 text-center table-responsive">
-                        <h2>Miembros seleccionados</h2>
-                        <table class="table table-hover align-middle ">
-                            <thead class="bg-light">
-                              <tr>
-                                <th >Acciones</th>
-                                <th >Ultimatix</th>
-                                <th >Nombre</th>
-                                <th >Asignación</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td>
-                                  <button mat-icon-button>
-                                    <button mat-icon-button> add</button>
-                                </button>
-                                  
-                                </td>
-                                <td>001</td>
-                                <td>Juan</td>
-                                <td>25%</td>
-                              </tr>
-                              
-                            </tbody>
-                          </table>
-                    </div>  
-                </div>                 
-            </div>
-
-            
-
-          
-
-          <div class="row">
-            <!-- Project leader field -->
-            <div class="col mb-3">
-                <select class="form-select rounded-pill" formControlName="nombre_lider">
-                    <option selected value="">Líder del proyecto</option>
-                    <option [value]="liderProyecto" *ngFor="let liderProyecto of lideresProyecto">{{liderProyecto}}</option>
-                </select>
-            </div>
-  
-            <!-- Leader field -->
-            <div class="col mb-3">
-              <select class="form-select rounded-pill" formControlName="nombre_tecnico">
-                <option selected value="">Líder técnico</option>
-                <option [value]="liderTecnico" *ngFor="let liderTecnico of lideresTecnico">{{liderTecnico}}</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="row">
-            <!-- Descripcion field -->
-            <input type="text" class="form-control rounded-pill" placeholder="Descripcion del proyecto">
-          </div>
-
-
-
-          
-        </form>
-     </div>
-
-        
-  
-
-
-  
-      <!-- Footer -->
-      <div class="modal-footer">
-        <button type="button" class="btn custom-btn rounded-pill" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn custom-btn rounded-pill" (click)="guardarAsignacion()">Guardar</button>
-      </div>
-
-      {{nuevoAsignacionForm.valid}}
-
+    <!-- Header -->
+    <div class="modal-header">
+      <h5 class="modal-title fs-2">Nuevo proyecto</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
     </div>
+
+    <!-- Body -->
+    <div class="modal-body">
+      <form [formGroup]="nuevoAsignacionForm">
+
+        <div class="row">
+          <!-- Project Name -->
+          <div class="col mb-3">
+            <input type="text" class="form-control rounded-pill" placeholder="Nombre del proyecto"
+              formControlName="nombre_proyecto">
+          </div>
+
+    
+          <!-- Type field -->
+          <div class="col mb-3">
+            <select class="form-select rounded-pill" formControlName="tipo_proyecto">
+              <option selected value="">Tipo</option>
+              <option [value]="+aux.indexOf(tipo)" *ngFor="let tipo of tipos">{{tipo}}</option>
+            </select>
+            <div
+              *ngIf="(nuevoAsignacionForm.get('tipo')?.invalid && nuevoAsignacionForm.get('tipo')?.touched) || nuevoAsignacionForm.get('tipo')?.dirty">
+              <span class="form-text text-danger float-start"
+                *ngIf="nuevoAsignacionForm.get('tipo')?.errors?.['required']">
+                * Seleccione una opción válida.
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <!-- Usuario de red -->
+          <div class="col mb-3">
+            <input type="text" class="form-control rounded-pill" [placeholder]="currentUser.usuario_red || ''" [value]="currentUser.usuario_red || ''" formControlName="usuario_red">
+          </div>
+
+          <!-- Asignacion field -->
+          <div class="col mb-3">
+            <select class="form-select rounded-pill" formControlName="asignacion">
+              <option selected value="">Asignación</option>
+              <option [value]="asignacion" *ngFor="let asignacion of asignaciones">{{asignacion}}</option>
+            </select>
+            <div
+              *ngIf="(nuevoAsignacionForm.get('asignacion')?.invalid && nuevoAsignacionForm.get('asignacion')?.touched) || nuevoAsignacionForm.get('asignacion')?.dirty">
+              <span class="form-text text-danger float-start"
+                *ngIf="nuevoAsignacionForm.get('asignacion')?.errors?.['required']">
+                * Seleccione una opción válida.
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <!-- Date start field  -->
+          <div class="col mb-3">
+            <label class="col-sm-6 col-form-label text-end">Fecha inicio:</label>
+          </div>
+          <div class="col-sm-6">
+            <input type="date" class="form-control rounded-pill" formControlName="fecha_inicio">
+            <div
+              *ngIf="(nuevoAsignacionForm.get('fecha_inicio')?.invalid && nuevoAsignacionForm.get('fecha_inicio')?.touched) || nuevoAsignacionForm.get('fecha_inicio')?.dirty">
+              <span class="form-text text-danger float-start"
+                *ngIf="nuevoAsignacionForm.get('fecha_inicio')?.errors?.['required']">
+                * Seleccione una fecha válida.
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <!-- Date end field  -->
+          <div class="col mb-3">
+            <label class="col-sm-6 col-form-label text-end">Fecha fin:</label>
+          </div>
+          <div class="col-sm-6">
+            <input type="date" class="form-control rounded-pill" formControlName="fecha_fin">
+            <div
+              *ngIf="(nuevoAsignacionForm.get('fecha_fin')?.invalid && nuevoAsignacionForm.get('fecha_fin')?.touched) || nuevoAsignacionForm.get('fecha_fin')?.dirty">
+              <span class="form-text text-danger float-start"
+                *ngIf="nuevoAsignacionForm.get('fecha_fin')?.errors?.['required']">
+                * Seleccione una fecha válida.
+              </span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row">
+          <!-- Chose members-->
+          <div class="card shadow p-3 mb-5 overflow-auto" style="border-radius: 2rem; max-height: 60%;">
+            <div class="card-body px-3 text-center table-responsive">
+              <h2>Añadir miembros</h2>
+              <table class="table table-hover align-middle ">
+                <thead class="bg-light">
+                  <tr>
+                    <th>Acciones</th>
+                    <th>Ultimatix</th>
+                    <th>Asociado</th>
+                    <th>Habilidades</th>
+                    <th>Asignación</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let user of users">
+                    <td>
+                      <button mat-icon-button (click)="addUserTemp(user)">
+                        <mat-icon style="color: green;">add</mat-icon>
+                      </button>
+                    </td>
+                    <td>{{user.id_ultimatix}}</td>
+                    <td>{{user.nombres_completos}}</td>
+                    <td>{{user.habilidades[0] || '-'}}</td>
+                    <td>{{user.asignacion_usuario}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <!-- Team members-->
+          <div class="card shadow p-3 mb-5 overflow-auto" style="border-radius: 2rem; max-height: 60%;">
+            <div class="card-body px-3 text-center table-responsive">
+              <h2>Miembros seleccionados</h2>
+              <table class="table table-hover align-middle ">
+                <thead class="bg-light">
+                  <tr>
+                    <th>Acciones</th>
+                    <th>ID</th>
+                    <th>Miembro</th>
+                    <th>Asignación</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let userT of usersTemp; index as i">
+                    <td>
+                      <button mat-icon-button (click)="deleteUserTemp(i)">
+                        <mat-icon style="color: red;">minimize</mat-icon>
+                      </button>
+                    </td>
+                    <td>{{userT.id_ultimatix}}</td>
+                    <td>{{userT.nombres_completos}}</td>
+                    <td>{{userT.asignacion_usuario}}</td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+        <div class="row">
+          <!-- Project leader field -->
+          <div class="col mb-3">
+            <select class="form-select rounded-pill" formControlName="nombre_lider">
+              <option selected value="">Líder del proyecto</option>
+              <option [value]="liderProyecto" *ngFor="let liderProyecto of lideresProyecto">{{liderProyecto}}</option>
+            </select>
+          </div>
+
+          <!-- Leader field -->
+          <div class="col mb-3">
+            <select class="form-select rounded-pill" formControlName="nombre_tecnico">
+              <option selected value="">Líder técnico</option>
+              <option [value]="liderTecnico" *ngFor="let liderTecnico of lideresTecnico">{{liderTecnico}}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <!-- Descripcion field -->
+          <input type="text" class="form-control rounded-pill" placeholder="Descripcion del proyecto" formControlName="descripcion">
+        </div>
+
+
+
+
+      </form>
+    </div>
+
+
+
+
+
+
+    <!-- Footer -->
+    <div class="modal-footer">
+      <button type="button" class="btn custom-btn rounded-pill" data-bs-dismiss="modal">Cerrar</button>
+      <button type="button" class="btn custom-btn rounded-pill" (click)="guardarAsignacion()">Guardar</button>
+    </div>
+
+    {{nuevoAsignacionForm.valid}}
+
   </div>
+</div>

@@ -38,16 +38,17 @@
         <tr *ngFor="let asignacion of tableData">
           <td>
             <button mat-icon-button data-bs-toggle="modal" data-bs-placement="right" title="Editar proyecto"
-              data-bs-toggle="modal" data-bs-target="" (click)="editItem(asignacion)">
+              (click)="editItem(asignacion)" disabled style="cursor: pointer;">
               <mat-icon [ngStyle]="{'color':'#9B11BF99'}">edit</mat-icon>
             </button>
-            <button mat-icon-button (click)="deleteItem(asignacion.id_asignacion!)" data-bs-toggle="tooltip"
-              data-bs-placement="right" title="Eliminar asignacion" [disabled]="asignacion.estado">
+            <button mat-icon-button (click)="deleteItem(asignacion.id_asg!)" data-bs-toggle="tooltip"
+              data-bs-placement="right" title="Eliminar asignacion"
+              style="cursor: pointer;">
               <mat-icon [ngStyle]="{'color':'#F7071299'}">delete</mat-icon>
             </button>
           </td>
-          <td>{{asignacion.id_asignacion}}</td>
-          <td>{{asignacion.nombre}}</td>
+          <td>{{asignacion.id_asg}}</td>
+          <td>{{asignacion.nombre_proyecto}}</td>
           <td>{{asignacion.descripcion}}</td>
           <td>{{asignacion.fecha_inicio}}</td>
           <td>{{asignacion.fecha_fin}}</td>

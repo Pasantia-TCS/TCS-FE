@@ -7,7 +7,7 @@
         </tr>
       </thead>
       <tbody *ngFor="let activo of tableData">
-        <tr *ngIf="activo.borrado_logico === false" [ngClass]="{'table-success': activo.estado}">
+        <tr *ngIf="activo.borrado_logico === false" [ngClass]="{'table-secondary': activo.estado}">
           <td>
             <button mat-icon-button data-bs-toggle="tooltip" data-bs-placement="right" title="Devolver activo"
               data-bs-toggle="modal" data-bs-target="#deliverDate" (click)="currentAsset(activo)">
@@ -24,7 +24,7 @@
           <td>{{activo.tipo}}</td>
           <td>{{activo.fecha_entrega}}</td>
           <td>{{activo.fecha_devolucion || '-'}}</td>
-          <td [ngStyle]="{color: activo.estado ? 'green' : 'red'}">{{activo.estado ? 'Devuelto': 'No devuelto'}}</td>
+          <td [ngStyle]="{color: activo.estado ? 'green' : 'red'}">{{activo.estado ? 'Devuelto': 'En uso'}}</td>
         </tr>
       </tbody>
     </table>
@@ -36,7 +36,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Registro de devolución de activo</h5>
+        <h5 class="modal-title fs-3">Registro de devolución de activo</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">

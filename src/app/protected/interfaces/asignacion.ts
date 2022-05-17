@@ -1,13 +1,13 @@
 export interface asignacion {
-    id_asignacion?: string,
-    nombre?: string,
-    tipo_proyecto?: idp,
+    id_asg?: string,
+    nombre_proyecto?: string,
+    tipo_proyecto?: number,
     usuario_red?: string,
     asignacion?: number,
     fecha_inicio?: string,
     fecha_fin?: string,
     descripcion?: string,
-    perfiles?: perfil[],
+    perfiles?: number[],
     nombre_lider?: string,
     nombre_tecnico?: string,
     estado?: boolean,
@@ -18,12 +18,3 @@ export interface asignacion {
     borrado_logico?: boolean
 
 }
-
-export interface idp {
-    id_tipo_proyecto: number
-}
-
-export interface perfil {
-    id_ultimatix: number
-}
-

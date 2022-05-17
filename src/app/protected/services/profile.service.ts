@@ -8,7 +8,8 @@ import { profile, skills } from '../interfaces/profile';
 })
 export class ProfileService {
 
-  private baseUrl: string = environment.baseUrl;
+  // private baseUrl: string = environment.baseUrl;
+  private baseUrl: string = 'http://54.91.126.120:8081';
 
   constructor(private http: HttpClient) { }
 
