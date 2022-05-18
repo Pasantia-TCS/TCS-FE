@@ -10,8 +10,8 @@ import { asignacion } from '../interfaces/asignacion';
 
 export class AsignacionService {
 
-  // baseUrl: string = 'http://localhost:8081/asignaciones';
-  private baseUrl: string = 'http://54.91.126.120:8081/asignaciones';
+  baseUrl: string = 'http://localhost:8081/asignaciones';
+  // private baseUrl: string = 'http://54.91.126.120:8081/asignaciones';
 
   private subject = new Subject<any>();
 

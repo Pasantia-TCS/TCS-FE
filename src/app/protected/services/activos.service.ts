@@ -8,8 +8,8 @@ import { activo } from '../interfaces/activo';
 })
 export class ActivosService {
 
-  // private baseUrl: string = 'http://localhost:8081/activos';
-  private baseUrl: string = 'http://54.91.126.120:8081/activos';
+  private baseUrl: string = 'http://localhost:8081/activos';
+  // private baseUrl: string = 'http://54.91.126.120:8081/activos';
 
   constructor(private http: HttpClient) { }
 

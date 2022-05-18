@@ -1,3 +1,16 @@
-<app-header title="Asignación de trabajos" buttonName="Añadir proyecto" icon="add_circle"></app-header>
+<app-header title="Asignación de equipos"></app-header>
 
-<app-tableAsignacion (indexToDelete)="deleteItem($event)"></app-tableAsignacion>
+
+<div class="row mb-2">
+  <div class="col-12 col-sm-3 mx-auto mb-2">
+    <app-button (btnClick)="clickHandler()" buttonName="Añadir proyecto" iconName="add_circle" [buttonIcon]="true">
+    </app-button>
+  </div>
+  <div class="col-12 col-sm-3 mx-auto mb-2">
+    <app-button (btnClick)="clickHandler()" buttonName="Generar reporte" iconName="save_alt" [buttonIcon]="true">
+    </app-button>
+  </div>
+</div>
+
+<app-custom-table [titles]="titles"></app-custom-table>
+

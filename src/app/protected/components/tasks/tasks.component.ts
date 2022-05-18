@@ -11,6 +11,9 @@ import { TableAsignacion } from '../tableAsignacion/tableAsignacion.component';
 })
 export class TasksComponent implements OnInit {
 
+  titles: string[] = ['Acciones', 'Equipo', 'Tipo', 'Asignación (%)', 'Fecha de inicio', 'Fecha de finalización', 'Estado'];
+  dataBody: string = 'Hola que hace!';
+
   proyectos!: asignacion[];
   currentProject!: asignacion;
 
@@ -45,6 +48,10 @@ export class TasksComponent implements OnInit {
         Swal.fire('El proyecto no se ha eliminado.', '', 'info')
       }
     })
+  }
+
+  clickHandler() {
+    
   }
 
 }
