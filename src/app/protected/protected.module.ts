@@ -28,6 +28,7 @@ import { DeliverModalComponent } from './components/deliver-modal/deliver-modal.
 import { TeamsComponent } from './components/teams/teams.component';
 import { TableEquiposComponent } from './components/tableEquipos/tableEquipos.component';
 import { NewTeamComponent } from './components/new-team/new-team.component';
+import { DialogComponent } from './components/dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { NewTeamComponent } from './components/new-team/new-team.component';
     DeliverModalComponent,
     TeamsComponent,
     TableEquiposComponent,
-    NewTeamComponent
+    NewTeamComponent,
+    DialogComponent
   ],
   imports: [
     CommonModule,

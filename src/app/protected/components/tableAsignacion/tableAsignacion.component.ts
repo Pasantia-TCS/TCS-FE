@@ -48,19 +48,21 @@ export class TableAsignacion implements OnInit {
   }
 
   ngOnInit(): void {
-    this.asignacionService.obtenerAsignacion().subscribe({
-      next: resp => {
-        this.tableData = resp;
-      }
-    });
+    this.asignacionService.obtenerAsignacion()
+      .subscribe({
+        next: resp => {
+          this.tableData = resp;
+        }
+      });
     this.currentUser = this.userService.getUserData();
     this.ultimatix = this.currentUser.id_numero_Ultimatix;
   }
 
   load() {
-    this.asignacionService.obtenerAsignacion().subscribe((result) => {
-      this.tableData = result;
-    });
+    this.asignacionService.obtenerAsignacion()
+      .subscribe((result) => {
+        this.tableData = result;
+      });
   }
 
   deleteItem(index: string) {

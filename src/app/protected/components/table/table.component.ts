@@ -25,7 +25,7 @@ export class TableBasic implements OnInit {
   tableKey: any = [];
   tableValue: any = [];
 
-  tableHeader: string[] = ['Acciones', 'ID', 'Tipo', 'Área', 'Edificio', 'Fecha de adjudicación', 'Fecha de devolución', 'Estado'];
+  tableHeader: string[] = ['Acciones', 'Área', 'Edificio', 'Activo', 'Fecha de adjudicación', 'Fecha de devolución', 'Estado'];
 
   areas: string[] = ['CTB', 'EnP', 'Librarian', 'Panamá', 'Seguridad', 'SES', 'Otras'];
   tipos: string[] = ['Computador'];

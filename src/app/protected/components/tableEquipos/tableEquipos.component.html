@@ -1,37 +1,112 @@
-<div class="card shadow p-3 mb-5 overflow-auto" style="border-radius: 2rem; max-height: 60%;">
-    <div class="card-body px-3 text-center table-responsive">
-  
-      <table id="tableEquipos" class="table table-hover align-middle ">
-        <thead class="bg-light">
-          <tr>
-            <th *ngFor="let key of tableHeader">{{key}}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let equipo of tableData">
-            <td>
-              <button mat-icon-button data-bs-toggle="modal" data-bs-placement="right" title="Editar equipo"
-                (click)="editItem(equipo)" disabled style="cursor: pointer;">
-                <mat-icon [ngStyle]="{'color':'#9B11BF99'}">edit</mat-icon>
-              </button>
-              <button mat-icon-button (click)="deleteItem(equipo.id_equipo!)" data-bs-toggle="tooltip"
-                data-bs-placement="right" title="Eliminar equipo"
-                style="cursor: pointer;">
-                <mat-icon [ngStyle]="{'color':'#F7071299'}">delete</mat-icon>
-              </button>
-            </td>
-            <td>{{equipo.id_equipo}}</td>
-            <td>{{equipo.nombre_equipo}}</td>
-            <td>{{equipo.tipo}}</td>
-            <td>{{equipo.descripcion}}</td>
-            <td>{{equipo.lider_equipo}}</td>
-            <td>{{equipo.lider_tecnico}}</td>
-            <td>{{equipo.estado}}</td>
-  
-          </tr>
-  
-        </tbody>
-      </table>
-  
+<div class="card shadow p-3 mb-5 overflow-auto" style="border-radius: 2rem; max-height: 70%;">
+  <div class="card-body px-3 text-center table-responsive">
+
+    <table id="tableEquipos" class="table table-hover align-middle ">
+      <thead class="bg-light">
+        <tr>
+          <th *ngFor="let key of tableHeader">{{key}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let equipo of equipos">
+          <td>
+            <button mat-icon-button data-bs-toggle="modal" data-bs-placement="right" data-bs-target="#editEquipo"
+              title="Editar equipo" style="cursor: pointer;">
+              <mat-icon [ngStyle]="{'color':'#9B11BF99'}">edit</mat-icon>
+            </button>
+            <button mat-icon-button (click)="deleteItem(equipo.id_asi!)" data-bs-toggle="tooltip"
+              data-bs-placement="right" title="Eliminar equipo" style="cursor: pointer;">
+              <mat-icon [ngStyle]="{'color':'#F7071299'}">delete</mat-icon>
+            </button>
+          </td>
+          <td>{{equipo.nombre_equipo_asi}}</td>
+          <td>{{tipos[equipo.tipo_equipo_asi!-1]}}</td>
+          <td>{{equipo.descripcion_asi}}</td>
+          <td>{{equipo.nombre_lider}}</td>
+          <td>{{equipo.nombre_tecnico}}</td>
+          <td [ngStyle]="{color: equipo.estado_asi ? 'green' : 'red'}">{{equipo.estado_asi ? 'Vigente' : 'No vigente'}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div id="editEquipo" class="modal fade" tabindex="-1">
+  <div  class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <!-- Header -->
+      <div class="modal-header">
+        <h5 class="modal-title fs-2">Editar Equipo</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Body -->
+      <div class="modal-body">
+        <form [formGroup]="nuevoEquipoForm">
+
+          <div class="row">
+            <!-- Team Name -->
+            <div class="col mb-3">
+              <input type="text" class="form-control rounded-pill" placeholder="Nombre del equipo"
+                formControlName="nombre_equipo_asi">
+            </div>
+
+            <!-- Type field -->
+            <div class="col mb-3">
+              <select class="form-select rounded-pill" formControlName="tipo_equipo_asi">
+                <option selected value="">Tipo</option>
+                <option [value]="+ aux.indexOf(tipo)" *ngFor="let tipo of tipos">{{tipo}}</option>
+              </select>
+              <div
+                *ngIf="(nuevoEquipoForm.get('tipo')?.invalid && nuevoEquipoForm.get('tipo')?.touched) || nuevoEquipoForm.get('tipo')?.dirty">
+                <span class="form-text text-danger float-start"
+                  *ngIf="nuevoEquipoForm.get('tipo')?.errors?.['required']">
+                  * Seleccione una opción válida.
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <!-- Team leader field -->
+            <div class="col mb-3">
+              <div class="col mb-3">
+                <input type="text" class="form-control rounded-pill" placeholder="Líder de equipo"
+                  formControlName="nombre_lider">
+              </div>
+            </div>
+
+            <!-- Leader Tecnico field -->
+            <div class="col mb-3">
+              <div class="col mb-3">
+                <input type="text" class="form-control rounded-pill" placeholder="Líder técnico"
+                  formControlName="nombre_tecnico">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <!-- Descripcion field -->
+            <input type="text" class="form-control rounded-pill" placeholder="Descripcion del equipo"
+              formControlName="descripcion_asi">
+          </div>
+
+        </form>
+      </div>
+
+
+      <!-- Footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn custom-btn rounded-pill" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn custom-btn rounded-pill">Guardar</button>
+      </div>
+
     </div>
   </div>
+
+</div>

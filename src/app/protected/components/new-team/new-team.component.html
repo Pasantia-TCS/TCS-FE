@@ -1,71 +1,71 @@
-<div class="modal-dialog modal-lg modal-dialog-centered">
-    <div class="modal-content modal-lg">
-  
-      <!-- Header -->
-      <div class="modal-header">
-        <h5 class="modal-title fs-2">Nuevo Equipo</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-  
-      <!-- Body -->
-      <div class="modal-body">
-        <form [formGroup]="nuevoEquipoForm">
-  
-          <div class="row">
-            <!-- Team Name -->
-            <div class="col mb-3">
-              <input type="text" class="form-control rounded-pill" placeholder="Nombre del equipo"
-                formControlName="nombre_equipo">
-            </div>
-  
-            <!-- Type field -->
-            <div class="col mb-3">
-              <select class="form-select rounded-pill" formControlName="tipo_equipo">
-                <option selected value="">Tipo</option>
-                <option [value]="+ aux.indexOf(tipo)" *ngFor="let tipo of tipos">{{tipo}}</option>
-              </select>
-              <div
-                *ngIf="(nuevoEquipoForm.get('tipo')?.invalid && nuevoEquipoForm.get('tipo')?.touched) || nuevoEquipoForm.get('tipo')?.dirty">
-                <span class="form-text text-danger float-start"
-                  *ngIf="nuevoEquipoForm.get('tipo')?.errors?.['required']">
-                  * Seleccione una opción válida.
-                </span>
-              </div>
-            </div>
-          </div>
-  
-          <div class="row">
-            <!-- Project leader field -->
-            <div class="col mb-3">
-                <div class="col mb-3">
-                    <input type="text" class="form-control rounded-pill" placeholder="Líder de equipo"
-                      formControlName="lider_equipo">
-                </div>
-            </div>
-  
-            <!-- Leader field -->
-            <div class="col mb-3">
-                <div class="col mb-3">
-                    <input type="text" class="form-control rounded-pill" placeholder="Líder técnico"
-                      formControlName="lider_tecnico">
-                </div>
-            </div>
-          </div>
-  
-          <div class="row">
-            <!-- Descripcion field -->
-            <input type="text" class="form-control rounded-pill" placeholder="Descripcion del equipo" formControlName="descripcion">
-          </div>
-  
-        </form>
-      </div>
-  
-  
-      <!-- Footer -->
-      <div class="modal-footer">
-        <button type="button" class="btn custom-btn rounded-pill" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn custom-btn rounded-pill" (click)="guardarEquipo()">Guardar</button>
-      </div>
-    
+<div class="modal-dialog modal-dialog-centered">
+  <div class="modal-content">
+
+    <!-- Header -->
+    <div class="modal-header">
+      <h5 class="modal-title fs-2">Nuevo Equipo</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
     </div>
+
+    <!-- Body -->
+    <div class="modal-body">
+      <form [formGroup]="nuevoEquipoForm">
+
+        <div class="row">
+          <!-- Team Name -->
+          <div class="col mb-3">
+            <input type="text" class="form-control rounded-pill" placeholder="Nombre del equipo"
+              formControlName="nombre_equipo_asi">
+          </div>
+
+          <!-- Type field -->
+          <div class="col mb-3">
+            <select class="form-select rounded-pill" formControlName="tipo_equipo_asi">
+              <option selected value="">Tipo</option>
+              <option [value]="+ aux.indexOf(tipo)" *ngFor="let tipo of tipos">{{tipo}}</option>
+            </select>
+            <div
+              *ngIf="(nuevoEquipoForm.get('tipo')?.invalid && nuevoEquipoForm.get('tipo')?.touched) || nuevoEquipoForm.get('tipo')?.dirty">
+              <span class="form-text text-danger float-start" *ngIf="nuevoEquipoForm.get('tipo')?.errors?.['required']">
+                * Seleccione una opción válida.
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <!-- Team leader field -->
+          <div class="col mb-3">
+            <div class="col mb-3">
+              <input type="text" class="form-control rounded-pill" placeholder="Líder de equipo"
+                formControlName="nombre_lider">
+            </div>
+          </div>
+
+          <!-- Leader Tecnico field -->
+          <div class="col mb-3">
+            <div class="col mb-3">
+              <input type="text" class="form-control rounded-pill" placeholder="Líder técnico"
+                formControlName="nombre_tecnico">
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <!-- Descripcion field -->
+          <input type="text" class="form-control rounded-pill" placeholder="Descripcion del equipo"
+            formControlName="descripcion_asi">
+        </div>
+
+      </form>
+    </div>
+
+
+    <!-- Footer -->
+    <div class="modal-footer">
+      <button type="button" class="btn custom-btn rounded-pill" data-bs-dismiss="modal">Cerrar</button>
+      <button type="button" class="btn custom-btn rounded-pill" (click)="guardarEquipo()">Guardar</button>
+    </div>
+
   </div>
+</div>
