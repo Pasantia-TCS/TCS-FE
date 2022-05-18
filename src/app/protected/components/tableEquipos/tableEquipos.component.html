@@ -1,0 +1,37 @@
+<div class="card shadow p-3 mb-5 overflow-auto" style="border-radius: 2rem; max-height: 60%;">
+    <div class="card-body px-3 text-center table-responsive">
+  
+      <table id="tableEquipos" class="table table-hover align-middle ">
+        <thead class="bg-light">
+          <tr>
+            <th *ngFor="let key of tableHeader">{{key}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let equipo of tableData">
+            <td>
+              <button mat-icon-button data-bs-toggle="modal" data-bs-placement="right" title="Editar equipo"
+                (click)="editItem(equipo)" disabled style="cursor: pointer;">
+                <mat-icon [ngStyle]="{'color':'#9B11BF99'}">edit</mat-icon>
+              </button>
+              <button mat-icon-button (click)="deleteItem(equipo.id_equipo!)" data-bs-toggle="tooltip"
+                data-bs-placement="right" title="Eliminar equipo"
+                style="cursor: pointer;">
+                <mat-icon [ngStyle]="{'color':'#F7071299'}">delete</mat-icon>
+              </button>
+            </td>
+            <td>{{equipo.id_equipo}}</td>
+            <td>{{equipo.nombre_equipo}}</td>
+            <td>{{equipo.tipo}}</td>
+            <td>{{equipo.descripcion}}</td>
+            <td>{{equipo.lider_equipo}}</td>
+            <td>{{equipo.lider_tecnico}}</td>
+            <td>{{equipo.estado}}</td>
+  
+          </tr>
+  
+        </tbody>
+      </table>
+  
+    </div>
+  </div>

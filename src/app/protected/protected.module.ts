@@ -25,6 +25,9 @@ import { NewTemplateComponent } from './components/new-template/new-template.com
 import { CardComponent } from './components/card/card.component';
 import { NewProjectComponent } from './components/new-project/new-project/new-project.component';
 import { DeliverModalComponent } from './components/deliver-modal/deliver-modal.component';
+import { TeamsComponent } from './components/teams/teams.component';
+import { TableEquiposComponent } from './components/tableEquipos/tableEquipos.component';
+import { NewTeamComponent } from './components/new-team/new-team.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +46,10 @@ import { DeliverModalComponent } from './components/deliver-modal/deliver-modal.
     NewTemplateComponent,
     CardComponent,
     NewProjectComponent,
-    DeliverModalComponent
+    DeliverModalComponent,
+    TeamsComponent,
+    TableEquiposComponent,
+    NewTeamComponent
   ],
   imports: [
     CommonModule,
