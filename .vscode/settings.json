@@ -1,0 +1,8 @@
+{
+  "appService.zipIgnorePattern": [
+    "node_modules{,/**}",
+    ".vscode{,/**}"
+  ],
+  "appService.defaultWebAppToDeploy": "/subscriptions/b1a0fcc2-d701-414e-93f0-9cde45b8d558/resourceGroups/tcs-frontend/providers/Microsoft.Web/sites/forms-frontend",
+  "appService.deploySubpath": "."
+}

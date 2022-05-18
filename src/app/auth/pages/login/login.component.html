@@ -1,7 +1,8 @@
 <!-- Title -->
-<h1 class="mt-4 mb-4 fs-2">INICIAR SESIÓN</h1>
+<h1 class="my-4 fs-2">INICIAR SESIÓN</h1>
 
-<form form [formGroup]="myForm" (ngSubmit)="login()" autocomplete="off">
+<!-- Form -->
+<form [formGroup]="loginForm" (ngSubmit)="login()" autocomplete="off">
   <!-- Ultimatix -->
   <div class="mb-3">
     <input formControlName="ultimatix" type="text" class="form-control rounded-pill shadow-sm border-0 custom-input"
@@ -13,16 +14,21 @@
 
   <!-- Password -->
   <div class="mb-4">
-    <input formControlName="password" type="password" class="form-control rounded-pill shadow-sm border-0 custom-input"
-      placeholder="Contraseña" />
+    <div class="input-group">
+      <input formControlName="password" [type]="showPwd ? 'text' : 'password'" class="form-control pwd-input border-0"
+        placeholder="Contraseña" />
+      <div class="input-group-text pwd-eye border-0" (click)="showPwd = !showPwd" (touchstart)="showPwd = !showPwd">
+        <mat-icon style="cursor: pointer;">remove_red_eye</mat-icon>
+      </div>
+    </div>
     <span class="form-text text-danger float-start" *ngIf="valid_field('password')">
       * Introduce tu contraseña.
     </span>
   </div>
 
   <!-- Login -->
-  <div class="mb-3">
-    <button type="submit" class="btn rounded-pill w-50 custom-btn">
+  <div class="col-12 col-sm-6 mb-3 mx-auto">
+    <button type="submit" class="btn rounded-pill w-100 custom-btn">
       Inicia sesión
     </button>
   </div>
@@ -30,6 +36,8 @@
   <!-- Register -->
   <span>
     ¿No tienes una cuenta?
-    <a [routerLink]="['/auth/register']" class="custom-link"><strong>Regístrate</strong></a>
+    <a [routerLink]="['/auth/register']" class="custom-link">
+      <strong>Regístrate</strong>
+    </a>
   </span>
 </form>

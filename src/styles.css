@@ -476,3 +476,16 @@ ngx-intl-tel-input input {
   border: 0;
   box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075);
 }
+
+/* Password */
+.pwd-eye {
+  background-color: var(--bg_field);
+  border-radius: 0 2rem 2rem 0;
+  border: none;
+}
+
+.pwd-input {
+  background-color: var(--bg_field);
+  height: 3rem;
+  border-radius: 2rem 0 0 2rem;
+}

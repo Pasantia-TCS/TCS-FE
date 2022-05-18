@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { RegisterService } from 'src/app/services/register.service';
-import { user } from 'src/app/interfaces/user';
 import Swal from 'sweetalert2';
 
 import { SearchCountryField, CountryISO, PhoneNumberFormat } from 'ngx-intl-tel-input';
@@ -14,12 +13,14 @@ import { SearchCountryField, CountryISO, PhoneNumberFormat } from 'ngx-intl-tel-
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
 
   // Phone
   SearchCountryField = SearchCountryField;
   CountryISO = CountryISO;
   PhoneNumberFormat = PhoneNumberFormat;
+
+  showPwd: boolean = false;
 
   myForm: FormGroup = this.fb.group({
     name: ['', [Validators.required, Validators.maxLength(30)]],
@@ -31,10 +32,6 @@ export class RegisterComponent implements OnInit {
   });
 
   constructor(private service: RegisterService, private fb: FormBuilder, private router: Router) { }
-
-  ngOnInit(): void {
-
-  }
 
   get email() {
     return this.myForm.get('email');
@@ -66,7 +63,7 @@ export class RegisterComponent implements OnInit {
       this.service.register(ultimatix, password, name, lastname, phone.internationalNumber, email)
         .subscribe({
           next: () => {
-            Swal.fire('Éxito', 'Usuario registrado con éxito', 'success');
+            Swal.fire('¡Éxito!', 'Usuario registrado con éxito.', 'success');
             this.router.navigateByUrl('/');
           },
           error: err => Swal.fire('Error', err.error.mensaje, 'error')
