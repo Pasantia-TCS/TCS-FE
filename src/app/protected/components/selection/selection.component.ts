@@ -29,6 +29,11 @@ export class SelectionComponent implements OnInit {
     this.router.navigateByUrl('/pages/dashboard/tasks');
   }
 
+  toTeams() {
+    // TODO: validate user type
+    this.router.navigateByUrl('/pages/dashboard/teams');
+  }
+
   toForms() {
     // TODO: validate user type
     this.router.navigateByUrl('/pages/dashboard/forms');

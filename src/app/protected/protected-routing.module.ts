@@ -7,6 +7,7 @@ import { TasksComponent } from './components/tasks/tasks.component';
 import { FormsComponent } from './components/forms/forms.component';
 import { SelectionComponent } from './components/selection/selection.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { TeamsComponent } from './components/teams/teams.component';
 import { ValidateTokenGuard } from '../auth/guards/validate-token.guard';
 
 const routes: Routes = [
@@ -36,6 +37,10 @@ const routes: Routes = [
           {
             path: 'forms',
             component: FormsComponent
+          },
+          {
+            path: 'teams',
+            component: TeamsComponent
           },
         ]
       },
