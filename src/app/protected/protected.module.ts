@@ -29,6 +29,9 @@ import { TeamsComponent } from './components/teams/teams.component';
 import { TableEquiposComponent } from './components/tableEquipos/tableEquipos.component';
 import { NewTeamComponent } from './components/new-team/new-team.component';
 import { DialogComponent } from './components/dialog/dialog.component';
+import { NewAssignmentComponent } from './components/new-assignment/new-assignment.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -51,7 +54,8 @@ import { DialogComponent } from './components/dialog/dialog.component';
     TeamsComponent,
     TableEquiposComponent,
     NewTeamComponent,
-    DialogComponent
+    DialogComponent,
+    NewAssignmentComponent
   ],
   imports: [
     CommonModule,
@@ -61,7 +65,9 @@ import { DialogComponent } from './components/dialog/dialog.component';
     MatIconModule,
     MatTooltipModule,
     MatButtonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDialogModule,
+    MatFormFieldModule
   ],
   exports: [
     CustomButtonComponent,

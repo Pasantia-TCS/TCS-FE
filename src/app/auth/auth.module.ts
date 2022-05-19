@@ -8,7 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MainComponent } from './pages/main/main.component';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
-import {MatIconModule} from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -24,6 +24,9 @@ import {MatIconModule} from '@angular/material/icon';
     MatFormFieldModule,
     NgxIntlTelInputModule,
     MatIconModule
+  ],
+  exports: [
+    MainComponent
   ]
 })
 export class AuthModule { }

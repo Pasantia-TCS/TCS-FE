@@ -1,0 +1,48 @@
+<h1 mat-dialog-title>Registrar asignación</h1>
+<div mat-dialog-content>
+  <form [formGroup]="newAssignmentForm">
+    <div class="row">
+      <!-- Types -->
+      <div class="col-12 col-sm-6 mb-3">
+        <select class="form-select">
+          <option selected>Tipo</option>
+          <option *ngFor="let type of types" [value]="type">{{type}}</option>>
+        </select>
+      </div>
+      <!-- Options -->
+      <div class="col-12 col-sm-6 mb-3">
+        <input class="form-control" list="projects" placeholder="Buscar" size="5">
+        <datalist id="projects">
+          <option *ngFor="let project of projects" [value]="project">
+        </datalist>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- Assignment percentage -->
+      <div class="col mb-3">
+        <select class="form-select">
+          <option selected>Porcentaje de asignación</option>
+          <option [value]="i * 100" *ngFor="let i of [0.25, 0.5, 0.75, 1]">{{i | percent}}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- Start date -->
+      <div class="col mb-3">
+        <label class="form-label">Fecha de inicio</label>
+        <input type="date" class="form-control">
+      </div>
+      <!-- End date -->
+      <div class="col mb-3">
+        <label class="form-label">Fecha de finalización</label>
+        <input type="date" class="form-control">
+      </div>
+    </div>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button mat-button (click)="close()">Registrar asignación</button>
+</div>

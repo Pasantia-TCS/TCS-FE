@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import Swal from 'sweetalert2';
 import { asignacion } from '../../interfaces/asignacion';
 import { AsignacionService } from '../../services/asignacion.service';
+import { NewAssignmentComponent } from '../new-assignment/new-assignment.component';
 import { TableAsignacion } from '../tableAsignacion/tableAsignacion.component';
 
 @Component({
@@ -19,7 +21,10 @@ export class TasksComponent implements OnInit {
 
   @ViewChild(TableAsignacion) table: any;
 
-  constructor(private asignacionService: AsignacionService) { }
+  animal!: string;
+  name!: string;
+
+  constructor(private asignacionService: AsignacionService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
@@ -50,8 +55,8 @@ export class TasksComponent implements OnInit {
     })
   }
 
-  clickHandler() {
-    
+  newAssignment() {
+    this.dialog.open(NewAssignmentComponent);
   }
 
 }

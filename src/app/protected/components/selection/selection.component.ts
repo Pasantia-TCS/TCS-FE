@@ -7,7 +7,7 @@ import { UserService } from 'src/app/shared/services/user.service';
 @Component({
   selector: 'app-selection',
   templateUrl: './selection.component.html',
-  styleUrls: ['./selection.component.css']
+  styles: []
 })
 export class SelectionComponent implements OnInit {
 
@@ -20,22 +20,18 @@ export class SelectionComponent implements OnInit {
   }
 
   toAssets() {
-    // TODO: validate user type
     this.router.navigateByUrl('/pages/dashboard/assets');
   }
 
   toTasks() {
-    // TODO: validate user type
     this.router.navigateByUrl('/pages/dashboard/tasks');
   }
 
   toTeams() {
-    // TODO: validate user type
     this.router.navigateByUrl('/pages/dashboard/teams');
   }
 
   toForms() {
-    // TODO: validate user type
     this.router.navigateByUrl('/pages/dashboard/forms');
   }
 
