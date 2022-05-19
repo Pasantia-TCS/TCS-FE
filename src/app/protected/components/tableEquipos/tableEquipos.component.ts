@@ -34,13 +34,15 @@ export class TableEquiposComponent implements OnInit {
 
   equipos!: equipo[];
 
+  id: string = '';
+  _currentTeam: equipo = {};
 
   nuevoEquipoForm: FormGroup = this.fb.group({
-    nombre_equipo_asi: ['Team 1', Validators.required],
-    tipo_equipo_asi: [2, Validators.required],
-    descripcion_asi: ['descripcion del equipo 1', Validators.required],
-    nombre_lider: ['Juan', Validators.required],
-    nombre_tecnico: ['Marcelo', Validators.required],
+    nombre_equipo_asi: [{ value: '', disabled: true }, Validators.required],
+    tipo_equipo_asi: [{ value: '', disabled: true }, Validators.required],
+    descripcion_asi: [{ value: '', disabled: true }, Validators.required],
+    nombre_lider: ['', Validators.required],
+    nombre_tecnico: ['', Validators.required],
   });
 
   pipe = new DatePipe('en-US');
@@ -72,12 +74,42 @@ export class TableEquiposComponent implements OnInit {
     this.indexToDelete.emit(index);
   }
 
-  editItem(equipo: equipo) {
-    this.equipo = equipo;
-  }
-
   clickMe() {
     this.equiposService.sendClickEvent();
+  }
+
+  currentTeam(team: equipo) {
+    this._currentTeam = team;
+
+    this.nuevoEquipoForm.patchValue({
+      nombre_equipo_asi: this._currentTeam.nombre_equipo_asi,
+      tipo_equipo_asi: this._currentTeam.tipo_equipo_asi,
+      descripcion_asi: this._currentTeam.descripcion_asi,
+      nombre_lider: this._currentTeam.nombre_lider,
+      nombre_tecnico: this._currentTeam.nombre_tecnico,
+    });
+  }
+
+  editarEquipo() {
+
+    if (this._currentTeam.estado_asi === false) {
+      Swal.fire('Advertencia!', 'No se puede editar un proyecto no vigente.', 'info');
+    } else {
+      const { nombre_lider, nombre_tecnico } = this.nuevoEquipoForm.value;
+
+      this.equiposService.editar(this._currentTeam.id_asi!, nombre_lider, nombre_tecnico)
+        .subscribe(
+          {
+            next: () => {
+              this.clickMe();
+              Swal.fire('Éxito', 'Equipo editado con éxito.', 'success');
+            },
+            error: err => {
+              Swal.fire('Error', err.error.mensaje, 'error');
+            }
+          }
+        );
+    }
   }
 
   guardarEquipo() {
@@ -109,6 +141,6 @@ export class TableEquiposComponent implements OnInit {
     XLSX.writeFile(wb, this.fileName);
 
   }
-  
+
 
 }

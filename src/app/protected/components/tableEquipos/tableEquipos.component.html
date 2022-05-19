@@ -11,11 +11,11 @@
         <tr *ngFor="let equipo of equipos">
           <td>
             <button mat-icon-button data-bs-toggle="modal" data-bs-placement="right" data-bs-target="#editEquipo"
-              title="Editar equipo" style="cursor: pointer;">
+              title="Editar equipo" style="cursor: pointer;" (click)="currentTeam(equipo)">
               <mat-icon [ngStyle]="{'color':'#9B11BF99'}">edit</mat-icon>
             </button>
             <button mat-icon-button (click)="deleteItem(equipo.id_asi!)" data-bs-toggle="tooltip"
-              data-bs-placement="right" title="Eliminar equipo" style="cursor: pointer;">
+              data-bs-placement="right" title="Eliminar equipo" style="cursor: pointer;" [disabled]="equipo.estado_asi === false">
               <mat-icon [ngStyle]="{'color':'#F7071299'}">delete</mat-icon>
             </button>
           </td>
@@ -103,7 +103,7 @@
       <!-- Footer -->
       <div class="modal-footer">
         <button type="button" class="btn custom-btn rounded-pill" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn custom-btn rounded-pill">Guardar</button>
+        <button type="button" class="btn custom-btn rounded-pill" (click)="editarEquipo()">Guardar</button>
       </div>
 
     </div>

@@ -13,8 +13,8 @@ export class TasksService {
   users: profile[] = [];
 
   async loadUsers() {
-    // const url: string = 'http://localhost:8081/perfil/perfiles';
-    const url: string = 'http://54.91.126.120:8081/perfil/perfiles';
+    const url: string = 'http://localhost:8081/perfil/perfiles';
+    // const url: string = 'http://54.91.126.120:8081/perfil/perfiles';
     
     return this.http.get<profile[]>(url)
       .subscribe({

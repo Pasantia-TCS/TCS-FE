@@ -40,8 +40,9 @@ export class EquiposService {
   }
 
   editar(id_equipo: string, lider_equipo: string, lider_tecnico: string) {
-    const url:string =  `${this.baseUrl}/editar-equipo`;
-    return this.http.post<equipo[]>(url, { id_equipo, lider_equipo, lider_tecnico});
+    const url: string = `${this.baseUrl}/editar-equipo`;
+    const body = { id_asi: id_equipo, nombre_lider: lider_equipo, nombre_tecnico: lider_tecnico };
+    return this.http.post<equipo[]>(url, body);
   }
 
 }
