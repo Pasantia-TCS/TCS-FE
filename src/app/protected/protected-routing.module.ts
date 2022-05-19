@@ -9,6 +9,7 @@ import { SelectionComponent } from './components/selection/selection.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { TeamsComponent } from './components/teams/teams.component';
 import { ValidateTokenGuard } from '../auth/guards/validate-token.guard';
+import { TemplateComponent } from './components/template/template.component';
 
 const routes: Routes = [
   {
@@ -36,12 +37,16 @@ const routes: Routes = [
           },
           {
             path: 'forms',
-            component: FormsComponent
+            component: FormsComponent,
           },
           {
             path: 'teams',
             component: TeamsComponent
           },
+          {
+            path: 'new-template',
+            component: TemplateComponent
+          }
         ]
       },
       {

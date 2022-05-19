@@ -32,6 +32,7 @@ import { DialogComponent } from './components/dialog/dialog.component';
 import { NewAssignmentComponent } from './components/new-assignment/new-assignment.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { TemplateComponent } from './components/template/template.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     TableEquiposComponent,
     NewTeamComponent,
     DialogComponent,
-    NewAssignmentComponent
+    NewAssignmentComponent,
+    TemplateComponent
   ],
   imports: [
     CommonModule,
