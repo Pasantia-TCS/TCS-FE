@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-template',
@@ -11,9 +12,13 @@ export class TemplateComponent implements OnInit {
   requiredQuestion = false;
   textArea = false;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  toForms() {
+    this.router.navigateByUrl('/pages/dashboard/forms');
   }
 
 }
