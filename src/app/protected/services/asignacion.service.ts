@@ -26,7 +26,7 @@ export class AsignacionService {
   }
 
   register(asignacion: asignacion) {
-    const url: string = `${this.baseUrl}/agregarAsignacion`;
+    const url: string = `${this.baseUrl}/agregar-asignacion-proyecto`;
     return this.http.post<asignacion[]>(url, asignacion);
   }
 
