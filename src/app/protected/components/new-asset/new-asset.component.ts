@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 import { user } from 'src/app/interfaces/user';
 import { UserService } from 'src/app/shared/services/user.service';
 import Swal from 'sweetalert2';
@@ -13,7 +14,7 @@ import { ActivosService } from '../../services/activos.service';
 })
 export class NewAssetComponent implements OnInit {
 
-  areas: string[] = ['CTB', 'EnP', 'Librarian', 'Panamá', 'Seguridad', 'SES', 'Otras'];
+  areas: string[] = ['CTB', 'EnP', 'Librarian', 'Panamá', 'Seguridad', 'SES'];
   tipos: string[] = ['Computador'];
   pisos: string[] = ['Piso 1', 'Piso 2', 'Piso 3', 'Piso 4', 'Piso 5', 'Piso 6'];
   edificios: string[] = ['Centrum', 'Inluxor'];
@@ -23,18 +24,22 @@ export class NewAssetComponent implements OnInit {
     tipo: ['Computador', Validators.required],
     edificio: ['Inluxor', Validators.required],
     piso: ['Piso 1', Validators.required],
-    hostname: ['hostname', Validators.required],
-    direccion_mac: ['00-00-00-00-00-00', [Validators.required, Validators.pattern('^([0-9A-F]{2}[:-]){5}([0-9A-F]{2})$')]],
-    direccion_ip: ['192.168.1.1', [Validators.required, Validators.pattern("^(?:(?:^|\.)(?:2(?:5[0-5]|[0-4]\\d)|1?\\d?\\d)){4}$")]],
+    hostname: ['', Validators.required],
+    direccion_mac: ['', [Validators.required, Validators.pattern('^([0-9A-F]{2}[:-]){5}([0-9A-F]{2})$')]],
+    direccion_ip: ['', [Validators.required, Validators.pattern("^(?:(?:^|\.)(?:2(?:5[0-5]|[0-4]\\d)|1?\\d?\\d)){4}$")]],
     reservada_ip: ['false', Validators.required],
     fecha_entrega: ['', Validators.required]
   });
 
   activo: activo = {};
 
-  constructor(private activosService: ActivosService, private userService: UserService, private fb: FormBuilder) { }
+  constructor(private activosService: ActivosService, private userService: UserService, private fb: FormBuilder, public dialogRef: MatDialogRef<NewAssetComponent>) { }
 
   ngOnInit(): void {
+  }
+
+  getCtrl(controlName: string) {
+    return this.nuevoActivoForm.get(controlName);
   }
 
   clickMe() {
@@ -65,6 +70,10 @@ export class NewAssetComponent implements OnInit {
           error: err => Swal.fire('¡Error!', err.error.mensaje, 'error')
         });
     }
+  }
+
+  close() {
+    this.dialogRef.close();
   }
 
 }

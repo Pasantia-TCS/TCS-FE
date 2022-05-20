@@ -7,6 +7,8 @@ import { TableBasic } from '../table/table.component';
 import Swal from 'sweetalert2';
 import * as XLSX from 'xlsx';
 import { DatePipe } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
+import { NewAssetComponent } from '../new-asset/new-asset.component';
 
 @Component({
   selector: 'app-assets',
@@ -26,7 +28,7 @@ export class AssetsComponent implements OnInit, AfterViewInit {
 
   @ViewChild(TableBasic) table: any;
 
-  constructor(private activosService: ActivosService, private userService: UserService) { }
+  constructor(private activosService: ActivosService, private userService: UserService, public dialog: MatDialog) { }
 
   ngAfterViewInit(): void {
     this.table.load();
@@ -45,6 +47,10 @@ export class AssetsComponent implements OnInit, AfterViewInit {
     this.activosService.mostrarActivos(ultimatix).then(resp => {
       this.activos = resp;
     });
+  }
+
+  openNewAsset(): void {
+    this.dialog.open(NewAssetComponent);
   }
 
   deleteItem(id_activo: string): void {

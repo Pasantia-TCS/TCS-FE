@@ -22,13 +22,11 @@ export class NewAssignmentComponent implements OnInit {
 
   });
 
-  constructor(public dialogRef: MatDialogRef<NewAssignmentComponent>, private fb: FormBuilder, private equiposService: EquiposService) { }
+  constructor(public dialogRef: MatDialogRef<NewAssignmentComponent>, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     
   }
-
-
 
   close(): void {
     this.dialogRef.close();
