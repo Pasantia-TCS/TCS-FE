@@ -45,7 +45,7 @@ export class TeamsComponent implements OnInit {
       cancelButtonText: 'Cancelar',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.teamService.eliminar(id_team).subscribe({
+        this.teamService.delete(id_team).subscribe({
           next: resp => {
             this.equipo = resp;
             this.table.loadTeams();

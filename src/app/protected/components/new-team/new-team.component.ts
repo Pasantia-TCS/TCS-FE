@@ -32,7 +32,7 @@ export class NewTeamComponent implements OnInit {
   }
 
   guardarEquipo() {
-    this.equiposService.agregarEquipo(this.nuevoEquipoForm.value)
+    this.equiposService.add(this.nuevoEquipoForm.value)
       .subscribe(
         {
           next: () => {

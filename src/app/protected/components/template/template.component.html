@@ -105,18 +105,14 @@
   </div>
 
   <div class="card text-bg-light mb-3" style="border-radius: 1rem;">
-
     <div class="card-header">
       <mat-icon class="float-end" style="color: red;">delete</mat-icon>
     </div>
-
     <div class="card-body">
-
       <div class="input-group mb-3">
-        <span class="input-group-text" id="basic-addon1">2.</span>
+        <span class="input-group-text" id="basic-addon1">4.</span>
         <input type="text" class="form-control" placeholder="Escriba el título de la pregunta aquí." value="Pregunta">
       </div>
-
       <div *ngIf="!textArea; else textAreaBlock">
         <div class="ms-3 ps-4">
           <input type="text" class="form-control" placeholder="Escriba su respuesta">
@@ -128,7 +124,6 @@
         </div>
       </ng-template>
     </div>
-
     <div class="card-footer">
       <div class="row justify-content-end">
         <div class="col-2 form-check form-switch">
@@ -136,6 +131,75 @@
             (change)="textArea = !textArea">
           <label class="form-check-label" for="flexSwitchCheckDefault">Respuesta larga</label>
         </div>
+        <div class="col-2 form-check form-switch">
+          <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+          <label class="form-check-label" for="flexSwitchCheckDefault">Obligatoria</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card text-bg-light mb-3" style="border-radius: 1rem;">
+    <div class="card-header">
+      <mat-icon class="float-end" style="color: red;">delete</mat-icon>
+    </div>
+
+    <div class="card-body">
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">3.</span>
+        <input type="text" class="form-control" placeholder="Escriba el título de la pregunta aquí." value="Pregunta">
+      </div>
+
+      <div class="row mb-3">
+        <app-star-rating [rating]="rating" [starCount]="starCount" [color]="starColor"
+          (ratingUpdated)="onRatingChanged($event)"></app-star-rating>
+      </div>
+
+      <div class="row">
+        <div class="col-1">
+          <span class="form-label">Niveles:</span>
+        </div>
+        <div class="col-3">
+          <select class="form-select" [(ngModel)]="starCount">
+            <option selected>Seleccione un nivel</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="row justify-content-end">
+        <div class="col-2 form-check form-switch">
+          <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+          <label class="form-check-label" for="flexSwitchCheckDefault">Obligatoria</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card text-bg-light mb-3" style="border-radius: 1rem;">
+    <div class="card-header">
+      <mat-icon class="float-end" style="color: red;">delete</mat-icon>
+    </div>
+    <div class="card-body">
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">4.</span>
+        <input type="text" class="form-control" placeholder="Escriba el título de la pregunta aquí." value="Pregunta">
+      </div>
+
+      <input type="date" class="form-control">
+    </div>
+    <div class="card-footer">
+      <div class="row justify-content-end">
         <div class="col-2 form-check form-switch">
           <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
           <label class="form-check-label" for="flexSwitchCheckDefault">Obligatoria</label>

@@ -15,7 +15,7 @@ import { TasksComponent } from './components/tasks/tasks.component';
 import { FormsComponent } from './components/forms/forms.component';
 import { SelectionComponent } from './components/selection/selection.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TableBasic } from './components/table/table.component';
 import { TableAsignacion } from './components/tableAsignacion/tableAsignacion.component';
 import { MatButtonModule } from '@angular/material/button';
@@ -33,6 +33,9 @@ import { NewAssignmentComponent } from './components/new-assignment/new-assignme
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { TemplateComponent } from './components/template/template.component';
+import { StarRatingComponent } from './components/star-rating/star-rating.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 
 @NgModule({
   declarations: [
@@ -57,7 +60,8 @@ import { TemplateComponent } from './components/template/template.component';
     NewTeamComponent,
     DialogComponent,
     NewAssignmentComponent,
-    TemplateComponent
+    TemplateComponent,
+    StarRatingComponent
   ],
   imports: [
     CommonModule,
@@ -69,7 +73,9 @@ import { TemplateComponent } from './components/template/template.component';
     MatButtonModule,
     ReactiveFormsModule,
     MatDialogModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatSnackBarModule,
+    FormsModule
   ],
   exports: [
     CustomButtonComponent,

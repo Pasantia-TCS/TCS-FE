@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { EquiposService } from '../../services/equipos.service';
 
 export interface DialogData {
   animal: string;
@@ -21,13 +22,15 @@ export class NewAssignmentComponent implements OnInit {
 
   });
 
-  constructor(public dialogRef: MatDialogRef<NewAssignmentComponent>, private fb: FormBuilder) { }
+  constructor(public dialogRef: MatDialogRef<NewAssignmentComponent>, private fb: FormBuilder, private equiposService: EquiposService) { }
 
   ngOnInit(): void {
+    
   }
 
+
+
   close(): void {
-    alert('Se ha cerrado la ventana modal.')
     this.dialogRef.close();
   }
 

@@ -23,23 +23,27 @@ export class EquiposService {
     return this.subject.asObservable();
   }
 
-
-  agregarEquipo(equipo: equipo) {
+  add(equipo: equipo) {
     const url: string = `${this.baseUrl}/agregar-equipo`;
     return this.http.post<equipo[]>(url, equipo);
   }
 
-  mostrarEquipos() {
+  show() {
     const url: string = `${this.baseUrl}/buscar-equipos`;
     return this.http.get<equipo[]>(url);
   }
 
-  eliminar(id_equipo: string) {
+  showByType(type: number) {
+    const url: string = `${this.baseUrl}/buscar-tipo-proyecto`;
+    return this.http.post<equipo[]>(url, { tipo_equipo_asi: type });
+  }
+
+  delete(id_equipo: string) {
     const url: string = `${this.baseUrl}/eliminar-equipo`;
     return this.http.post<equipo[]>(url, { id_asi: id_equipo });
   }
 
-  editar(id_equipo: string, lider_equipo: string, lider_tecnico: string) {
+  edit(id_equipo: string, lider_equipo: string, lider_tecnico: string) {
     const url: string = `${this.baseUrl}/editar-equipo`;
     const body = { id_asi: id_equipo, nombre_lider: lider_equipo, nombre_tecnico: lider_tecnico };
     return this.http.post<equipo[]>(url, body);

@@ -61,7 +61,7 @@ export class TableEquiposComponent implements OnInit {
   }
 
   loadTeams() {
-    this.equiposService.mostrarEquipos()
+    this.equiposService.show()
       .subscribe(
         {
           next: resp => this.equipos = resp
@@ -97,7 +97,7 @@ export class TableEquiposComponent implements OnInit {
     } else {
       const { nombre_lider, nombre_tecnico } = this.nuevoEquipoForm.value;
 
-      this.equiposService.editar(this._currentTeam.id_asi!, nombre_lider, nombre_tecnico)
+      this.equiposService.edit(this._currentTeam.id_asi!, nombre_lider, nombre_tecnico)
         .subscribe(
           {
             next: () => {
@@ -113,7 +113,7 @@ export class TableEquiposComponent implements OnInit {
   }
 
   guardarEquipo() {
-    this.equiposService.agregarEquipo(this.nuevoEquipoForm.value)
+    this.equiposService.add(this.nuevoEquipoForm.value)
       .subscribe(
         {
           next: () => {
