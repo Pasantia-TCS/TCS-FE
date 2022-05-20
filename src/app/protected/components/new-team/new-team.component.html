@@ -13,13 +13,13 @@
 
         <div class="row">
           <!-- Team Name -->
-          <div class="col mb-3">
+          <div class="col-12 col-sm-6 mb-3">
             <input type="text" class="form-control rounded-pill" placeholder="Nombre del equipo"
               formControlName="nombre_equipo_asi">
           </div>
 
           <!-- Type field -->
-          <div class="col mb-3">
+          <div class="col-12 col-sm-6 mb-3">
             <select class="form-select rounded-pill" formControlName="tipo_equipo_asi">
               <option selected value="">Tipo</option>
               <option [value]="+ aux.indexOf(tipo)" *ngFor="let tipo of tipos">{{tipo}}</option>
@@ -35,26 +35,22 @@
 
         <div class="row">
           <!-- Team leader field -->
-          <div class="col mb-3">
-            <div class="col mb-3">
-              <input type="text" class="form-control rounded-pill" placeholder="Líder de equipo"
-                formControlName="nombre_lider">
-            </div>
+          <div class="col-12 col-sm-6 mb-3">
+            <input type="text" class="form-control rounded-pill" placeholder="Líder de equipo"
+              formControlName="nombre_lider">
           </div>
 
           <!-- Leader Tecnico field -->
-          <div class="col mb-3">
-            <div class="col mb-3">
-              <input type="text" class="form-control rounded-pill" placeholder="Líder técnico"
-                formControlName="nombre_tecnico">
-            </div>
+          <div class="col-12 col-sm-6 mb-3">
+            <input type="text" class="form-control rounded-pill" placeholder="Líder técnico"
+              formControlName="nombre_tecnico">
           </div>
         </div>
 
-        <div class="row">
+        <div class="col-12">
           <!-- Descripcion field -->
-          <input type="text" class="form-control rounded-pill" placeholder="Descripcion del equipo"
-            formControlName="descripcion_asi">
+          <textarea class="form-control" rows="2" placeholder="Descripción del equipo" formControlName="descripcion_asi"
+            style="border-radius: 2rem;" maxlength="200"></textarea>
         </div>
 
       </form>

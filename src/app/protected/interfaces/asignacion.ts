@@ -11,10 +11,8 @@ export interface asignacion {
     nombre_lider?: string,
     nombre_tecnico?: string,
     estado?: boolean,
-
     mensaje?: string,
     status?: string,
     timestamp?: string,
     borrado_logico?: boolean
-
 }
