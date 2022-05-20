@@ -1,29 +1,17 @@
 <!-- Header -->
 <app-header title="Registro de activos"></app-header>
 
-<!-- Add new item -->
-<div class="row">
-  <div class="col-12 col-sm-6 mb-3 d-flex justify-content-center">
-    <button type="button" class="btn custom-btn rounded-pill w-75" data-bs-toggle="modal" data-bs-target="#addItem">
-      <span class="d-flex justify-content-center" style="column-gap: 10%;">
-        <mat-icon>add_circle</mat-icon> Añadir activo
-      </span>
-    </button>
+<!-- Options -->
+<div class="row mb-2">
+  <div class="col-12 col-sm-3 mx-auto mb-2">
+    <app-button buttonName="Crear asignación" iconName="add_circle" [buttonIcon]="true" (btnClick)="openNewAsset()">
+    </app-button>
   </div>
-
-  <div class="col-12 col-sm-6 mb-3 d-flex justify-content-center">
-    <button type="button" class="btn custom-btn rounded-pill w-75" (click)="exportTable()">
-      <span class="d-flex justify-content-center" style="column-gap: 10%;">
-        <mat-icon>save_alt</mat-icon> Generar Reporte
-      </span>
-    </button>
-
+  <div class="col-12 col-sm-3 mx-auto mb-2">
+    <app-button buttonName="Generar reporte" iconName="save_alt" [buttonIcon]="true" (btnClick)="exportTable()">
+    </app-button>
   </div>
+</div>
 
-  <!-- Modal -->
-  <div class="modal fade" id="addItem" tabindex="-1">
-    <app-new-asset></app-new-asset>
-  </div>
-
-  <!-- Table -->
-  <p-table (indexToDelete)="deleteItem($event)"></p-table>
+<!-- Table -->
+<p-table (indexToDelete)="deleteItem($event)"></p-table>

@@ -36,6 +36,7 @@ import { TemplateComponent } from './components/template/template.component';
 import { StarRatingComponent } from './components/star-rating/star-rating.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatDialogModule,
     MatFormFieldModule,
     MatSnackBarModule,
-    FormsModule
+    FormsModule,
+    MatInputModule
   ],
   exports: [
     CustomButtonComponent,

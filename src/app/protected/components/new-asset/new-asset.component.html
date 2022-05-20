@@ -1,132 +1,114 @@
-<div class="modal-dialog modal-dialog-centered">
-  <div class="modal-content">
-    <!-- Header -->
-    <div class="modal-header">
-      <h5 class="modal-title fs-2">Nuevo activo</h5>
-      <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-    </div>
-    <!-- Body -->
-    <div class="modal-body">
-      <form [formGroup]="nuevoActivoForm" autocomplete="off">
+<h1 mat-dialog-title>Nuevo activo</h1>
+<div mat-dialog-content>
+  <form [formGroup]="nuevoActivoForm" autocomplete="off">
 
-        <div class="row">
-          <!--Type field -->
-          <div class="col form-floating mb-3">
-            <select id="floatingType" class="form-select rounded-pill" formControlName="tipo">
-              <option [value]="tipo" *ngFor="let tipo of tipos">{{tipo}}</option>
-            </select>
-            <label for="floatingType">Tipo</label>
-          </div>
-          <!-- Area field -->
-          <div class="col form-floating mb-3">
-            <select id="floatingArea" class="form-select rounded-pill" formControlName="area">
-              <option [value]="area" *ngFor="let area of areas">{{area}}</option>
-            </select>
-            <label for="floatingArea">Área</label>
-          </div>
-        </div>
-
-        <div class="row">
-          <!-- Building field-->
-          <div class="col form-floating mb-3">
-            <select id="floatingBuilding" class="form-select rounded-pill" formControlName="edificio">
-              <option [value]="edificio" *ngFor="let edificio of edificios">{{edificio}}</option>
-            </select>
-            <label for="floatingBuilding">Edificio</label>
-          </div>
-          <!-- Floor field -->
-          <div class="col form-floating mb-3">
-            <select class="form-select rounded-pill" formControlName="piso">
-              <option id="floatingFloor" [value]="piso" *ngFor="let piso of pisos">{{piso}}</option>
-            </select>
-            <label for="floatingFloor">Piso</label>
-          </div>
-        </div>
-
-        <div *ngIf="nuevoActivoForm.get('tipo')?.value === 'Computador'">
-          <div class="row">
-            <!-- Hostname field-->
-            <div class="col form-floating mb-3">
-              <input id="floatingHostname" type="text" class="form-control rounded-pill" placeholder="Hostname"
-                formControlName="hostname">
-              <label for="floatingHostname">Hostname</label>
-              <div
-                *ngIf="(nuevoActivoForm.get('hostname')?.invalid && nuevoActivoForm.get('hostname')?.touched) || nuevoActivoForm.get('hostname')?.dirty">
-                <span class="form-text text-danger float-start"
-                  *ngIf="nuevoActivoForm.get('hostname')?.errors?.['required']">
-                  * Ingrese un valor válido.
-                </span>
-              </div>
-            </div>
-            <!-- MAC address field -->
-            <div class="col form-floating mb-3">
-              <input id="floatingMAC" type="text" class="form-control rounded-pill" placeholder="Dirección MAC"
-                formControlName="direccion_mac">
-              <label for="floatingMAC">Dirección MAC</label>
-              <div
-                *ngIf="(nuevoActivoForm.get('direccion_mac')?.invalid && nuevoActivoForm.get('direccion_mac')?.touched) || nuevoActivoForm.get('direccion_mac')?.dirty">
-                <span class="form-text text-danger float-start"
-                  *ngIf="nuevoActivoForm.get('direccion_mac')?.errors?.['required']">
-                  * Introduce una dirección MAC.
-                </span>
-                <span class="form-text text-danger float-start"
-                  *ngIf="nuevoActivoForm.get('direccion_mac')?.errors?.['pattern']">
-                  * Introduce una dirección MAC válida.
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <!-- IP address field -->
-            <div class="col form-floating mb-3">
-              <input id="floatingIP" type="text" class="form-control rounded-pill" placeholder="Dirección IP"
-                formControlName="direccion_ip">
-              <label for="floatingIP">Dirección IP</label>
-              <div
-                *ngIf="(nuevoActivoForm.get('direccion_ip')?.invalid && nuevoActivoForm.get('direccion_ip')?.touched) || nuevoActivoForm.get('direccion_ip')?.dirty">
-                <span class="form-text text-danger float-start"
-                  *ngIf="nuevoActivoForm.get('direccion_ip')?.errors?.['required']">
-                  * Introduce una dirección IP.
-                </span>
-                <span class="form-text text-danger float-start"
-                  *ngIf="nuevoActivoForm.get('direccion_ip')?.errors?.['pattern']">
-                  * Introduce una dirección IP válida.
-                </span>
-              </div>
-            </div>
-            <!-- Reserved IP field -->
-            <div class="col form-floating mb-3">
-              <select id="floatingReservedIP" class="form-select rounded-pill" formControlName="reservada_ip">
-                <option [value]="true">Sí</option>
-                <option [value]="false">No</option>
-              </select>
-              <label for="floatingReservedIP">Dirección IP reservada</label>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <!-- Date field -->
-          <div class="col-6 form-floating">
-            <input id="floatingDate" type="date" class="form-control rounded-pill" formControlName="fecha_entrega">
-            <label for="floatingDate">Fecha de entrega</label>
-            <div
-              *ngIf="(nuevoActivoForm.get('fecha_entrega')?.invalid && nuevoActivoForm.get('fecha_entrega')?.touched) || nuevoActivoForm.get('fecha_entrega')?.dirty">
-              <span class="form-text text-danger float-start"
-                *ngIf="nuevoActivoForm.get('fecha_entrega')?.errors?.['required']">
-                * Seleccione una fecha válida.
-              </span>
-            </div>
-          </div>
-        </div>
-      </form>
+    <div class="row">
+      <!--Type field -->
+      <div class="col-12 col-sm-6 form-floating mb-3">
+        <select id="floatingType" class="form-select rounded-pill" formControlName="tipo">
+          <option [value]="tipo" *ngFor="let tipo of tipos">{{tipo}}</option>
+        </select>
+        <label for="floatingType">Tipo</label>
+      </div>
+      <!-- Area field -->
+      <div class="col-12 col-sm-6 form-floating mb-3">
+        <select id="floatingArea" class="form-select rounded-pill" formControlName="area">
+          <option [value]="area" *ngFor="let area of areas">{{area}}</option>
+        </select>
+        <label for="floatingArea">Área</label>
+      </div>
     </div>
 
-    <!-- Footer -->
-    <div class="modal-footer">
-      <button type="button" class="btn custom-btn rounded-pill" data-bs-dismiss="modal">Cerrar</button>
-      <button type="button" class="btn custom-btn rounded-pill" (click)="saveAsset()">Guardar</button>
+    <div class="row">
+      <!-- Building field-->
+      <div class="col-12 col-sm-6 form-floating mb-3">
+        <select id="floatingBuilding" class="form-select rounded-pill" formControlName="edificio">
+          <option [value]="edificio" *ngFor="let edificio of edificios">{{edificio}}</option>
+        </select>
+        <label for="floatingBuilding">Edificio</label>
+      </div>
+      <!-- Floor field -->
+      <div class="col-12 col-sm-6 form-floating mb-3">
+        <select class="form-select rounded-pill" formControlName="piso">
+          <option id="floatingFloor" [value]="piso" *ngFor="let piso of pisos">{{piso}}</option>
+        </select>
+        <label for="floatingFloor">Piso</label>
+      </div>
     </div>
-  </div>
+
+    <div *ngIf="getCtrl('tipo')?.value === 'Computador'">
+      <div class="row">
+        <!-- Hostname field-->
+        <div class="col-12 col-sm-6 form-floating mb-3">
+          <input id="floatingHostname" type="text" class="form-control rounded-pill" formControlName="hostname"
+            placeholder="hostname">
+          <label for="floatingHostname">Hostname</label>
+          <div *ngIf="(getCtrl('hostname')?.invalid && getCtrl('hostname')?.touched) || getCtrl('hostname')?.dirty">
+            <span class="form-text text-danger float-start" *ngIf="getCtrl('hostname')?.errors?.['required']">
+              * Ingrese un valor válido.
+            </span>
+          </div>
+        </div>
+        <!-- MAC address field -->
+        <div class="col-12 col-sm-6 form-floating mb-3">
+          <input id="floatingMAC" type="text" class="form-control rounded-pill" formControlName="direccion_mac"
+            placeholder="00:00:5E:00:53:AF">
+          <label for="floatingMAC">Dirección MAC</label>
+          <div
+            *ngIf="(getCtrl('direccion_mac')?.invalid && getCtrl('direccion_mac')?.touched) || getCtrl('direccion_mac')?.dirty">
+            <span class="form-text text-danger float-start" *ngIf="getCtrl('direccion_mac')?.errors?.['required']">
+              * Introduce una dirección MAC.
+            </span>
+            <span class="form-text text-danger float-start" *ngIf="getCtrl('direccion_mac')?.errors?.['pattern']">
+              * Introduce una dirección MAC válida.
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <!-- IP address field -->
+        <div class="col-12 col-sm-6 form-floating mb-3">
+          <input id="floatingIP" type="text" class="form-control rounded-pill" formControlName="direccion_ip"
+            placeholder="192.168.1.2">
+          <label for="floatingIP">Dirección IP</label>
+          <div
+            *ngIf="(getCtrl('direccion_ip')?.invalid && getCtrl('direccion_ip')?.touched) || getCtrl('direccion_ip')?.dirty">
+            <span class="form-text text-danger float-start" *ngIf="getCtrl('direccion_ip')?.errors?.['required']">
+              * Introduce una dirección IP.
+            </span>
+            <span class="form-text text-danger float-start" *ngIf="getCtrl('direccion_ip')?.errors?.['pattern']">
+              * Introduce una dirección IP válida.
+            </span>
+          </div>
+        </div>
+        <!-- Reserved IP field -->
+        <div class="col-12 col-sm-6 form-floating mb-3">
+          <select id="floatingReservedIP" class="form-select rounded-pill" formControlName="reservada_ip">
+            <option [value]="true">Sí</option>
+            <option [value]="false">No</option>
+          </select>
+          <label for="floatingReservedIP">Dirección IP reservada</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- Date field -->
+      <div class="col-12 col-sm-6 form-floating">
+        <input id="floatingDate" type="date" class="form-control rounded-pill" formControlName="fecha_entrega">
+        <label for="floatingDate">Fecha de entrega</label>
+        <div
+          *ngIf="(getCtrl('fecha_entrega')?.invalid && getCtrl('fecha_entrega')?.touched) || getCtrl('fecha_entrega')?.dirty">
+          <span class="form-text text-danger float-start" *ngIf="getCtrl('fecha_entrega')?.errors?.['required']">
+            * Seleccione una fecha válida.
+          </span>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-stroked-button (click)="close()">Cancelar</button>
+  <button mat-stroked-button (click)="saveAsset()">Registrar asignación</button>
 </div>

@@ -29,13 +29,11 @@ export class NewAssignmentComponent implements OnInit {
     fecha_fin: ['2019-12-10', Validators.required],
   });
 
-  constructor(public dialogRef: MatDialogRef<NewAssignmentComponent>, private fb: FormBuilder, private equiposService: EquiposService) { }
+  constructor(public dialogRef: MatDialogRef<NewAssignmentComponent>, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     
   }
-
-
 
   close(): void {
     this.dialogRef.close();
