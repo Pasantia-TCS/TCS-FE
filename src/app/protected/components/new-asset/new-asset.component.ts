@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { activo } from '../../interfaces/activo';
 import { user } from 'src/app/interfaces/user';
 import { UserService } from 'src/app/shared/services/user.service';
-import Swal from 'sweetalert2';
-import { activo } from '../../interfaces/activo';
 import { ActivosService } from '../../services/activos.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-new-asset',
@@ -33,7 +33,12 @@ export class NewAssetComponent implements OnInit {
 
   activo: activo = {};
 
-  constructor(private activosService: ActivosService, private userService: UserService, private fb: FormBuilder, public dialogRef: MatDialogRef<NewAssetComponent>) { }
+  constructor(
+    private activosService: ActivosService,
+    private userService: UserService,
+    private fb: FormBuilder,
+    public dialogRef: MatDialogRef<NewAssetComponent>
+  ) { }
 
   ngOnInit(): void {
   }

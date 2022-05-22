@@ -1,7 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DatePipe } from '@angular/common';
-import Swal from 'sweetalert2';
-import * as XLSX from 'xlsx';
 import { user } from 'src/app/interfaces/user';
 import { equipo } from '../../interfaces/equipo';
 import { UserService } from 'src/app/shared/services/user.service';
@@ -9,6 +7,9 @@ import { EquiposService } from '../../services/equipos.service';
 import { TableEquiposComponent } from '../tableEquipos/tableEquipos.component';
 import { MatDialog } from '@angular/material/dialog';
 import { NewTeamComponent } from '../new-team/new-team.component';
+import Swal from 'sweetalert2';
+import * as XLSX from 'xlsx';
+
 
 @Component({
   selector: 'app-teams',

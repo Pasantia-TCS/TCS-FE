@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { Output, EventEmitter } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { DatePipe } from '@angular/common';
-import Swal from 'sweetalert2';
-import * as XLSX from 'xlsx';
 import { equipo } from '../../interfaces/equipo';
 import { user } from 'src/app/interfaces/user';
 import { EquiposService } from '../../services/equipos.service';
+import * as XLSX from 'xlsx';
 
 
 @Component({
@@ -73,9 +72,7 @@ export class TableEquiposComponent implements OnInit {
   }
 
   exportTable(): void {
-
     let element = document.getElementById('tableEquipos');
-
     const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
 
     // Generar archivo
@@ -84,8 +81,5 @@ export class TableEquiposComponent implements OnInit {
 
     // Save
     XLSX.writeFile(wb, this.fileName);
-
   }
-
-
 }

@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { user } from 'src/app/interfaces/user';
 import { UserService } from 'src/app/shared/services/user.service';
-import Swal from 'sweetalert2';
 import { profile } from '../../interfaces/profile';
 import { ProfileService } from '../../services/profile.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-profile',
@@ -124,7 +124,6 @@ export class ProfileComponent implements OnInit {
   }
 
   updateUserInfo() {
-    // TODO: Crear servicio para actualizar únicamente la información del usuario
     const { email, phone, netuser } = this.userInfoForm.value;
     this.userService.updateUserProfile(this.ultimatix, phone, email)
       .subscribe({

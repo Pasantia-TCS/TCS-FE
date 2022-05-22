@@ -6,8 +6,6 @@ import { Output, EventEmitter } from '@angular/core';
 import { activo } from '../../interfaces/activo';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { DatePipe } from '@angular/common';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'p-table',
@@ -32,8 +30,6 @@ export class TableBasic implements OnInit {
   tipos: string[] = ['Computador'];
   pisos: string[] = ['Piso 1', 'Piso 2', 'Piso 3', 'Piso 4', 'Piso 5', 'Piso 6'];
   edificios: string[] = ['Centrum', 'Inluxor'];
-
-  
 
   clickEventSubscription: Subscription;
 

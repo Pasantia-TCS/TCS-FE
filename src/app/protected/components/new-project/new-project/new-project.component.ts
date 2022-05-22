@@ -4,10 +4,11 @@ import { UserService } from 'src/app/shared/services/user.service';
 import { user } from 'src/app/interfaces/user';
 import { asignacion } from 'src/app/protected/interfaces/asignacion';
 import { AsignacionService } from 'src/app/protected/services/asignacion.service';
-import Swal from 'sweetalert2';
 import { TasksService } from 'src/app/shared/services/tasks.service';
 import { profile } from 'src/app/protected/interfaces/profile';
 import { ProfileService } from 'src/app/protected/services/profile.service';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-new-project',

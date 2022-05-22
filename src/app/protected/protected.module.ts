@@ -3,22 +3,24 @@ import { CommonModule } from '@angular/common';
 
 import { ProtectedRoutingModule } from './protected-routing.module';
 import { SharedModule } from '../shared/shared.module';
-
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
-import { MatTooltipModule } from '@angular/material/tooltip';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
+
 import { HeaderComponent } from './components/header/header.component';
-import { CustomButtonComponent } from './components/custom-button/custom-button.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AssetsComponent } from './components/assets/assets.component';
 import { TasksComponent } from './components/tasks/tasks.component';
 import { FormsComponent } from './components/forms/forms.component';
 import { SelectionComponent } from './components/selection/selection.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TableBasic } from './components/table/table.component';
 import { TableAsignacion } from './components/tableAsignacion/tableAsignacion.component';
-import { MatButtonModule } from '@angular/material/button';
 import { NewAssetComponent } from './components/new-asset/new-asset.component';
 import { SearchComponent } from './components/search/search.component';
 import { NewTemplateComponent } from './components/new-template/new-template.component';
@@ -28,20 +30,14 @@ import { DeliverModalComponent } from './components/deliver-modal/deliver-modal.
 import { TeamsComponent } from './components/teams/teams.component';
 import { TableEquiposComponent } from './components/tableEquipos/tableEquipos.component';
 import { NewTeamComponent } from './components/new-team/new-team.component';
-import { DialogComponent } from './components/dialog/dialog.component';
 import { NewAssignmentComponent } from './components/new-assignment/new-assignment.component';
-import { MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { TemplateComponent } from './components/template/template.component';
 import { StarRatingComponent } from './components/star-rating/star-rating.component';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
 
-import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
     HeaderComponent,
-    CustomButtonComponent,
     DashboardComponent,
     AssetsComponent,
     TasksComponent,
@@ -59,7 +55,6 @@ import { MatInputModule } from '@angular/material/input';
     TeamsComponent,
     TableEquiposComponent,
     NewTeamComponent,
-    DialogComponent,
     NewAssignmentComponent,
     TemplateComponent,
     StarRatingComponent
@@ -75,7 +70,6 @@ import { MatInputModule } from '@angular/material/input';
     ReactiveFormsModule,
     MatDialogModule,
     MatFormFieldModule,
-    MatSnackBarModule,
     FormsModule,
     MatInputModule
   ]

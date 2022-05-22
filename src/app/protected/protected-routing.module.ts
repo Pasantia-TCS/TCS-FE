@@ -8,7 +8,6 @@ import { FormsComponent } from './components/forms/forms.component';
 import { SelectionComponent } from './components/selection/selection.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { TeamsComponent } from './components/teams/teams.component';
-import { ValidateTokenGuard } from '../auth/guards/validate-token.guard';
 import { TemplateComponent } from './components/template/template.component';
 
 const routes: Routes = [

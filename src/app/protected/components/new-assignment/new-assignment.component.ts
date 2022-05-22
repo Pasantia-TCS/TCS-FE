@@ -1,7 +1,6 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { EquiposService } from '../../services/equipos.service';
+import { MatDialogRef } from '@angular/material/dialog';
 
 export interface DialogData {
   animal: string;
@@ -32,7 +31,7 @@ export class NewAssignmentComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<NewAssignmentComponent>, private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    
+
   }
 
   close(): void {
