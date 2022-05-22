@@ -65,6 +65,7 @@ export class NewAssetComponent implements OnInit {
               piso: ['Piso 1'],
               reservada_ip: ['false'],
             });
+            this.dialogRef.close();
             Swal.fire('¡Éxito!', 'Activo registrado con éxito.', 'success');
           },
           error: err => Swal.fire('¡Error!', err.error.mensaje, 'error')

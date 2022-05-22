@@ -1,24 +1,19 @@
-<div class="modal-dialog">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h5 class="modal-title">Fecha de devolución</h5>
-      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<h1 mat-dialog-title>Fecha de devolución</h1>
+<div mat-dialog-content>
+  <form [formGroup]="deliverForm">
+    <div class="form-floating">
+      <input id="floatingDeliverDate" type="date" class="form-control rounded-pill" formControlName="fecha_devolucion">
+      <label for="floatingDeliverDate">Fecha de devolución</label>
     </div>
-    <div class="modal-body">
-      <form [formGroup]="deliverForm">
-        <input type="date" class="form-control rounded-pill" formControlName="fecha_devolucion">
-      </form>
-      <div
-        *ngIf="(deliverForm.get('fecha_devolucion')?.invalid && deliverForm.get('fecha_devolucion')?.touched) || deliverForm.get('fecha_devolucion')?.dirty">
-        <span class="form-text text-danger float-start"
-          *ngIf="deliverForm.get('fecha_devolucion')?.errors?.['required']">
-          * Seleccione una fecha válida.
-        </span>
-      </div>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn custom-btn rounded-pill" data-bs-dismiss="modal">Cerrar</button>
-      <button type="button" class="btn custom-btn rounded-pill">Guardar</button>
-    </div>
+  </form>
+  <div
+    *ngIf="(deliverForm.get('fecha_devolucion')?.invalid && deliverForm.get('fecha_devolucion')?.touched) || deliverForm.get('fecha_devolucion')?.dirty">
+    <span class="form-text text-danger float-start" *ngIf="deliverForm.get('fecha_devolucion')?.errors?.['required']">
+      * Seleccione una fecha válida.
+    </span>
   </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button mat-button (click)="deliverAsset()">Guardar</button>
 </div>

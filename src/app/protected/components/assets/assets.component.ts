@@ -4,16 +4,18 @@ import { activo } from '../../interfaces/activo';
 import { user } from 'src/app/interfaces/user';
 import { UserService } from 'src/app/shared/services/user.service';
 import { TableBasic } from '../table/table.component';
-import Swal from 'sweetalert2';
-import * as XLSX from 'xlsx';
 import { DatePipe } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { NewAssetComponent } from '../new-asset/new-asset.component';
+import { DeliverModalComponent } from '../deliver-modal/deliver-modal.component';
+import Swal from 'sweetalert2';
+import * as XLSX from 'xlsx';
+
 
 @Component({
   selector: 'app-assets',
   templateUrl: './assets.component.html',
-  styleUrls: ['./assets.component.css']
+  styles: []
 })
 export class AssetsComponent implements OnInit, AfterViewInit {
 
@@ -80,6 +82,10 @@ export class AssetsComponent implements OnInit, AfterViewInit {
         Swal.fire('El activo no se ha eliminado.', '', 'info')
       }
     })
+  }
+
+  openDeliverItem(asset: activo) {
+    this.dialog.open(DeliverModalComponent, { data: { asset } });
   }
 
   exportTable(): void {

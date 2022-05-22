@@ -71,7 +71,7 @@ export class NewProjectComponent implements OnInit {
     this.usersTemp.forEach((user) => {
       this.perfiles.push(user.id_ultimatix);
     });
-    this.asignacion.perfiles = this.perfiles;
+    // this.asignacion.perfiles = this.perfiles;
 
     this.asignacionService.register(this.asignacion).subscribe({
       next: () => {

@@ -7,6 +7,8 @@ import { equipo } from '../../interfaces/equipo';
 import { UserService } from 'src/app/shared/services/user.service';
 import { EquiposService } from '../../services/equipos.service';
 import { TableEquiposComponent } from '../tableEquipos/tableEquipos.component';
+import { MatDialog } from '@angular/material/dialog';
+import { NewTeamComponent } from '../new-team/new-team.component';
 
 @Component({
   selector: 'app-teams',
@@ -25,7 +27,7 @@ export class TeamsComponent implements OnInit {
   currentUser: user = {};
   equipo: equipo[] = [];
 
-  constructor(private teamService: EquiposService, private userService: UserService) { }
+  constructor(private teamService: EquiposService, private userService: UserService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
@@ -34,37 +36,40 @@ export class TeamsComponent implements OnInit {
     this.currentUser = this.userService.getUserData();
   }
 
-  deleteItem(id_team: string): void {
-
+  deleteTeam(id_team: string): void {
     Swal.fire({
-      title: '¿Quieres eliminar el equipo?',
-      showDenyButton: true,
+      title: '¿Estás seguro de eliminar el equipo?',
+      text: "¡No podrás revertir esto!",
+      icon: 'warning',
       showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
       confirmButtonText: 'Sí',
-      denyButtonText: 'No',
-      cancelButtonText: 'Cancelar',
+      cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
         this.teamService.delete(id_team).subscribe({
           next: resp => {
             this.equipo = resp;
             this.table.loadTeams();
-            Swal.fire('Éxito', 'Equipo eliminado con éxito.', 'success')
+            Swal.fire('¡Eliminado!', 'Equipo eliminado con éxito.', 'success');
           },
-          error: err => {
-            Swal.fire('Error', err.error.mensaje, 'error')
-          }
+          error: err => Swal.fire('Error', err.error.mensaje, 'error')
         });
-      } else if (result.isDenied) {
-        Swal.fire('El equipo no se ha eliminado.', '', 'info')
       }
-    })
+    });
+  }
+
+  createTeam() {
+    this.dialog.open(NewTeamComponent, { data: { team: null, editTeam: false } });
+  }
+
+  updateTeam(team: equipo) {
+    this.dialog.open(NewTeamComponent, { data: { team, editTeam: true } });
   }
 
   exportTable(): void {
-
     let element = document.getElementById('tableEquipos');
-
     const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
 
     // Generar archivo
@@ -73,7 +78,6 @@ export class TeamsComponent implements OnInit {
 
     // Save
     XLSX.writeFile(wb, this.fileName);
-
-  }  
+  }
 
 }

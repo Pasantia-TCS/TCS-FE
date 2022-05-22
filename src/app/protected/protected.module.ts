@@ -30,7 +30,7 @@ import { TableEquiposComponent } from './components/tableEquipos/tableEquipos.co
 import { NewTeamComponent } from './components/new-team/new-team.component';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { NewAssignmentComponent } from './components/new-assignment/new-assignment.component';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { TemplateComponent } from './components/template/template.component';
 import { StarRatingComponent } from './components/star-rating/star-rating.component';
@@ -78,10 +78,6 @@ import { MatInputModule } from '@angular/material/input';
     MatSnackBarModule,
     FormsModule,
     MatInputModule
-  ],
-  exports: [
-    CustomButtonComponent,
-    HeaderComponent
   ]
 })
 export class ProtectedModule { }

@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Output, EventEmitter } from '@angular/core';
 import { Subscription } from 'rxjs';
@@ -7,9 +7,8 @@ import Swal from 'sweetalert2';
 import * as XLSX from 'xlsx';
 import { equipo } from '../../interfaces/equipo';
 import { user } from 'src/app/interfaces/user';
-import { UserService } from 'src/app/shared/services/user.service';
 import { EquiposService } from '../../services/equipos.service';
-import { TeamService } from 'src/app/shared/services/team.service';
+
 
 @Component({
   selector: 'app-table-equipos',
@@ -18,7 +17,8 @@ import { TeamService } from 'src/app/shared/services/team.service';
 })
 export class TableEquiposComponent implements OnInit {
 
-  @Output() indexToDelete = new EventEmitter<string>();
+  @Output() deleteEvent = new EventEmitter<string>();
+  @Output() updateEvent = new EventEmitter<equipo>();
 
   currentUser: user = {}
   ultimatix: string | undefined = '';
@@ -29,21 +29,12 @@ export class TableEquiposComponent implements OnInit {
 
   tableHeader: string[] = ['Acciones', 'Nombre', 'Tipo', 'Descripción', 'Líder de equipo', 'Líder técnico', 'Estado'];
   tipos: string[] = ['Proyecto', 'Célula', 'Tribu'];
-  aux = ["Proyecto", "Célula", "Tribu"]
   equipo: equipo = {}
 
   equipos!: equipo[];
 
   id: string = '';
   _currentTeam: equipo = {};
-
-  nuevoEquipoForm: FormGroup = this.fb.group({
-    nombre_equipo_asi: [{ value: '', disabled: true }, Validators.required],
-    tipo_equipo_asi: [{ value: '', disabled: true }, Validators.required],
-    descripcion_asi: [{ value: '', disabled: true }, Validators.required],
-    nombre_lider: ['', Validators.required],
-    nombre_tecnico: ['', Validators.required],
-  });
 
   pipe = new DatePipe('en-US');
   date = this.pipe.transform(Date.now(), 'dd-MM-yyyy');
@@ -69,62 +60,16 @@ export class TableEquiposComponent implements OnInit {
       )
   }
 
-  deleteItem(index: string) {
-    console.log(index)
-    this.indexToDelete.emit(index);
+  deleteTeam(id_asset: string) {
+    this.deleteEvent.emit(id_asset);
+  }
+
+  updateTeam(team: equipo) {
+    this.updateEvent.emit(team);
   }
 
   clickMe() {
     this.equiposService.sendClickEvent();
-  }
-
-  currentTeam(team: equipo) {
-    this._currentTeam = team;
-
-    this.nuevoEquipoForm.patchValue({
-      nombre_equipo_asi: this._currentTeam.nombre_equipo_asi,
-      tipo_equipo_asi: this._currentTeam.tipo_equipo_asi,
-      descripcion_asi: this._currentTeam.descripcion_asi,
-      nombre_lider: this._currentTeam.nombre_lider,
-      nombre_tecnico: this._currentTeam.nombre_tecnico,
-    });
-  }
-
-  editarEquipo() {
-
-    if (this._currentTeam.estado_asi === false) {
-      Swal.fire('Advertencia!', 'No se puede editar un proyecto no vigente.', 'info');
-    } else {
-      const { nombre_lider, nombre_tecnico } = this.nuevoEquipoForm.value;
-
-      this.equiposService.edit(this._currentTeam.id_asi!, nombre_lider, nombre_tecnico)
-        .subscribe(
-          {
-            next: () => {
-              this.clickMe();
-              Swal.fire('Éxito', 'Equipo editado con éxito.', 'success');
-            },
-            error: err => {
-              Swal.fire('Error', err.error.mensaje, 'error');
-            }
-          }
-        );
-    }
-  }
-
-  guardarEquipo() {
-    this.equiposService.add(this.nuevoEquipoForm.value)
-      .subscribe(
-        {
-          next: () => {
-            this.clickMe();
-            Swal.fire('Éxito', 'Equipo registrado con éxito.', 'success');
-          },
-          error: err => {
-            Swal.fire('Error', err.error.mensaje, 'error');
-          }
-        }
-      );
   }
 
   exportTable(): void {

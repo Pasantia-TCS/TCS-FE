@@ -1,67 +1,78 @@
-<div class="modal-dialog modal-dialog-centered">
-  <div class="modal-content">
+<h1 mat-dialog-title>Nuevo equipo</h1>
+<div mat-dialog-content>
+  <form [formGroup]="nuevoEquipoForm" autocomplete="off">
+    <div class="row">
+      <!-- Team Name -->
+      <div class="col-12 col-sm-6 mb-3 form-floating">
+        <input type="text" id="floatingTeamName" class="form-control rounded-pill" placeholder="Nombre del equipo"
+          formControlName="nombre_equipo_asi">
+        <label for="floatingTeamName">Nombre de equipo</label>
+        <div
+          *ngIf="(getCtrl('nombre_equipo_asi')?.invalid && getCtrl('nombre_equipo_asi')?.touched) || getCtrl('nombre_equipo_asi')?.dirty">
+          <span class="form-text text-danger float-start" *ngIf="getCtrl('nombre_equipo_asi')?.errors?.['required']">
+            * Introduce un nombre de equipo.
+          </span>
+        </div>
+      </div>
 
-    <!-- Header -->
-    <div class="modal-header">
-      <h5 class="modal-title fs-2">Nuevo Equipo</h5>
-      <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      <!-- Type field -->
+      <div class="col-12 col-sm-6 mb-3 form-floating">
+        <select id="floatingTeamType" class="form-select rounded-pill" formControlName="tipo_equipo_asi">
+          <option [value]="+ aux.indexOf(tipo)" *ngFor="let tipo of tipos">{{tipo + '|' + aux.indexOf(tipo) }}</option>
+        </select>
+        <label for="floatingTeamType">Tipo</label>
+        <div
+          *ngIf="(getCtrl('tipo_equipo_asi')?.invalid && getCtrl('tipo_equipo_asi')?.touched) || getCtrl('tipo_equipo_asi')?.dirty">
+          <span class="form-text text-danger float-start" *ngIf="getCtrl('tipo_equipo_asi')?.errors?.['required']">
+            * Seleccione una opción válida.
+          </span>
+        </div>
+      </div>
     </div>
 
-    <!-- Body -->
-    <div class="modal-body">
-      <form [formGroup]="nuevoEquipoForm">
-
-        <div class="row">
-          <!-- Team Name -->
-          <div class="col-12 col-sm-6 mb-3">
-            <input type="text" class="form-control rounded-pill" placeholder="Nombre del equipo"
-              formControlName="nombre_equipo_asi">
-          </div>
-
-          <!-- Type field -->
-          <div class="col-12 col-sm-6 mb-3">
-            <select class="form-select rounded-pill" formControlName="tipo_equipo_asi">
-              <option selected value="">Tipo</option>
-              <option [value]="+ aux.indexOf(tipo)" *ngFor="let tipo of tipos">{{tipo}}</option>
-            </select>
-            <div
-              *ngIf="(nuevoEquipoForm.get('tipo')?.invalid && nuevoEquipoForm.get('tipo')?.touched) || nuevoEquipoForm.get('tipo')?.dirty">
-              <span class="form-text text-danger float-start" *ngIf="nuevoEquipoForm.get('tipo')?.errors?.['required']">
-                * Seleccione una opción válida.
-              </span>
-            </div>
-          </div>
+    <div class="row">
+      <!-- Team leader field -->
+      <div class="col-12 col-sm-6 mb-3 form-floating">
+        <input id="floatingTeamLeader" type="text" class="form-control rounded-pill" placeholder="Líder de equipo"
+          formControlName="nombre_lider">
+        <label for="floatingTeamLeader">Nombre de lider de equipo</label>
+        <div
+          *ngIf="(getCtrl('nombre_lider')?.invalid && getCtrl('nombre_lider')?.touched) || getCtrl('nombre_lider')?.dirty">
+          <span class="form-text text-danger float-start" *ngIf="getCtrl('nombre_lider')?.errors?.['required']">
+            * Ingrese un nombre de lider de equipo.
+          </span>
         </div>
+      </div>
 
-        <div class="row">
-          <!-- Team leader field -->
-          <div class="col-12 col-sm-6 mb-3">
-            <input type="text" class="form-control rounded-pill" placeholder="Líder de equipo"
-              formControlName="nombre_lider">
-          </div>
-
-          <!-- Leader Tecnico field -->
-          <div class="col-12 col-sm-6 mb-3">
-            <input type="text" class="form-control rounded-pill" placeholder="Líder técnico"
-              formControlName="nombre_tecnico">
-          </div>
+      <!-- Leader Tecnico field -->
+      <div class="col-12 col-sm-6 mb-3 form-floating">
+        <input type="text" id="floatingTeamTech" class="form-control rounded-pill" placeholder="Líder técnico"
+          formControlName="nombre_tecnico">
+        <label for="floatingTeamTech">Nombre de lider técnico</label>
+        <div
+          *ngIf="(getCtrl('nombre_tecnico')?.invalid && getCtrl('nombre_tecnico')?.touched) || getCtrl('nombre_tecnico')?.dirty">
+          <span class="form-text text-danger float-start" *ngIf="getCtrl('nombre_tecnico')?.errors?.['required']">
+            * Ingrese un nombre de lider técnico.
+          </span>
         </div>
-
-        <div class="col-12">
-          <!-- Descripcion field -->
-          <textarea class="form-control" rows="2" placeholder="Descripción del equipo" formControlName="descripcion_asi"
-            style="border-radius: 2rem;" maxlength="200"></textarea>
-        </div>
-
-      </form>
+      </div>
     </div>
 
-
-    <!-- Footer -->
-    <div class="modal-footer">
-      <button type="button" class="btn custom-btn rounded-pill" data-bs-dismiss="modal">Cerrar</button>
-      <button type="button" class="btn custom-btn rounded-pill" (click)="guardarEquipo()">Guardar</button>
+    <div class="col-12 form-floating mb-2">
+      <!-- Descripcion field -->
+      <textarea id="floatingTeamDesc" class="form-control" rows="2" placeholder="Descripción del equipo"
+        formControlName="descripcion_asi" style="border-radius: 2rem;" maxlength="200"></textarea>
+      <label for="floatingTeamDesc">Descrpción del equipo</label>
+      <div
+        *ngIf="(getCtrl('descripcion_asi')?.invalid && getCtrl('descripcion_asi')?.touched) || getCtrl('descripcion_asi')?.dirty">
+        <span class="form-text text-danger float-start" *ngIf="getCtrl('descripcion_asi')?.errors?.['required']">
+          * Ingrese un una descripción del equipo.
+        </span>
+      </div>
     </div>
-
-  </div>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button (click)="exit()">Cerrar</button>
+  <button mat-raised-button (click)="save()">Guardar</button>
 </div>

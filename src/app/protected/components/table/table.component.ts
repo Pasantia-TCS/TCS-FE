@@ -17,6 +17,7 @@ export class TableBasic implements OnInit {
 
   @Output() indexToDelete = new EventEmitter<string>();
   @Output() indexToDeliver = new EventEmitter<string>();
+  @Output() deliverEvent = new EventEmitter();
 
   currentUser: user = {}
   ultimatix: string | undefined = '';
@@ -32,7 +33,7 @@ export class TableBasic implements OnInit {
   pisos: string[] = ['Piso 1', 'Piso 2', 'Piso 3', 'Piso 4', 'Piso 5', 'Piso 6'];
   edificios: string[] = ['Centrum', 'Inluxor'];
 
-  asset: activo = {};
+  
 
   clickEventSubscription: Subscription;
 
@@ -61,25 +62,8 @@ export class TableBasic implements OnInit {
     this.indexToDelete.emit(index);
   }
 
-  currentAsset(activo: activo) {
-    this.asset = activo;
-  }
-
-  deliverAsset() {
-    if (this.deliverForm.invalid) {
-      this.deliverForm.markAllAsTouched()
-      return;
-    } else {
-      const { fecha_devolucion } = this.deliverForm.value;
-      this.activosService.setAssetStatus(this.asset.id_activo?.toString()!, this.currentUser.id_numero_Ultimatix?.toString()!, fecha_devolucion)
-        .subscribe({
-          next: resp => {
-            this.tableData = resp;
-            Swal.fire('¡Éxito!', 'Se ha registrado con éxito la devolución del activo.', 'success');
-          },
-          error: err => Swal.fire('¡Error!', err.error.mensaje, 'error')
-        });
-    }
+  deliverItem(asset: activo) {
+    this.deliverEvent.emit(asset);
   }
 
 }
