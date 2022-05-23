@@ -1,9 +1,9 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { user } from 'src/app/interfaces/user';
+import { User } from 'src/app/auth/interfaces/user';
 import { UserService } from 'src/app/shared/services/user.service';
-import { activo } from '../../interfaces/activo';
+import { Asset } from '../../interfaces/activo';
 import { ActivosService } from '../../services/activos.service';
 
 @Component({
@@ -16,10 +16,10 @@ export class TableBasic implements OnInit {
   @Output() indexToDeliver = new EventEmitter<string>();
   @Output() deliverEvent = new EventEmitter();
 
-  currentUser: user = {}
+  currentUser: User = {}
   ultimatix: string | undefined = '';
 
-  tableData: activo[] = [];
+  tableData: Asset[] = [];
   tableKey: any = [];
   tableValue: any = [];
 
@@ -32,12 +32,19 @@ export class TableBasic implements OnInit {
 
   clickEventSubscription: Subscription;
 
-  deliverForm: FormGroup = this.fb.group({
-    fecha_devolucion: ['', Validators.required]
-  });
+  deliverForm: FormGroup = this.fb.group(
+    {
+      fecha_devolucion: ['', Validators.required]
+    }
+  );
 
-  constructor(private activosService: ActivosService, private userService: UserService, private fb: FormBuilder) {
-    this.clickEventSubscription = this.activosService.getClickEvent()
+  constructor(
+    private activosService: ActivosService,
+    private userService: UserService,
+    private fb: FormBuilder
+  ) {
+    this.clickEventSubscription = this.activosService
+      .getClickEvent()
       .subscribe(() => setTimeout(() => this.load(), 500))
   }
 
@@ -48,16 +55,17 @@ export class TableBasic implements OnInit {
   }
 
   load() {
-    this.activosService.mostrarActivos(this.ultimatix).then((result) => {
-      this.tableData = result;
-    });
+    this.activosService.mostrarActivos(this.ultimatix)
+      .then(result => {
+        this.tableData = result;
+      });
   }
 
   deleteItem(index: string) {
     this.indexToDelete.emit(index);
   }
 
-  deliverItem(asset: activo) {
+  deliverItem(asset: Asset) {
     this.deliverEvent.emit(asset);
   }
 

@@ -1,45 +1,38 @@
-import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { user } from 'src/app/interfaces/user';
-import * as XLSX from 'xlsx';
-import { equipo } from '../../interfaces/equipo';
+import { User } from 'src/app/auth/interfaces/user';
+import { Team } from '../../interfaces/equipo';
 import { EquiposService } from '../../services/equipos.service';
 
 @Component({
   selector: 'app-table-equipos',
   templateUrl: './tableEquipos.component.html',
-  styleUrls: ['./tableEquipos.component.css']
+  styles: []
 })
 export class TableEquiposComponent implements OnInit {
 
   @Output() deleteEvent = new EventEmitter<string>();
-  @Output() updateEvent = new EventEmitter<equipo>();
+  @Output() updateEvent = new EventEmitter<Team>();
 
-  currentUser: user = {}
+  currentUser: User = {}
   ultimatix: string | undefined = '';
 
-  tableData: equipo[] = [];
+  tableData: Team[] = [];
   tableKey: any = [];
   tableValue: any = [];
 
   tableHeader: string[] = ['Acciones', 'Nombre', 'Tipo', 'Descripción', 'Líder de equipo', 'Líder técnico', 'Estado'];
   tipos: string[] = ['Proyecto', 'Célula', 'Tribu'];
-  equipo: equipo = {}
+  equipo: Team = {}
 
-  equipos!: equipo[];
+  equipos!: Team[];
 
   id: string = '';
-  _currentTeam: equipo = {};
-
-  pipe = new DatePipe('en-US');
-  date = this.pipe.transform(Date.now(), 'dd-MM-yyyy');
-  fileName: string = 'Reporte Equipos ' + this.date + '.xlsx';
+  _currentTeam: Team = {};
 
   clickEventSubscription: Subscription;
 
-  constructor(private equiposService: EquiposService, private fb: FormBuilder) {
+  constructor(private equiposService: EquiposService) {
     this.clickEventSubscription = this.equiposService.getClickEvent()
       .subscribe(() => setTimeout(() => this.loadTeams(), 500))
   }
@@ -61,23 +54,11 @@ export class TableEquiposComponent implements OnInit {
     this.deleteEvent.emit(id_asset);
   }
 
-  updateTeam(team: equipo) {
+  updateTeam(team: Team) {
     this.updateEvent.emit(team);
   }
 
   clickMe() {
     this.equiposService.sendClickEvent();
-  }
-
-  exportTable(): void {
-    let element = document.getElementById('tableEquipos');
-    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
-
-    // Generar archivo
-    const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-
-    // Save
-    XLSX.writeFile(wb, this.fileName);
   }
 }

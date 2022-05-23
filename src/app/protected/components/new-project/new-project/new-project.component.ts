@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UserService } from 'src/app/shared/services/user.service';
-import { user } from 'src/app/interfaces/user';
-import { asignacion } from 'src/app/protected/interfaces/asignacion';
+import { User } from 'src/app/auth/interfaces/user';
+import { Assignment } from 'src/app/protected/interfaces/asignacion';
+import { Profile } from 'src/app/protected/interfaces/profile';
 import { AsignacionService } from 'src/app/protected/services/asignacion.service';
-import { TasksService } from 'src/app/shared/services/tasks.service';
-import { profile } from 'src/app/protected/interfaces/profile';
 import { ProfileService } from 'src/app/protected/services/profile.service';
+import { TasksService } from 'src/app/shared/services/tasks.service';
+import { UserService } from 'src/app/shared/services/user.service';
 import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-new-project',
   templateUrl: './new-project.component.html',
-  styleUrls: ['./new-project.component.css']
+  styles: []
 })
 export class NewProjectComponent implements OnInit {
 
@@ -22,11 +22,11 @@ export class NewProjectComponent implements OnInit {
   lideresTecnico: string[] = ['Juan', 'Pablo', 'MARCELO'];
   tableHeader: string[] = ['Acciones', 'Ultimatix', 'Nombre', 'Habilidades', 'Asignacion'];
 
-  asignacion: asignacion = {};
+  asignacion: Assignment = {};
 
   perfiles: number[] = [];
 
-  tableData: user[] = [];
+  tableData: User[] = [];
   tableKey: any = [];
   tableValue: any = [];
 
@@ -42,15 +42,21 @@ export class NewProjectComponent implements OnInit {
     nombre_tecnico: ['MARCELO', Validators.required],
   });
 
-  users!: profile[];
-  usersTemp: profile[] = [];
+  users!: Profile[];
+  usersTemp: Profile[] = [];
 
   ultimatix: string = '';
-  currentUser!: profile;
+  currentUser!: Profile;
 
   aux = ["Proyecto", "Célula", "Tribu"]
 
-  constructor(private asignacionService: AsignacionService, private fb: FormBuilder, private tasksService: TasksService, private profileService: ProfileService, private userService: UserService) { }
+  constructor(
+    private asignacionService: AsignacionService,
+    private fb: FormBuilder,
+    private tasksService: TasksService,
+    private profileService: ProfileService,
+    private userService: UserService
+  ) { }
 
   ngOnInit(): void {
     this.tasksService.loadUsers();
@@ -71,7 +77,6 @@ export class NewProjectComponent implements OnInit {
     this.usersTemp.forEach((user) => {
       this.perfiles.push(user.id_ultimatix);
     });
-    // this.asignacion.perfiles = this.perfiles;
 
     this.asignacionService.register(this.asignacion).subscribe({
       next: () => {
@@ -85,7 +90,7 @@ export class NewProjectComponent implements OnInit {
     });
   }
 
-  addUserTemp(user: profile) {
+  addUserTemp(user: Profile) {
     this.usersTemp.push(user);
   }
 

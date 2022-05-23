@@ -1,4 +1,4 @@
-export interface profile {
+export interface Profile {
   id_ultimatix: number,
   sobreMi: string,
   habilidades: string[],
@@ -7,7 +7,7 @@ export interface profile {
   nombres_completos: string
 }
 
-export interface skills {
+export interface Skills {
   id: number,
   nombre: string
 }

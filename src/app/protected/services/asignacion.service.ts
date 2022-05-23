@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { lastValueFrom, Observable, Subject, tap } from 'rxjs';
-import { user } from 'src/app/interfaces/user';
-import { asignacion } from '../interfaces/asignacion';
+import { Observable, Subject } from 'rxjs';
+import { Assignment } from '../interfaces/asignacion';
 
 @Injectable({
   providedIn: 'root'
@@ -25,28 +24,26 @@ export class AsignacionService {
     return this.subject.asObservable();
   }
 
-  register(asignacion: asignacion) {
+  register(asignacion: Assignment) {
     const url: string = `${this.baseUrl}/agregar-asignacion-proyecto`;
-    return this.http.post<asignacion[]>(url, asignacion);
+    return this.http.post<Assignment[]>(url, asignacion);
   }
-
 
   obtenerAsignacion() {
     const url: string = `${this.baseUrl}/obtenerAsignaciones`;
-    const source = this.http.get<asignacion[]>(url);
-    return source;
+    return this.http.get<Assignment[]>(url);
   }
 
 
-  update(asignacion: asignacion) {
+  update(assignment: Assignment) {
     const url: string = `${this.baseUrl}/registrarAsignacion`;
-    return this.http.post<asignacion[]>(url, asignacion);
+    return this.http.post<Assignment[]>(url, assignment);
   }
 
 
   delete(id_asignacion: string) {
     const url: string = `${this.baseUrl}/eliminarAsignacion`;
-    return this.http.post<asignacion>(url, { id_asg: id_asignacion });
+    return this.http.post<Assignment>(url, { id_asg: id_asignacion });
   }
 
   obtenerUsuarios() {

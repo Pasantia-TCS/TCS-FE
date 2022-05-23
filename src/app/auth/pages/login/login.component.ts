@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { user } from 'src/app/interfaces/user';
+import { User } from 'src/app/auth/interfaces/user';
 import { UserService } from 'src/app/shared/services/user.service';
 import Swal from 'sweetalert2';
 import { AuthService } from '../../services/auth.service';
@@ -9,11 +9,11 @@ import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styles: []
 })
 export class LoginComponent {
 
-  currentUser: user = {};
+  currentUser: User = {};
   showPwd: boolean = false;
 
   loginForm: FormGroup = this.fb.group({
@@ -37,7 +37,6 @@ export class LoginComponent {
 
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
-      return;
     } else {
       this.authService.login(ultimatix, password)
         .subscribe({

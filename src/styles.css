@@ -76,7 +76,7 @@ hr {
  */
 
 pre {
-  font-family: monospace, monospace;
+  font-family: monospace;
   /* 1 */
   font-size: 1em;
   /* 2 */
@@ -124,7 +124,7 @@ strong {
 code,
 kbd,
 samp {
-  font-family: monospace, monospace;
+  font-family: monospace;
   /* 1 */
   font-size: 1em;
   /* 2 */
@@ -443,6 +443,7 @@ a:visited {
 .iti .dropdown-menu.country-dropdown {
   border-radius: 2rem;
   margin-top: -1px;
+  width: 215%;
 }
 
 .iti .iti__country-list {
@@ -451,10 +452,6 @@ a:visited {
   width: 100%;
   max-height: 15rem;
   overflow: auto;
-}
-
-.iti .dropdown-menu.country-dropdown {
-  width: 215%;
 }
 
 .iti .search-container input {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/services/auth.service';
-import { user } from 'src/app/interfaces/user';
+import { User } from 'src/app/auth/interfaces/user';
 import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { UserService } from 'src/app/shared/services/user.service';
 })
 export class DashboardComponent implements OnInit {
 
-  currentUser: user = {};
+  currentUser: User = {};
 
   constructor(private userService: UserService, private authService: AuthService, private router: Router) { }
 

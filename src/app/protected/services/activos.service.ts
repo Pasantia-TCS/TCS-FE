@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { lastValueFrom, Observable, Subject } from 'rxjs';
-import { activo } from '../interfaces/activo';
+import { Asset } from '../interfaces/activo';
 
 @Injectable({
   providedIn: 'root'
@@ -18,26 +18,25 @@ export class ActivosService {
     return this.http.get(url);
   }
 
-  register(activo: activo) {
+  register(activo: Asset) {
     const url: string = `${this.baseUrl}/agregarActivo`;
-    return this.http.post<activo[]>(url, activo);
+    return this.http.post<Asset[]>(url, activo);
   }
 
-  actualizar(activo: activo) {
+  actualizar(activo: Asset) {
     const url: string = `${this.baseUrl}/actualizarActivo`;
-    return this.http.post<activo[]>(url, activo)
+    return this.http.post<Asset[]>(url, activo)
   }
 
   eliminar(id_activo: string, ultimatix: string) {
     const url: string = `${this.baseUrl}/eliminarActivo`;
-    return this.http.post<activo[]>(url, { id_activo: id_activo, id_ultimatix: ultimatix });
+    return this.http.post<Asset[]>(url, { id_activo: id_activo, id_ultimatix: ultimatix });
   }
 
   async mostrarActivos(ultimatix: string | undefined) {
     const url: string = `${this.baseUrl}/buscarUltimatix`;
-    const source$ = this.http.post<activo[]>(url, { id_ultimatix: ultimatix });
-    const result = await lastValueFrom(source$);
-    return result;
+    const source$ = this.http.post<Asset[]>(url, { id_ultimatix: ultimatix });
+    return await lastValueFrom(source$);
   }
 
   private subject = new Subject<any>();
@@ -53,6 +52,6 @@ export class ActivosService {
   setAssetStatus(id: string, ultimatix: string, deliveryDate: string) {
     const url: string = `${this.baseUrl}/devolverActivo`;
     const body = { id_activo: id, id_ultimatix: ultimatix, fecha_devolucion: deliveryDate };
-    return this.http.post<activo[]>(url, body);
+    return this.http.post<Asset[]>(url, body);
   }
 }

@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import Swal from 'sweetalert2';
-import { asignacion } from '../../interfaces/asignacion';
+import { Assignment } from '../../interfaces/asignacion';
 import { AsignacionService } from '../../services/asignacion.service';
 import { NewAssignmentComponent } from '../new-assignment/new-assignment.component';
 import { TableAsignacion } from '../tableAsignacion/tableAsignacion.component';
@@ -9,25 +9,19 @@ import { TableAsignacion } from '../tableAsignacion/tableAsignacion.component';
 @Component({
   selector: 'app-tasks',
   templateUrl: './tasks.component.html',
-  styleUrls: ['./tasks.component.css']
+  styles: []
 })
-export class TasksComponent implements OnInit {
+export class TasksComponent {
 
   titles: string[] = ['Acciones', 'Equipo', 'Tipo', 'Asignación (%)', 'Fecha de inicio', 'Fecha de finalización', 'Estado'];
   dataBody: string = 'Hola que hace!';
 
-  proyectos!: asignacion[];
-  currentProject!: asignacion;
+  proyectos!: Assignment[];
+  currentProject!: Assignment;
 
   @ViewChild(TableAsignacion) table: any;
 
-  animal!: string;
-  name!: string;
-
   constructor(private asignacionService: AsignacionService, public dialog: MatDialog) { }
-
-  ngOnInit(): void {
-  }
 
   deleteItem(id_proyecto: string): void {
 

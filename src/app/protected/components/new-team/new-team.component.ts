@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import Swal from 'sweetalert2';
-import { equipo } from '../../interfaces/equipo';
+import { Team } from '../../interfaces/equipo';
 import { EquiposService } from '../../services/equipos.service';
 
 @Component({
@@ -24,7 +24,7 @@ export class NewTeamComponent implements OnInit {
     nombre_tecnico: ['', Validators.required],
   });
 
-  team: equipo = {};
+  team: Team = {};
 
   constructor(
     private equiposService: EquiposService,
@@ -63,7 +63,6 @@ export class NewTeamComponent implements OnInit {
   save() {
     if (this.nuevoEquipoForm.invalid) {
       this.nuevoEquipoForm.markAllAsTouched();
-      return;
     } else {
       this.update ? this.updateTeam() : this.createTeam();
     }

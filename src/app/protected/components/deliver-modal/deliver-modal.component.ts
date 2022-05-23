@@ -1,25 +1,25 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { user } from 'src/app/interfaces/user';
+import { User } from 'src/app/auth/interfaces/user';
 import { UserService } from 'src/app/shared/services/user.service';
 import Swal from 'sweetalert2';
-import { activo } from '../../interfaces/activo';
+import { Asset } from '../../interfaces/activo';
 import { ActivosService } from '../../services/activos.service';
 
 @Component({
   selector: 'app-deliver-modal',
   templateUrl: './deliver-modal.component.html',
-  styleUrls: ['./deliver-modal.component.css']
+  styles: []
 })
 export class DeliverModalComponent implements OnInit {
 
-  currentUser: user = {};
-  currentAsset: activo = {};
+  currentUser: User = {};
+  currentAsset: Asset = {};
   ultimatix: string | undefined = '';
 
-  asset: activo = {};
-  tableData: activo[] = [];
+  asset: Asset = {};
+  tableData: Asset[] = [];
 
   deliverForm: FormGroup = this.fb.group({
     fecha_devolucion: ['', Validators.required]
@@ -47,8 +47,7 @@ export class DeliverModalComponent implements OnInit {
 
   deliverAsset() {
     if (this.deliverForm.invalid) {
-      this.deliverForm.markAllAsTouched()
-      return;
+      this.deliverForm.markAllAsTouched();
     } else {
       const { fecha_devolucion } = this.deliverForm.value;
 

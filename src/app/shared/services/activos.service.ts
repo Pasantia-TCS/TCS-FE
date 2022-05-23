@@ -9,8 +9,6 @@ export class ActivosService2 {
 
   private subject = new Subject<any>();
 
-  constructor() { }
-
   sendClickEvent() {
     this.subject.next(true);
   }

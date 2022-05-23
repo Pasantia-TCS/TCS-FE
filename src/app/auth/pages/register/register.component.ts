@@ -8,7 +8,7 @@ import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styles: []
 })
 export class RegisterComponent {
 
@@ -59,7 +59,6 @@ export class RegisterComponent {
 
     if (this.myForm.invalid) {
       this.myForm.markAllAsTouched();
-      return;
     } else {
       this.authService.register(ultimatix, password, name, lastname, phone.internationalNumber, email)
         .subscribe({

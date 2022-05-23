@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { user } from 'src/app/interfaces/user';
+import { User } from 'src/app/auth/interfaces/user';
 import { UserService } from 'src/app/shared/services/user.service';
 import Swal from 'sweetalert2';
-import { activo } from '../../interfaces/activo';
+import { Asset } from '../../interfaces/activo';
 import { ActivosService } from '../../services/activos.service';
 
 @Component({
@@ -12,7 +12,7 @@ import { ActivosService } from '../../services/activos.service';
   templateUrl: './new-asset.component.html',
   styleUrls: ['./new-asset.component.css']
 })
-export class NewAssetComponent implements OnInit {
+export class NewAssetComponent {
 
   areas: string[] = ['CTB', 'EnP', 'Librarian', 'Panamá', 'Seguridad', 'SES'];
   tipos: string[] = ['Computador'];
@@ -31,7 +31,7 @@ export class NewAssetComponent implements OnInit {
     fecha_entrega: ['', Validators.required]
   });
 
-  activo: activo = {};
+  activo: Asset = {};
 
   constructor(
     private activosService: ActivosService,
@@ -39,9 +39,6 @@ export class NewAssetComponent implements OnInit {
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<NewAssetComponent>
   ) { }
-
-  ngOnInit(): void {
-  }
 
   getCtrl(controlName: string) {
     return this.nuevoActivoForm.get(controlName);
@@ -54,10 +51,9 @@ export class NewAssetComponent implements OnInit {
   saveAsset() {
     if (this.nuevoActivoForm.invalid) {
       this.nuevoActivoForm.markAllAsTouched();
-      return;
     } else {
       this.activo = this.nuevoActivoForm.value;
-      const userC: user = this.userService.getUserData();
+      const userC: User = this.userService.getUserData();
       this.activo.id_ultimatix = userC.id_numero_Ultimatix;
       this.activosService.register(this.activo)
         .subscribe({

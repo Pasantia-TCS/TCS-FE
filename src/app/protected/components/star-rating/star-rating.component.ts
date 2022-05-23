@@ -3,7 +3,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 @Component({
   selector: 'app-star-rating',
   templateUrl: './star-rating.component.html',
-  styleUrls: ['./star-rating.component.css']
+  styles: []
 })
 export class StarRatingComponent implements OnInit {
 
@@ -13,9 +13,6 @@ export class StarRatingComponent implements OnInit {
   @Output() ratingUpdated = new EventEmitter();
 
   ratingArr: number[] = [];
-
-  constructor() {
-  }
 
   ngOnInit() {
     console.log("a " + this.starCount)

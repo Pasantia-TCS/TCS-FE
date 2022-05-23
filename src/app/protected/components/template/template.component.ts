@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { StarRatingColor } from '../star-rating/star-rating.component';
 
 @Component({
   selector: 'app-template',
   templateUrl: './template.component.html',
-  styleUrls: ['./template.component.css']
+  styles: []
 })
-export class TemplateComponent implements OnInit {
+export class TemplateComponent {
 
   multipleAnswers = false;
   requiredQuestion = false;
@@ -21,9 +21,6 @@ export class TemplateComponent implements OnInit {
   starColorW: StarRatingColor = StarRatingColor.warn;
 
   constructor(private router: Router) { }
-
-  ngOnInit(): void {
-  }
 
   toForms() {
     this.router.navigateByUrl('/pages/dashboard/forms');

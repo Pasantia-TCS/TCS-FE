@@ -1,12 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
-
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-custom-table',
   templateUrl: './custom-table.component.html',
-  styleUrls: ['./custom-table.component.css']
+  styles: []
 })
-export class CustomTableComponent implements OnInit {
+export class CustomTableComponent {
 
   @Input() titles: string[] = []
   @Input() iconName: string = 'delete';
@@ -27,11 +26,6 @@ export class CustomTableComponent implements OnInit {
       endDate: '6/19/2022',
       status: true
     }
-  ]
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+  ];
 
 }

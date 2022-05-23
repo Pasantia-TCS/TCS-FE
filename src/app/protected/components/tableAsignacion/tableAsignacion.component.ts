@@ -1,24 +1,23 @@
-import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { user } from 'src/app/interfaces/user';
+import { User } from 'src/app/auth/interfaces/user';
 import { UserService } from 'src/app/shared/services/user.service';
-import * as XLSX from 'xlsx';
-import { asignacion } from '../../interfaces/asignacion';
+import { Assignment } from '../../interfaces/asignacion';
 import { AsignacionService } from '../../services/asignacion.service';
 
 @Component({
   selector: 'app-tableAsignacion',
-  templateUrl: './tableAsignacion.component.html'
+  templateUrl: './tableAsignacion.component.html',
+  styles: []
 })
 export class TableAsignacion implements OnInit {
 
   @Output() indexToDelete = new EventEmitter<string>();
 
-  currentUser: user = {}
+  currentUser: User = {}
   ultimatix: string | undefined = '';
 
-  tableData: asignacion[] = [];
+  tableData: Assignment[] = [];
   tableKey: any = [];
   tableValue: any = [];
 
@@ -29,19 +28,16 @@ export class TableAsignacion implements OnInit {
   liderProyecto: string[] = ['Juan', 'Pablo'];
   liderTecnico: string[] = ['Juan', 'Pablo'];
 
-  project: asignacion = {};
+  project: Assignment = {};
 
   clickEventSubscription: Subscription;
 
+  users: User[] = [];
 
-  pipe = new DatePipe('en-US');
-  date = this.pipe.transform(Date.now(), 'dd-MM-yyyy');
-
-  fileName: string = 'Reporte Asignacion ' + this.date + '.xlsx';
-
-  users: user[] = [];
-
-  constructor(private asignacionService: AsignacionService, private userService: UserService) {
+  constructor(
+    private asignacionService: AsignacionService,
+    private userService: UserService
+  ) {
     this.clickEventSubscription = this.asignacionService.getClickEvent()
       .subscribe(() => setTimeout(() => this.load(), 500))
   }
@@ -68,23 +64,8 @@ export class TableAsignacion implements OnInit {
     this.indexToDelete.emit(index);
   }
 
-  editItem(asignacion: asignacion) {
-    this.project = asignacion;
-  }
-
-  exportTable(): void {
-
-    let element = document.getElementById('tableAsignacion');
-
-    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
-
-    // Generar archivo
-    const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-
-    // Save
-    XLSX.writeFile(wb, this.fileName);
-
+  editItem(assignment: Assignment) {
+    this.project = assignment;
   }
 
   cargarUsuarios() {

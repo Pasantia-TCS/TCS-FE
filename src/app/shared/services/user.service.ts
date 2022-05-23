@@ -1,9 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { user } from 'src/app/interfaces/user';
-import { profile } from 'src/app/protected/interfaces/profile';
+import { User } from 'src/app/auth/interfaces/user';
+import { Profile } from 'src/app/protected/interfaces/profile';
 import { environment } from 'src/environments/environment';
-
 
 @Injectable({
   providedIn: 'root'
@@ -15,24 +14,24 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  private currentUser: user = {};
+  private currentUser: User = {};
 
-  updateUser(currentUser: user) {
+  updateUser(currentUser: User) {
     this.currentUser = { ...currentUser };
   }
 
   updateUserProfile(ultimatix: string, phone: string, email: string) {
     const url: string = `${this.baseUrl}/asociados/actualizarAsociado`;
     const body = { id_numero_Ultimatix: ultimatix, telefono: phone, correo: email };
-    return this.http.post<user>(url, body);
+    return this.http.post<User>(url, body);
   }
 
   updateNetuser(ultimatix: string, netuser: string) {
     const url: string = `${this.baseUrl}/perfil/usuarioRed`;
-    return this.http.post<profile>(url, { id_ultimatix: ultimatix, usuario_red: netuser });
+    return this.http.post<Profile>(url, { id_ultimatix: ultimatix, usuario_red: netuser });
   }
 
-  getUserData(): user {
+  getUserData(): User {
     return this.currentUser;
   }
 

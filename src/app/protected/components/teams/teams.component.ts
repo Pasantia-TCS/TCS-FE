@@ -1,9 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { user } from 'src/app/interfaces/user';
+import { User } from 'src/app/auth/interfaces/user';
 import { UserService } from 'src/app/shared/services/user.service';
 import Swal from 'sweetalert2';
-import { equipo } from '../../interfaces/equipo';
+import { Team } from '../../interfaces/equipo';
 import { EquiposService } from '../../services/equipos.service';
 import { GeneralService } from '../../services/general.service';
 import { NewTeamComponent } from '../new-team/new-team.component';
@@ -12,14 +12,14 @@ import { TableEquiposComponent } from '../tableEquipos/tableEquipos.component';
 @Component({
   selector: 'app-teams',
   templateUrl: './teams.component.html',
-  styleUrls: ['./teams.component.css']
+  styles: []
 })
-export class TeamsComponent implements OnInit {
+export class TeamsComponent {
 
   @ViewChild(TableEquiposComponent) table: any;
 
-  currentUser: user = {};
-  equipo: equipo[] = [];
+  currentUser: User = {};
+  equipo: Team[] = [];
 
   constructor(
     private teamService: EquiposService,
@@ -27,9 +27,6 @@ export class TeamsComponent implements OnInit {
     private dialog: MatDialog,
     private generalService: GeneralService
   ) { }
-
-  ngOnInit(): void {
-  }
 
   loadUser(): void {
     this.currentUser = this.userService.getUserData();
@@ -63,7 +60,7 @@ export class TeamsComponent implements OnInit {
     this.dialog.open(NewTeamComponent, { data: { team: null, editTeam: false } });
   }
 
-  updateTeam(team: equipo) {
+  updateTeam(team: Team) {
     this.dialog.open(NewTeamComponent, { data: { team, editTeam: true } });
   }
 

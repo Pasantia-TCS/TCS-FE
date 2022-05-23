@@ -1,4 +1,4 @@
-export interface activo {
+export interface Asset {
     id_activo?: string,
     area?: string,
     edificio?: string,
@@ -15,4 +15,9 @@ export interface activo {
     fecha_devolucion?: string,
     estado?: boolean,
     borrado_logico?: boolean
+}
+
+export interface AssetType {
+    id?: number,
+    nombre?: string,
 }

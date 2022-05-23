@@ -1,10 +1,10 @@
 import { DatePipe } from '@angular/common';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { user } from 'src/app/interfaces/user';
+import { User } from 'src/app/auth/interfaces/user';
 import { UserService } from 'src/app/shared/services/user.service';
 import Swal from 'sweetalert2';
-import { activo } from '../../interfaces/activo';
+import { Asset } from '../../interfaces/activo';
 import { ActivosService } from '../../services/activos.service';
 import { GeneralService } from '../../services/general.service';
 import { DeliverModalComponent } from '../deliver-modal/deliver-modal.component';
@@ -18,9 +18,9 @@ import { TableBasic } from '../table/table.component';
 })
 export class AssetsComponent implements OnInit, AfterViewInit {
 
-  activos: activo[] = [];
-  currentUser: user = {};
-  activoActual: activo = {};
+  activos: Asset[] = [];
+  currentUser: User = {};
+  activoActual: Asset = {};
 
   pipe = new DatePipe('en-US');
   date = this.pipe.transform(Date.now(), 'dd-MM-yyyy');
@@ -88,7 +88,7 @@ export class AssetsComponent implements OnInit, AfterViewInit {
     })
   }
 
-  openDeliverItem(asset: activo) {
+  openDeliverItem(asset: Asset) {
     this.dialog.open(DeliverModalComponent, { data: { asset } });
   }
 

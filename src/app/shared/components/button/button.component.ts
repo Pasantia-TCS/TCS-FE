@@ -15,8 +15,6 @@ export class ButtonComponent {
   @Input() isDisabled: boolean = false;
   @Output() btnClick = new EventEmitter();
 
-  constructor() { }
-
   onClick() {
     this.btnClick.emit();
   }

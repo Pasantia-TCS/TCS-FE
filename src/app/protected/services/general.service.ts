@@ -10,10 +10,6 @@ export class GeneralService {
   pipe = new DatePipe('en-US');
   date = this.pipe.transform(Date.now(), 'dd-MM-yyyy');
 
-  fileName: string = 'Reporte Activos ' + this.date + '.xlsx';
-
-  constructor() { }
-
   exportData(id: string, filename: string, name: string = 'Sheet1'): void {
     let element = document.getElementById(id);
     const fileName: string = `${filename} ${this.date}.xlsx`;

@@ -1,4 +1,4 @@
-export interface edificio{
+export interface Building {
     id?: number,
     nombre?: string,
     piso?: string,

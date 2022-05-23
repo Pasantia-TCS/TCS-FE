@@ -14,17 +14,14 @@ export class ValidateTokenGuard implements CanActivate, CanLoad {
   ) { }
 
   canActivate(): Observable<boolean> | boolean {
-    return this.authService.validateToken()
-      .pipe(
-        tap(valid => {
-          if (!valid) {
-            this.router.navigateByUrl('/auth');
-          }
-        })
-      );
+    return this.jwt();
   }
 
   canLoad(): Observable<boolean> | boolean {
+    return this.jwt();
+  }
+
+  jwt(): Observable<boolean> | boolean {
     return this.authService.validateToken()
       .pipe(
         tap(valid => {
