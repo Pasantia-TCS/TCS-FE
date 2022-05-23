@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { equipo } from 'src/app/protected/interfaces/equipo';
 import { environment } from 'src/environments/environment';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -14,7 +15,7 @@ export class TeamService {
   constructor(private http: HttpClient) { }
 
   updateTeams(teams: equipo[]) {
-    this.teams = {...teams};
+    this.teams = { ...teams };
   }
 
   loadTeams() {

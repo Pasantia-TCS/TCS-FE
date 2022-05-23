@@ -9,7 +9,6 @@ import { profile } from 'src/app/protected/interfaces/profile';
 import { ProfileService } from 'src/app/protected/services/profile.service';
 import Swal from 'sweetalert2';
 
-
 @Component({
   selector: 'app-new-project',
   templateUrl: './new-project.component.html',

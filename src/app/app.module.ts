@@ -1,15 +1,13 @@
-import { AuthModule } from './auth/auth.module';
-import { AppRoutingModule } from './app-routing.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-
-import { LoginService } from './services/login.service';
-import { UserService } from './shared/services/user.service';
-import { RegisterService } from './services/register.service';
-
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AuthModule } from './auth/auth.module';
+import { LoginService } from './services/login.service';
+import { RegisterService } from './services/register.service';
+import { UserService } from './shared/services/user.service';
 
 
 @NgModule({

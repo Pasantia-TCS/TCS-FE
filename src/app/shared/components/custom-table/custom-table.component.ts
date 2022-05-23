@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'app-custom-table',
   templateUrl: './custom-table.component.html',

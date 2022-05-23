@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ValidateTokenGuard } from './auth/guards/validate-token.guard';
 
+
 const routes: Routes = [
   {
     path: 'auth',

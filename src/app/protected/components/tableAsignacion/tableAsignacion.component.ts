@@ -1,12 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { user } from 'src/app/interfaces/user';
 import { UserService } from 'src/app/shared/services/user.service';
-import { AsignacionService } from '../../services/asignacion.service';
-import { Output, EventEmitter } from '@angular/core';
-import { asignacion } from '../../interfaces/asignacion';
-import { Subscription } from 'rxjs';
-import { DatePipe } from '@angular/common';
 import * as XLSX from 'xlsx';
+import { asignacion } from '../../interfaces/asignacion';
+import { AsignacionService } from '../../services/asignacion.service';
 
 @Component({
   selector: 'app-tableAsignacion',

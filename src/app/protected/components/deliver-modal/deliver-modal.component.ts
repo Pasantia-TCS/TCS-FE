@@ -1,14 +1,11 @@
 import { Component, Inject, OnInit } from '@angular/core';
-
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-
 import { user } from 'src/app/interfaces/user';
-import { activo } from '../../interfaces/activo';
-
 import { UserService } from 'src/app/shared/services/user.service';
-import { ActivosService } from '../../services/activos.service';
 import Swal from 'sweetalert2';
+import { activo } from '../../interfaces/activo';
+import { ActivosService } from '../../services/activos.service';
 
 @Component({
   selector: 'app-deliver-modal',

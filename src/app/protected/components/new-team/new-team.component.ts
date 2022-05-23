@@ -1,9 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { EquiposService } from '../../services/equipos.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { equipo } from '../../interfaces/equipo';
 import Swal from 'sweetalert2';
+import { equipo } from '../../interfaces/equipo';
+import { EquiposService } from '../../services/equipos.service';
 
 @Component({
   selector: 'app-new-team',

@@ -489,3 +489,9 @@ ngx-intl-tel-input input {
   height: 3rem;
   border-radius: 2rem 0 0 2rem;
 }
+
+/* Table alignment */
+th,
+td {
+  text-align: left;
+}

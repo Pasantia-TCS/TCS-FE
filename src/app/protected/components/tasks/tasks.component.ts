@@ -1,11 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import Swal from 'sweetalert2';
 import { asignacion } from '../../interfaces/asignacion';
 import { AsignacionService } from '../../services/asignacion.service';
 import { NewAssignmentComponent } from '../new-assignment/new-assignment.component';
 import { TableAsignacion } from '../tableAsignacion/tableAsignacion.component';
-import Swal from 'sweetalert2';
-
 
 @Component({
   selector: 'app-tasks',

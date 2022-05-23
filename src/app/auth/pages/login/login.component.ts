@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import Swal from 'sweetalert2';
-
+import { user } from 'src/app/interfaces/user';
 import { LoginService } from 'src/app/services/login.service';
 import { UserService } from 'src/app/shared/services/user.service';
-
-import { user } from 'src/app/interfaces/user';
-
+import Swal from 'sweetalert2';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +22,13 @@ export class LoginComponent {
     password: ['', [Validators.required]]
   });
 
-  constructor(private loginService: LoginService, private fb: FormBuilder, private router: Router, private userService: UserService) { }
+  constructor(
+    private loginService: LoginService,
+    private authService: AuthService,
+    private fb: FormBuilder,
+    private router: Router,
+    private userService: UserService
+  ) { }
 
   valid_field(field_name: string) {
     return this.loginForm.controls[field_name].errors && this.loginForm.controls[field_name].touched;
@@ -37,7 +41,7 @@ export class LoginComponent {
       this.loginForm.markAllAsTouched();
       return;
     } else {
-      this.loginService.login(ultimatix, password)
+      this.authService.login(ultimatix, password)
         .subscribe({
           next: resp => {
             sessionStorage.setItem('token', resp.id_numero_Ultimatix!);

@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { user } from '../interfaces/user';
-import { environment } from 'src/environments/environment';
+import { Injectable } from '@angular/core';
 import { catchError, map, of, tap } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { user } from '../interfaces/user';
 import { UserService } from '../shared/services/user.service';
 
 
@@ -22,24 +22,24 @@ export class LoginService {
     return { ...this._user };
   }
 
-  login(id_numero_Ultimatix: string, clave: string) {
-    const url: string = `${this.baseUrl}/asociados/tcs-login`;
-    const body = { id_numero_Ultimatix, clave };
-    return this.http.post<user>(url, body)
-      .pipe(tap(resp => this._user = { ...resp }));
-  }
+  // login(id_numero_Ultimatix: string, clave: string) {
+  //   const url: string = `${this.baseUrl}/asociados/tcs-login`;
+  //   const body = { id_numero_Ultimatix, clave };
+  //   return this.http.post<user>(url, body)
+  //     .pipe(tap(resp => this._user = { ...resp }));
+  // }
 
-  validateToken() {
-    const ultimatix = sessionStorage.getItem('token') || '';
-    const url: string = `${this.baseUrl}/asociados/buscar/${ultimatix}`;
-    return this.http.get<user>(url)
-      .pipe(
-        map(resp => {
-          sessionStorage.setItem('token', resp.id_numero_Ultimatix!);
-          this.userService.updateUser(resp);
-          return true;
-        }),
-        catchError(() => of(false))
-      );
-  }
+  // validateToken() {
+  //   const ultimatix = sessionStorage.getItem('token') || '';
+  //   const url: string = `${this.baseUrl}/asociados/buscar/${ultimatix}`;
+  //   return this.http.get<user>(url)
+  //     .pipe(
+  //       map(resp => {
+  //         sessionStorage.setItem('token', resp.id_numero_Ultimatix!);
+  //         this.userService.updateUser(resp);
+  //         return true;
+  //       }),
+  //       catchError(() => of(false))
+  //     );
+  // }
 }

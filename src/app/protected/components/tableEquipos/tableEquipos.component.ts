@@ -1,13 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { Output, EventEmitter } from '@angular/core';
-import { Subscription } from 'rxjs';
 import { DatePipe } from '@angular/common';
-import { equipo } from '../../interfaces/equipo';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { user } from 'src/app/interfaces/user';
-import { EquiposService } from '../../services/equipos.service';
 import * as XLSX from 'xlsx';
-
+import { equipo } from '../../interfaces/equipo';
+import { EquiposService } from '../../services/equipos.service';
 
 @Component({
   selector: 'app-table-equipos',

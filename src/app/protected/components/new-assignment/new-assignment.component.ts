@@ -2,11 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 
-export interface DialogData {
-  animal: string;
-  name: string;
-}
-
 @Component({
   selector: 'app-new-assignment',
   templateUrl: './new-assignment.component.html',
@@ -16,9 +11,7 @@ export class NewAssignmentComponent implements OnInit {
 
   types: string[] = ['Proyecto', 'Célula', 'Tribu'];
   projects: string[] = ['Proyecto 1', 'Proyecto 2', 'Proyecto 3', 'Proyecto 4', 'Proyecto 5', 'Proyecto 6'];
-  newAssignmentForm: FormGroup = this.fb.group({
 
-  });
   nuevoAsignacionForm: FormGroup = this.fb.group({
     nombre_equipo_asi: ['', Validators.required],
     id_equipo_asi: [2, Validators.required],
@@ -31,7 +24,6 @@ export class NewAssignmentComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<NewAssignmentComponent>, private fb: FormBuilder) { }
 
   ngOnInit(): void {
-
   }
 
   close(): void {

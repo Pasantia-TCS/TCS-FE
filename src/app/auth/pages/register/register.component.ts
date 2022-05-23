@@ -1,12 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-
+import { CountryISO, PhoneNumberFormat, SearchCountryField } from 'ngx-intl-tel-input';
 import { RegisterService } from 'src/app/services/register.service';
 import Swal from 'sweetalert2';
-
-import { SearchCountryField, CountryISO, PhoneNumberFormat } from 'ngx-intl-tel-input';
-
 
 @Component({
   selector: 'app-register',

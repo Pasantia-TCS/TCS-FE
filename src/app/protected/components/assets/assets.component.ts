@@ -1,16 +1,15 @@
+import { DatePipe } from '@angular/common';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { ActivosService } from '../../services/activos.service';
-import { activo } from '../../interfaces/activo';
+import { MatDialog } from '@angular/material/dialog';
 import { user } from 'src/app/interfaces/user';
 import { UserService } from 'src/app/shared/services/user.service';
-import { TableBasic } from '../table/table.component';
-import { DatePipe } from '@angular/common';
-import { MatDialog } from '@angular/material/dialog';
-import { NewAssetComponent } from '../new-asset/new-asset.component';
-import { DeliverModalComponent } from '../deliver-modal/deliver-modal.component';
 import Swal from 'sweetalert2';
-import * as XLSX from 'xlsx';
-
+import { activo } from '../../interfaces/activo';
+import { ActivosService } from '../../services/activos.service';
+import { GeneralService } from '../../services/general.service';
+import { DeliverModalComponent } from '../deliver-modal/deliver-modal.component';
+import { NewAssetComponent } from '../new-asset/new-asset.component';
+import { TableBasic } from '../table/table.component';
 
 @Component({
   selector: 'app-assets',
@@ -30,7 +29,12 @@ export class AssetsComponent implements OnInit, AfterViewInit {
 
   @ViewChild(TableBasic) table: any;
 
-  constructor(private activosService: ActivosService, private userService: UserService, public dialog: MatDialog) { }
+  constructor(
+    private activosService: ActivosService,
+    private userService: UserService,
+    public dialog: MatDialog,
+    public generalService: GeneralService
+  ) { }
 
   ngAfterViewInit(): void {
     this.table.load();
@@ -89,18 +93,7 @@ export class AssetsComponent implements OnInit, AfterViewInit {
   }
 
   exportTable(): void {
-
-    let element = document.getElementById('tableActivos');
-
-    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
-
-    // Generar archivo
-    const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-
-    // Save
-    XLSX.writeFile(wb, this.fileName);
-
+    this.generalService.exportData('tableActivos', 'Reporte activos');
   }
 
 }
