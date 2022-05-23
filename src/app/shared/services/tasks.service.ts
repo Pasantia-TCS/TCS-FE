@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Profile } from 'src/app/protected/interfaces/profile';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -13,10 +14,8 @@ export class TasksService {
   users: Profile[] = [];
 
   async loadUsers() {
-    const url: string = 'http://localhost:8081/perfil/perfiles';
-    // const url: string = 'http://54.91.126.120:8081/perfil/perfiles';
-
-    return this.http.get<Profile[]>(url)
+    const baseUrl: string = `${environment.localUrl}/perfil/perfiles`;
+    return this.http.get<Profile[]>(baseUrl)
       .subscribe(
         {
           next: resp => this.users = resp

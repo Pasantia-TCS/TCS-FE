@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Assignment } from '../interfaces/asignacion';
 
 @Injectable({
@@ -9,9 +10,7 @@ import { Assignment } from '../interfaces/asignacion';
 
 export class AsignacionService {
 
-  baseUrl: string = 'http://localhost:8081/asignaciones';
-  // private baseUrl: string = 'http://54.91.126.120:8081/asignaciones';
-
+  private baseUrl: string = `${environment.localUrl}/asignaciones`;
   private subject = new Subject<any>();
 
   constructor(private http: HttpClient) { }
@@ -34,12 +33,10 @@ export class AsignacionService {
     return this.http.get<Assignment[]>(url);
   }
 
-
   update(assignment: Assignment) {
     const url: string = `${this.baseUrl}/registrarAsignacion`;
     return this.http.post<Assignment[]>(url, assignment);
   }
-
 
   delete(id_asignacion: string) {
     const url: string = `${this.baseUrl}/eliminarAsignacion`;

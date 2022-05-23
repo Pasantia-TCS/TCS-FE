@@ -12,8 +12,7 @@ export class AuthService {
 
   private _user!: User;
 
-  // private baseUrl: string = 'http://54.91.126.120:8081';
-  private baseUrl: string = `${environment.baseUrl}/asociados`;
+  private baseUrl: string = `${environment.localUrl}/asociados`;
 
   constructor(private http: HttpClient, private userService: UserService) { }
 

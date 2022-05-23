@@ -9,8 +9,7 @@ import { environment } from 'src/environments/environment';
 })
 export class UserService {
 
-  private baseUrl: string = environment.baseUrl;
-  // private baseUrl: string = 'http://54.91.126.120:8081/perfil/perfiles';
+  private baseUrl: string = environment.localUrl;
 
   constructor(private http: HttpClient) { }
 

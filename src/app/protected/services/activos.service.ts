@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { lastValueFrom, Observable, Subject } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Asset } from '../interfaces/activo';
 
 @Injectable({
@@ -8,8 +9,7 @@ import { Asset } from '../interfaces/activo';
 })
 export class ActivosService {
 
-  private baseUrl: string = 'http://localhost:8081/activos';
-  // private baseUrl: string = 'http://54.91.126.120:8081/activos';
+  private baseUrl: string = `${environment.localUrl}/activos`;
 
   constructor(private http: HttpClient) { }
 
@@ -36,7 +36,7 @@ export class ActivosService {
   async mostrarActivos(ultimatix: string | undefined) {
     const url: string = `${this.baseUrl}/buscarUltimatix`;
     const source$ = this.http.post<Asset[]>(url, { id_ultimatix: ultimatix });
-    return await lastValueFrom(source$);
+    return lastValueFrom(source$);
   }
 
   private subject = new Subject<any>();

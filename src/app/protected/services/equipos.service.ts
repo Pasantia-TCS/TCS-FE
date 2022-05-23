@@ -9,7 +9,7 @@ import { Team } from '../interfaces/equipo';
 })
 export class EquiposService {
 
-  private baseUrl: string = `${environment.baseUrl}/equipos`;
+  private baseUrl: string = `${environment.localUrl}/equipos`;
   private subject = new Subject<any>();
 
   constructor(private http: HttpClient) { }
