@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CountryISO, PhoneNumberFormat, SearchCountryField } from 'ngx-intl-tel-input';
-import { RegisterService } from 'src/app/services/register.service';
 import Swal from 'sweetalert2';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -28,7 +28,11 @@ export class RegisterComponent {
     password: ['', [Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*]).{8,}$')]]
   });
 
-  constructor(private service: RegisterService, private fb: FormBuilder, private router: Router) { }
+  constructor(
+    private authService: AuthService,
+    private fb: FormBuilder,
+    private router: Router
+  ) { }
 
   get email() {
     return this.myForm.get('email');
@@ -57,14 +61,14 @@ export class RegisterComponent {
       this.myForm.markAllAsTouched();
       return;
     } else {
-      this.service.register(ultimatix, password, name, lastname, phone.internationalNumber, email)
+      this.authService.register(ultimatix, password, name, lastname, phone.internationalNumber, email)
         .subscribe({
           next: () => {
             Swal.fire('¡Éxito!', 'Usuario registrado con éxito.', 'success');
             this.router.navigateByUrl('/');
           },
           error: err => Swal.fire('Error', err.error.mensaje, 'error')
-        })
+        });
     }
   }
 }

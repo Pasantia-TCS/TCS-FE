@@ -5,10 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
-import { LoginService } from './services/login.service';
-import { RegisterService } from './services/register.service';
 import { UserService } from './shared/services/user.service';
-
 
 @NgModule({
   declarations: [
@@ -21,7 +18,7 @@ import { UserService } from './shared/services/user.service';
     BrowserAnimationsModule,
     AuthModule,
   ],
-  providers: [LoginService, RegisterService, UserService],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

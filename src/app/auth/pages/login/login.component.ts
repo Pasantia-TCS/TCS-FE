@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { user } from 'src/app/interfaces/user';
-import { LoginService } from 'src/app/services/login.service';
 import { UserService } from 'src/app/shared/services/user.service';
 import Swal from 'sweetalert2';
 import { AuthService } from '../../services/auth.service';
@@ -23,7 +22,6 @@ export class LoginComponent {
   });
 
   constructor(
-    private loginService: LoginService,
     private authService: AuthService,
     private fb: FormBuilder,
     private router: Router,

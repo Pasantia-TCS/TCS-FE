@@ -13,7 +13,7 @@ export class AuthService {
   private _user!: user;
 
   // private baseUrl: string = 'http://54.91.126.120:8081';
-  private baseUrl: string = environment.baseUrl;
+  private baseUrl: string = `${environment.baseUrl}/asociados`;
 
   constructor(private http: HttpClient, private userService: UserService) { }
 
@@ -22,7 +22,7 @@ export class AuthService {
   }
 
   login(id_numero_Ultimatix: string, clave: string) {
-    const url: string = `${this.baseUrl}/asociados/tcs-login`;
+    const url: string = `${this.baseUrl}/tcs-login`;
     const body = { id_numero_Ultimatix, clave };
     return this.http.post<user>(url, body)
       .pipe(tap(resp => this._user = { ...resp }));
@@ -32,9 +32,15 @@ export class AuthService {
     sessionStorage.removeItem('token');
   }
 
+  register(id_numero_Ultimatix: string, clave: string, nombre: string, apellido: string, telefono: string, correo: string) {
+    const url: string = `${this.baseUrl}/agregarAsociado`;
+    const body = { id_numero_Ultimatix, clave, nombre, apellido, telefono, correo };
+    return this.http.post<user>(url, body);
+  }
+
   validateToken() {
     const ultimatix = sessionStorage.getItem('token') || '';
-    const url: string = `${this.baseUrl}/asociados/buscar/${ultimatix}`;
+    const url: string = `${this.baseUrl}/buscar/${ultimatix}`;
     return this.http.get<user>(url)
       .pipe(
         map(resp => {
