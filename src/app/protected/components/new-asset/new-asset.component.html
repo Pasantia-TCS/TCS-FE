@@ -97,7 +97,7 @@
       <!-- Date field -->
       <div class="col-12 col-sm-6 form-floating">
         <input id="floatingDate" type="date" class="form-control rounded-pill" formControlName="fecha_entrega">
-        <label for="floatingDate">Fecha de entrega</label>
+        <label for="floatingDate">Fecha de adjudicación</label>
         <div
           *ngIf="(getCtrl('fecha_entrega')?.invalid && getCtrl('fecha_entrega')?.touched) || getCtrl('fecha_entrega')?.dirty">
           <span class="form-text text-danger float-start" *ngIf="getCtrl('fecha_entrega')?.errors?.['required']">
