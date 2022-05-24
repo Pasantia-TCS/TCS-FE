@@ -25,9 +25,9 @@ export class NewAssetComponent {
       tipo: ['Computador', Validators.required],
       edificio: ['Inluxor', Validators.required],
       piso: ['Piso 1', Validators.required],
-      hostname: ['xD', Validators.required],
-      direccion_mac: ['00-00-00-00-00-00', [Validators.required, Validators.pattern('^([0-9A-F]{2}[:-]){5}([0-9A-F]{2})$')]],
-      direccion_ip: ['192.168.1.2', [Validators.required, Validators.pattern("^(?:(?:^|\.)(?:2(?:5[0-5]|[0-4]\\d)|1?\\d?\\d)){4}$")]],
+      hostname: ['', Validators.required],
+      direccion_mac: ['', [Validators.required, Validators.pattern('^([0-9A-F]{2}[:-]){5}([0-9A-F]{2})$')]],
+      direccion_ip: ['', [Validators.required, Validators.pattern("^(?:(?:^|\.)(?:2(?:5[0-5]|[0-4]\\d)|1?\\d?\\d)){4}$")]],
       reservada_ip: ['false', Validators.required],
       fecha_entrega: ['', Validators.required]
     }
