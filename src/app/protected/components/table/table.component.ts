@@ -45,7 +45,7 @@ export class TableBasic implements OnInit {
   ) {
     this.clickEventSubscription = this.activosService
       .getClickEvent()
-      .subscribe(() => setTimeout(() => this.load(), 500))
+      .subscribe(() => setTimeout(() => this.load(), 500));
   }
 
   ngOnInit(): void {

@@ -34,7 +34,7 @@ export class TableEquiposComponent implements OnInit {
 
   constructor(private equiposService: EquiposService) {
     this.clickEventSubscription = this.equiposService.getClickEvent()
-      .subscribe(() => setTimeout(() => this.loadTeams(), 500))
+      .subscribe(() => setTimeout(() => this.loadTeams(), 500));
   }
 
   ngOnInit(): void {

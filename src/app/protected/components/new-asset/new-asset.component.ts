@@ -19,17 +19,19 @@ export class NewAssetComponent {
   pisos: string[] = ['Piso 1', 'Piso 2', 'Piso 3', 'Piso 4', 'Piso 5', 'Piso 6'];
   edificios: string[] = ['Centrum', 'Inluxor'];
 
-  nuevoActivoForm: FormGroup = this.fb.group({
-    area: ['CTB', Validators.required],
-    tipo: ['Computador', Validators.required],
-    edificio: ['Inluxor', Validators.required],
-    piso: ['Piso 1', Validators.required],
-    hostname: ['', Validators.required],
-    direccion_mac: ['', [Validators.required, Validators.pattern('^([0-9A-F]{2}[:-]){5}([0-9A-F]{2})$')]],
-    direccion_ip: ['', [Validators.required, Validators.pattern("^(?:(?:^|\.)(?:2(?:5[0-5]|[0-4]\\d)|1?\\d?\\d)){4}$")]],
-    reservada_ip: ['false', Validators.required],
-    fecha_entrega: ['', Validators.required]
-  });
+  nuevoActivoForm: FormGroup = this.fb.group(
+    {
+      area: ['CTB', Validators.required],
+      tipo: ['Computador', Validators.required],
+      edificio: ['Inluxor', Validators.required],
+      piso: ['Piso 1', Validators.required],
+      hostname: ['', Validators.required],
+      direccion_mac: ['', [Validators.required, Validators.pattern('^([0-9A-F]{2}[:-]){5}([0-9A-F]{2})$')]],
+      direccion_ip: ['', [Validators.required, Validators.pattern("^(?:(?:^|\.)(?:2(?:5[0-5]|[0-4]\\d)|1?\\d?\\d)){4}$")]],
+      reservada_ip: ['false', Validators.required],
+      fecha_entrega: ['', Validators.required]
+    }
+  );
 
   activo: Asset = {};
 
@@ -56,21 +58,25 @@ export class NewAssetComponent {
       const userC: User = this.userService.getUserData();
       this.activo.id_ultimatix = userC.id_numero_Ultimatix;
       this.activosService.register(this.activo)
-        .subscribe({
-          next: () => {
-            this.clickMe();
-            this.nuevoActivoForm.reset({
-              area: ['CTB'],
-              tipo: 'Computador',
-              edificio: ['Inluxor'],
-              piso: ['Piso 1'],
-              reservada_ip: ['false'],
-            });
-            this.dialogRef.close();
-            Swal.fire('¡Éxito!', 'Activo registrado con éxito.', 'success');
-          },
-          error: err => Swal.fire('¡Error!', err.error.mensaje, 'error')
-        });
+        .subscribe(
+          {
+            next: () => {
+              this.clickMe();
+              this.nuevoActivoForm.reset(
+                {
+                  area: ['CTB'],
+                  tipo: 'Computador',
+                  edificio: ['Inluxor'],
+                  piso: ['Piso 1'],
+                  reservada_ip: ['false'],
+                }
+              );
+              this.dialogRef.close();
+              Swal.fire('¡Éxito!', 'Activo registrado con éxito.', 'success');
+            },
+            error: err => Swal.fire('¡Error!', err.error.mensaje, 'error')
+          }
+        );
     }
   }
 

@@ -30,17 +30,19 @@ export class NewProjectComponent implements OnInit {
   tableKey: any = [];
   tableValue: any = [];
 
-  nuevoAsignacionForm: FormGroup = this.fb.group({
-    nombre_proyecto: ['Banca Web3', Validators.required],
-    tipo_proyecto: [2, Validators.required],
-    usuario_red: ['@user', Validators.required],
-    asignacion: [0, Validators.required],
-    fecha_inicio: ['2019-12-10', Validators.required],
-    fecha_fin: ['2019-12-10', Validators.required],
-    descripcion: ['proyecto CTB', Validators.required],
-    nombre_lider: ['JUAN', Validators.required],
-    nombre_tecnico: ['MARCELO', Validators.required],
-  });
+  nuevoAsignacionForm: FormGroup = this.fb.group(
+    {
+      nombre_proyecto: ['Banca Web3', Validators.required],
+      tipo_proyecto: [2, Validators.required],
+      usuario_red: ['@user', Validators.required],
+      asignacion: [0, Validators.required],
+      fecha_inicio: ['2019-12-10', Validators.required],
+      fecha_fin: ['2019-12-10', Validators.required],
+      descripcion: ['proyecto CTB', Validators.required],
+      nombre_lider: ['JUAN', Validators.required],
+      nombre_tecnico: ['MARCELO', Validators.required],
+    }
+  );
 
   users!: Profile[];
   usersTemp: Profile[] = [];
@@ -63,9 +65,11 @@ export class NewProjectComponent implements OnInit {
     setTimeout(() => this.users = this.tasksService.getUsers(), 100);
     this.ultimatix = this.userService.getUltimatix()!;
     this.profileService.getProfile(this.ultimatix)
-      .subscribe({
-        next: resp => this.currentUser = resp
-      });
+      .subscribe(
+        {
+          next: resp => this.currentUser = resp
+        }
+      );
   }
 
   clickMe() {
@@ -78,16 +82,17 @@ export class NewProjectComponent implements OnInit {
       this.perfiles.push(user.id_ultimatix);
     });
 
-    this.asignacionService.register(this.asignacion).subscribe({
-      next: () => {
-        this.clickMe();
-        this.nuevoAsignacionForm.reset();
-        Swal.fire('Éxito', 'Proyecto registrado con éxito.', 'success');
-      },
-      error: err => {
-        Swal.fire('Error', err.error.mensaje, 'error');
-      }
-    });
+    this.asignacionService.register(this.asignacion)
+      .subscribe(
+        {
+          next: () => {
+            this.clickMe();
+            this.nuevoAsignacionForm.reset();
+            Swal.fire('Éxito', 'Proyecto registrado con éxito.', 'success');
+          },
+          error: err => Swal.fire('Error', err.error.mensaje, 'error')
+        }
+      );
   }
 
   addUserTemp(user: Profile) {

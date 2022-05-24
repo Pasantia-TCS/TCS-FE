@@ -44,14 +44,17 @@ export class TeamsComponent {
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.teamService.delete(id_team).subscribe({
-          next: resp => {
-            this.equipo = resp;
-            this.table.loadTeams();
-            Swal.fire('¡Eliminado!', 'Equipo eliminado con éxito.', 'success');
-          },
-          error: err => Swal.fire('Error', err.error.mensaje, 'error')
-        });
+        this.teamService.delete(id_team)
+          .subscribe(
+            {
+              next: resp => {
+                this.equipo = resp;
+                this.table.loadTeams();
+                Swal.fire('¡Eliminado!', 'Equipo eliminado con éxito.', 'success');
+              },
+              error: err => Swal.fire('Error', err.error.mensaje, 'error')
+            }
+          );
       }
     });
   }

@@ -16,13 +16,15 @@ export class NewTeamComponent implements OnInit {
   aux = ["Proyecto", "Célula", "Tribu"]
   update: boolean = false;
 
-  nuevoEquipoForm: FormGroup = this.fb.group({
-    nombre_equipo_asi: ['', Validators.required],
-    tipo_equipo_asi: [0, Validators.required],
-    descripcion_asi: ['', Validators.required],
-    nombre_lider: ['', Validators.required],
-    nombre_tecnico: ['', Validators.required],
-  });
+  nuevoEquipoForm: FormGroup = this.fb.group(
+    {
+      nombre_equipo_asi: ['', Validators.required],
+      tipo_equipo_asi: [0, Validators.required],
+      descripcion_asi: ['', Validators.required],
+      nombre_lider: ['', Validators.required],
+      nombre_tecnico: ['', Validators.required],
+    }
+  );
 
   team: Team = {};
 
@@ -38,13 +40,15 @@ export class NewTeamComponent implements OnInit {
     this.team = this.data.team;
 
     if (this.update) {
-      this.nuevoEquipoForm.patchValue({
-        nombre_equipo_asi: this.team.nombre_equipo_asi,
-        tipo_equipo_asi: this.team.tipo_equipo_asi,
-        descripcion_asi: this.team.descripcion_asi,
-        nombre_lider: this.team.nombre_lider,
-        nombre_tecnico: this.team.nombre_tecnico
-      });
+      this.nuevoEquipoForm.patchValue(
+        {
+          nombre_equipo_asi: this.team.nombre_equipo_asi,
+          tipo_equipo_asi: this.team.tipo_equipo_asi,
+          descripcion_asi: this.team.descripcion_asi,
+          nombre_lider: this.team.nombre_lider,
+          nombre_tecnico: this.team.nombre_tecnico
+        }
+      );
 
       this.nuevoEquipoForm.get('nombre_equipo_asi')?.disable();
       this.nuevoEquipoForm.get('tipo_equipo_asi')?.disable();
@@ -74,15 +78,15 @@ export class NewTeamComponent implements OnInit {
         {
           next: () => {
             this.clickMe();
-            this.nuevoEquipoForm.reset({
-              tipo_equipo_asi: ''
-            });
+            this.nuevoEquipoForm.reset(
+              {
+                tipo_equipo_asi: ''
+              }
+            );
             Swal.fire('Éxito', 'Equipo registrado con éxito.', 'success');
             this.dialogRef.close();
           },
-          error: err => {
-            Swal.fire('Error', err.error.mensaje, 'error');
-          }
+          error: err => Swal.fire('Error', err.error.mensaje, 'error')
         }
       );
   }

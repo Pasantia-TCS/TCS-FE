@@ -21,9 +21,11 @@ export class DeliverModalComponent implements OnInit {
   asset: Asset = {};
   tableData: Asset[] = [];
 
-  deliverForm: FormGroup = this.fb.group({
-    fecha_devolucion: ['', Validators.required]
-  });
+  deliverForm: FormGroup = this.fb.group(
+    {
+      fecha_devolucion: ['', Validators.required]
+    }
+  );
 
   fechaEntrega!: string;
 
@@ -51,16 +53,19 @@ export class DeliverModalComponent implements OnInit {
     } else {
       const { fecha_devolucion } = this.deliverForm.value;
 
-      this.activosService.setAssetStatus(this.asset.id_activo?.toString()!, this.asset.id_ultimatix?.toString()!, fecha_devolucion)
-        .subscribe({
-          next: resp => {
-            this.tableData = resp;
-            this.clickMe();
-            Swal.fire('¡Éxito!', 'Se ha registrado con éxito la devolución del activo.', 'success');
-            this.dialogRef.close();
-          },
-          error: err => Swal.fire('¡Error!', err.error.mensaje, 'error')
-        });
+      this.activosService
+        .setAssetStatus(this.asset.id_activo?.toString()!, this.asset.id_ultimatix?.toString()!, fecha_devolucion)
+        .subscribe(
+          {
+            next: resp => {
+              this.tableData = resp;
+              this.clickMe();
+              Swal.fire('¡Éxito!', 'Se ha registrado con éxito la devolución del activo.', 'success');
+              this.dialogRef.close();
+            },
+            error: err => Swal.fire('¡Error!', err.error.mensaje, 'error')
+          }
+        );
     }
   }
 

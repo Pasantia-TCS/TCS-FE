@@ -33,6 +33,9 @@ import { NewTeamComponent } from './components/new-team/new-team.component';
 import { NewAssignmentComponent } from './components/new-assignment/new-assignment.component';
 import { TemplateComponent } from './components/template/template.component';
 import { StarRatingComponent } from './components/star-rating/star-rating.component';
+import { SkillsComponent } from './components/skills/skills.component';
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
+import { EditSkillsComponent } from './components/edit-skills/edit-skills.component';
 
 
 @NgModule({
@@ -57,7 +60,10 @@ import { StarRatingComponent } from './components/star-rating/star-rating.compon
     NewTeamComponent,
     NewAssignmentComponent,
     TemplateComponent,
-    StarRatingComponent
+    StarRatingComponent,
+    SkillsComponent,
+    EditProfileComponent,
+    EditSkillsComponent
   ],
   imports: [
     CommonModule,

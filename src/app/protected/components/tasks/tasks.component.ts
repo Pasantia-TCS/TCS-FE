@@ -21,7 +21,10 @@ export class TasksComponent {
 
   @ViewChild(TableAsignacion) table: any;
 
-  constructor(private asignacionService: AsignacionService, public dialog: MatDialog) { }
+  constructor(
+    private asignacionService: AsignacionService,
+    public dialog: MatDialog
+  ) { }
 
   deleteItem(id_proyecto: string): void {
 
@@ -34,17 +37,18 @@ export class TasksComponent {
       cancelButtonText: 'Cancelar',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.asignacionService.delete(id_proyecto).subscribe({
-          next: () => {
-            this.table.load();
-            Swal.fire('Éxito', 'Proyecto eliminado con éxito.', 'success')
-          },
-          error: err => {
-            Swal.fire('Error', err.error.mensaje, 'error')
-          }
-        });
+        this.asignacionService.delete(id_proyecto)
+          .subscribe(
+            {
+              next: () => {
+                this.table.load();
+                Swal.fire('Éxito', 'Proyecto eliminado con éxito.', 'success');
+              },
+              error: err => Swal.fire('Error', err.error.mensaje, 'error')
+            }
+          );
       } else if (result.isDenied) {
-        Swal.fire('El proyecto no se ha eliminado.', '', 'info')
+        Swal.fire('El proyecto no se ha eliminado.', '', 'info');
       }
     })
   }

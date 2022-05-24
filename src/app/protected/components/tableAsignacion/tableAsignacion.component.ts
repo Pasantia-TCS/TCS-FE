@@ -44,11 +44,13 @@ export class TableAsignacion implements OnInit {
 
   ngOnInit(): void {
     this.asignacionService.obtenerAsignacion()
-      .subscribe({
-        next: resp => {
-          this.tableData = resp;
+      .subscribe(
+        {
+          next: resp => {
+            this.tableData = resp;
+          }
         }
-      });
+      );
     this.currentUser = this.userService.getUserData();
     this.ultimatix = this.currentUser.id_numero_Ultimatix;
   }
@@ -72,8 +74,7 @@ export class TableAsignacion implements OnInit {
     this.asignacionService.obtenerUsuarios()
       .subscribe(
         {
-          next: resp => this.users = resp,
-          error: err => console.log('Error: ', err)
+          next: resp => this.users = resp
         }
       )
   }

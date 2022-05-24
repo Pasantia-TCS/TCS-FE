@@ -1,7 +1,0 @@
-organization=bfsp26
-projectKey=tcs-1
-serverUrl=https://sonarcloud.io
-serverVersion=8.0.0.29158
-dashboardUrl=https://sonarcloud.io/dashboard?id=tcs-1
-ceTaskId=AYDzJkTsrPeMmHuModMl
-ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AYDzJkTsrPeMmHuModMl

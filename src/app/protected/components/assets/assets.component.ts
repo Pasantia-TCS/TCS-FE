@@ -50,9 +50,10 @@ export class AssetsComponent implements OnInit, AfterViewInit {
   }
 
   loadAssets(ultimatix: string | undefined): void {
-    this.activosService.mostrarActivos(ultimatix).then(resp => {
-      this.activos = resp;
-    });
+    this.activosService.mostrarActivos(ultimatix)
+      .then(resp => {
+        this.activos = resp;
+      });
   }
 
   openNewAsset(): void {
@@ -72,16 +73,17 @@ export class AssetsComponent implements OnInit, AfterViewInit {
       cancelButtonText: 'Cancelar',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.activosService.eliminar(id_activo, ultimatix).subscribe({
-          next: resp => {
-            this.activos = resp;
-            this.table.load();
-            Swal.fire('Éxito', 'Activo eliminado con éxito.', 'success')
-          },
-          error: err => {
-            Swal.fire('Error', err.error.mensaje, 'error')
-          }
-        });
+        this.activosService.eliminar(id_activo, ultimatix)
+          .subscribe(
+            {
+              next: resp => {
+                this.activos = resp;
+                this.table.load();
+                Swal.fire('Éxito', 'Activo eliminado con éxito.', 'success');
+              },
+              error: err => Swal.fire('Error', err.error.mensaje, 'error')
+            }
+          );
       } else if (result.isDenied) {
         Swal.fire('El activo no se ha eliminado.', '', 'info')
       }
