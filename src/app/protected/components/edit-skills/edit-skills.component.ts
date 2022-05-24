@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-edit-skills',
@@ -6,11 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styles: [
   ]
 })
-export class EditSkillsComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+export class EditSkillsComponent {
 
 }

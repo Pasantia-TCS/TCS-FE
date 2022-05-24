@@ -45,4 +45,6 @@ Thumbs.db
 
 .deployment
 
-./scannerwork
+.scannerwork
+.dist
+.angular

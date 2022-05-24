@@ -1,4 +1,3 @@
-import { DatePipe } from '@angular/common';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { User } from 'src/app/auth/interfaces/user';
@@ -21,11 +20,6 @@ export class AssetsComponent implements OnInit, AfterViewInit {
   activos: Asset[] = [];
   currentUser: User = {};
   activoActual: Asset = {};
-
-  pipe = new DatePipe('en-US');
-  date = this.pipe.transform(Date.now(), 'dd-MM-yyyy');
-
-  fileName: string = 'Reporte Activos ' + this.date + '.xlsx';
 
   @ViewChild(TableBasic) table: any;
 
@@ -73,7 +67,7 @@ export class AssetsComponent implements OnInit, AfterViewInit {
       cancelButtonColor: '#d33',
       confirmButtonText: 'Sí',
       cancelButtonText: 'No'
-    }).then((result) => {
+    }).then(result => {
       if (result.isConfirmed) {
         this.activosService.eliminar(id_activo, ultimatix)
           .subscribe(
