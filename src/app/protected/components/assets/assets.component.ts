@@ -66,11 +66,13 @@ export class AssetsComponent implements OnInit, AfterViewInit {
 
     Swal.fire({
       title: '¿Quieres eliminar el activo?',
-      showDenyButton: true,
+      text: '¡No podrás revertir esto!',
+      icon: 'warning',
       showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
       confirmButtonText: 'Sí',
-      denyButtonText: 'No',
-      cancelButtonText: 'Cancelar',
+      cancelButtonText: 'No'
     }).then((result) => {
       if (result.isConfirmed) {
         this.activosService.eliminar(id_activo, ultimatix)
@@ -84,10 +86,8 @@ export class AssetsComponent implements OnInit, AfterViewInit {
               error: err => Swal.fire('Error', err.error.mensaje, 'error')
             }
           );
-      } else if (result.isDenied) {
-        Swal.fire('El activo no se ha eliminado.', '', 'info')
       }
-    })
+    });
   }
 
   openDeliverItem(asset: Asset) {

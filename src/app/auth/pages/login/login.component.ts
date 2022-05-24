@@ -16,10 +16,12 @@ export class LoginComponent {
   currentUser: User = {};
   showPwd: boolean = false;
 
-  loginForm: FormGroup = this.fb.group({
-    ultimatix: ['', [Validators.required]],
-    password: ['', [Validators.required]]
-  });
+  loginForm: FormGroup = this.fb.group(
+    {
+      ultimatix: ['', [Validators.required]],
+      password: ['', [Validators.required]]
+    }
+  );
 
   constructor(
     private authService: AuthService,
@@ -39,14 +41,16 @@ export class LoginComponent {
       this.loginForm.markAllAsTouched();
     } else {
       this.authService.login(ultimatix, password)
-        .subscribe({
-          next: resp => {
-            sessionStorage.setItem('token', resp.id_numero_Ultimatix!);
-            this.userService.updateUser(resp);
-            this.router.navigateByUrl('/pages');
-          },
-          error: err => Swal.fire('Error', err.error.mensaje, 'error')
-        });
+        .subscribe(
+          {
+            next: resp => {
+              sessionStorage.setItem('token', resp.id_numero_Ultimatix!);
+              this.userService.updateUser(resp);
+              this.router.navigateByUrl('/pages');
+            },
+            error: err => Swal.fire('Error', err.error.mensaje, 'error')
+          }
+        );
     }
   }
 

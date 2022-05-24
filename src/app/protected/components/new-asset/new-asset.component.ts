@@ -25,9 +25,9 @@ export class NewAssetComponent {
       tipo: ['Computador', Validators.required],
       edificio: ['Inluxor', Validators.required],
       piso: ['Piso 1', Validators.required],
-      hostname: ['', Validators.required],
-      direccion_mac: ['', [Validators.required, Validators.pattern('^([0-9A-F]{2}[:-]){5}([0-9A-F]{2})$')]],
-      direccion_ip: ['', [Validators.required, Validators.pattern("^(?:(?:^|\.)(?:2(?:5[0-5]|[0-4]\\d)|1?\\d?\\d)){4}$")]],
+      hostname: ['xD', Validators.required],
+      direccion_mac: ['00-00-00-00-00-00', [Validators.required, Validators.pattern('^([0-9A-F]{2}[:-]){5}([0-9A-F]{2})$')]],
+      direccion_ip: ['192.168.1.2', [Validators.required, Validators.pattern("^(?:(?:^|\.)(?:2(?:5[0-5]|[0-4]\\d)|1?\\d?\\d)){4}$")]],
       reservada_ip: ['false', Validators.required],
       fecha_entrega: ['', Validators.required]
     }
@@ -57,27 +57,46 @@ export class NewAssetComponent {
       this.activo = this.nuevoActivoForm.value;
       const userC: User = this.userService.getUserData();
       this.activo.id_ultimatix = userC.id_numero_Ultimatix;
-      this.activosService.register(this.activo)
-        .subscribe(
-          {
-            next: () => {
-              this.clickMe();
-              this.nuevoActivoForm.reset(
-                {
-                  area: ['CTB'],
-                  tipo: 'Computador',
-                  edificio: ['Inluxor'],
-                  piso: ['Piso 1'],
-                  reservada_ip: ['false'],
-                }
-              );
-              this.dialogRef.close();
-              Swal.fire('¡Éxito!', 'Activo registrado con éxito.', 'success');
-            },
-            error: err => Swal.fire('¡Error!', err.error.mensaje, 'error')
-          }
-        );
+
+      Swal.fire({
+        title: '¿Estás seguro de registrar el activo?',
+        text: "",
+        icon: 'info',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí',
+        cancelButtonText: 'No',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.activosService
+            .register(this.activo)
+            .subscribe(
+              {
+                next: () => {
+                  this.clickMe();
+                  this.resetForm();
+                  this.dialogRef.close();
+                  Swal.fire('¡Éxito!', 'Activo registrado con éxito.', 'success');
+                },
+                error: err => Swal.fire('¡Error!', err.error.mensaje, 'error')
+              }
+            );
+        }
+      })
     }
+  }
+
+  resetForm() {
+    this.nuevoActivoForm.reset(
+      {
+        area: ['CTB'],
+        tipo: 'Computador',
+        edificio: ['Inluxor'],
+        piso: ['Piso 1'],
+        reservada_ip: ['false'],
+      }
+    );
   }
 
   close() {
