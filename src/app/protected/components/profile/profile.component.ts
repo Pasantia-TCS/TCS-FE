@@ -44,9 +44,9 @@ export class ProfileComponent implements OnInit {
 
   userInfoForm: FormGroup = this.fb.group(
     {
-      email: ['', [Validators.required, Validators.pattern('')]],
+      email: ['', [Validators.required, Validators.pattern(''), Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
       phone: ['', [Validators.required, Validators.pattern('')]],
-      netuser: ['', [Validators.required]]
+      netuser: ['', [Validators.required, Validators.minLength(8), Validators.pattern('^@.*')]]
     }
   );
 
@@ -91,6 +91,18 @@ export class ProfileComponent implements OnInit {
           next: skills => skills.forEach((element) => this.skillsList.push(element.nombre))
         }
       );
+  }
+
+  get phone() {
+    return this.userInfoForm.get('phone');
+  }
+
+  get email() {
+    return this.userInfoForm.get('email');
+  }
+
+  get netuser() {
+    return this.userInfoForm.get('netuser');
   }
 
   addSkill() {
@@ -142,23 +154,27 @@ export class ProfileComponent implements OnInit {
   }
 
   updateUserInfo() {
-    const { email, phone, netuser } = this.userInfoForm.value;
-    this.userService.updateUserProfile(this.ultimatix, phone, email)
-      .subscribe(
-        {
-          next: resp => {
-            this.currentUser = { ...resp };
-            Swal.fire('¡Éxito!', 'La información de usuario se ha actualizado con éxito.', 'success');
+    if (this.userInfoForm.invalid) {
+      this.userInfoForm.markAllAsTouched();
+    } else {
+      const { email, phone, netuser } = this.userInfoForm.value;
+      this.userService.updateUserProfile(this.ultimatix, phone, email)
+        .subscribe(
+          {
+            next: resp => {
+              this.currentUser = { ...resp };
+              Swal.fire('¡Éxito!', 'La información de usuario se ha actualizado con éxito.', 'success');
+            }
           }
-        }
-      );
+        );
 
-    this.userService.updateNetuser(this.ultimatix, netuser)
-      .subscribe(
-        {
-          next: resp => this.profile.usuario_red = resp.usuario_red
-        }
-      );
+      this.userService.updateNetuser(this.ultimatix, netuser)
+        .subscribe(
+          {
+            next: resp => this.profile.usuario_red = resp.usuario_red
+          }
+        );
+    }
   }
 
 }
