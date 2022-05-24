@@ -217,22 +217,55 @@
                           <option value="">Seleccione una habilidad</option>
                           <option [ngValue]="skill" *ngFor="let skill of skillsList">{{skill}}</option>
                         </select>
-                        <button type="button" (click)="addSkill()" class="btn btn-outline-primary">Añadir</button>
                       </div>
                     </div>
                   </div>
 
-                  <!-- My skills list -->
+                  <!-- Add knowledge level -->
                   <div class="row mb-3">
-                    <label class="col-sm-3 col-form-label">Mis habilidades:</label>
+                    <label class="col-sm-3 col-form-label">Nivel de conocimiento:</label>
                     <div class="col-sm-9">
-                      <div class="input-group mb-1" *ngFor="let mySkill of tempSkillsList; let i = index">
-                        <span class="input-group-text" id="addon-wrapping">{{i + 1}}</span>
-                        <input type="text" class="form-control" disabled [value]="mySkill">
-                        <button type="button" class="btn btn-outline-danger" (click)="deleteSkill(i)">Eliminar</button>
+                      <div class="input-group">
+                        <select class=" form-select" id="levels" formControlName="levels">
+                          <option value="">Seleccione el nivel de conocimiento </option>
+                          <option [ngValue]="level" *ngFor="let level of knowledgeLevelList">{{level}}</option>
+                        </select>
                       </div>
                     </div>
                   </div>
+
+                  <div class="row mb-3">
+                    <button class="" type="button" (click)="addSkill()" class="btn btn-outline-primary">Añadir</button>
+                  </div>
+
+                  <!-- My skills list -->
+                  <div class="row mb-3 text-center">
+                    <label class="">Mis habilidades:</label>
+                  </div>
+
+                  <div class="row mb-3">
+                    <label class="col-sm-5 col-form-label">Mis habilidades:</label>
+                    <label class="col-sm-5 col-form-label">Nivel de conocimiento:</label>
+
+                    <div class="col-sm-5">
+                      <div class="input-group mb-1" *ngFor="let mySkill of tempSkillsList; let i = index">
+                        <span class="input-group-text" id="addon-wrapping">{{i + 1}}</span>
+                        <input type="text" class="form-control" disabled [value]="mySkill">
+                      </div>
+                    </div>
+                    
+                    <div class="col-sm-6">
+                      <div class="input-group mb-1" *ngFor="let myLevel of tempKnowledgeLevelList; let i = index">
+                        <span class="input-group-text" id="addon-wrapping">{{i + 1}}</span>
+                        <input type="text" class="form-control" disabled [value]="myLevel">
+                        <button type="button" class="btn btn-outline-danger" (click)="deleteSkill(i)">Eliminar</button>
+                      </div>
+                    </div>
+
+                    
+                  </div>
+
+               
 
                 </form>
 

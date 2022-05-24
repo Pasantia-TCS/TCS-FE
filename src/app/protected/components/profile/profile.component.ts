@@ -42,6 +42,9 @@ export class ProfileComponent implements OnInit {
   skillsList: string[] = [];
   tempSkillsList: string[] = [];
 
+  knowledgeLevelList: string[] = ['Alto', 'Medio', 'Bajo'];
+  tempKnowledgeLevelList: string[] = [];  
+
   userInfoForm: FormGroup = this.fb.group(
     {
       email: ['', [Validators.required, Validators.pattern('')]],
@@ -58,7 +61,9 @@ export class ProfileComponent implements OnInit {
 
   skillsForm: FormGroup = this.fb.group(
     {
-      skills: ['', Validators.required]
+      skills: ['', Validators.required],
+      levels: ['', Validators.required]
+
     }
   );
 
@@ -98,14 +103,19 @@ export class ProfileComponent implements OnInit {
       Swal.fire('¡Advertencia!', 'Por favor seleccione una habilidad', 'warning');
     } else if (this.tempSkillsList.includes(this.skillsForm.value.skills)) {
       Swal.fire('¡Advertencia!', 'Por favor seleccione una habilidad diferente', 'warning');
+    } else if (this.skillsForm.value.levels === "") {
+      Swal.fire('¡Advertencia!', 'Por favor seleccione un nivel de conocimiento', 'warning');
     } else {
       this.tempSkillsList.push(this.skillsForm.value.skills);
+      this.tempKnowledgeLevelList.push(this.skillsForm.value.levels);
+
       this.savedSkills = false;
     }
   }
 
   deleteSkill(index: number) {
     this.tempSkillsList.splice(index, 1);
+    this.tempKnowledgeLevelList.splice(index, 1);
     this.savedSkills = false;
   }
 
@@ -118,6 +128,7 @@ export class ProfileComponent implements OnInit {
       )
     this.savedSkills = true;
   }
+
 
   loadAboutMe() {
     this.profile.sobreMi = this.aboutMeForm.value.aboutMe;
