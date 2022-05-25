@@ -29,6 +29,7 @@ export class ProfileComponent implements OnInit {
     id_ultimatix: 0,
     sobreMi: '',
     habilidades: [],
+    nivel_habilidad: [],
     usuario_red: '',
     asignacion_usuario: 0,
     nombres_completos: ''
@@ -36,7 +37,6 @@ export class ProfileComponent implements OnInit {
 
   savedSkills: boolean = true;
   savedAboutMe: boolean = true;
-
 
   // Skills
   skillsList: string[] = [];
@@ -132,10 +132,15 @@ export class ProfileComponent implements OnInit {
   }
 
   loadSkills() {
-    this.profileService.updateMySkills(this.ultimatix, this.tempSkillsList)
+    this.profileService.updateMySkills(this.ultimatix, this.tempSkillsList, this.tempKnowledgeLevelList)
       .subscribe(
         {
-          next: () => this.profile.habilidades = [...this.tempSkillsList]
+
+          next: () => {
+            this.profile.habilidades = [...this.tempSkillsList],
+            this.profile.nivel_habilidad = [...this.tempKnowledgeLevelList]
+          }
+
         }
       )
     this.savedSkills = true;
