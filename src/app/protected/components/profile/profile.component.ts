@@ -29,6 +29,7 @@ export class ProfileComponent implements OnInit {
     id_ultimatix: 0,
     sobreMi: '',
     habilidades: [],
+    nivel_habilidad: [],
     usuario_red: '',
     asignacion_usuario: 0,
     nombres_completos: ''
@@ -37,16 +38,18 @@ export class ProfileComponent implements OnInit {
   savedSkills: boolean = true;
   savedAboutMe: boolean = true;
 
-
   // Skills
   skillsList: string[] = [];
   tempSkillsList: string[] = [];
 
+  knowledgeLevelList: string[] = ['Alto', 'Medio', 'Bajo'];
+  tempKnowledgeLevelList: string[] = [];  
+
   userInfoForm: FormGroup = this.fb.group(
     {
-      email: ['', [Validators.required, Validators.pattern('')]],
+      email: ['', [Validators.required, Validators.pattern(''), Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
       phone: ['', [Validators.required, Validators.pattern('')]],
-      netuser: ['', [Validators.required]]
+      netuser: ['', [Validators.required, Validators.minLength(8), Validators.pattern('^@.*')]]
     }
   );
 
@@ -58,7 +61,9 @@ export class ProfileComponent implements OnInit {
 
   skillsForm: FormGroup = this.fb.group(
     {
-      skills: ['', Validators.required]
+      skills: ['', Validators.required],
+      levels: ['', Validators.required]
+
     }
   );
 
@@ -93,31 +98,54 @@ export class ProfileComponent implements OnInit {
       );
   }
 
+  get phone() {
+    return this.userInfoForm.get('phone');
+  }
+
+  get email() {
+    return this.userInfoForm.get('email');
+  }
+
+  get netuser() {
+    return this.userInfoForm.get('netuser');
+  }
+
   addSkill() {
     if (this.skillsForm.value.skills === "") {
       Swal.fire('¡Advertencia!', 'Por favor seleccione una habilidad', 'warning');
     } else if (this.tempSkillsList.includes(this.skillsForm.value.skills)) {
       Swal.fire('¡Advertencia!', 'Por favor seleccione una habilidad diferente', 'warning');
+    } else if (this.skillsForm.value.levels === "") {
+      Swal.fire('¡Advertencia!', 'Por favor seleccione un nivel de conocimiento', 'warning');
     } else {
       this.tempSkillsList.push(this.skillsForm.value.skills);
+      this.tempKnowledgeLevelList.push(this.skillsForm.value.levels);
+
       this.savedSkills = false;
     }
   }
 
   deleteSkill(index: number) {
     this.tempSkillsList.splice(index, 1);
+    this.tempKnowledgeLevelList.splice(index, 1);
     this.savedSkills = false;
   }
 
   loadSkills() {
-    this.profileService.updateMySkills(this.ultimatix, this.tempSkillsList)
+    this.profileService.updateMySkills(this.ultimatix, this.tempSkillsList, this.tempKnowledgeLevelList)
       .subscribe(
         {
-          next: () => this.profile.habilidades = [...this.tempSkillsList]
+
+          next: () => {
+            this.profile.habilidades = [...this.tempSkillsList],
+            this.profile.nivel_habilidad = [...this.tempKnowledgeLevelList]
+          }
+
         }
       )
     this.savedSkills = true;
   }
+
 
   loadAboutMe() {
     this.profile.sobreMi = this.aboutMeForm.value.aboutMe;
@@ -142,23 +170,27 @@ export class ProfileComponent implements OnInit {
   }
 
   updateUserInfo() {
-    const { email, phone, netuser } = this.userInfoForm.value;
-    this.userService.updateUserProfile(this.ultimatix, phone, email)
-      .subscribe(
-        {
-          next: resp => {
-            this.currentUser = { ...resp };
-            Swal.fire('¡Éxito!', 'La información de usuario se ha actualizado con éxito.', 'success');
+    if (this.userInfoForm.invalid) {
+      this.userInfoForm.markAllAsTouched();
+    } else {
+      const { email, phone, netuser } = this.userInfoForm.value;
+      this.userService.updateUserProfile(this.ultimatix, phone, email)
+        .subscribe(
+          {
+            next: resp => {
+              this.currentUser = { ...resp };
+              Swal.fire('¡Éxito!', 'La información de usuario se ha actualizado con éxito.', 'success');
+            }
           }
-        }
-      );
+        );
 
-    this.userService.updateNetuser(this.ultimatix, netuser)
-      .subscribe(
-        {
-          next: resp => this.profile.usuario_red = resp.usuario_red
-        }
-      );
+      this.userService.updateNetuser(this.ultimatix, netuser)
+        .subscribe(
+          {
+            next: resp => this.profile.usuario_red = resp.usuario_red
+          }
+        );
+    }
   }
 
 }

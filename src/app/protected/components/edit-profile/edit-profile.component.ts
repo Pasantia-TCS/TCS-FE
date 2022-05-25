@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-edit-profile',
@@ -6,11 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styles: [
   ]
 })
-export class EditProfileComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+export class EditProfileComponent {
 
 }

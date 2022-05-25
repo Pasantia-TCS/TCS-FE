@@ -69,16 +69,16 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                <form [formGroup]="userInfoForm">
+                <form [formGroup]="userInfoForm" autocomplete="off">
                   <div class="row">
-                    <div class="col col-sm-6">
+                    <div class="col-12 col-sm-6">
                       <div class="form-floating mb-3">
                         <input type="text" class="form-control rounded-pill" id="floatingFullname"
                           [value]="profile.nombres_completos" disabled>
                         <label for="floatingFullname">Nombres completos</label>
                       </div>
                     </div>
-                    <div class="col col-sm-6">
+                    <div class="col-12 col-sm-6">
                       <div class="form-floating mb-3">
                         <input type="text" class="form-control rounded-pill" id="floatingUltimatix" [value]="ultimatix"
                           disabled>
@@ -89,34 +89,58 @@
 
                   <div class="row">
                     <!-- Email -->
-                    <div class="col col-sm-6">
+                    <div class="col-12 col-sm-6">
                       <div class="form-floating mb-3">
                         <input type="email" class="form-control rounded-pill" id="floatingEmail"
                           formControlName="email">
                         <label for="floatingEmail">Correo electrónico</label>
+                        <div *ngIf="(email?.invalid && email?.touched) || email?.dirty">
+                          <span class="form-text text-danger float-start" *ngIf="email?.errors?.['required']">
+                            * Por favor ingresa un correo electrónico.
+                          </span>
+                          <span class="form-text text-danger float-start" *ngIf="email?.errors?.['pattern']">
+                            * Por favor ingresa un correo electrónico válido.
+                          </span>
+                        </div>
                       </div>
                     </div>
                     <!-- Phone -->
-                    <div class="col col-sm-6">
+                    <div class="col-12 col-sm-6">
                       <div class="form-floating mb-3">
                         <input type="phone" class="form-control rounded-pill" id="floatingPhone"
                           formControlName="phone">
                         <label for="floatingPhone">Teléfono</label>
+                        <div *ngIf="phone?.invalid && phone?.touched">
+                          <span class="form-text text-danger float-start" *ngIf="phone?.invalid">
+                            * Por favor ingresa un número de teléfono válido.
+                          </span>
+                        </div>
                       </div>
                     </div>
                   </div>
 
                   <div class="row">
-                    <!-- Email -->
-                    <div class="col col-sm-6">
+                    <!-- Netuser -->
+                    <div class="col-12 col-sm-6">
                       <div class="form-floating mb-3">
                         <input type="text" class="form-control rounded-pill" id="floatingNetuser"
                           [value]="profile.usuario_red" formControlName="netuser">
-                        <label for="floatingNetuser">Usuario de red</label>
+                        <label for="floatingNetuser">Usuario de red (Ej. @netuser)</label>
+                        <div *ngIf="(netuser?.invalid && netuser?.touched) || netuser?.dirty">
+                          <span class="form-text text-danger float-start" *ngIf="netuser?.errors?.['required']">
+                            * Ingresa un usuario de red.
+                          </span>
+                          <span class="form-text text-danger float-start" *ngIf="netuser?.errors?.['minlength']">
+                            * El usuario de red debe tener al menos 8 caracteres.
+                          </span>
+                          <span class="form-text text-danger float-start" *ngIf="netuser?.errors?.['pattern']">
+                            * Por favor ingresa un usuario de red válido.
+                          </span>
+                        </div>
                       </div>
                     </div>
                     <!-- Asignation (%) -->
-                    <div class="col col-sm-6">
+                    <div class="col-12 col-sm-6">
                       <div class="form-floating mb-3">
                         <input type="number" class="form-control rounded-pill" id="floatingAsignation"
                           [value]="profile.asignacion_usuario" disabled>
@@ -217,22 +241,55 @@
                           <option value="">Seleccione una habilidad</option>
                           <option [ngValue]="skill" *ngFor="let skill of skillsList">{{skill}}</option>
                         </select>
-                        <button type="button" (click)="addSkill()" class="btn btn-outline-primary">Añadir</button>
                       </div>
                     </div>
                   </div>
 
-                  <!-- My skills list -->
+                  <!-- Add knowledge level -->
                   <div class="row mb-3">
-                    <label class="col-sm-3 col-form-label">Mis habilidades:</label>
+                    <label class="col-sm-3 col-form-label">Nivel de conocimiento:</label>
                     <div class="col-sm-9">
-                      <div class="input-group mb-1" *ngFor="let mySkill of tempSkillsList; let i = index">
-                        <span class="input-group-text" id="addon-wrapping">{{i + 1}}</span>
-                        <input type="text" class="form-control" disabled [value]="mySkill">
-                        <button type="button" class="btn btn-outline-danger" (click)="deleteSkill(i)">Eliminar</button>
+                      <div class="input-group">
+                        <select class=" form-select" id="levels" formControlName="levels">
+                          <option value="">Seleccione el nivel de conocimiento </option>
+                          <option [ngValue]="level" *ngFor="let level of knowledgeLevelList">{{level}}</option>
+                        </select>
                       </div>
                     </div>
                   </div>
+
+                  <div class="row mb-3">
+                    <button class="" type="button" (click)="addSkill()" class="btn btn-outline-primary">Añadir</button>
+                  </div>
+
+                  <!-- My skills list -->
+                  <div class="row mb-3 text-center">
+                    <label class="">Mis habilidades:</label>
+                  </div>
+
+                  <div class="row mb-3">
+                    <label class="col-sm-5 col-form-label">Mis habilidades:</label>
+                    <label class="col-sm-5 col-form-label">Nivel de conocimiento:</label>
+
+                    <div class="col-sm-5">
+                      <div class="input-group mb-1" *ngFor="let mySkill of tempSkillsList; let i = index">
+                        <span class="input-group-text" id="addon-wrapping">{{i + 1}}</span>
+                        <input type="text" class="form-control" disabled [value]="mySkill">
+                      </div>
+                    </div>
+                    
+                    <div class="col-sm-6">
+                      <div class="input-group mb-1" *ngFor="let myLevel of tempKnowledgeLevelList; let i = index">
+                        <span class="input-group-text" id="addon-wrapping">{{i + 1}}</span>
+                        <input type="text" class="form-control" disabled [value]="myLevel">
+                        <button type="button" class="btn btn-outline-danger" (click)="deleteSkill(i)">Eliminar</button>
+                      </div>
+                    </div>
+
+                    
+                  </div>
+
+               
 
                 </form>
 

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { lastValueFrom, Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Asset } from '../interfaces/activo';
+import { Asset, AssetType } from '../interfaces/activo';
 
 @Injectable({
   providedIn: 'root'
@@ -10,12 +10,36 @@ import { Asset } from '../interfaces/activo';
 export class ActivosService {
 
   private baseUrl: string = `${environment.localUrl}/activos`;
+  private subject = new Subject<any>();
 
   constructor(private http: HttpClient) { }
 
-  obtenerCatalogo(tipo: string) {
-    const url: string = `${this.baseUrl}/${tipo}`;
-    return this.http.get(url);
+  sendClickEvent() {
+    this.subject.next(true);
+  }
+
+  getClickEvent(): Observable<any> {
+    return this.subject.asObservable();
+  }
+
+  getTypes() {
+    const url: string = `${this.baseUrl}/tipos`;
+    return this.http.get<AssetType[]>(url);
+  }
+
+  getAreas() {
+    const url: string = `${this.baseUrl}/areas`;
+    return this.http.get<AssetType[]>(url);
+  }
+
+  getEdificios() {
+    const url: string = `${this.baseUrl}/edificios`;
+    return this.http.get<AssetType[]>(url);
+  }
+
+  getPisos() {
+    const url: string = `${this.baseUrl}/pisos`;
+    return this.http.get<AssetType[]>(url);
   }
 
   register(activo: Asset) {
@@ -37,16 +61,6 @@ export class ActivosService {
     const url: string = `${this.baseUrl}/buscarUltimatix`;
     const source$ = this.http.post<Asset[]>(url, { id_ultimatix: ultimatix });
     return lastValueFrom(source$);
-  }
-
-  private subject = new Subject<any>();
-
-  sendClickEvent() {
-    this.subject.next(true);
-  }
-
-  getClickEvent(): Observable<any> {
-    return this.subject.asObservable();
   }
 
   setAssetStatus(id: string, ultimatix: string, deliveryDate: string) {

@@ -1,17 +1,19 @@
-<!-- Header -->
-<app-header title="Registro de activos"></app-header>
+<div class="container">
+  <!-- Header -->
+  <app-header title="Registro de activos"></app-header>
 
-<!-- Options -->
-<div class="row mb-2">
-  <div class="col-12 col-sm-3 mx-auto mb-2">
-    <app-button buttonName="Registrar activo" iconName="add_circle" [buttonIcon]="true" (btnClick)="openNewAsset()">
-    </app-button>
+  <!-- Options -->
+  <div class="row mb-2">
+    <div class="col-12 col-sm-3 mx-auto mb-2">
+      <app-button buttonName="Registrar activo" iconName="add_circle" [buttonIcon]="true" (btnClick)="openNewAsset()">
+      </app-button>
+    </div>
+    <div class="col-12 col-sm-3 mx-auto mb-2">
+      <app-button buttonName="Generar reporte" iconName="save_alt" [buttonIcon]="true" (btnClick)="exportTable()">
+      </app-button>
+    </div>
   </div>
-  <div class="col-12 col-sm-3 mx-auto mb-2">
-    <app-button buttonName="Generar reporte" iconName="save_alt" [buttonIcon]="true" (btnClick)="exportTable()">
-    </app-button>
-  </div>
+
+  <!-- Table -->
+  <p-table (indexToDelete)="deleteItem($event)" (deliverEvent)="openDeliverItem($event)"></p-table>
 </div>
-
-<!-- Table -->
-<p-table (indexToDelete)="deleteItem($event)" (deliverEvent)="openDeliverItem($event)"></p-table>

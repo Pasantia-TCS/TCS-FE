@@ -13,7 +13,6 @@ import { EquiposService } from '../../services/equipos.service';
 export class NewTeamComponent implements OnInit {
 
   tipos: string[] = ['Proyecto', 'Célula', 'Tribu'];
-  aux = ["Proyecto", "Célula", "Tribu"]
   update: boolean = false;
 
   nuevoEquipoForm: FormGroup = this.fb.group(

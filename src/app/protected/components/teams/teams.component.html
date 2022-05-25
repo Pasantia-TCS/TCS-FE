@@ -1,17 +1,19 @@
-<!-- Header -->
-<app-header title="Equipos" buttonName="Añadir equipo" icon="add_circle"></app-header>
+<div class="container">
+  <!-- Header -->
+  <app-header title="Equipos" buttonName="Añadir equipo" icon="add_circle"></app-header>
 
-<!-- Options -->
-<div class="row mb-2">
-  <div class="col-12 col-sm-3 mx-auto mb-2">
-    <app-button buttonName="Añadir equipo" iconName="add_circle" [buttonIcon]="true" (btnClick)="createTeam()">
-    </app-button>
+  <!-- Options -->
+  <div class="row mb-2">
+    <div class="col-12 col-sm-3 mx-auto mb-2">
+      <app-button buttonName="Añadir equipo" iconName="add_circle" [buttonIcon]="true" (btnClick)="createTeam()">
+      </app-button>
+    </div>
+    <div class="col-12 col-sm-3 mx-auto mb-2">
+      <app-button buttonName="Generar reporte" iconName="save_alt" [buttonIcon]="true" (btnClick)="exportTable()">
+      </app-button>
+    </div>
   </div>
-  <div class="col-12 col-sm-3 mx-auto mb-2">
-    <app-button buttonName="Generar reporte" iconName="save_alt" [buttonIcon]="true" (btnClick)="exportTable()">
-    </app-button>
-  </div>
+
+  <!-- Table -->
+  <app-table-equipos (deleteEvent)="deleteTeam($event)" (updateEvent)="updateTeam($event)"></app-table-equipos>
 </div>
-
-<!-- Table -->
-<app-table-equipos (deleteEvent)="deleteTeam($event)" (updateEvent)="updateTeam($event)"></app-table-equipos>

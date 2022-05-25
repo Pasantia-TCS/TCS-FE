@@ -1,4 +1,3 @@
-import { DatePipe } from '@angular/common';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { User } from 'src/app/auth/interfaces/user';
@@ -21,11 +20,6 @@ export class AssetsComponent implements OnInit, AfterViewInit {
   activos: Asset[] = [];
   currentUser: User = {};
   activoActual: Asset = {};
-
-  pipe = new DatePipe('en-US');
-  date = this.pipe.transform(Date.now(), 'dd-MM-yyyy');
-
-  fileName: string = 'Reporte Activos ' + this.date + '.xlsx';
 
   @ViewChild(TableBasic) table: any;
 
@@ -57,7 +51,9 @@ export class AssetsComponent implements OnInit, AfterViewInit {
   }
 
   openNewAsset(): void {
-    this.dialog.open(NewAssetComponent);
+    this.dialog.open(NewAssetComponent, {
+      width: '600px',
+    });
   }
 
   deleteItem(id_activo: string): void {
@@ -66,12 +62,14 @@ export class AssetsComponent implements OnInit, AfterViewInit {
 
     Swal.fire({
       title: '¿Quieres eliminar el activo?',
-      showDenyButton: true,
+      text: '¡No podrás revertir esto!',
+      icon: 'warning',
       showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
       confirmButtonText: 'Sí',
-      denyButtonText: 'No',
-      cancelButtonText: 'Cancelar',
-    }).then((result) => {
+      cancelButtonText: 'No'
+    }).then(result => {
       if (result.isConfirmed) {
         this.activosService.eliminar(id_activo, ultimatix)
           .subscribe(
@@ -84,10 +82,8 @@ export class AssetsComponent implements OnInit, AfterViewInit {
               error: err => Swal.fire('Error', err.error.mensaje, 'error')
             }
           );
-      } else if (result.isDenied) {
-        Swal.fire('El activo no se ha eliminado.', '', 'info')
       }
-    })
+    });
   }
 
   openDeliverItem(asset: Asset) {
