@@ -158,8 +158,9 @@
       </div>
     </div>
   </form>
+  {{nuevoActivoForm.valid}}
 </div>
 <div mat-dialog-actions>
   <button mat-stroked-button (click)="close()">Cancelar</button>
-  <button mat-stroked-button (click)="saveAsset()" [disabled]="nuevoActivoForm.invalid">Registrar activo</button>
+  <button mat-stroked-button (click)="saveAsset()">Registrar activo</button>
 </div>

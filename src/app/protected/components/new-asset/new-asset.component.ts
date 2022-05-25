@@ -49,19 +49,15 @@ export class NewAssetComponent implements OnInit {
   ngOnInit(): void {
     // Areas
     this.activosService.getAreas()
-      .subscribe(
-        {
-          next: resp => this.areas = resp
-        }
-      )
+      .subscribe({
+        next: resp => this.areas = resp
+      });
 
     // Types
     this.activosService.getTypes()
-      .subscribe(
-        {
-          next: resp => this.tipos = resp
-        }
-      )
+      .subscribe({
+        next: resp => this.tipos = resp
+      });
   }
 
   getCtrl(controlName: string) {
@@ -73,8 +69,32 @@ export class NewAssetComponent implements OnInit {
   }
 
   saveAsset() {
+
+    if (this.nuevoActivoForm.get('tipo')?.value !== 'CPU/Portatil') {
+      this.nuevoActivoForm.get('hostname')?.clearValidators();
+      this.nuevoActivoForm.get('hostname')?.updateValueAndValidity();
+      this.nuevoActivoForm.get('direccion_mac')?.clearValidators();
+      this.nuevoActivoForm.get('direccion_mac')?.updateValueAndValidity();
+      this.nuevoActivoForm.get('direccion_ip')?.clearValidators();
+      this.nuevoActivoForm.get('direccion_ip')?.updateValueAndValidity();
+      this.nuevoActivoForm.get('reservada_ip')?.clearValidators();
+      this.nuevoActivoForm.get('reservada_ip')?.updateValueAndValidity();
+    } else {
+      this.nuevoActivoForm.get('hostname')?.setValidators([Validators.required]);
+      this.nuevoActivoForm.get('hostname')?.updateValueAndValidity();
+      this.nuevoActivoForm.get('direccion_mac')?.setValidators([Validators.required, Validators.pattern('^([0-9A-F]{2}[:-]){5}([0-9A-F]{2})$')]);
+      this.nuevoActivoForm.get('direccion_mac')?.updateValueAndValidity();
+      this.nuevoActivoForm.get('direccion_ip')?.setValidators([Validators.required, Validators.pattern("^(?:(?:^|\.)(?:2(?:5[0-5]|[0-4]\\d)|1?\\d?\\d)){4}$")]);
+      this.nuevoActivoForm.get('direccion_ip')?.updateValueAndValidity();
+      this.nuevoActivoForm.get('reservada_ip')?.setValidators([Validators.required]);
+      this.nuevoActivoForm.get('reservada_ip')?.updateValueAndValidity();
+    }
+
+    alert(this.nuevoActivoForm.valid);
+
     if (this.nuevoActivoForm.invalid) {
       this.nuevoActivoForm.markAllAsTouched();
+      alert('xD!!!');
     } else {
       this.activo = this.nuevoActivoForm.value;
       const userC: User = this.userService.getUserData();
