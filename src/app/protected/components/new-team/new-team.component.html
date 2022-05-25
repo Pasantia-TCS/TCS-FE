@@ -18,7 +18,7 @@
       <!-- Type field -->
       <div class="col-12 col-sm-6 mb-3 form-floating">
         <select id="floatingTeamType" class="form-select rounded-pill" formControlName="tipo_equipo_asi">
-          <option [value]="+ aux.indexOf(tipo)" *ngFor="let tipo of tipos">{{tipo + '|' + aux.indexOf(tipo) }}</option>
+          <option [value]="+ tipos.indexOf(tipo)" *ngFor="let tipo of tipos">{{tipo + '|' + tipos.indexOf(tipo) }}</option>
         </select>
         <label for="floatingTeamType">Tipo</label>
         <div

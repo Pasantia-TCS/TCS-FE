@@ -51,7 +51,9 @@ export class AssetsComponent implements OnInit, AfterViewInit {
   }
 
   openNewAsset(): void {
-    this.dialog.open(NewAssetComponent);
+    this.dialog.open(NewAssetComponent, {
+      width: '600px',
+    });
   }
 
   deleteItem(id_activo: string): void {
