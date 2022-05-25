@@ -1,37 +1,31 @@
 <h1 mat-dialog-title>Registrar asignación</h1>
 <div mat-dialog-content>
-  <form>
+  <form [formGroup]="nuevoAsignacionForm">
     <div class="row">
-      <!-- Types -->
-      <div class="col-12 col-sm-6 mb-3">
-        <select class="form-select">
-          <option selected>Tipo</option>
-          <option *ngFor="let type of types" [value]="type">{{type}}</option>>
+      <!-- Teams -->
+      <div class="form-floating col-12 col-sm-12 mb-3">
+        <select id="floatingOptions" class="form-select" aria-label="Default select example" formControlName="id_equipo_asi">
+          <option selected>Open this select menu</option>
+          <option *ngFor="let item of teams" [value]="item.id_asi">{{item.nombre_equipo_asi + ' | ' +
+            types[item.tipo_equipo_asi!]}}</option>
         </select>
-      </div>
-      <!-- Options -->
-      <div class="col-12 col-sm-6 mb-3">
-        <input class="form-control" list="projects" placeholder="Buscar" size="5">
-        <datalist id="projects">
-          <option *ngFor="let project of projects" [value]="project">
-        </datalist>
+        <label for="floatingOptions">Equipos</label>
       </div>
     </div>
 
     <div class="row">
       <!-- Assignment percentage -->
-      <div class="col mb-3">
-        <select class="form-select">
-          <option selected>Porcentaje de asignación</option>
+      <div class="form-floating col-12 mb-3">
+        <select id="floatingPercent" class="form-select" formControlName="asignacion">
           <option [value]="asignacion" [value]="i * 100" *ngFor="let i of [0.25, 0.5, 0.75, 1]">{{i | percent}}</option>
-        <div
-        *ngIf="(getCtrl('asignacion')?.invalid && getCtrl('asignacion')?.touched) || getCtrl('asignacion')?.dirty">
-          <span class="form-text text-danger float-start"
-          *ngIf="getCtrl('asignacion')?.errors?.['required']">
-            * Seleccione una opción válida.
-          </span>
-        </div>
+          <div
+            *ngIf="(getCtrl('asignacion')?.invalid && getCtrl('asignacion')?.touched) || getCtrl('asignacion')?.dirty">
+            <span class="form-text text-danger float-start" *ngIf="getCtrl('asignacion')?.errors?.['required']">
+              * Seleccione una opción válida.
+            </span>
+          </div>
         </select>
+        <label for="floatingPercent">Porcentaje de asignación</label>
       </div>
     </div>
 
@@ -46,22 +40,21 @@
             * Seleccione una fecha válida.
           </span>
         </div>
-    </div>
+      </div>
       <!-- End date -->
       <div class="col mb-3">
         <label class="form-label">Fecha de finalización</label>
         <input type="date" class="form-control" formControlName="fecha_fin">
-        <div
-        *ngIf="(getCtrl('fecha_fin')?.invalid && getCtrl('fecha_fin')?.touched) || getCtrl('fecha_fin')?.dirty">
-        <span class="form-text text-danger float-start" *ngIf="getCtrl('fecha_fin')?.errors?.['required']">
-          * Seleccione una fecha válida.
-        </span>
-      </div>
+        <div *ngIf="(getCtrl('fecha_fin')?.invalid && getCtrl('fecha_fin')?.touched) || getCtrl('fecha_fin')?.dirty">
+          <span class="form-text text-danger float-start" *ngIf="getCtrl('fecha_fin')?.errors?.['required']">
+            * Seleccione una fecha válida.
+          </span>
+        </div>
       </div>
     </div>
   </form>
 </div>
 <div mat-dialog-actions>
   <button mat-button mat-dialog-close>Cancelar</button>
-  <button mat-button (click)="close()">Registrar asignación</button>
+  <button mat-button (click)="registrarAsignacion()">Registrar asignación</button>
 </div>

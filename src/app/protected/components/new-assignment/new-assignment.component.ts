@@ -4,25 +4,34 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { AsignacionService } from 'src/app/protected/services/asignacion.service';
 import Swal from 'sweetalert2';
+import { EquiposService } from '../../services/equipos.service';
+import { Team } from '../../interfaces/equipo';
+import { UserService } from 'src/app/shared/services/user.service';
 @Component({
   selector: 'app-new-assignment',
   templateUrl: './new-assignment.component.html',
-  styles: []
+  styles: [
+    `
+  form label {
+    margin-left: 12px;
+  }
+  `
+  ]
 })
-export class NewAssignmentComponent {
+export class NewAssignmentComponent implements OnInit {
 
-  types: string = '';
-  projects: string = '';
+  types: string[] = ['Proyecto', 'Célula', 'Tribu'];
+  teams!: Team[];
+  ultimatix!: string;
 
   asignacion: Assignment = {};
 
   nuevoAsignacionForm: FormGroup = this.fb.group(
     {
-      projects: ['', Validators.required],
-      types: ['', Validators.required],
       id_equipo_asi: ['', Validators.required],
-      utimatix_asi: ['', Validators.required],
+      types: ['', Validators.required],
       asignacion: [0, Validators.required],
+      ultimatix_asi: [''],
       fecha_inicio: ['2022-10-08', Validators.required],
       fecha_fin: ['2022-10-10', Validators.required],
     }
@@ -32,11 +41,23 @@ export class NewAssignmentComponent {
     public dialogRef: MatDialogRef<NewAssignmentComponent>,
     private fb: FormBuilder,
     private asignacionService: AsignacionService,
+    private equiposService: EquiposService,
+    private userService: UserService
   ) { }
 
-  getTeam() {
-    return this.asignacionService.showByNameID(this.types, this.projects)
+  ngOnInit(): void {
+    // Get teams
+    this.equiposService.show()
+      .subscribe(
+        {
+          next: resp => this.teams = resp
+        }
+      );
+
+    // Get ultimatix
+    this.ultimatix = this.userService.getUltimatix()!;
   }
+
   getCtrl(controlName: string) {
     return this.nuevoAsignacionForm.get(controlName);
   }
@@ -44,7 +65,13 @@ export class NewAssignmentComponent {
   clickMe() {
     this.asignacionService.sendClickEvent();
   }
+
   registrarAsignacion() {
+
+    this.nuevoAsignacionForm.patchValue({
+      ultimatix_asi: this.ultimatix.toString()
+    });
+
     this.asignacionService.agregar(this.nuevoAsignacionForm.value)
       .subscribe(
         {

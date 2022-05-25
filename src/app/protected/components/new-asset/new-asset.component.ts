@@ -90,11 +90,8 @@ export class NewAssetComponent implements OnInit {
       this.nuevoActivoForm.get('reservada_ip')?.updateValueAndValidity();
     }
 
-    alert(this.nuevoActivoForm.valid);
-
     if (this.nuevoActivoForm.invalid) {
       this.nuevoActivoForm.markAllAsTouched();
-      alert('xD!!!');
     } else {
       this.activo = this.nuevoActivoForm.value;
       const userC: User = this.userService.getUserData();
