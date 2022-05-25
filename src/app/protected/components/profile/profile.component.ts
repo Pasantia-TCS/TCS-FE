@@ -63,7 +63,6 @@ export class ProfileComponent implements OnInit {
     {
       skills: ['', Validators.required],
       levels: ['', Validators.required]
-
     }
   );
 
@@ -85,6 +84,7 @@ export class ProfileComponent implements OnInit {
           next: resp => {
             this.profile = resp;
             this.tempSkillsList = [...this.profile.habilidades];
+            this.tempKnowledgeLevelList = [...this.profile.nivel_habilidad]
           }
         }
       );
@@ -93,11 +93,7 @@ export class ProfileComponent implements OnInit {
     this.profileService.getSkills()
       .subscribe(
         {
-          next: ( 
-            skills => skills.forEach((element) => this.skillsList.push(element.nombre))
-            //levels => levels.forEach((element) => this.knowledgeLevelList.push(element.nombre))
-          )
-          
+          next: skills => skills.forEach((element) => this.skillsList.push(element.nombre))
         }
       );
   }
@@ -124,7 +120,6 @@ export class ProfileComponent implements OnInit {
     } else {
       this.tempSkillsList.push(this.skillsForm.value.skills);
       this.tempKnowledgeLevelList.push(this.skillsForm.value.levels);
-
       this.savedSkills = false;
     }
   }
@@ -139,17 +134,14 @@ export class ProfileComponent implements OnInit {
     this.profileService.updateMySkills(this.ultimatix, this.tempSkillsList, this.tempKnowledgeLevelList)
       .subscribe(
         {
-
           next: () => {
             this.profile.habilidades = [...this.tempSkillsList],
             this.profile.nivel_habilidad = [...this.tempKnowledgeLevelList]
           }
-
         }
       )
     this.savedSkills = true;
   }
-
 
   loadAboutMe() {
     this.profile.sobreMi = this.aboutMeForm.value.aboutMe;

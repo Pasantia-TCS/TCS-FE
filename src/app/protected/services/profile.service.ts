@@ -28,7 +28,7 @@ export class ProfileService {
   }
 
   updateMySkills(ultimatix: string, skills: string[], knowledgeLevel: string[]) {
-    const url: string = `${this.baseUrl}/agregar-mis-habilidades`;
+    const url: string = `${this.baseUrl}/editarMisHabilidades`;
     const body = { id_ultimatix: ultimatix, habilidades: skills, nivel_habilidad: knowledgeLevel};
     console.log(body);
     return this.http.post<Profile>(url, body);
