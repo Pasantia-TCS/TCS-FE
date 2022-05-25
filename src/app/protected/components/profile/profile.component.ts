@@ -93,7 +93,11 @@ export class ProfileComponent implements OnInit {
     this.profileService.getSkills()
       .subscribe(
         {
-          next: skills => skills.forEach((element) => this.skillsList.push(element.nombre))
+          next: ( 
+            skills => skills.forEach((element) => this.skillsList.push(element.nombre))
+            //levels => levels.forEach((element) => this.knowledgeLevelList.push(element.nombre))
+          )
+          
         }
       );
   }
