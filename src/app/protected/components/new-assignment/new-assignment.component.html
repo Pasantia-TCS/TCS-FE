@@ -23,7 +23,14 @@
       <div class="col mb-3">
         <select class="form-select">
           <option selected>Porcentaje de asignación</option>
-          <option [value]="i * 100" *ngFor="let i of [0.25, 0.5, 0.75, 1]">{{i | percent}}</option>
+          <option [value]="asignacion" [value]="i * 100" *ngFor="let i of [0.25, 0.5, 0.75, 1]">{{i | percent}}</option>
+        <div
+        *ngIf="(getCtrl('asignacion')?.invalid && getCtrl('asignacion')?.touched) || getCtrl('asignacion')?.dirty">
+          <span class="form-text text-danger float-start"
+          *ngIf="getCtrl('asignacion')?.errors?.['required']">
+            * Seleccione una opción válida.
+          </span>
+        </div>
         </select>
       </div>
     </div>
@@ -32,12 +39,24 @@
       <!-- Start date -->
       <div class="col mb-3">
         <label class="form-label">Fecha de inicio</label>
-        <input type="date" class="form-control">
-      </div>
+        <input type="date" class="form-control" formControlName="fecha_inicio">
+        <div
+          *ngIf="(getCtrl('fecha_inicio')?.invalid && getCtrl('fecha_inicio')?.touched) || getCtrl('fecha_inicio')?.dirty">
+          <span class="form-text text-danger float-start" *ngIf="getCtrl('fecha_inicio')?.errors?.['required']">
+            * Seleccione una fecha válida.
+          </span>
+        </div>
+    </div>
       <!-- End date -->
       <div class="col mb-3">
         <label class="form-label">Fecha de finalización</label>
-        <input type="date" class="form-control">
+        <input type="date" class="form-control" formControlName="fecha_fin">
+        <div
+        *ngIf="(getCtrl('fecha_fin')?.invalid && getCtrl('fecha_fin')?.touched) || getCtrl('fecha_fin')?.dirty">
+        <span class="form-text text-danger float-start" *ngIf="getCtrl('fecha_fin')?.errors?.['required']">
+          * Seleccione una fecha válida.
+        </span>
+      </div>
       </div>
     </div>
   </form>
