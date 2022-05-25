@@ -209,7 +209,14 @@
           <div class="card-body">
             <h5 class="card-title fs-2 mb-3">Habilidades</h5>
             <ul class="list-group list-group-flush">
-              <li class="list-group-item" *ngFor="let skill of profile.habilidades">{{skill}}</li>
+              <div class="row">
+                <div class="col-12 col-sm-2">
+                  <li class="list-group-item" *ngFor="let skill of profile.habilidades">{{skill}}</li>
+                </div>
+                <div class="col-12 col-sm-2">
+                  <li class="list-group-item" *ngFor="let level of profile.nivel_habilidad">{{level}}</li>
+                </div>
+              </div>
             </ul>
           </div>
           <div class="row">
