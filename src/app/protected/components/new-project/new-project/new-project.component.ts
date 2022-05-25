@@ -76,24 +76,7 @@ export class NewProjectComponent implements OnInit {
     this.asignacionService.sendClickEvent();
   }
 
-  guardarAsignacion() {
-    this.asignacion = this.nuevoAsignacionForm.value;
-    this.usersTemp.forEach((user) => {
-      this.perfiles.push(user.id_ultimatix);
-    });
 
-    this.asignacionService.register(this.asignacion)
-      .subscribe(
-        {
-          next: () => {
-            this.clickMe();
-            this.nuevoAsignacionForm.reset();
-            Swal.fire('Éxito', 'Proyecto registrado con éxito.', 'success');
-          },
-          error: err => Swal.fire('Error', err.error.mensaje, 'error')
-        }
-      );
-  }
 
   addUserTemp(user: Profile) {
     this.usersTemp.push(user);
