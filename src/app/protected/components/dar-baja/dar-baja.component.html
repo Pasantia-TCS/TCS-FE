@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>Fecha de salida</h1>
+<div mat-dialog-content>
+  <form [formGroup]="salidaForm">
+    <div class="form-floating">
+      <input id="floatingDeliverDate" type="date" class="form-control rounded-pill" formControlName="fecha_baja">
+      <label for="floatingDeliverDate">Fecha de salida</label>
+    </div>
+  </form>
+  <div
+    *ngIf="(salidaForm.get('fecha_baja')?.invalid && salidaForm.get('fecha_baja')?.touched) || salidaForm.get('fecha_baja')?.dirty">
+    <span class="form-text text-danger float-start" *ngIf="salidaForm.get('fecha_baja')?.errors?.['required']">
+      * Seleccione una fecha válida.
+    </span>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button mat-button (click)="darBaja()">Guardar</button>
+</div>

@@ -43,11 +43,7 @@ export class TableEquiposComponent implements OnInit {
 
   loadTeams() {
     this.equiposService.show()
-      .subscribe(
-        {
-          next: resp => this.equipos = resp
-        }
-      )
+      .subscribe({ next: resp => this.equipos = resp })
   }
 
   deleteTeam(id_asset: string) {

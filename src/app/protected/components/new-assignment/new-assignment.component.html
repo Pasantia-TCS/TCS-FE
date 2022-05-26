@@ -4,12 +4,22 @@
     <div class="row">
       <!-- Teams -->
       <div class="form-floating col-12 col-sm-12 mb-3">
-        <select id="floatingOptions" class="form-select" aria-label="Default select example" formControlName="id_equipo_asi">
-          <option selected>Open this select menu</option>
-          <option *ngFor="let item of teams" [value]="item.id_asi">{{item.nombre_equipo_asi + ' | ' +
-            types[item.tipo_equipo_asi!]}}</option>
+        <select id="floatingOptions" class="form-select" aria-label="Default select example"
+          formControlName="id_equipo_asi">
+          <option selected value="">Seleccione un equipo</option>
+          <ng-container *ngFor="let item of teams">
+            <option *ngIf="item.estado_asi" [value]="item.id_asi">{{item.nombre_equipo_asi + ' | ' +
+              item.tipo_equipo_asi}}
+            </option>
+          </ng-container>
         </select>
         <label for="floatingOptions">Equipos</label>
+        <div
+          *ngIf="(getCtrl('id_equipo_asi')?.invalid && getCtrl('id_equipo_asi')?.touched) || getCtrl('id_equipo_asi')?.dirty">
+          <span class="form-text text-danger float-start" *ngIf="getCtrl('id_equipo_asi')?.errors?.['required']">
+            * Seleccione un equipo.
+          </span>
+        </div>
       </div>
     </div>
 
@@ -18,12 +28,6 @@
       <div class="form-floating col-12 mb-3">
         <select id="floatingPercent" class="form-select" formControlName="asignacion">
           <option [value]="asignacion" [value]="i * 100" *ngFor="let i of [0.25, 0.5, 0.75, 1]">{{i | percent}}</option>
-          <div
-            *ngIf="(getCtrl('asignacion')?.invalid && getCtrl('asignacion')?.touched) || getCtrl('asignacion')?.dirty">
-            <span class="form-text text-danger float-start" *ngIf="getCtrl('asignacion')?.errors?.['required']">
-              * Seleccione una opción válida.
-            </span>
-          </div>
         </select>
         <label for="floatingPercent">Porcentaje de asignación</label>
       </div>

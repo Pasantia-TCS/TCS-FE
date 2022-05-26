@@ -18,7 +18,7 @@ export class NewTeamComponent implements OnInit {
   nuevoEquipoForm: FormGroup = this.fb.group(
     {
       nombre_equipo_asi: ['', Validators.required],
-      tipo_equipo_asi: [0, Validators.required],
+      tipo_equipo_asi: ['Proyecto', Validators.required],
       descripcion_asi: ['', Validators.required],
       nombre_lider: ['', Validators.required],
       nombre_tecnico: ['', Validators.required],
@@ -77,11 +77,9 @@ export class NewTeamComponent implements OnInit {
         {
           next: () => {
             this.clickMe();
-            this.nuevoEquipoForm.reset(
-              {
-                tipo_equipo_asi: ''
-              }
-            );
+            this.nuevoEquipoForm.reset({
+              tipo_equipo_asi: ''
+            });
             Swal.fire('Éxito', 'Equipo registrado con éxito.', 'success');
             this.dialogRef.close();
           },

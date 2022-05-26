@@ -36,6 +36,7 @@ import { StarRatingComponent } from './components/star-rating/star-rating.compon
 import { SkillsComponent } from './components/skills/skills.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { EditSkillsComponent } from './components/edit-skills/edit-skills.component';
+import { DarBajaComponent } from './components/dar-baja/dar-baja.component';
 
 
 @NgModule({
@@ -63,7 +64,8 @@ import { EditSkillsComponent } from './components/edit-skills/edit-skills.compon
     StarRatingComponent,
     SkillsComponent,
     EditProfileComponent,
-    EditSkillsComponent
+    EditSkillsComponent,
+    DarBajaComponent
   ],
   imports: [
     CommonModule,

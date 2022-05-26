@@ -266,38 +266,40 @@
                   </div>
 
                   <div class="row mb-3">
-                    <button class="" type="button" (click)="addSkill()" class="btn btn-outline-primary">Añadir</button>
+                    <app-button buttonName="Añadir" [buttonIcon]="true" iconName="add_circle" (btnClick)="addSkill()">
+                    </app-button>
                   </div>
 
                   <!-- My skills list -->
                   <div class="row mb-3 text-center">
-                    <label class="">Mis habilidades:</label>
+                    <label class="text-uppercase fw-bold">Mis habilidades</label>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-6">
+                      <label class="col-sm-5 col-form-label">Habilidades:</label>
+                    </div>
+                    <div class="col-6">
+                      <label class="col-sm-5 col-form-label">Nivel:</label>
+                    </div>
                   </div>
 
                   <div class="row mb-3">
-                    <label class="col-sm-5 col-form-label">Mis habilidades:</label>
-                    <label class="col-sm-5 col-form-label">Nivel de conocimiento:</label>
-
-                    <div class="col-sm-5">
+                    <div class="col-6">
                       <div class="input-group mb-1" *ngFor="let mySkill of tempSkillsList; let i = index">
                         <span class="input-group-text" id="addon-wrapping">{{i + 1}}</span>
                         <input type="text" class="form-control" disabled [value]="mySkill">
                       </div>
                     </div>
-                    
-                    <div class="col-sm-6">
+
+                    <div class="col-6">
                       <div class="input-group mb-1" *ngFor="let myLevel of tempKnowledgeLevelList; let i = index">
                         <span class="input-group-text" id="addon-wrapping">{{i + 1}}</span>
                         <input type="text" class="form-control" disabled [value]="myLevel">
                         <button type="button" class="btn btn-outline-danger" (click)="deleteSkill(i)">Eliminar</button>
                       </div>
                     </div>
-
-                    
                   </div>
-
-               
-
                 </form>
 
                 <span *ngIf="!savedSkills" class="form-text text-danger float-end">

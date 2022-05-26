@@ -29,11 +29,10 @@ export class NewAssignmentComponent implements OnInit {
   nuevoAsignacionForm: FormGroup = this.fb.group(
     {
       id_equipo_asi: ['', Validators.required],
-      types: ['', Validators.required],
-      asignacion: [0, Validators.required],
+      asignacion: [25, Validators.required],
       ultimatix_asi: [''],
-      fecha_inicio: ['2022-10-08', Validators.required],
-      fecha_fin: ['2022-10-10', Validators.required],
+      fecha_inicio: ['', Validators.required],
+      fecha_fin: ['', Validators.required],
     }
   );
 
@@ -48,11 +47,7 @@ export class NewAssignmentComponent implements OnInit {
   ngOnInit(): void {
     // Get teams
     this.equiposService.show()
-      .subscribe(
-        {
-          next: resp => this.teams = resp
-        }
-      );
+      .subscribe({ next: resp => this.teams = resp });
 
     // Get ultimatix
     this.ultimatix = this.userService.getUltimatix()!;
@@ -68,27 +63,30 @@ export class NewAssignmentComponent implements OnInit {
 
   registrarAsignacion() {
 
-    this.nuevoAsignacionForm.patchValue({
-      ultimatix_asi: this.ultimatix.toString()
-    });
+    if (this.nuevoAsignacionForm.invalid) {
+      this.nuevoAsignacionForm.markAllAsTouched();
+    } else {
+      this.nuevoAsignacionForm.patchValue({
+        ultimatix_asi: this.ultimatix.toString()
+      });
 
-    this.asignacionService.agregar(this.nuevoAsignacionForm.value)
-      .subscribe(
-        {
-          next: () => {
-            this.clickMe();
-            this.nuevoAsignacionForm.reset(
-              {
+      this.asignacionService.agregar(this.nuevoAsignacionForm.value)
+        .subscribe(
+          {
+            next: () => {
+              this.clickMe();
+              this.nuevoAsignacionForm.reset({
                 asignacion: ''
-              }
-            );
-            Swal.fire('Éxito', 'Asignación registrada con éxito.', 'success');
-            this.dialogRef.close();
-          },
-          error: err => Swal.fire('Error', err.error.mensaje, 'error')
-        }
-      );
+              });
+              Swal.fire('Éxito', 'Asignación registrada con éxito.', 'success');
+              this.dialogRef.close();
+            },
+            error: err => Swal.fire('Error', err.error.mensaje, 'error')
+          }
+        );
+    }
   }
+  
   close(): void {
     this.dialogRef.close();
   }

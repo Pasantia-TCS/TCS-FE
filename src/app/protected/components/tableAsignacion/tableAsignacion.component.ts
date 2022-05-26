@@ -43,7 +43,7 @@ export class TableAsignacion implements OnInit {
   }
 
   ngOnInit(): void {
-    this.asignacionService.obtenerAsignacion()
+    this.asignacionService.obtenerAsignaciones("")
       .subscribe(
         {
           next: resp => {
@@ -56,7 +56,7 @@ export class TableAsignacion implements OnInit {
   }
 
   load() {
-    this.asignacionService.obtenerAsignacion()
+    this.asignacionService.obtenerAsignaciones("")
       .subscribe((result) => {
         this.tableData = result;
       });

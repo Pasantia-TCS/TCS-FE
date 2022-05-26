@@ -1,5 +1,7 @@
 export interface Assignment {
-    id_asignacion_proyecto_asg?: string,
+    id_asignacion_proyecto_asi?: string,
+    nombre_equipo_asi?: string,
+    tipo_equipo_asi?: string,
     id_equipo_asi?: string,
     utimatix_asi?: string,
     asignacion?: number,

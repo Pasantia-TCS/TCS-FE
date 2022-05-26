@@ -1,31 +1,56 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Assignment } from 'src/app/protected/interfaces/asignacion';
+import { AsignacionService } from 'src/app/protected/services/asignacion.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-custom-table',
   templateUrl: './custom-table.component.html',
   styles: []
 })
-export class CustomTableComponent {
+export class CustomTableComponent implements OnInit {
+
+  @Output() deleteEvent = new EventEmitter<Assignment>();
 
   @Input() titles: string[] = []
-  @Input() iconName: string = 'delete';
-  @Input() data: any = [
-    {
-      name: 'Leones',
-      type: 'Proyecto',
-      percent: 0.25,
-      startDate: '5/18/2022',
-      endDate: '6/19/2022',
-      status: true
-    },
-    {
-      name: 'Lobos',
-      type: 'Proyecto',
-      percent: 0.25,
-      startDate: '5/18/2022',
-      endDate: '6/19/2022',
-      status: true
-    }
-  ];
+  @Input() iconNames: string[] = ['edit', 'delete'];
+  @Input() data!: Assignment[];
+
+  clickEventSubscription: Subscription;
+  ultimatix!: string;
+
+
+  constructor(
+    private asignacionService: AsignacionService,
+    private userService: UserService
+  ) {
+    this.clickEventSubscription = this.asignacionService.getClickEvent()
+      .subscribe(() => setTimeout(() => this.loadAssignments(), 500));
+  }
+
+  ngOnInit(): void {
+    this.ultimatix = this.userService.getUltimatix()!;
+  }
+
+
+  loadAssignments() {
+    this.asignacionService.obtenerAsignaciones(this.ultimatix)
+      .subscribe({
+        next: resp => this.data = resp
+      });
+  }
+
+  update(item: any) {
+
+  }
+
+  delete(item: Assignment) {
+    this.deleteEvent.emit(item);
+  }
+
+  clickMe() {
+    this.asignacionService.sendClickEvent();
+  }
 
 }

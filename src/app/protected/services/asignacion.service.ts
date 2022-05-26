@@ -28,14 +28,15 @@ export class AsignacionService {
     return this.http.post<Assignment[]>(url, asignacion);
   }
 
-  showByNameID(ide: string, nombreequipo:string) {
+  showByNameID(ide: string, nombreequipo: string) {
     const url: string = `${this.baseUrl}/buscar-tipo-proyecto`;
     const equipo = { id_asi: ide, nombre_equipo_asi: nombreequipo };
     return this.http.post<Team[]>(url, equipo);
   }
-  obtenerAsignacion() {
-    const url: string = `${this.baseUrl}/obtener-asignaciones`;
-    return this.http.get<Assignment[]>(url);
+
+  obtenerAsignaciones(ultimatix: string) {
+    const url: string = `${this.baseUrl}/obtener-asignaciones-ultimatix`;
+    return this.http.post<Assignment[]>(url, { id_ultimatix: ultimatix });
   }
 
   update(assignment: Assignment) {
@@ -43,9 +44,11 @@ export class AsignacionService {
     return this.http.post<Assignment[]>(url, assignment);
   }
 
-  delete(id_asignacion_proyecto_asg: string ) {
+  delete(id_asignacion_proyecto_asg: string, id_equipo_asi: string, ultimatix_asi: string, asignacion: number, fecha_baja: string) {
     const url: string = `${this.baseUrl}/dar-baja`;
-    return this.http.post<Assignment>(url, { id_asg: id_asignacion_proyecto_asg });
+    const body = { id_asignacion_proyecto_asg, id_equipo_asi, ultimatix_asi, asignacion, fecha_baja };
+    console.log(body);
+    return this.http.post<Assignment[]>(url, body);
   }
 
   obtenerUsuarios() {

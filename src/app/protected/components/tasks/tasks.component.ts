@@ -1,8 +1,11 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { timeInterval } from 'rxjs';
+import { UserService } from 'src/app/shared/services/user.service';
 import Swal from 'sweetalert2';
 import { Assignment } from '../../interfaces/asignacion';
 import { AsignacionService } from '../../services/asignacion.service';
+import { DarBajaComponent } from '../dar-baja/dar-baja.component';
 import { NewAssignmentComponent } from '../new-assignment/new-assignment.component';
 import { TableAsignacion } from '../tableAsignacion/tableAsignacion.component';
 
@@ -11,46 +14,33 @@ import { TableAsignacion } from '../tableAsignacion/tableAsignacion.component';
   templateUrl: './tasks.component.html',
   styles: []
 })
-export class TasksComponent {
+export class TasksComponent implements OnInit {
 
-  titles: string[] = ['Acciones', 'Equipo', 'Tipo', 'Asignación (%)', 'Fecha de inicio', 'Fecha de finalización', 'Estado'];
-  dataBody: string = 'Hola que hace!';
+  titles: string[] = ['Acciones', 'Equipo', 'Tipo', 'Asignación (%)', 'Fecha de inicio', 'Fecha de finalización', 'Fecha de salida', 'Estado'];
+  dataBody!: Assignment[];
 
   proyectos!: Assignment[];
   currentProject!: Assignment;
 
-  @ViewChild(TableAsignacion) table: any;
+  ultimatix!: string;
 
   constructor(
     private asignacionService: AsignacionService,
+    private userService: UserService,
     public dialog: MatDialog
   ) { }
 
-  deleteItem(id_proyecto: string): void {
+  ngOnInit(): void {
+    // Get ultimatix
+    this.ultimatix = this.userService.getUltimatix()!;
 
-    Swal.fire({
-      title: '¿Quieres eliminar el proyecto?',
-      showDenyButton: true,
-      showCancelButton: true,
-      confirmButtonText: 'Sí',
-      denyButtonText: 'No',
-      cancelButtonText: 'Cancelar',
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.asignacionService.delete(id_proyecto)
-          .subscribe(
-            {
-              next: () => {
-                this.table.load();
-                Swal.fire('Éxito', 'Proyecto eliminado con éxito.', 'success');
-              },
-              error: err => Swal.fire('Error', err.error.mensaje, 'error')
-            }
-          );
-      } else if (result.isDenied) {
-        Swal.fire('El proyecto no se ha eliminado.', '', 'info');
-      }
-    })
+    // Load assignments
+    this.asignacionService.obtenerAsignaciones(this.ultimatix)
+      .subscribe({ next: resp => this.dataBody = resp });
+  }
+
+  openUnsubscribe(item: Assignment) {
+    this.dialog.open(DarBajaComponent, { data: { item } });
   }
 
   newAssignment() {

@@ -9,16 +9,26 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let column of data">
+        <tr *ngFor="let item of data">
           <td>
-            <button mat-icon-button>
-              <mat-icon [ngStyle]="{'color':'#F7071299'}">{{iconName}}</mat-icon>
+            <button mat-icon-button data-bs-placement="right" title="Editar asignacion" style="cursor: pointer;">
+              <mat-icon [ngStyle]="{'color':'#9B11BF99'}" (click)="update(item)">{{iconNames[0]}}</mat-icon>
+            </button>
+            <button mat-icon-button (click)="delete(item)" data-bs-toggle="tooltip" data-bs-placement="right"
+              title="Eliminar item" style="cursor: pointer;" [disabled]="item.estado === false">
+              <mat-icon [ngStyle]="{'color':'#F7071299'}">{{iconNames[1]}}</mat-icon>
             </button>
           </td>
-          <td *ngFor="let key of column | keyvalue">{{key.value | json}}</td>
+          <td>{{item.nombre_equipo_asi}}</td>
+          <td>{{item.tipo_equipo_asi}}</td>
+          <td>{{item.asignacion}}</td>
+          <td>{{item.fecha_inicio}}</td>
+          <td>{{item.fecha_fin}}</td>
+          <td>{{item.fecha_baja || "-"}}</td>
+          <td [ngStyle]="{color: item.estado ? 'green' : 'red'}">{{item.estado ? 'Vigente' : 'No vigente'}}
+          </td>
         </tr>
       </tbody>
     </table>
-
   </div>
 </div>

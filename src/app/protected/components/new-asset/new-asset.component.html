@@ -44,7 +44,7 @@
         <label for="floatingBrand">Marca</label>
         <div *ngIf="(getCtrl('marca')?.invalid && getCtrl('marca')?.touched) || getCtrl('marca')?.dirty">
           <span class="form-text text-danger float-start" *ngIf="getCtrl('marca')?.errors?.['required']">
-            * Por favor ingrese una marca.
+            * Ingrese una marca.
           </span>
         </div>
       </div>
@@ -55,7 +55,7 @@
         <label for="floatingModelo">Modelo</label>
         <div *ngIf="(getCtrl('modelo')?.invalid && getCtrl('modelo')?.touched) || getCtrl('modelo')?.dirty">
           <span class="form-text text-danger float-start" *ngIf="getCtrl('modelo')?.errors?.['required']">
-            * Por favor ingrese un modelo.
+            * Ingrese un modelo.
           </span>
         </div>
       </div>
@@ -69,7 +69,7 @@
         <label for="floatingSerie">Serie</label>
         <div *ngIf="(getCtrl('serie')?.invalid && getCtrl('serie')?.touched) || getCtrl('serie')?.dirty">
           <span class="form-text text-danger float-start" *ngIf="getCtrl('serie')?.errors?.['required']">
-            * Por favor ingrese un número de serie.
+            * Ingrese un número de serie.
           </span>
         </div>
       </div>
@@ -81,7 +81,7 @@
         <div
           *ngIf="(getCtrl('codigo_barras')?.invalid && getCtrl('codigo_barras')?.touched) || getCtrl('codigo_barras')?.dirty">
           <span class="form-text text-danger float-start" *ngIf="getCtrl('codigo_barras')?.errors?.['required']">
-            * Por favor ingrese un código de barras.
+            * Ingrese un código de barras.
           </span>
         </div>
       </div>
@@ -96,7 +96,7 @@
           <label for="floatingHostname">Hostname</label>
           <div *ngIf="(getCtrl('hostname')?.invalid && getCtrl('hostname')?.touched) || getCtrl('hostname')?.dirty">
             <span class="form-text text-danger float-start" *ngIf="getCtrl('hostname')?.errors?.['required']">
-              * Por favor ingrese un nombre de host.
+              * Ingrese un nombre de host.
             </span>
           </div>
         </div>
@@ -108,10 +108,10 @@
           <div
             *ngIf="(getCtrl('direccion_mac')?.invalid && getCtrl('direccion_mac')?.touched) || getCtrl('direccion_mac')?.dirty">
             <span class="form-text text-danger float-start" *ngIf="getCtrl('direccion_mac')?.errors?.['required']">
-              * Por favor ingrese una dirección MAC.
+              * Ingrese una dirección MAC.
             </span>
             <span class="form-text text-danger float-start" *ngIf="getCtrl('direccion_mac')?.errors?.['pattern']">
-              * Por favor ingrese una dirección MAC válida.
+              * Ingrese una dirección MAC válida.
             </span>
           </div>
         </div>
@@ -126,10 +126,10 @@
           <div
             *ngIf="(getCtrl('direccion_ip')?.invalid && getCtrl('direccion_ip')?.touched) || getCtrl('direccion_ip')?.dirty">
             <span class="form-text text-danger float-start" *ngIf="getCtrl('direccion_ip')?.errors?.['required']">
-              * Por favor ingrese una dirección IP.
+              * Ingrese una dirección IP.
             </span>
             <span class="form-text text-danger float-start" *ngIf="getCtrl('direccion_ip')?.errors?.['pattern']">
-              * Por favor ingrese una dirección IP válida.
+              * Ingrese una dirección IP válida.
             </span>
           </div>
         </div>
@@ -152,7 +152,7 @@
         <div
           *ngIf="(getCtrl('fecha_entrega')?.invalid && getCtrl('fecha_entrega')?.touched) || getCtrl('fecha_entrega')?.dirty">
           <span class="form-text text-danger float-start" *ngIf="getCtrl('fecha_entrega')?.errors?.['required']">
-            * Porfavor seleccione una fecha válida.
+            * Seleccione una fecha válida.
           </span>
         </div>
       </div>
