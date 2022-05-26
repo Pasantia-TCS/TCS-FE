@@ -45,7 +45,7 @@ export class DarBajaComponent implements OnInit {
       this.salidaForm.markAllAsTouched();
     } else {
       Swal.fire({
-        title: '¿Estás seguro que deseas desvicularte del equipo?',
+        title: '¿Estás seguro que deseas desvincularte del equipo?',
         showDenyButton: true,
         showCancelButton: true,
         confirmButtonText: 'Sí',
