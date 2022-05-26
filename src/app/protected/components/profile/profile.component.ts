@@ -43,7 +43,7 @@ export class ProfileComponent implements OnInit {
   tempSkillsList: string[] = [];
 
   knowledgeLevelList: string[] = ['Alto', 'Medio', 'Bajo'];
-  tempKnowledgeLevelList: string[] = [];  
+  tempKnowledgeLevelList: string[] = [];
 
   userInfoForm: FormGroup = this.fb.group(
     {
@@ -135,8 +135,9 @@ export class ProfileComponent implements OnInit {
       .subscribe(
         {
           next: () => {
-            this.profile.habilidades = [...this.tempSkillsList],
-            this.profile.nivel_habilidad = [...this.tempKnowledgeLevelList]
+            this.profile.habilidades = [...this.tempSkillsList];
+            this.profile.nivel_habilidad = [...this.tempKnowledgeLevelList];
+            Swal.fire('¡Éxito!', 'Habilidad ingresada con éxito.', 'info');
           }
         }
       )
