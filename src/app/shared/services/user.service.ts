@@ -10,7 +10,6 @@ import { environment } from 'src/environments/environment';
 export class UserService {
 
   private baseUrl: string = environment.localUrl;
-
   constructor(private http: HttpClient) { }
 
   private currentUser: User = {};

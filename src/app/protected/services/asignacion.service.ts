@@ -10,7 +10,7 @@ import { Team } from '../interfaces/equipo';
 
 export class AsignacionService {
 
-  private baseUrl: string = `${environment.aws}/asignaciones-proyectos`;
+  private baseUrl: string = `${environment.localUrl}/asignaciones-proyectos`;
   private subject = new Subject<any>();
 
   constructor(private http: HttpClient) { }
