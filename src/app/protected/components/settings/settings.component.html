@@ -1,0 +1,38 @@
+<div class="container">
+    <app-header title="Configuración"></app-header>
+  
+            
+        <!-- Role Management -->
+        <div class="card custom-card p-3 mb-3">
+            <div class="card-body">
+                <h5 class="card-title fs-2">Administrar roles</h5>
+            </div>
+
+            <table id="tableEquipos" class="table table-hover align-middle">
+                <caption>Tabla de usuarios</caption>
+                <thead class="bg-light">
+                  <tr>
+                    <th *ngFor="let key of tableHeader">{{key}}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <button mat-icon-button data-bs-placement="right" title="Editar usuario" style="cursor: pointer;"
+                        (click)="changeRole()">
+                        <mat-icon [ngStyle]="{'color':'#9B11BF99'}">edit</mat-icon>
+                      </button>
+                      
+                    </td>
+                        <td>0000000</td>
+                        <td>Juan</td>
+                        <td>Administrador </td>
+                  </tr>
+                </tbody>
+              </table>
+            
+        </div>
+
+
+
+  </div>

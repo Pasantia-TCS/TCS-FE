@@ -79,8 +79,18 @@
         </a>
       </li>
 
+      <!-- Settings -->
+      <li>
+        <a [routerLink]="['/pages/dashboard/settings']">
+          <span>
+            <mat-icon>settings</mat-icon>
+          </span>
+          Configuración
+        </a>
+      </li>
+
       <!-- Logout -->
-      <li class="mt-5 pt-4">
+      <li class="mt-1 pt-4">
         <a (click)="toLogin()" style="cursor: pointer;">
           <span>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: white">

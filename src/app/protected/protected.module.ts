@@ -35,6 +35,7 @@ import { TasksComponent } from './components/tasks/tasks.component';
 import { TeamsComponent } from './components/teams/teams.component';
 import { TemplateComponent } from './components/template/template.component';
 import { ProtectedRoutingModule } from './protected-routing.module';
+import { SettingsComponent } from './components/settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { ProtectedRoutingModule } from './protected-routing.module';
     SkillsComponent,
     EditProfileComponent,
     EditSkillsComponent,
-    DarBajaComponent
+    DarBajaComponent,
+    SettingsComponent
   ],
   imports: [
     CommonModule,
