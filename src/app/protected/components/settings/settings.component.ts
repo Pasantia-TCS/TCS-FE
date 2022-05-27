@@ -1,13 +1,10 @@
 import { Component, OnInit, PipeTransform } from '@angular/core';
-import { DecimalPipe } from '@angular/common';
-import { FormControl } from '@angular/forms';
-import { Observable, Subscription } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { User } from 'src/app/auth/interfaces/user';
+import Swal from 'sweetalert2';
 import { Profile } from '../../interfaces/profile';
 import { SettingsService } from '../../services/settings.service';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-settings',
@@ -22,7 +19,7 @@ export class SettingsComponent implements OnInit {
 
   users!: Profile[];
   tableHeader: string[] = ['Acciones', 'Ultimatix', 'Nombre', 'Rol'];
-  
+
 
   pipe!: PipeTransform;
   filterForm: FormGroup = this.fb.group(
@@ -33,27 +30,26 @@ export class SettingsComponent implements OnInit {
 
   clickEventSubscription: Subscription;
 
-  constructor( private settingsService: SettingsService, private fb: FormBuilder ) {
+  constructor(private settingsService: SettingsService, private fb: FormBuilder) {
     this.clickEventSubscription = this.settingsService.getClickEvent()
       .subscribe(() => setTimeout(() => this.loadUsers(), 500));
 
   }
 
   ngOnInit(): void {
-   this.loadUsers()
+    this.loadUsers()
   }
 
-  loadUsers(){
+  loadUsers() {
     this.settingsService.getUsers()
-    .subscribe({ 
-      next: resp => { 
-        this.users = resp         
-      }
-    })
-
+      .subscribe({
+        next: resp => {
+          this.users = resp
+        }
+      })
   }
 
-  update(id_ultimatix: number){
+  update(id_ultimatix: number) {
 
     Swal.fire({
       title: '¿Estás seguro que deseas cambiar el rol de este usuario?',
@@ -77,7 +73,7 @@ export class SettingsComponent implements OnInit {
           );
       }
     });
-  
+
 
   }
 
@@ -94,5 +90,5 @@ export class SettingsComponent implements OnInit {
     });
   }
   */
-  
+
 }

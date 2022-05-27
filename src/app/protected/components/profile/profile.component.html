@@ -19,6 +19,11 @@
           </div>
           <hr>
           <div class="row">
+            <span class="col-sm-3 mb-0 fw-bold">Rol:</span>
+            <div class="col-sm-9 text-secondary">{{currentUser.rol}}</div>
+          </div>
+          <hr>
+          <div class="row">
             <span class="col-sm-3 mb-0 fw-bold">Correo electrónico:</span>
             <div class="col-sm-9 text-secondary">{{currentUser.correo}}</div>
           </div>
@@ -35,7 +40,9 @@
           <hr>
           <div class="row">
             <span class="col-sm-3 mb-0 fw-bold">Total de asignación (%):</span>
-            <div class="col-sm-9 text-secondary">{{profile?.asignacion_usuario}}</div>
+            <div class="col-sm-9" [ngStyle]="{color: profile?.asignacion_usuario! >= 100 ? 'red' : 'green'}">
+              {{profile?.asignacion_usuario}}
+            </div>
           </div>
           <hr>
         </div>
@@ -72,7 +79,8 @@
           </div>
         </div>
       </ul>
-      <app-button buttonName="Editar" [buttonIcon]="true" iconName="edit" class="col-12 col-sm-2 float-end" (btnClick)="openSkills()">
+      <app-button buttonName="Editar" [buttonIcon]="true" iconName="edit" class="col-12 col-sm-2 float-end"
+        (btnClick)="openSkills()">
       </app-button>
     </div>
   </div>

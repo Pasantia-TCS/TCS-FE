@@ -11,7 +11,8 @@ import { UserService } from 'src/app/shared/services/user.service';
 })
 export class DashboardComponent implements OnInit {
 
-  currentUser: User = {};
+  currentUser!: User;
+  collapse = true;
 
   constructor(
     private userService: UserService,
@@ -22,8 +23,6 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.currentUser = this.userService.getUserData();
   }
-
-  collapse = true;
 
   toggleSidebar() {
     this.collapse = !this.collapse;
