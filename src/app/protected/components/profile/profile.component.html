@@ -20,7 +20,7 @@
               <h1 class="row justify-content-center mt-2 mb-0">{{profile.nombres_completos}}</h1>
             </div>
 
-            <!-- Form -->
+            <!-- User info -->
             <div class="col-md-9 pt-3">
               <div class="card-body">
                 <div class="row">
@@ -44,7 +44,7 @@
                 </div>
                 <hr>
                 <div class="row">
-                  <span class="col-sm-3 mb-0 fw-bold">Total de asignacion (%):</span>
+                  <span class="col-sm-3 mb-0 fw-bold">Total de asignación (%):</span>
                   <div class="col-sm-9 text-secondary">{{profile.asignacion_usuario}}</div>
                 </div>
                 <hr>
@@ -96,10 +96,10 @@
                         <label for="floatingEmail">Correo electrónico</label>
                         <div *ngIf="(email?.invalid && email?.touched) || email?.dirty">
                           <span class="form-text text-danger float-start" *ngIf="email?.errors?.['required']">
-                            * Por favor ingresa un correo electrónico.
+                            Ingresa un correo electrónico.
                           </span>
                           <span class="form-text text-danger float-start" *ngIf="email?.errors?.['pattern']">
-                            * Por favor ingresa un correo electrónico válido.
+                            Ingresa un correo electrónico válido.
                           </span>
                         </div>
                       </div>
@@ -112,7 +112,7 @@
                         <label for="floatingPhone">Teléfono</label>
                         <div *ngIf="phone?.invalid && phone?.touched">
                           <span class="form-text text-danger float-start" *ngIf="phone?.invalid">
-                            * Por favor ingresa un número de teléfono válido.
+                            Ingresa un número de teléfono válido.
                           </span>
                         </div>
                       </div>
@@ -126,15 +126,16 @@
                         <input type="text" class="form-control rounded-pill" id="floatingNetuser"
                           [value]="profile.usuario_red" formControlName="netuser">
                         <label for="floatingNetuser">Usuario de red (Ej. @netuser)</label>
-                        <div *ngIf="(netuser?.invalid && netuser?.touched) || netuser?.dirty">
-                          <span class="form-text text-danger float-start" *ngIf="netuser?.errors?.['required']">
-                            * Ingresa un usuario de red.
+                        <div class="form-text text-danger float-start"
+                          *ngIf="(netuser?.invalid && netuser?.touched) || netuser?.dirty">
+                          <span *ngIf="netuser?.errors?.['required']">
+                            Ingresa un usuario de red.
                           </span>
-                          <span class="form-text text-danger float-start" *ngIf="netuser?.errors?.['minlength']">
-                            * El usuario de red debe tener al menos 8 caracteres.
-                          </span>
-                          <span class="form-text text-danger float-start" *ngIf="netuser?.errors?.['pattern']">
-                            * Por favor ingresa un usuario de red válido.
+                          <span class="mb-3" *ngIf="netuser?.errors?.['minlength'] || netuser?.errors?.['pattern']">
+                            Ingresa un nombre de usuario red válido.
+                            <mat-icon style="cursor: pointer; font-size: 1rem;"
+                              matTooltip="El nombre de usuario de red debe contener un arroba y al menos 8 caracteres">
+                              report</mat-icon>
                           </span>
                         </div>
                       </div>

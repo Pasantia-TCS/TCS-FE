@@ -4,7 +4,7 @@
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-12 col-md-8 col-lg-6 col-xl-5">
         <!-- Card -->
-        <div class="card" style="border-radius: 2rem;">
+        <div class="card shadow-lg" style="border-radius: 2rem;">
           <div class="card-body px-5 text-center">
             <!-- Title -->
             <h1 class="my-4 fs-2">BIENVENIDO {{currentUser?.nombre | uppercase}}</h1>
@@ -23,13 +23,13 @@
             </div>
 
             <!-- Teams -->
-            <div class="mb-3">
-              <app-button buttonName="Equipos" iconName="group" [buttonIcon]="true" (btnClick)="toTeams()">
+            <div class="mb-4">
+              <app-button buttonName="Grupos de trabajo" iconName="group" [buttonIcon]="true" (btnClick)="toTeams()">
               </app-button>
             </div>
 
             <!-- Forms -->
-            <div class="mb-4">
+            <div class="mb-4" *ngIf="false">
               <app-button buttonName="Formularios dinámicos" iconName="view_compact" [buttonIcon]="true"
                 (btnClick)="toForms()">
               </app-button>
