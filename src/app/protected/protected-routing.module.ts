@@ -8,6 +8,7 @@ import { FormsComponent } from './components/forms/forms.component';
 import { SelectionComponent } from './components/selection/selection.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { TeamsComponent } from './components/teams/teams.component';
+import { SettingsComponent } from './components/settings/settings.component';
 import { TemplateComponent } from './components/template/template.component';
 
 const routes: Routes = [
@@ -41,6 +42,10 @@ const routes: Routes = [
           {
             path: 'teams',
             component: TeamsComponent
+          },
+          {
+            path: 'settings',
+            component: SettingsComponent
           },
           {
             path: 'new-template',

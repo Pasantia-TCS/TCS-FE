@@ -14,6 +14,7 @@ import { CardComponent } from './components/card/card.component';
 import { DarBajaComponent } from './components/dar-baja/dar-baja.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { DeliverModalComponent } from './components/deliver-modal/deliver-modal.component';
+import { EditAboutComponent } from './components/edit-about/edit-about.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { EditSkillsComponent } from './components/edit-skills/edit-skills.component';
 import { FormsComponent } from './components/forms/forms.component';
@@ -26,6 +27,7 @@ import { NewTemplateComponent } from './components/new-template/new-template.com
 import { ProfileComponent } from './components/profile/profile.component';
 import { SearchComponent } from './components/search/search.component';
 import { SelectionComponent } from './components/selection/selection.component';
+import { SettingsComponent } from './components/settings/settings.component';
 import { SkillsComponent } from './components/skills/skills.component';
 import { StarRatingComponent } from './components/star-rating/star-rating.component';
 import { TableBasic } from './components/table/table.component';
@@ -35,7 +37,7 @@ import { TasksComponent } from './components/tasks/tasks.component';
 import { TeamsComponent } from './components/teams/teams.component';
 import { TemplateComponent } from './components/template/template.component';
 import { ProtectedRoutingModule } from './protected-routing.module';
-import { EditAboutComponent } from './components/edit-about/edit-about.component';
+
 
 @NgModule({
   declarations: [
@@ -64,7 +66,8 @@ import { EditAboutComponent } from './components/edit-about/edit-about.component
     EditProfileComponent,
     EditSkillsComponent,
     DarBajaComponent,
-    EditAboutComponent
+    EditAboutComponent,
+    SettingsComponent
   ],
   imports: [
     CommonModule,
