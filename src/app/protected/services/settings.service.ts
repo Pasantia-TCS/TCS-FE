@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { User } from 'src/app/auth/interfaces/user';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,12 +10,17 @@ import { User } from 'src/app/auth/interfaces/user';
 
 export class SettingsService {
 
-  private baseUrl: string = `${environment.url}/`;
+  private baseUrl: string = `${environment.url}/asociados`;
+  private subject = new Subject<any>();
 
   constructor(private http: HttpClient) { }
 
+  getClickEvent(): Observable<any> {
+    return this.subject.asObservable();
+  }
+
   getUsers(){
-    const url: string = `${this.baseUrl}/`;
+    const url: string = `${this.baseUrl}/buscarAsociados`;
     return this.http.get<User[]>(url);
   }
 

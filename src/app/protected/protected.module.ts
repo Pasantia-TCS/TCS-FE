@@ -64,7 +64,7 @@ import { SettingsComponent } from './components/settings/settings.component';
     EditProfileComponent,
     EditSkillsComponent,
     DarBajaComponent,
-    SettingsComponent
+    SettingsComponent, 
   ],
   imports: [
     CommonModule,
