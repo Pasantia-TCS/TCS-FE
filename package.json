@@ -29,8 +29,6 @@
     "ngx-bootstrap": "^8.0.0",
     "ngx-intl-tel-input": "^3.2.0",
     "popper.js": "^1.16.1",
-    "primeicons": "^5.0.0",
-    "primeng": "^13.3.3",
     "rxjs": "~7.5.0",
     "sweetalert2": "^11.4.10",
     "xlsx": "^0.18.5",

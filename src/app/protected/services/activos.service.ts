@@ -9,7 +9,7 @@ import { Asset, AssetType } from '../interfaces/activo';
 })
 export class ActivosService {
 
-  private baseUrl: string = `${environment.localUrl}/activos`;
+  private baseUrl: string = `${environment.url}/activos`;
   private subject = new Subject<any>();
 
   constructor(private http: HttpClient) { }

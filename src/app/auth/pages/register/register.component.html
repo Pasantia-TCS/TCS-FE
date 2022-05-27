@@ -1,24 +1,24 @@
 <!-- Title -->
 <h1 class="my-4 fs-2">REGISTRO</h1>
 
-<form [formGroup]="myForm" (ngSubmit)="register()">
+<form [formGroup]="registerForm" (ngSubmit)="register()" autocomplete="off">
 
   <div class="row">
     <!-- Name -->
     <div class="col-12 col-md-6 mb-3">
-      <input formControlName="name" type="text" class="form-control rounded-pill shadow-sm border-0 custom-input"
-        placeholder="Nombre" />
+      <input formControlName="name" type="text" class="form-control rounded-pill border-0 custom-input"
+        placeholder="Nombres" />
       <span class="form-text text-danger float-start" *ngIf="valid_field('name')">
-        * Introduce tu nombre.
+        Ingresa tus nombres.
       </span>
     </div>
 
     <!-- Lastame -->
     <div class="col-12 col-md-6 mb-3">
-      <input formControlName="lastname" type="text" class="form-control rounded-pill shadow-sm border-0 custom-input"
-        placeholder="Apellido" />
+      <input formControlName="lastname" type="text" class="form-control rounded-pill border-0 custom-input"
+        placeholder="Apellidos" />
       <span class="form-text text-danger float-start" *ngIf="valid_field('lastname')">
-        * Introduce tu apellido.
+        Ingresa tus apellidos.
       </span>
     </div>
   </div>
@@ -34,23 +34,22 @@
         [selectedCountryISO]="CountryISO.Ecuador" [maxLength]="15" [phoneValidation]="true" [separateDialCode]="true"
         [numberFormat]="PhoneNumberFormat.National" name="phone" formControlName="phone">
       </ngx-intl-tel-input>
-      <div *ngIf="phone?.invalid && phone?.touched">
-        <span class="form-text text-danger float-start" *ngIf="phone?.invalid">
-          * Por favor ingresa un número de teléfono válido.
-        </span>
-      </div>
+      <!--TODO: Fix text-align -->
+      <span class="form-text text-danger text-start" *ngIf="phone?.invalid && phone?.touched">
+        Ingresa un número de teléfono válido.
+      </span>
     </div>
 
     <!-- Email -->
     <div class="col-12 col-md-6 mb-3">
-      <input formControlName="email" type="email" class="form-control rounded-pill shadow-sm border-0 custom-input"
+      <input formControlName="email" type="email" class="form-control rounded-pill border-0 custom-input"
         placeholder="Correo electrónico" />
-      <div *ngIf="(email?.invalid && email?.touched) || email?.dirty">
-        <span class="form-text text-danger float-start" *ngIf="email?.errors?.['required']">
-          * Introduce un correo electrónico.
+      <div class="form-text text-danger float-start" *ngIf="(email?.invalid && email?.touched) || email?.dirty">
+        <span *ngIf="email?.errors?.['required']">
+          Ingresa un correo electrónico.
         </span>
-        <span class="form-text text-danger float-start" *ngIf="email?.errors?.['pattern']">
-          * Por favor ingresa una dirección de correo electrónico válida.
+        <span *ngIf="email?.errors?.['pattern']">
+          Ingresa una dirección de correo electrónico válida.
         </span>
       </div>
     </div>
@@ -59,20 +58,21 @@
   <div class="row">
     <!-- Ultimatix -->
     <div class="col-12 col-md-6 mb-3">
-      <input formControlName="ultimatix" type="text" class="form-control rounded-pill shadow-sm border-0 custom-input"
+      <input formControlName="ultimatix" type="text" class="form-control rounded-pill border-0 custom-input"
         placeholder="Ultimatix" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" />
-      <div *ngIf="(ultimatix?.invalid && ultimatix?.touched) || ultimatix?.dirty">
-        <span class="form-text text-danger float-start" *ngIf="ultimatix?.errors?.['required']">
-          * Introduce tu número de ultimatix.
+      <div class="form-text text-danger float-start"
+        *ngIf="(ultimatix?.invalid && ultimatix?.touched) || ultimatix?.dirty">
+        <span *ngIf="ultimatix?.errors?.['required']">
+          Ingresa tu número de ultimatix.
         </span>
-        <span class="form-text text-danger float-start" *ngIf="ultimatix?.errors?.['minlength']">
-          * Introduce un número de ultimatix válido.
+        <span *ngIf="ultimatix?.errors?.['minlength']">
+          Ingresa un número de ultimatix válido.
         </span>
       </div>
     </div>
 
     <!-- Password -->
-    <div class="col-12 col-md-6 mb-3">
+    <div class="col-12 col-md-6 mb-4">
       <div class="input-group">
         <input formControlName="password" [type]="showPwd ? 'text' : 'password'" class="form-control pwd-input border-0"
           placeholder="Contraseña" />
@@ -80,23 +80,24 @@
           <mat-icon style="cursor: pointer;">remove_red_eye</mat-icon>
         </div>
       </div>
-      <div *ngIf="(password?.invalid && password?.touched) || password?.dirty">
-        <span class="form-text text-danger float-start" *ngIf="password?.errors?.['required']">
-          * Introduce una contraseña.
+      <div class="form-text text-danger float-start"
+        *ngIf="(password?.invalid && password?.touched) || password?.dirty">
+        <span *ngIf="password?.errors?.['required']">
+          Ingresa una contraseña.
         </span>
-        <span class="form-text text-danger float-start" *ngIf="password?.errors?.['pattern']">
-          * La contraseña debe tener al menos 8 caracteres, 1 letra mayúscula, 1 dígito y 1
-          caracter especial.
+        <span *ngIf="password?.errors?.['pattern']">
+          Ingresa una contraseña válida.
+          <mat-icon style="cursor: pointer; font-size: 1rem;" mat-tooltip-panel-right
+            matTooltip="Ingresa una combinación de al menos ocho números, letras mayúsculas, letras minúsculas y caracteres especiales (!@).">
+            report</mat-icon>
         </span>
       </div>
     </div>
   </div>
 
   <!-- Register -->
-  <div class="mb-3 mt-1">
-    <button type="submit" class="btn rounded-pill w-50 custom-btn">
-      Registrar
-    </button>
+  <div class="col-12 col-sm-6 mx-auto mb-4">
+    <app-button type="submit" buttonName="Registrar" class="w-100"></app-button>
   </div>
 
   <!-- Login -->

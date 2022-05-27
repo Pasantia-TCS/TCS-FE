@@ -1,13 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { timeInterval } from 'rxjs';
 import { UserService } from 'src/app/shared/services/user.service';
-import Swal from 'sweetalert2';
 import { Assignment } from '../../interfaces/asignacion';
 import { AsignacionService } from '../../services/asignacion.service';
 import { DarBajaComponent } from '../dar-baja/dar-baja.component';
 import { NewAssignmentComponent } from '../new-assignment/new-assignment.component';
-import { TableAsignacion } from '../tableAsignacion/tableAsignacion.component';
 
 @Component({
   selector: 'app-tasks',

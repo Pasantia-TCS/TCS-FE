@@ -13,21 +13,21 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginComponent {
 
-  currentUser: User = {};
+  currentUser!: User;
   showPwd: boolean = false;
 
   loginForm: FormGroup = this.fb.group(
     {
-      ultimatix: ['', [Validators.required]],
-      password: ['', [Validators.required]]
+      ultimatix: ['', Validators.required],
+      password: ['', Validators.required]
     }
   );
 
   constructor(
     private authService: AuthService,
+    private userService: UserService,
     private fb: FormBuilder,
-    private router: Router,
-    private userService: UserService
+    private router: Router
   ) { }
 
   valid_field(field_name: string) {

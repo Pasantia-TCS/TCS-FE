@@ -7,7 +7,6 @@ import { AsignacionService } from 'src/app/protected/services/asignacion.service
 import { ProfileService } from 'src/app/protected/services/profile.service';
 import { TasksService } from 'src/app/shared/services/tasks.service';
 import { UserService } from 'src/app/shared/services/user.service';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-new-project',

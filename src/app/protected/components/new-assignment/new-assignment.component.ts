@@ -1,12 +1,12 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { Assignment } from 'src/app/protected/interfaces/asignacion';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { Assignment } from 'src/app/protected/interfaces/asignacion';
 import { AsignacionService } from 'src/app/protected/services/asignacion.service';
-import Swal from 'sweetalert2';
-import { EquiposService } from '../../services/equipos.service';
-import { Team } from '../../interfaces/equipo';
 import { UserService } from 'src/app/shared/services/user.service';
+import Swal from 'sweetalert2';
+import { Team } from '../../interfaces/equipo';
+import { EquiposService } from '../../services/equipos.service';
 @Component({
   selector: 'app-new-assignment',
   templateUrl: './new-assignment.component.html',
@@ -86,7 +86,7 @@ export class NewAssignmentComponent implements OnInit {
         );
     }
   }
-  
+
   close(): void {
     this.dialogRef.close();
   }

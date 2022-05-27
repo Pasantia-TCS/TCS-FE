@@ -14,7 +14,7 @@ export class TasksService {
   users: Profile[] = [];
 
   async loadUsers() {
-    const baseUrl: string = `${environment.localUrl}/perfil/perfiles`;
+    const baseUrl: string = `${environment.url}/perfil/perfiles`;
     return this.http.get<Profile[]>(baseUrl)
       .subscribe(
         {

@@ -8,7 +8,7 @@ import { Profile, Skills } from '../interfaces/profile';
 })
 export class ProfileService {
 
-  private baseUrl: string = `${environment.localUrl}/perfil`;
+  private baseUrl: string = `${environment.url}/perfil`;
 
   constructor(private http: HttpClient) { }
 
@@ -29,7 +29,7 @@ export class ProfileService {
 
   updateMySkills(ultimatix: string, skills: string[], knowledgeLevel: string[]) {
     const url: string = `${this.baseUrl}/editarMisHabilidades`;
-    const body = { id_ultimatix: ultimatix, habilidades: skills, nivel_habilidad: knowledgeLevel};
+    const body = { id_ultimatix: ultimatix, habilidades: skills, nivel_habilidad: knowledgeLevel };
     return this.http.post<Profile>(url, body);
   }
 

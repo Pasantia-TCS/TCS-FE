@@ -5,5 +5,8 @@ export interface User {
   apellido?: string,
   telefono?: string,
   correo?: string,
-  rol?: string
+  rol?: string,
+  mensaje?: string
+  status?: string
+  timestamp?: string
 }
