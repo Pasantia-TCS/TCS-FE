@@ -1,7 +1,90 @@
 <h1 mat-dialog-title>Editar información</h1>
 <div mat-dialog-content>
+  <form [formGroup]="userInfoForm" autocomplete="off">
+    <div class="row">
+      <!-- Fullname -->
+      <div class="col-12 col-sm-6">
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control rounded-pill" id="floatingFullname"
+            [value]="profile?.nombres_completos" disabled>
+          <label for="floatingFullname">Nombres completos</label>
+        </div>
+      </div>
+      <!-- Ultimatix -->
+      <div class="col-12 col-sm-6">
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control rounded-pill" id="floatingUltimatix"
+            [value]="currentUser.id_numero_Ultimatix" disabled>
+          <label for="floatingUltimatix">Ultimatix</label>
+        </div>
+      </div>
+    </div>
 
+    <div class="row">
+      <!-- Email -->
+      <div class="col-12 col-sm-6">
+        <div class="form-floating mb-3">
+          <input type="email" class="form-control rounded-pill" id="floatingEmail" formControlName="email"
+            placeholder="Correo electrónico">
+          <label for="floatingEmail">Correo electrónico</label>
+          <div class="form-text text-danger float-start" *ngIf="(email?.invalid && email?.touched) || email?.dirty">
+            <span *ngIf="email?.errors?.['required']">
+              Ingresa un correo electrónico.
+            </span>
+            <span *ngIf="email?.errors?.['pattern']">
+              Ingresa un correo electrónico válido.
+            </span>
+          </div>
+        </div>
+      </div>
+      <!-- Phone -->
+      <div class="col-12 col-sm-6">
+        <div class="form-floating mb-3">
+          <input type="phone" class="form-control rounded-pill" id="floatingPhone" formControlName="phone"
+            placeholder="Teléfono">
+          <label for="floatingPhone">Teléfono</label>
+          <div *ngIf="phone?.invalid && phone?.touched">
+            <span class="form-text text-danger float-start" *ngIf="phone?.invalid">
+              Ingresa un número de teléfono válido.
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- Netuser -->
+      <div class="col-12 col-sm-6">
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control rounded-pill" id="floatingNetuser" formControlName="netuser"
+            placeholder="Usuario de red">
+          <label for="floatingNetuser">Usuario de red</label>
+          <div class="form-text text-danger float-start"
+            *ngIf="(netuser?.invalid && netuser?.touched) || netuser?.dirty">
+            <span *ngIf="netuser?.errors?.['required']">
+              Ingresa un usuario de red.
+            </span>
+            <span class="mb-3" *ngIf="netuser?.errors?.['minlength'] || netuser?.errors?.['pattern']">
+              Ingresa un nombre de usuario red válido.
+              <mat-icon style="cursor: pointer; font-size: 1rem;"
+                matTooltip="El nombre de usuario de red debe contener un arroba y al menos 8 caracteres">
+                report</mat-icon>
+            </span>
+          </div>
+        </div>
+      </div>
+      <!-- Asignation (%) -->
+      <div class="col-12 col-sm-6">
+        <div class="form-floating mb-3">
+          <input type="number" class="form-control rounded-pill" id="floatingAsignation"
+            [value]="profile.asignacion_usuario" disabled>
+          <label for="floatingAsignation">Porcentaje de asignación</label>
+        </div>
+      </div>
+    </div>
+  </form>
 </div>
 <div mat-dialog-actions>
-
+  <button mat-stroked-button (click)="exit()">Cancelar</button>
+  <button mat-stroked-button (click)="updateUserInfo()">Guardar cambios</button>
 </div>

@@ -10,9 +10,9 @@ import { environment } from 'src/environments/environment';
 export class UserService {
 
   private baseUrl: string = environment.url;
+  private currentUser!: User;
+  
   constructor(private http: HttpClient) { }
-
-  private currentUser: User = {};
 
   updateUser(currentUser: User) {
     this.currentUser = { ...currentUser };

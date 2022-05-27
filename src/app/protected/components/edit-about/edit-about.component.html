@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>Editar sobre mí</h1>
+<div mat-dialog-content>
+  <form [formGroup]="aboutMeForm">
+    <label for="textAreaAboutMe" class="form-label">
+      Puedes escribir sobre tus años de experiencia, industria, logros o habilidades.
+    </label>
+    <textarea class="form-control mb-1" id="textAreaAboutMe" rows="3" [value]="profile?.sobreMi"
+      formControlName="aboutMe" (keyup)="onKey($event)" maxlength="200"></textarea>
+    <span class="float-end">{{count + "/ 200"}}</span>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-stroked-button (click)="exit()">Cancelar</button>
+  <button mat-stroked-button (click)="updateAboutMe()">Guardar cambios</button>
+</div>

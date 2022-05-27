@@ -1,324 +1,79 @@
 <div class="container">
   <app-header title="perfil de usuario"></app-header>
 
-  <section class="h-100">
-    <div class="h-100 p-0">
-      <div class="col">
+  <!-- User info -->
+  <div class="card custom-card mb-3">
+    <div class="card-body">
+      <div class="row">
+        <!-- User photo -->
+        <div class="col-12 col-sm-3 my-auto text-center">
+          <mat-icon class="customIconSize">person</mat-icon>
+          <h1 class="text-center mt-2 mb-0">{{profile?.nombres_completos}}</h1>
+        </div>
+
         <!-- User info -->
-        <div class="card custom-card mb-3">
+        <div class="col-12 col-sm-9 pt-3">
           <div class="row">
-            <!-- User photo -->
-            <div class="col-md-3 my-auto">
-              <span class="row">
-                <svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" fill="currentColor"
-                  class="mt-2 bi bi-person-circle" viewBox="0 0 16 16">
-                  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-                  <path fill-rule="evenodd"
-                    d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
-                </svg>
-              </span>
-              <h1 class="row justify-content-center mt-2 mb-0">{{profile.nombres_completos}}</h1>
-            </div>
-
-            <!-- User info -->
-            <div class="col-md-9 pt-3">
-              <div class="card-body">
-                <div class="row">
-                  <span class="col-sm-3 mb-0 fw-bold">Ultimatix:</span>
-                  <div class="col-sm-9 text-secondary">{{ultimatix}}</div>
-                </div>
-                <hr>
-                <div class="row">
-                  <span class="col-sm-3 mb-0 fw-bold">Correo electrónico:</span>
-                  <div class="col-sm-9 text-secondary">{{currentUser.correo}}</div>
-                </div>
-                <hr>
-                <div class="row">
-                  <span class="col-sm-3 mb-0 fw-bold">Teléfono:</span>
-                  <div class="col-sm-9 text-secondary">{{currentUser.telefono}}</div>
-                </div>
-                <hr>
-                <div class="row">
-                  <span class="col-sm-3 mb-0 fw-bold">Usuario de red:</span>
-                  <div class="col-sm-9 text-secondary">{{profile.usuario_red}}</div>
-                </div>
-                <hr>
-                <div class="row">
-                  <span class="col-sm-3 mb-0 fw-bold">Total de asignación (%):</span>
-                  <div class="col-sm-9 text-secondary">{{profile.asignacion_usuario}}</div>
-                </div>
-                <hr>
-                <div class="row">
-                  <div class="col-12 col-sm-2">
-                    <app-button buttonName="Editar" [buttonIcon]="true" iconName="edit" (btnClick)="loadUserInfo()"
-                      data-bs-toggle="modal" data-bs-target="#updateUserInfo">
-                    </app-button>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <span class="col-sm-3 mb-0 fw-bold">Ultimatix:</span>
+            <div class="col-sm-9 text-secondary">{{currentUser.id_numero_Ultimatix}}</div>
           </div>
-        </div>
-
-        <!-- Modal -->
-        <div class="modal fade" id="updateUserInfo" tabindex="-1">
-          <div class="modal-dialog modal-dialog-centered modal-lg rounded-pill">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title fs-5" id="updateUserInfoLabel">Editar infomación</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <form [formGroup]="userInfoForm" autocomplete="off">
-                  <div class="row">
-                    <div class="col-12 col-sm-6">
-                      <div class="form-floating mb-3">
-                        <input type="text" class="form-control rounded-pill" id="floatingFullname"
-                          [value]="profile.nombres_completos" disabled>
-                        <label for="floatingFullname">Nombres completos</label>
-                      </div>
-                    </div>
-                    <div class="col-12 col-sm-6">
-                      <div class="form-floating mb-3">
-                        <input type="text" class="form-control rounded-pill" id="floatingUltimatix" [value]="ultimatix"
-                          disabled>
-                        <label for="floatingUltimatix">Ultimatix</label>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <!-- Email -->
-                    <div class="col-12 col-sm-6">
-                      <div class="form-floating mb-3">
-                        <input type="email" class="form-control rounded-pill" id="floatingEmail"
-                          formControlName="email">
-                        <label for="floatingEmail">Correo electrónico</label>
-                        <div *ngIf="(email?.invalid && email?.touched) || email?.dirty">
-                          <span class="form-text text-danger float-start" *ngIf="email?.errors?.['required']">
-                            Ingresa un correo electrónico.
-                          </span>
-                          <span class="form-text text-danger float-start" *ngIf="email?.errors?.['pattern']">
-                            Ingresa un correo electrónico válido.
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- Phone -->
-                    <div class="col-12 col-sm-6">
-                      <div class="form-floating mb-3">
-                        <input type="phone" class="form-control rounded-pill" id="floatingPhone"
-                          formControlName="phone">
-                        <label for="floatingPhone">Teléfono</label>
-                        <div *ngIf="phone?.invalid && phone?.touched">
-                          <span class="form-text text-danger float-start" *ngIf="phone?.invalid">
-                            Ingresa un número de teléfono válido.
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <!-- Netuser -->
-                    <div class="col-12 col-sm-6">
-                      <div class="form-floating mb-3">
-                        <input type="text" class="form-control rounded-pill" id="floatingNetuser"
-                          [value]="profile.usuario_red" formControlName="netuser">
-                        <label for="floatingNetuser">Usuario de red (Ej. @netuser)</label>
-                        <div class="form-text text-danger float-start"
-                          *ngIf="(netuser?.invalid && netuser?.touched) || netuser?.dirty">
-                          <span *ngIf="netuser?.errors?.['required']">
-                            Ingresa un usuario de red.
-                          </span>
-                          <span class="mb-3" *ngIf="netuser?.errors?.['minlength'] || netuser?.errors?.['pattern']">
-                            Ingresa un nombre de usuario red válido.
-                            <mat-icon style="cursor: pointer; font-size: 1rem;"
-                              matTooltip="El nombre de usuario de red debe contener un arroba y al menos 8 caracteres">
-                              report</mat-icon>
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- Asignation (%) -->
-                    <div class="col-12 col-sm-6">
-                      <div class="form-floating mb-3">
-                        <input type="number" class="form-control rounded-pill" id="floatingAsignation"
-                          [value]="profile.asignacion_usuario" disabled>
-                        <label for="floatingAsignation">Porcentaje de asignación</label>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn custom-btn rounded-pill float-end"
-                  data-bs-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn custom-btn rounded-pill float-end" (click)="updateUserInfo()">Guardar
-                  cambios</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- About me -->
-        <div class="card custom-card p-3 mb-3">
-          <div class="card-body">
-            <h5 class="card-title fs-2">Sobre mí</h5>
-            <p class="card-text">{{profile.sobreMi}}</p>
-          </div>
+          <hr>
           <div class="row">
-            <div class="col-12 col-sm-2">
-              <app-button buttonName="Editar" [buttonIcon]="true" iconName="edit" data-bs-toggle="modal"
-                data-bs-target="#updateAboutMe">
-              </app-button>
-            </div>
+            <span class="col-sm-3 mb-0 fw-bold">Correo electrónico:</span>
+            <div class="col-sm-9 text-secondary">{{currentUser.correo}}</div>
           </div>
-        </div>
-
-        <!-- Modal -->
-        <div class="modal fade" id="updateAboutMe" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-          aria-labelledby="updateAboutMeLabel" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title fs-5" id="exampleModalLabel">Editar infomación</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body mb-3">
-                <form [formGroup]="aboutMeForm">
-                  <label for="textAreaAboutMe" class="form-label">
-                    Puedes escribir sobre tus años de experiencia, industria, logros o habilidades.
-                  </label>
-                  <textarea class="form-control" id="textAreaAboutMe" rows="3" [value]="profile.sobreMi"
-                    formControlName="aboutMe"></textarea>
-                </form>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn custom-btn rounded-pill float-end"
-                  data-bs-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn custom-btn rounded-pill float-end" (click)="loadAboutMe()">
-                  Guardar cambios
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Skills -->
-        <div class="card custom-card p-3">
-          <div class="card-body">
-            <h5 class="card-title fs-2 mb-3">Habilidades</h5>
-            <ul class="list-group list-group-flush">
-              <div class="row">
-                <div class="col-12 col-sm-2">
-                  <li class="list-group-item" *ngFor="let skill of profile.habilidades">{{skill}}</li>
-                </div>
-                <div class="col-12 col-sm-2">
-                  <li class="list-group-item" *ngFor="let level of profile.nivel_habilidad">{{level}}</li>
-                </div>
-              </div>
-            </ul>
-          </div>
+          <hr>
           <div class="row">
-            <div class="col-12 col-sm-2">
-              <app-button buttonName="Editar" [buttonIcon]="true" iconName="edit" data-bs-toggle="modal"
-                data-bs-target="#updateSkills">
-              </app-button>
-            </div>
+            <span class="col-sm-3 mb-0 fw-bold">Teléfono:</span>
+            <div class="col-sm-9 text-secondary">{{currentUser.telefono}}</div>
           </div>
-        </div>
-
-        <!-- Modal -->
-        <div class="modal fade" id="updateSkills" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
-          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title fs-5" id="exampleModalLabel">Editar infomación</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-
-                <form [formGroup]="skillsForm">
-                  <!-- Add new skill -->
-                  <div class="row mb-3">
-                    <label class="col-sm-3 col-form-label">Habilidades:</label>
-                    <div class="col-sm-9">
-                      <div class="input-group">
-                        <select class=" form-select" id="skills" formControlName="skills">
-                          <option value="">Seleccione una habilidad</option>
-                          <option [ngValue]="skill" *ngFor="let skill of skillsList">{{skill}}</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Add knowledge level -->
-                  <div class="row mb-3">
-                    <label class="col-sm-3 col-form-label">Nivel de conocimiento:</label>
-                    <div class="col-sm-9">
-                      <div class="input-group">
-                        <select class=" form-select" id="levels" formControlName="levels">
-                          <option value="">Seleccione el nivel de conocimiento </option>
-                          <option [ngValue]="level" *ngFor="let level of knowledgeLevelList">{{level}}</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="row mb-3">
-                    <app-button buttonName="Añadir" [buttonIcon]="true" iconName="add_circle" (btnClick)="addSkill()">
-                    </app-button>
-                  </div>
-
-                  <!-- My skills list -->
-                  <div class="row mb-3 text-center">
-                    <label class="text-uppercase fw-bold">Mis habilidades</label>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-6">
-                      <label class="col-sm-5 col-form-label">Habilidades:</label>
-                    </div>
-                    <div class="col-6">
-                      <label class="col-sm-5 col-form-label">Nivel:</label>
-                    </div>
-                  </div>
-
-                  <div class="row mb-3">
-                    <div class="col-6">
-                      <div class="input-group mb-1" *ngFor="let mySkill of tempSkillsList; let i = index">
-                        <span class="input-group-text" id="addon-wrapping">{{i + 1}}</span>
-                        <input type="text" class="form-control" disabled [value]="mySkill">
-                      </div>
-                    </div>
-
-                    <div class="col-6">
-                      <div class="input-group mb-1" *ngFor="let myLevel of tempKnowledgeLevelList; let i = index">
-                        <span class="input-group-text" id="addon-wrapping">{{i + 1}}</span>
-                        <input type="text" class="form-control" disabled [value]="myLevel">
-                        <button type="button" class="btn btn-outline-danger" (click)="deleteSkill(i)">Eliminar</button>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-
-                <span *ngIf="!savedSkills" class="form-text text-danger float-end">
-                  * Cambios sin guardar
-                </span>
-
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn custom-btn rounded-pill float-end"
-                  data-bs-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn custom-btn rounded-pill float-end" (click)="loadSkills()">
-                  Guardar cambios
-                </button>
-              </div>
-            </div>
+          <hr>
+          <div class="row">
+            <span class="col-sm-3 mb-0 fw-bold">Usuario de red:</span>
+            <div class="col-sm-9 text-secondary">{{profile?.usuario_red}}</div>
           </div>
+          <hr>
+          <div class="row">
+            <span class="col-sm-3 mb-0 fw-bold">Total de asignación (%):</span>
+            <div class="col-sm-9 text-secondary">{{profile?.asignacion_usuario}}</div>
+          </div>
+          <hr>
         </div>
       </div>
+      <div class="col-12 col-sm-2 float-end">
+        <app-button buttonName="Editar" [buttonIcon]="true" iconName="edit" (btnClick)="openUserInfo()">
+        </app-button>
+      </div>
     </div>
-  </section>
+  </div>
+
+  <!-- About me -->
+  <div class="card custom-card mb-3 pt-3">
+    <div class="card-body">
+      <h5 class="card-title fs-2 mb-3">Sobre mí</h5>
+      <p class="card-text">{{profile?.sobreMi}}</p>
+      <app-button buttonName="Editar" [buttonIcon]="true" iconName="edit" class="col-12 col-sm-2 float-end"
+        (btnClick)="openAboutMe()">
+      </app-button>
+    </div>
+  </div>
+
+  <!-- Skills -->
+  <div class="card custom-card pt-3">
+    <div class="card-body">
+      <h5 class="card-title fs-2 mb-3">Habilidades</h5>
+      <ul class="list-group list-group-flush mb-3">
+        <div class="row">
+          <div class="col-6 col-sm-2">
+            <li class="list-group-item" *ngFor="let skill of profile?.habilidades">{{skill}}</li>
+          </div>
+          <div class="col-6 col-sm-10">
+            <li class="list-group-item" *ngFor="let level of profile?.nivel_habilidad">{{level}}</li>
+          </div>
+        </div>
+      </ul>
+      <app-button buttonName="Editar" [buttonIcon]="true" iconName="edit" class="col-12 col-sm-2 float-end" (btnClick)="openSkills()">
+      </app-button>
+    </div>
+  </div>
 </div>
