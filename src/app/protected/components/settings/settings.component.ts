@@ -5,7 +5,9 @@ import { Observable, Subscription } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/auth/interfaces/user';
+import { Profile } from '../../interfaces/profile';
 import { SettingsService } from '../../services/settings.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-settings',
@@ -18,7 +20,7 @@ export class SettingsComponent implements OnInit {
   currentUser: User = {}
   ultimatix: string | undefined = '';
 
-  users!: User[];
+  users!: Profile[];
   tableHeader: string[] = ['Acciones', 'Ultimatix', 'Nombre', 'Rol'];
   
 
@@ -44,12 +46,38 @@ export class SettingsComponent implements OnInit {
   loadUsers(){
     this.settingsService.getUsers()
     .subscribe({ 
-      next: resp => { this.users = resp }
+      next: resp => { 
+        this.users = resp         
+      }
     })
 
   }
 
-  changeRole(){
+  update(id_ultimatix: number){
+
+    Swal.fire({
+      title: '¿Estás seguro que deseas cambiar el rol de este usuario?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.settingsService.changeRole(id_ultimatix)
+          .subscribe(
+            {
+              next: resp => {
+                this.loadUsers();
+                Swal.fire('El rol de este usuario ha cambiado!', resp.mensaje, 'success');
+              },
+              error: err => Swal.fire('Error', err.error.mensaje, 'error')
+            }
+          );
+      }
+    });
+  
 
   }
 

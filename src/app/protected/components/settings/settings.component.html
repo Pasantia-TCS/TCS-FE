@@ -36,13 +36,14 @@
                     <tr *ngFor="let user of users" >
                       <td>
                         <button mat-icon-button data-bs-placement="right" title="Editar usuario" style="cursor: pointer;"
-                          (click)="changeRole()">
+                          (click)="update(user.id_ultimatix!)">
                           <mat-icon [ngStyle]="{'color':'#9B11BF99'}">edit</mat-icon>
                         </button>
                       </td>
-                      <td>{{user.id_numero_Ultimatix}}</td>
-                      <td>{{user.nombre}} {{user.apellido}}</td>
-                      <td>{{user.rol}}</td>
+                      <td>{{user.id_ultimatix}}</td>
+                      <td>{{user.nombres_completos}}</td>
+                      <td [ngStyle]="{color: user.rol == 'user' ? 'green' : 'red'}">{{user.rol}}</td>
+
                     </tr>
 
           

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { User } from 'src/app/auth/interfaces/user';
+import { Profile } from '../interfaces/profile';
 import { Observable, Subject } from 'rxjs';
 
 @Injectable({
@@ -10,7 +11,7 @@ import { Observable, Subject } from 'rxjs';
 
 export class SettingsService {
 
-  private baseUrl: string = `${environment.url}/asociados`;
+  private baseUrl: string = `${environment.url}/perfil`;
   private subject = new Subject<any>();
 
   constructor(private http: HttpClient) { }
@@ -20,13 +21,13 @@ export class SettingsService {
   }
 
   getUsers(){
-    const url: string = `${this.baseUrl}/buscarAsociados`;
-    return this.http.get<User[]>(url);
+    const url: string = `${this.baseUrl}/perfiles`;
+    return this.http.get<Profile[]>(url);
   }
 
-  changeRole(id_ultimatix: string){
-    const url: string = `${this.baseUrl}/`;
-    return this.http.post<User>(url, { id_ultimatix });
+  changeRole(id_ultimatix: number){
+    const url: string = `${this.baseUrl}/actualizar-rol`;
+    return this.http.post<Profile>(url, { id_ultimatix });
   
   }
 

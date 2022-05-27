@@ -5,7 +5,12 @@ export interface Profile {
   nivel_habilidad?: string[],
   usuario_red?: string,
   asignacion_usuario?: number,
-  nombres_completos?: string
+  nombres_completos?: string,
+  rol?: string,
+
+  mensaje?: string,
+  status?: string, 
+  timestamp?: string,
 }
 
 export interface Skills {
