@@ -20,7 +20,7 @@
           <hr>
           <div class="row">
             <span class="col-sm-3 mb-0 fw-bold">Rol:</span>
-            <div class="col-sm-9 text-secondary">{{currentUser.rol}}</div>
+            <div class="col-sm-9 text-secondary">{{profile?.rol === 'admin' ? 'Administrador' : 'Usuario'}}</div>
           </div>
           <hr>
           <div class="row">

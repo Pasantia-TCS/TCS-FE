@@ -80,7 +80,7 @@
       </li>
 
       <!-- Settings -->
-      <li *ngIf="currentUser.rol !== 'user'">
+      <li *ngIf="profile?.rol === 'admin'">
         <a [routerLink]="['/pages/dashboard/settings']">
           <span>
             <mat-icon>settings</mat-icon>
