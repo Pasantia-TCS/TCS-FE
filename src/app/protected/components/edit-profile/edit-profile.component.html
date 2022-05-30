@@ -65,9 +65,9 @@
               Ingresa un usuario de red.
             </span>
             <span class="mb-3" *ngIf="netuser?.errors?.['minlength'] || netuser?.errors?.['pattern']">
-              Ingresa un nombre de usuario red válido.
+              Ingresa un usuario red válido.
               <mat-icon style="cursor: pointer; font-size: 1rem;"
-                matTooltip="El nombre de usuario de red debe contener un arroba y al menos 8 caracteres">
+                matTooltip="El nombre de usuario de red debe contener un caracter especial (@) y al menos 8 letras minúsculas.">
                 report</mat-icon>
             </span>
           </div>
