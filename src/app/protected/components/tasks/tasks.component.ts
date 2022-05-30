@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { CustomTableComponent } from 'src/app/shared/components/custom-table/custom-table.component';
 import { UserService } from 'src/app/shared/services/user.service';
 import { Assignment } from '../../interfaces/asignacion';
 import { AsignacionService } from '../../services/asignacion.service';
+import { GeneralService } from '../../services/general.service';
 import { DarBajaComponent } from '../dar-baja/dar-baja.component';
 import { NewAssignmentComponent } from '../new-assignment/new-assignment.component';
+import { TableAsignacion } from '../tableAsignacion/tableAsignacion.component';
 
 @Component({
   selector: 'app-tasks',
@@ -12,6 +15,8 @@ import { NewAssignmentComponent } from '../new-assignment/new-assignment.compone
   styles: []
 })
 export class TasksComponent implements OnInit {
+
+  @ViewChild(CustomTableComponent) table: any;
 
   titles: string[] = ['Acciones', 'Equipo', 'Tipo', 'Asignación (%)', 'Fecha de inicio', 'Fecha de finalización', 'Fecha de salida', 'Estado'];
   dataBody!: Assignment[];
@@ -24,7 +29,8 @@ export class TasksComponent implements OnInit {
   constructor(
     private asignacionService: AsignacionService,
     private userService: UserService,
-    public dialog: MatDialog
+    private dialog: MatDialog,
+    private generalService: GeneralService
   ) { }
 
   ngOnInit(): void {
@@ -41,6 +47,14 @@ export class TasksComponent implements OnInit {
   }
 
   newAssignment() {
-    this.dialog.open(NewAssignmentComponent);
+    this.dialog.open(NewAssignmentComponent, { data: { item: null, edit: false } });
+  }
+
+  update(item: Assignment) {
+    this.dialog.open(NewAssignmentComponent, { data: { item, edit: true } });
+  }
+
+  exportTable(): void {
+    this.generalService.exportData('table', 'Reporte asignaciones');
   }
 }

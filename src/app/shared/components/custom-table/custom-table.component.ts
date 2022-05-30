@@ -12,6 +12,7 @@ import { UserService } from '../../services/user.service';
 export class CustomTableComponent implements OnInit {
 
   @Output() deleteEvent = new EventEmitter<Assignment>();
+  @Output() updateEvent = new EventEmitter<Assignment>();
 
   @Input() titles: string[] = []
   @Input() iconNames: string[] = ['edit', 'delete'];
@@ -31,8 +32,8 @@ export class CustomTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.ultimatix = this.userService.getUltimatix()!;
+    this.loadAssignments()
   }
-
 
   loadAssignments() {
     this.asignacionService.obtenerAsignaciones(this.ultimatix)
@@ -41,12 +42,12 @@ export class CustomTableComponent implements OnInit {
       });
   }
 
-  update(item: any) {
-
-  }
-
   delete(item: Assignment) {
     this.deleteEvent.emit(item);
+  }
+
+  update(item: Assignment) {
+    this.updateEvent.emit(item);
   }
 
   clickMe() {

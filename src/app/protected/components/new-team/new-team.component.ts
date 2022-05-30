@@ -64,6 +64,8 @@ export class NewTeamComponent implements OnInit {
   }
 
   save() {
+    console.log( ' Save ' + this.update);
+
     if (this.nuevoEquipoForm.invalid) {
       this.nuevoEquipoForm.markAllAsTouched();
     } else {
@@ -72,6 +74,8 @@ export class NewTeamComponent implements OnInit {
   }
 
   createTeam() {
+    console.log( ' New team ' + this.update);
+
     this.equiposService.add(this.nuevoEquipoForm.value)
       .subscribe(
         {
@@ -89,6 +93,8 @@ export class NewTeamComponent implements OnInit {
   }
 
   updateTeam() {
+    console.log( ' Edit assignment ' + this.update);
+
     if (this.team.estado_asi === false) {
       Swal.fire('¡Aviso!', 'No se puede editar un proyecto no vigente.', 'info');
     } else {
