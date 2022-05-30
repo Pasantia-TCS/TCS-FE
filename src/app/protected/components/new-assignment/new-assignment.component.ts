@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Assignment } from 'src/app/protected/interfaces/asignacion';
 import { AsignacionService } from 'src/app/protected/services/asignacion.service';
 import { UserService } from 'src/app/shared/services/user.service';
 import Swal from 'sweetalert2';
 import { Team } from '../../interfaces/equipo';
 import { EquiposService } from '../../services/equipos.service';
+
 @Component({
   selector: 'app-new-assignment',
   templateUrl: './new-assignment.component.html',
@@ -23,6 +24,8 @@ export class NewAssignmentComponent implements OnInit {
   types: string[] = ['Proyecto', 'Célula', 'Tribu'];
   teams!: Team[];
   ultimatix!: string;
+
+  update: boolean = false;
 
   asignacion: Assignment = {};
 
@@ -41,7 +44,9 @@ export class NewAssignmentComponent implements OnInit {
     private fb: FormBuilder,
     private asignacionService: AsignacionService,
     private equiposService: EquiposService,
-    private userService: UserService
+    private userService: UserService,
+    @Inject(MAT_DIALOG_DATA) public data: any
+
   ) { }
 
   ngOnInit(): void {
@@ -51,6 +56,27 @@ export class NewAssignmentComponent implements OnInit {
 
     // Get ultimatix
     this.ultimatix = this.userService.getUltimatix()!;
+
+    // Update
+    console.log(this.data);
+    
+    this.update = this.data.edit;
+    this.asignacion = this.data.item;
+
+    if (this.update) {      
+      this.nuevoAsignacionForm.patchValue(
+        {
+          id_equipo_asi: this.asignacion.id_equipo_asi,
+          asignacion: this.asignacion.asignacion,
+          ultimatix_asi: this.asignacion.utimatix_asi,
+          fecha_inicio: this.asignacion.fecha_inicio,
+          fecha_fin: this.asignacion.fecha_fin,
+        }
+      );
+
+      this.nuevoAsignacionForm.get('id_equipo_asi')?.disable();
+      this.nuevoAsignacionForm.get('fecha_inicio')?.disable();
+    }
   }
 
   getCtrl(controlName: string) {
@@ -61,33 +87,53 @@ export class NewAssignmentComponent implements OnInit {
     this.asignacionService.sendClickEvent();
   }
 
-  registrarAsignacion() {
-
+  save() {
     if (this.nuevoAsignacionForm.invalid) {
       this.nuevoAsignacionForm.markAllAsTouched();
     } else {
-      this.nuevoAsignacionForm.patchValue({
-        ultimatix_asi: this.ultimatix.toString()
-      });
+      this.update ? this.updateItem() : this.create();
+    }
+  }
 
-      this.asignacionService.agregar(this.nuevoAsignacionForm.value)
+
+  create() {
+    this.asignacionService.agregar(this.nuevoAsignacionForm.value)
+      .subscribe(
+        {
+          next: () => {
+            this.clickMe();
+            this.nuevoAsignacionForm.reset({
+              asignacion: ''
+            });
+            Swal.fire('Éxito', 'Asignación registrada con éxito.', 'success');
+            this.dialogRef.close();
+          },
+          error: err => Swal.fire('Error', err.error.mensaje, 'error')
+        }
+      );
+  }
+
+  updateItem() {    
+    if (this.asignacion.estado === false) {
+      Swal.fire('¡Aviso!', 'No se puede editar una asignacion no vigente.', 'info');
+    } else {
+      const { asignacion, fecha_fin } = this.nuevoAsignacionForm.value;
+      this.asignacionService.update(this.asignacion.id_asignacion_proyecto_asi!, asignacion, fecha_fin)
         .subscribe(
           {
             next: () => {
               this.clickMe();
-              this.nuevoAsignacionForm.reset({
-                asignacion: ''
-              });
-              Swal.fire('Éxito', 'Asignación registrada con éxito.', 'success');
+              Swal.fire('¡Éxito!', 'Asignacion editado con éxito.', 'success');
               this.dialogRef.close();
             },
-            error: err => Swal.fire('Error', err.error.mensaje, 'error')
+            error: err => Swal.fire('¡Error!', err.error.mensaje, 'error')
           }
         );
-    }
+   }
   }
 
-  close(): void {
+  exit(): void {
     this.dialogRef.close();
   }
+
 }

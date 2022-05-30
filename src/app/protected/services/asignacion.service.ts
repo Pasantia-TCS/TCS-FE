@@ -39,9 +39,11 @@ export class AsignacionService {
     return this.http.post<Assignment[]>(url, { id_ultimatix: ultimatix });
   }
 
-  update(assignment: Assignment) {
-    const url: string = `${this.baseUrl}/registrarAsignacion`;
-    return this.http.post<Assignment[]>(url, assignment);
+  update(id_asignacion_proyecto_asg: string, asignacion: number, fecha_fin: string) {
+    const url: string = `${this.baseUrl}/actualizar-asignacion`;
+    const body = { id_asignacion_proyecto_asg, asignacion, fecha_fin };
+    console.log(body);
+    return this.http.post<Assignment[]>(url, body);
   }
 
   delete(id_asignacion_proyecto_asg: string, id_equipo_asi: string, ultimatix_asi: string, asignacion: number, fecha_baja: string) {
