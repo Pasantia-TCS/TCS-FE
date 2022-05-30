@@ -27,7 +27,6 @@ export class SettingsService {
   changeRole(id_ultimatix: number) {
     const url: string = `${this.baseUrl}/actualizar-rol`;
     return this.http.post<Profile>(url, { id_ultimatix });
-
   }
 
 }

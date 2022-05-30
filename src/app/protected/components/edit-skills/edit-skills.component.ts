@@ -28,7 +28,6 @@ export class EditSkillsComponent implements OnInit {
   knowledgeLevelList: string[] = ['Alto', 'Medio', 'Bajo'];
 
   savedSkills: boolean = true;
-  savedAboutMe: boolean = true;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) private data: Profile,

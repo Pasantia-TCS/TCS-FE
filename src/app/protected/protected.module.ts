@@ -28,7 +28,6 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { SearchComponent } from './components/search/search.component';
 import { SelectionComponent } from './components/selection/selection.component';
 import { SettingsComponent } from './components/settings/settings.component';
-import { SkillsComponent } from './components/skills/skills.component';
 import { StarRatingComponent } from './components/star-rating/star-rating.component';
 import { TableBasic } from './components/table/table.component';
 import { TableAsignacion } from './components/tableAsignacion/tableAsignacion.component';
@@ -37,7 +36,6 @@ import { TasksComponent } from './components/tasks/tasks.component';
 import { TeamsComponent } from './components/teams/teams.component';
 import { TemplateComponent } from './components/template/template.component';
 import { ProtectedRoutingModule } from './protected-routing.module';
-
 
 @NgModule({
   declarations: [
@@ -62,7 +60,6 @@ import { ProtectedRoutingModule } from './protected-routing.module';
     NewAssignmentComponent,
     TemplateComponent,
     StarRatingComponent,
-    SkillsComponent,
     EditProfileComponent,
     EditSkillsComponent,
     DarBajaComponent,

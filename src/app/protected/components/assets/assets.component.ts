@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { User } from 'src/app/auth/interfaces/user';
 import { UserService } from 'src/app/shared/services/user.service';
@@ -8,20 +8,18 @@ import { ActivosService } from '../../services/activos.service';
 import { GeneralService } from '../../services/general.service';
 import { DeliverModalComponent } from '../deliver-modal/deliver-modal.component';
 import { NewAssetComponent } from '../new-asset/new-asset.component';
-import { TableBasic } from '../table/table.component';
 
 @Component({
   selector: 'app-assets',
   templateUrl: './assets.component.html',
   styles: []
 })
-export class AssetsComponent implements OnInit, AfterViewInit {
+export class AssetsComponent implements OnInit {
 
-  activos: Asset[] = [];
-  currentUser: User = {};
-  activoActual: Asset = {};
-
-  @ViewChild(TableBasic) table: any;
+  titles: string[] = ['Acciones', 'Área', 'Edificio', 'Activo', 'Fecha de adjudicación', 'Fecha de devolución', 'Estado'];
+  assets!: Asset[];
+  currentUser!: User;
+  ultimatix!: string;
 
   constructor(
     private activosService: ActivosService,
@@ -30,36 +28,26 @@ export class AssetsComponent implements OnInit, AfterViewInit {
     public generalService: GeneralService
   ) { }
 
-  ngAfterViewInit(): void {
-    this.table.load();
-  }
-
   ngOnInit(): void {
-    this.loadUser();
-    this.loadAssets(this.currentUser.id_numero_Ultimatix);
-  }
+    this.ultimatix = this.userService.getUltimatix()!;
 
-  loadUser(): void {
-    this.currentUser = this.userService.getUserData();
-  }
-
-  loadAssets(ultimatix: string | undefined): void {
-    this.activosService.mostrarActivos(ultimatix)
-      .then(resp => {
-        this.activos = resp;
-      });
+    this.activosService.getAssets(this.ultimatix)
+      .subscribe({
+        next: resp => this.assets = resp
+      })
   }
 
   openNewAsset(): void {
     this.dialog.open(NewAssetComponent, {
+      data: this.assets,
       width: '600px',
-    });
+    }).afterClosed()
+      .subscribe({
+        next: resp => { if (resp) { this.assets = resp } }
+      });
   }
 
   deleteItem(id_activo: string): void {
-
-    const ultimatix = this.currentUser.id_numero_Ultimatix!;
-
     Swal.fire({
       title: '¿Quieres eliminar el activo?',
       text: '¡No podrás revertir esto!',
@@ -71,23 +59,25 @@ export class AssetsComponent implements OnInit, AfterViewInit {
       cancelButtonText: 'No'
     }).then(result => {
       if (result.isConfirmed) {
-        this.activosService.eliminar(id_activo, ultimatix)
-          .subscribe(
-            {
-              next: resp => {
-                this.activos = resp;
-                this.table.load();
-                Swal.fire('Éxito', 'Activo eliminado con éxito.', 'success');
-              },
-              error: err => Swal.fire('Error', err.error.mensaje, 'error')
-            }
-          );
+        this.activosService.eliminar(id_activo, this.ultimatix)
+          .subscribe({
+            next: resp => {
+              this.assets = resp;
+              Swal.fire('Éxito', 'Activo eliminado con éxito.', 'success');
+            },
+            error: err => Swal.fire('Error', err.error.mensaje, 'error')
+          });
       }
     });
   }
 
-  openDeliverItem(asset: Asset) {
-    this.dialog.open(DeliverModalComponent, { data: { asset } });
+  openDeliverItem(idAsset: string) {
+    this.dialog.open(DeliverModalComponent, {
+      data: { idAsset, assets: this.assets }
+    }).afterClosed()
+      .subscribe({
+        next: resp => { if (resp) { this.assets = resp; } }
+      });
   }
 
   exportTable(): void {

@@ -1,6 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { User } from 'src/app/auth/interfaces/user';
 import { UserService } from 'src/app/shared/services/user.service';
 import { Asset } from '../../interfaces/activo';
@@ -13,60 +11,44 @@ import { ActivosService } from '../../services/activos.service';
 export class TableBasic implements OnInit {
 
   @Output() indexToDelete = new EventEmitter<string>();
-  @Output() indexToDeliver = new EventEmitter<string>();
-  @Output() deliverEvent = new EventEmitter();
+  @Output() deliverEvent = new EventEmitter<string>();
 
-  currentUser: User = {}
-  ultimatix: string | undefined = '';
+  // currentUser!: User;
+  // ultimatix!: string;
 
-  tableData: Asset[] = [];
-  tableKey: any = [];
-  tableValue: any = [];
+  @Input() tableHeader: string[] = [];
+  @Input() tableData: Asset[] = [];
 
-  tableHeader: string[] = ['Acciones', 'Área', 'Edificio', 'Activo', 'Fecha de adjudicación', 'Fecha de devolución', 'Estado'];
-
-  areas: string[] = ['CTB', 'EnP', 'Librarian', 'Panamá', 'Seguridad', 'SES', 'Otras'];
-  tipos: string[] = ['Computador'];
-  pisos: string[] = ['Piso 1', 'Piso 2', 'Piso 3', 'Piso 4', 'Piso 5', 'Piso 6'];
-  edificios: string[] = ['Centrum', 'Inluxor'];
-
-  clickEventSubscription: Subscription;
-
-  deliverForm: FormGroup = this.fb.group(
-    {
-      fecha_devolucion: ['', Validators.required]
-    }
-  );
+  // clickEventSubscription: Subscription;
 
   constructor(
-    private activosService: ActivosService,
-    private userService: UserService,
-    private fb: FormBuilder
+    // private activosService: ActivosService,
+    // private userService: UserService,
   ) {
-    this.clickEventSubscription = this.activosService
-      .getClickEvent()
-      .subscribe(() => setTimeout(() => this.load(), 500));
+    // this.clickEventSubscription = this.activosService
+    //   .getClickEvent()
+    //   .subscribe(() => setTimeout(() => this.load(), 500));
   }
 
   ngOnInit(): void {
-    this.currentUser = this.userService.getUserData();
-    this.ultimatix = this.currentUser.id_numero_Ultimatix;
-    this.load();
+    // this.currentUser = this.userService.getUserData();
+    // this.ultimatix = this.currentUser.id_numero_Ultimatix!;
+    // this.load();
   }
 
-  load() {
-    this.activosService.mostrarActivos(this.ultimatix)
-      .then(result => {
-        this.tableData = result;
-      });
-  }
+  // load() {
+  //   this.activosService.mostrarActivos(this.ultimatix)
+  //     .then(result => {
+  //       this.tableData = result;
+  //     });
+  // }
 
   deleteItem(index: string) {
     this.indexToDelete.emit(index);
   }
 
-  deliverItem(asset: Asset) {
-    this.deliverEvent.emit(asset);
+  deliverItem(index: string) {
+    this.deliverEvent.emit(index);
   }
 
 }

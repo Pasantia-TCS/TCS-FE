@@ -15,5 +15,6 @@
   </div>
 
   <!-- Table -->
-  <p-table (indexToDelete)="deleteItem($event)" (deliverEvent)="openDeliverItem($event)"></p-table>
+  <p-table (indexToDelete)="deleteItem($event)" (deliverEvent)="openDeliverItem($event)" [tableData]="assets"
+    [tableHeader]="titles"></p-table>
 </div>

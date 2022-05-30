@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { lastValueFrom, Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Asset, AssetType } from '../interfaces/activo';
 
@@ -10,17 +9,8 @@ import { Asset, AssetType } from '../interfaces/activo';
 export class ActivosService {
 
   private baseUrl: string = `${environment.url}/activos`;
-  private subject = new Subject<any>();
 
   constructor(private http: HttpClient) { }
-
-  sendClickEvent() {
-    this.subject.next(true);
-  }
-
-  getClickEvent(): Observable<any> {
-    return this.subject.asObservable();
-  }
 
   getTypes() {
     const url: string = `${this.baseUrl}/tipos`;
@@ -57,10 +47,9 @@ export class ActivosService {
     return this.http.post<Asset[]>(url, { id_activo: id_activo, id_ultimatix: ultimatix });
   }
 
-  async mostrarActivos(ultimatix: string | undefined) {
+  getAssets(ultimatix: string) {
     const url: string = `${this.baseUrl}/buscarUltimatix`;
-    const source$ = this.http.post<Asset[]>(url, { id_ultimatix: ultimatix });
-    return lastValueFrom(source$);
+    return this.http.post<Asset[]>(url, { id_ultimatix: ultimatix });
   }
 
   setAssetStatus(id: string, ultimatix: string, deliveryDate: string) {

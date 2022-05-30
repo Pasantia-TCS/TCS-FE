@@ -19,13 +19,6 @@ export class ProfileComponent implements OnInit {
   currentUser!: User;
   profile!: Profile;
 
-  // Skills
-  tempSkillsList!: string[];
-  tempKnowledgeLevelList!: string[];
-
-  skillsList!: string[];
-  knowledgeLevelList: string[] = ['Alto', 'Medio', 'Bajo'];
-
   constructor(
     private profileService: ProfileService,
     private userService: UserService,

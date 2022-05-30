@@ -10,7 +10,8 @@
       <tbody *ngFor="let activo of tableData">
         <tr *ngIf="activo.borrado_logico === false" [ngClass]="{'table-secondary': activo.estado}">
           <td>
-            <button mat-icon-button data-bs-toggle="tooltip" data-bs-placement="right" title="Devolver activo" (click)="deliverItem(activo)">
+            <button mat-icon-button data-bs-toggle="tooltip" data-bs-placement="right" title="Devolver activo"
+              (click)="deliverItem(activo.id_activo!)">
               <mat-icon style="color: green;">exit_to_app</mat-icon>
             </button>
             <button mat-icon-button data-bs-toggle="tooltip" data-bs-placement="right" title="Eliminar activo"
