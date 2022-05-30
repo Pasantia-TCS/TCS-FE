@@ -58,8 +58,6 @@ export class NewAssignmentComponent implements OnInit {
     this.ultimatix = this.userService.getUltimatix()!;
 
     // Update
-    console.log(this.data);
-    
     this.update = this.data.edit;
     this.asignacion = this.data.item;
 

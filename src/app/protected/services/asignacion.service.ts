@@ -42,7 +42,6 @@ export class AsignacionService {
   update(id_asignacion_proyecto_asg: string, asignacion: number, fecha_fin: string) {
     const url: string = `${this.baseUrl}/actualizar-asignacion`;
     const body = { id_asignacion_proyecto_asg, asignacion, fecha_fin };
-    console.log(body);
     return this.http.post<Assignment[]>(url, body);
   }
 
