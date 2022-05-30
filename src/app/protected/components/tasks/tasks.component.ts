@@ -7,7 +7,6 @@ import { AsignacionService } from '../../services/asignacion.service';
 import { GeneralService } from '../../services/general.service';
 import { DarBajaComponent } from '../dar-baja/dar-baja.component';
 import { NewAssignmentComponent } from '../new-assignment/new-assignment.component';
-import { TableAsignacion } from '../tableAsignacion/tableAsignacion.component';
 
 @Component({
   selector: 'app-tasks',
@@ -20,10 +19,8 @@ export class TasksComponent implements OnInit {
 
   titles: string[] = ['Acciones', 'Equipo', 'Tipo', 'Asignación (%)', 'Fecha de inicio', 'Fecha de finalización', 'Fecha de salida', 'Estado'];
   dataBody!: Assignment[];
-
   proyectos!: Assignment[];
   currentProject!: Assignment;
-
   ultimatix!: string;
 
   constructor(
@@ -57,4 +54,5 @@ export class TasksComponent implements OnInit {
   exportTable(): void {
     this.generalService.exportData('table', 'Reporte asignaciones');
   }
+
 }
