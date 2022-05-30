@@ -1,5 +1,5 @@
 export interface Building {
     id?: number,
     nombre?: string,
-    piso?: string,
+    piso?: number,
 }

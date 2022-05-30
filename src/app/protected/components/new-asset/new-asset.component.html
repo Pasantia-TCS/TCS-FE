@@ -23,7 +23,7 @@
       <!-- Building field-->
       <div class="col-12 col-sm-6 form-floating mb-3">
         <select id="floatingBuilding" class="form-select rounded-pill" formControlName="edificio">
-          <option [value]="edificio" *ngFor="let edificio of edificios">{{edificio}}</option>
+          <option [value]="edificio.nombre" *ngFor="let edificio of buildings">{{edificio.nombre}}</option>
         </select>
         <label for="floatingBuilding">Edificio</label>
       </div>

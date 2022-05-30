@@ -41,7 +41,7 @@ export class DeliverModalComponent implements OnInit {
     } else {
       const { fecha_devolucion } = this.deliverForm.value;
       this.activosService
-        .setAssetStatus(this.idAsset.toString()!, this.ultimatix, fecha_devolucion)
+        .setStatus(this.idAsset.toString()!, this.ultimatix, fecha_devolucion)
         .subscribe({
           next: resp => {
             this.assets = resp;

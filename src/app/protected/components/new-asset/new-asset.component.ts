@@ -5,6 +5,7 @@ import { User } from 'src/app/auth/interfaces/user';
 import { UserService } from 'src/app/shared/services/user.service';
 import Swal from 'sweetalert2';
 import { Asset, AssetType } from '../../interfaces/activo';
+import { Building } from '../../interfaces/edificio';
 import { ActivosService } from '../../services/activos.service';
 
 @Component({
@@ -14,16 +15,11 @@ import { ActivosService } from '../../services/activos.service';
 })
 export class NewAssetComponent implements OnInit {
 
-  areas!: AssetType[];
-  tipos!: AssetType[];
-  pisos: string[] = ['Piso 1', 'Piso 2', 'Piso 3', 'Piso 4', 'Piso 5', 'Piso 6'];
-  edificios: string[] = ['Centrum', 'Inluxor'];
-
   nuevoActivoForm: FormGroup = this.fb.group({
     area: ['CTB', Validators.required],
     tipo: ['CPU/Portatil', Validators.required],
     edificio: ['Inluxor', Validators.required],
-    piso: ['Piso 1', Validators.required],
+    piso: [1, Validators.required],
     marca: ['', Validators.required],
     modelo: ['', Validators.required],
     serie: ['', Validators.required],
@@ -35,8 +31,14 @@ export class NewAssetComponent implements OnInit {
     fecha_entrega: ['', Validators.required]
   });
 
+  edificios: string[] = [];
+  areas!: AssetType[];
+  tipos!: AssetType[];
+  pisos!: number[];
   activo!: Asset;
   assets!: Asset[];
+  buildings!: Building[];
+  selectedBuilding!: string;
 
   constructor(
     private activosService: ActivosService,
@@ -47,19 +49,43 @@ export class NewAssetComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // Areas
     this.activosService.getAreas()
       .subscribe({
         next: resp => this.areas = resp
       });
 
-    // Types
     this.activosService.getTypes()
       .subscribe({
         next: resp => this.tipos = resp
       });
 
+    this.activosService.getBuildings()
+      .subscribe({
+        next: resp => {
+          this.buildings = resp;
+          this.pisos = this.linspace(+this.buildings[0].piso!);
+        }
+      });
+
     this.assets = this.data;
+
+    this.onChanges();
+  }
+
+  onChanges() {
+    this.nuevoActivoForm.valueChanges.subscribe({
+      next: resp => {
+        this.buildings.forEach(building => {
+          if (building.nombre === resp.edificio) {
+            this.pisos = this.linspace(+building.piso!);
+          }
+        })
+      }
+    })
+  }
+
+  linspace(end: number): number[] {
+    return Array.from(Array(end).keys(), x => x + 1);
   }
 
   getCtrl(controlName: string) {

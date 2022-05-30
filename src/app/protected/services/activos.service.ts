@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Asset, AssetType } from '../interfaces/activo';
+import { Building } from '../interfaces/edificio';
 
 @Injectable({
   providedIn: 'root'
@@ -22,14 +23,9 @@ export class ActivosService {
     return this.http.get<AssetType[]>(url);
   }
 
-  getEdificios() {
+  getBuildings() {
     const url: string = `${this.baseUrl}/edificios`;
-    return this.http.get<AssetType[]>(url);
-  }
-
-  getPisos() {
-    const url: string = `${this.baseUrl}/pisos`;
-    return this.http.get<AssetType[]>(url);
+    return this.http.get<Building[]>(url);
   }
 
   register(activo: Asset) {
@@ -52,7 +48,7 @@ export class ActivosService {
     return this.http.post<Asset[]>(url, { id_ultimatix: ultimatix });
   }
 
-  setAssetStatus(id: string, ultimatix: string, deliveryDate: string) {
+  setStatus(id: string, ultimatix: string, deliveryDate: string) {
     const url: string = `${this.baseUrl}/devolverActivo`;
     const body = { id_activo: id, id_ultimatix: ultimatix, fecha_devolucion: deliveryDate };
     return this.http.post<Asset[]>(url, body);
