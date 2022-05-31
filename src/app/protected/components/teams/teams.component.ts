@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { User } from 'src/app/auth/interfaces/user';
-import { UserService } from 'src/app/shared/services/user.service';
 import Swal from 'sweetalert2';
 import { Team } from '../../interfaces/equipo';
 import { EquiposService } from '../../services/equipos.service';
@@ -24,7 +23,6 @@ export class TeamsComponent implements OnInit {
 
   constructor(
     private teamService: EquiposService,
-    private userService: UserService,
     private dialog: MatDialog,
     private generalService: GeneralService
   ) { }
@@ -36,10 +34,6 @@ export class TeamsComponent implements OnInit {
   loadTeams() {
     this.teamService.show()
       .subscribe({ next: resp => this.teams = resp })
-  }
-
-  loadUser(): void {
-    this.currentUser = this.userService.getUserData();
   }
 
   changeStatus(id_team: string): void {

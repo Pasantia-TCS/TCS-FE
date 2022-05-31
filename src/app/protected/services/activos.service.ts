@@ -33,11 +33,6 @@ export class ActivosService {
     return this.http.post<Asset[]>(url, activo);
   }
 
-  actualizar(activo: Asset) {
-    const url: string = `${this.baseUrl}/actualizarActivo`;
-    return this.http.post<Asset[]>(url, activo)
-  }
-
   eliminar(id_activo: string, ultimatix: string) {
     const url: string = `${this.baseUrl}/eliminarActivo`;
     return this.http.post<Asset[]>(url, { id_activo: id_activo, id_ultimatix: ultimatix });

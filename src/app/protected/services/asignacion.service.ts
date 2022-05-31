@@ -18,12 +18,6 @@ export class AsignacionService {
     return this.http.post<Assignment[]>(url, asignacion);
   }
 
-  showByNameID(ide: string, nombreequipo: string) {
-    const url: string = `${this.baseUrl}/buscar-tipo-proyecto`;
-    const equipo = { id_asi: ide, nombre_equipo_asi: nombreequipo };
-    return this.http.post<Team[]>(url, equipo);
-  }
-
   obtenerAsignaciones(ultimatix: string) {
     const url: string = `${this.baseUrl}/obtener-asignaciones-ultimatix`;
     return this.http.post<Assignment[]>(url, { id_ultimatix: ultimatix });

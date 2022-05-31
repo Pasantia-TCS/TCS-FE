@@ -22,11 +22,6 @@ export class EquiposService {
     return this.http.get<Team[]>(url);
   }
 
-  showByType(type: number) {
-    const url: string = `${this.baseUrl}/buscar-tipo-proyecto`;
-    return this.http.post<Team[]>(url, { tipo_equipo_asi: type });
-  }
-
   changeStatus(id_equipo: string) {
     const url: string = `${this.baseUrl}/eliminar-equipo`;
     return this.http.post<Team[]>(url, { id_asi: id_equipo });
