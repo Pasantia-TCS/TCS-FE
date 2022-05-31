@@ -41,6 +41,16 @@
         </a>
       </li>
 
+      <!-- Teams -->
+      <li>
+        <a [routerLink]="['/pages/dashboard/teams']">
+          <span>
+            <mat-icon>group</mat-icon>
+          </span>
+          Grupos de trabajo
+        </a>
+      </li>
+
       <!-- Tasks -->
       <li>
         <a [routerLink]="['/pages/dashboard/tasks']">
@@ -51,17 +61,7 @@
               <path d="M7 9h10v2H7zm0 4h5v2H7z" />
             </svg>
           </span>
-          Asignación
-        </a>
-      </li>
-
-      <!-- Teams -->
-      <li>
-        <a [routerLink]="['/pages/dashboard/teams']">
-          <span>
-            <mat-icon>group</mat-icon>
-          </span>
-          Grupos de trabajo
+          Asignaciones
         </a>
       </li>
 
@@ -76,6 +76,16 @@
             </svg>
           </span>
           Formularios
+        </a>
+      </li>
+
+      <!-- Reports -->
+      <li *ngIf="profile?.rol === 'admin'">
+        <a [routerLink]="['/pages/dashboard/reports']">
+          <span>
+            <mat-icon>insert_drive_file</mat-icon>
+          </span>
+          Reportes
         </a>
       </li>
 

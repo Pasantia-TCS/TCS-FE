@@ -36,6 +36,8 @@ import { TasksComponent } from './components/tasks/tasks.component';
 import { TeamsComponent } from './components/teams/teams.component';
 import { TemplateComponent } from './components/template/template.component';
 import { ProtectedRoutingModule } from './protected-routing.module';
+import { ReportsComponent } from './components/reports/reports.component';
+import { MatTableComponent } from './components/mat-table/mat-table.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +66,9 @@ import { ProtectedRoutingModule } from './protected-routing.module';
     EditSkillsComponent,
     DarBajaComponent,
     EditAboutComponent,
-    SettingsComponent
+    SettingsComponent,
+    ReportsComponent,
+    MatTableComponent
   ],
   imports: [
     CommonModule,

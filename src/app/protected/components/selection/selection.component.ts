@@ -35,6 +35,10 @@ export class SelectionComponent implements OnInit {
     this.router.navigateByUrl('/pages/dashboard/teams');
   }
 
+  toReports() {
+    this.router.navigateByUrl('/pages/dashboard/reports');
+  }
+
   toForms() {
     this.router.navigateByUrl('/pages/dashboard/forms');
   }

@@ -16,16 +16,22 @@
               </app-button>
             </div>
 
+            <!-- Teams -->
+            <div class="mb-4">
+              <app-button buttonName="Grupos de trabajo" iconName="group" [buttonIcon]="true" (btnClick)="toTeams()">
+              </app-button>
+            </div>
+
             <!-- Tasks -->
             <div class="mb-3">
               <app-button buttonName="Asignación de trabajos" iconName="assignment_ind" [buttonIcon]="true"
                 (btnClick)="toTasks()"></app-button>
             </div>
 
-            <!-- Teams -->
-            <div class="mb-4">
-              <app-button buttonName="Grupos de trabajo" iconName="group" [buttonIcon]="true" (btnClick)="toTeams()">
-              </app-button>
+            <!-- Reportes -->
+            <div class="mb-3">
+              <app-button buttonName="Generación de reportes" iconName="insert_drive_file" [buttonIcon]="true"
+                (btnClick)="toReports()"></app-button>
             </div>
 
             <!-- Forms -->

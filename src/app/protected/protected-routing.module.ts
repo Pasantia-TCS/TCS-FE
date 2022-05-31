@@ -10,6 +10,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { TeamsComponent } from './components/teams/teams.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { TemplateComponent } from './components/template/template.component';
+import { ReportsComponent } from './components/reports/reports.component';
 
 const routes: Routes = [
   {
@@ -46,6 +47,10 @@ const routes: Routes = [
           {
             path: 'settings',
             component: SettingsComponent
+          },
+          {
+            path: 'reports',
+            component: ReportsComponent
           },
           {
             path: 'new-template',
