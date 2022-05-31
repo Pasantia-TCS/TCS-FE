@@ -7,6 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { SharedModule } from '../shared/shared.module';
 import { AssetsComponent } from './components/assets/assets.component';
@@ -19,12 +20,14 @@ import { EditProfileComponent } from './components/edit-profile/edit-profile.com
 import { EditSkillsComponent } from './components/edit-skills/edit-skills.component';
 import { FormsComponent } from './components/forms/forms.component';
 import { HeaderComponent } from './components/header/header.component';
+import { MatTableComponent } from './components/mat-table/mat-table.component';
 import { NewAssetComponent } from './components/new-asset/new-asset.component';
 import { NewAssignmentComponent } from './components/new-assignment/new-assignment.component';
 import { NewProjectComponent } from './components/new-project/new-project/new-project.component';
 import { NewTeamComponent } from './components/new-team/new-team.component';
 import { NewTemplateComponent } from './components/new-template/new-template.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { ReportsComponent } from './components/reports/reports.component';
 import { SearchComponent } from './components/search/search.component';
 import { SelectionComponent } from './components/selection/selection.component';
 import { SettingsComponent } from './components/settings/settings.component';
@@ -36,8 +39,6 @@ import { TasksComponent } from './components/tasks/tasks.component';
 import { TeamsComponent } from './components/teams/teams.component';
 import { TemplateComponent } from './components/template/template.component';
 import { ProtectedRoutingModule } from './protected-routing.module';
-import { ReportsComponent } from './components/reports/reports.component';
-import { MatTableComponent } from './components/mat-table/mat-table.component';
 
 @NgModule({
   declarations: [
@@ -82,7 +83,8 @@ import { MatTableComponent } from './components/mat-table/mat-table.component';
     MatDialogModule,
     MatFormFieldModule,
     FormsModule,
-    MatInputModule
+    MatInputModule,
+    MatTableModule
   ]
 })
 export class ProtectedModule { }
