@@ -65,11 +65,7 @@ export class TasksComponent implements OnInit {
     })
       .afterClosed()
       .subscribe({
-        next: resp => {
-          if (resp) {
-            this.assignments = resp;
-          }
-        }
+        next: resp => this.loadAssignments(resp)
       });
   }
 
@@ -77,11 +73,7 @@ export class TasksComponent implements OnInit {
     this.dialog.open(DarBajaComponent, { data: item })
       .afterClosed()
       .subscribe({
-        next: resp => {
-          if (resp) {
-            this.assignments = resp;
-          }
-        }
+        next: resp => this.loadAssignments(resp)
       });
   }
 
@@ -94,12 +86,14 @@ export class TasksComponent implements OnInit {
         edit: true
       }
     }).afterClosed().subscribe({
-      next: resp => {
-        if (resp) {
-          this.assignments = resp;
-        }
-      }
+      next: resp => this.loadAssignments(resp)
     });
+  }
+
+  loadAssignments(assignments: Assignment[]) {
+    if (assignments) {
+      this.assignments = assignments;
+    }
   }
 
   exportTable(): void {

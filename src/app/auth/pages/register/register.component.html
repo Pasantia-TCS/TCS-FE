@@ -34,7 +34,6 @@
         [selectedCountryISO]="CountryISO.Ecuador" [maxLength]="15" [phoneValidation]="true" [separateDialCode]="true"
         [numberFormat]="PhoneNumberFormat.National" name="phone" formControlName="phone">
       </ngx-intl-tel-input>
-      <!--TODO: Fix text-align -->
       <span class="form-text text-danger text-start" *ngIf="phone?.invalid && phone?.touched">
         Ingresa un número de teléfono válido.
       </span>
