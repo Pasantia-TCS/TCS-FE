@@ -10,7 +10,7 @@
         <div
           *ngIf="(getCtrl('nombre_equipo_asi')?.invalid && getCtrl('nombre_equipo_asi')?.touched) || getCtrl('nombre_equipo_asi')?.dirty">
           <span class="form-text text-danger float-start" *ngIf="getCtrl('nombre_equipo_asi')?.errors?.['required']">
-            * Introduce un nombre de equipo.
+            Ingresa un nombre de equipo.
           </span>
         </div>
       </div>
@@ -24,7 +24,7 @@
         <div
           *ngIf="(getCtrl('tipo_equipo_asi')?.invalid && getCtrl('tipo_equipo_asi')?.touched) || getCtrl('tipo_equipo_asi')?.dirty">
           <span class="form-text text-danger float-start" *ngIf="getCtrl('tipo_equipo_asi')?.errors?.['required']">
-            * Seleccione una opción válida.
+            Selecciona una opción válida.
           </span>
         </div>
       </div>
@@ -39,7 +39,7 @@
         <div
           *ngIf="(getCtrl('nombre_lider')?.invalid && getCtrl('nombre_lider')?.touched) || getCtrl('nombre_lider')?.dirty">
           <span class="form-text text-danger float-start" *ngIf="getCtrl('nombre_lider')?.errors?.['required']">
-            * Ingrese un nombre de lider de equipo.
+            Ingresa un nombre de lider de equipo.
           </span>
         </div>
       </div>
@@ -52,7 +52,7 @@
         <div
           *ngIf="(getCtrl('nombre_tecnico')?.invalid && getCtrl('nombre_tecnico')?.touched) || getCtrl('nombre_tecnico')?.dirty">
           <span class="form-text text-danger float-start" *ngIf="getCtrl('nombre_tecnico')?.errors?.['required']">
-            * Ingrese un nombre de lider técnico.
+            Ingresa un nombre de lider técnico.
           </span>
         </div>
       </div>
@@ -66,7 +66,7 @@
       <div
         *ngIf="(getCtrl('descripcion_asi')?.invalid && getCtrl('descripcion_asi')?.touched) || getCtrl('descripcion_asi')?.dirty">
         <span class="form-text text-danger float-start" *ngIf="getCtrl('descripcion_asi')?.errors?.['required']">
-          * Ingrese un una descripción del equipo.
+          Ingresa una descripción del equipo.
         </span>
       </div>
     </div>

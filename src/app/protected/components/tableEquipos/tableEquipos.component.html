@@ -1,4 +1,4 @@
-<div class="card shadow p-3 mb-5 overflow-auto" style="border-radius: 2rem; max-height: 70%;">
+<div class="card shadow p-3 mb-5 overflow-auto" style="border-radius: 2rem; max-height: 70vh;">
   <div class="card-body px-3 text-center table-responsive">
 
     <table id="tableEquipos" class="table table-hover align-middle">
@@ -9,16 +9,15 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let equipo of equipos" [class.table-secondary]="!equipo.estado_asi">
+        <tr *ngFor="let equipo of tableBody" [class.table-secondary]="!equipo.estado_asi">
           <td>
-            <button mat-icon-button data-bs-placement="right" title="Editar equipo" style="cursor: pointer;"
-              (click)="updateTeam(equipo)">
-              <mat-icon [ngStyle]="{'color':'#9B11BF99'}">edit</mat-icon>
+            <button mat-icon-button style="cursor: pointer;" (click)="updateTeam(equipo)">
+              <mat-icon style="color: #9B11BF99;">edit</mat-icon>
             </button>
-            <button mat-icon-button (click)="deleteTeam(equipo.id_asi!)" data-bs-toggle="tooltip"
-              data-bs-placement="right" title="Eliminar equipo" style="cursor: pointer;"
-              [disabled]="equipo.estado_asi === false">
-              <mat-icon [ngStyle]="{'color':'#F7071299'}">delete</mat-icon>
+            <button mat-icon-button (click)="changeStatus(equipo.id_asi!)" style="cursor: pointer;">
+              <mat-icon [ngStyle]="{color: equipo.estado_asi ? '#F7071299' : 'green'}">
+                {{equipo.estado_asi ? 'delete' : 'add_box'}}
+              </mat-icon>
             </button>
           </td>
           <td>{{equipo.nombre_equipo_asi}}</td>
@@ -26,7 +25,8 @@
           <td>{{equipo.descripcion_asi}}</td>
           <td>{{equipo.nombre_lider}}</td>
           <td>{{equipo.nombre_tecnico}}</td>
-          <td [ngStyle]="{color: equipo.estado_asi ? 'green' : 'red'}">{{equipo.estado_asi ? 'Vigente' : 'No vigente'}}
+          <td [ngStyle]="{color: equipo.estado_asi ? 'green' : '#D92344'}">{{equipo.estado_asi ? 'Vigente' : 'No
+            vigente'}}
           </td>
         </tr>
       </tbody>

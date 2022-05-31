@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { User } from 'src/app/auth/interfaces/user';
 import { UserService } from 'src/app/shared/services/user.service';
@@ -14,12 +14,13 @@ import { TableEquiposComponent } from '../tableEquipos/tableEquipos.component';
   templateUrl: './teams.component.html',
   styles: []
 })
-export class TeamsComponent {
+export class TeamsComponent implements OnInit {
 
   @ViewChild(TableEquiposComponent) table: any;
+  tableHeader: string[] = ['Acciones', 'Nombre', 'Tipo', 'Descripción', 'Líder de equipo', 'Líder técnico', 'Estado'];
+  tableBody!: Team[];
 
   currentUser: User = {};
-  equipo: Team[] = [];
 
   constructor(
     private teamService: EquiposService,
@@ -28,14 +29,22 @@ export class TeamsComponent {
     private generalService: GeneralService
   ) { }
 
+  ngOnInit(): void {
+    this.loadTeams()
+  }
+
+  loadTeams() {
+    this.teamService.show()
+      .subscribe({ next: resp => this.tableBody = resp })
+  }
+
   loadUser(): void {
     this.currentUser = this.userService.getUserData();
   }
 
-  deleteTeam(id_team: string): void {
+  changeStatus(id_team: string): void {
     Swal.fire({
-      title: '¿Estás seguro de eliminar el equipo?',
-      text: "¡No podrás revertir esto!",
+      title: '¿Estás seguro de cambiar el estado del equipo?',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -44,13 +53,12 @@ export class TeamsComponent {
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.teamService.delete(id_team)
+        this.teamService.changeStatus(id_team)
           .subscribe(
             {
               next: resp => {
-                this.equipo = resp;
-                this.table.loadTeams();
-                Swal.fire('¡Eliminado!', 'Equipo eliminado con éxito.', 'success');
+                this.tableBody = resp;
+                Swal.fire('¡Éxito!', 'El estado del equipo se ha actualizado con éxito.', 'success');
               },
               error: err => Swal.fire('Error', err.error.mensaje, 'error')
             }
@@ -59,8 +67,8 @@ export class TeamsComponent {
     });
   }
 
-  createTeam() {
-    this.dialog.open(NewTeamComponent, { data: { team: null, editTeam: false } });
+  openCreateModal() {
+    this.dialog.open(NewTeamComponent, { data: { teams: this.tableBody, editTeam: false } });
   }
 
   updateTeam(team: Team) {
