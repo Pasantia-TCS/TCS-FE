@@ -1,30 +1,23 @@
 export interface Asset {
     id_activo?: string,
-    tipo?: string,
-
     area?: string,
     edificio?: string,
     piso?: string,
-
-    marca?: string,
-    modelo?: string,
-    serie?: string,
-    codigo_barras?: string,
-
+    tipo?: string,
     hostname?: string,
     direccion_mac?: string,
     direccion_ip?: string,
     reservada_ip?: string,
-
-    id_ultimatix?: string,
-    usuario_red?: string,
-
+    marca?: string,
+    modelo?: string,
+    serie?: string,
+    codigo_barras?: string,
+    borrado_logico?: boolean,
+    estado?: boolean,
     fecha_registro?: string,
     fecha_entrega?: string,
     fecha_devolucion?: string,
-
-    estado?: boolean,
-    borrado_logico?: boolean,
+    id_ultimatix?: string
 }
 
 export interface AssetType {

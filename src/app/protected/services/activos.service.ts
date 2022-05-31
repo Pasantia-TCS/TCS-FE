@@ -48,4 +48,9 @@ export class ActivosService {
     const body = { id_activo: id, id_ultimatix: ultimatix, fecha_devolucion: deliveryDate };
     return this.http.post<Asset[]>(url, body);
   }
+
+  getAll() {
+    const url: string = `${this.baseUrl}/buscarTodo`;
+    return this.http.get<Asset[]>(url);
+  }
 }

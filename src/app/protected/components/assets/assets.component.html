@@ -16,5 +16,5 @@
 
   <!-- Table -->
   <p-table (indexToDelete)="deleteItem($event)" (deliverEvent)="openDeliverItem($event)" [tableData]="assets"
-    [tableHeader]="titles"></p-table>
+    [tableHeader]="titles" [rol]="profile?.rol!"></p-table>
 </div>

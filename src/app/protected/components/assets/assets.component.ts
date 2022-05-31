@@ -4,8 +4,10 @@ import { User } from 'src/app/auth/interfaces/user';
 import { UserService } from 'src/app/shared/services/user.service';
 import Swal from 'sweetalert2';
 import { Asset } from '../../interfaces/activo';
+import { Profile } from '../../interfaces/profile';
 import { ActivosService } from '../../services/activos.service';
 import { GeneralService } from '../../services/general.service';
+import { ProfileService } from '../../services/profile.service';
 import { DeliverModalComponent } from '../deliver-modal/deliver-modal.component';
 import { NewAssetComponent } from '../new-asset/new-asset.component';
 
@@ -16,25 +18,53 @@ import { NewAssetComponent } from '../new-asset/new-asset.component';
 })
 export class AssetsComponent implements OnInit {
 
-  titles: string[] = ['Acciones', 'Área', 'Edificio', 'Activo', 'Fecha de adjudicación', 'Fecha de devolución', 'Estado'];
+  t1 = ['Acciones', 'Área', 'Edificio', 'Activo', 'Fecha de adjudicación', 'Fecha de devolución', 'Estado'];
+  titles!: string[];
   assets!: Asset[];
   currentUser!: User;
   ultimatix!: string;
+  profile!: Profile;
 
   constructor(
     private activosService: ActivosService,
     private userService: UserService,
+    private profileService: ProfileService,
     public dialog: MatDialog,
     public generalService: GeneralService
   ) { }
 
   ngOnInit(): void {
     this.ultimatix = this.userService.getUltimatix()!;
+    this.loadProfile();
+  }
 
-    this.activosService.getAssets(this.ultimatix)
-      .subscribe({
-        next: resp => this.assets = resp
-      })
+  loadAssets(rol: string) {
+    if (rol === 'admin') {
+      this.activosService.getAll()
+        .subscribe({
+          next: resp => this.assets = resp
+        })
+    } else {
+      this.activosService.getAssets(this.ultimatix)
+        .subscribe({
+          next: resp => this.assets = resp
+        })
+    }
+  }
+
+  loadProfile() {
+    this.profileService.getProfile(this.ultimatix)
+    .subscribe({
+      next: resp => {
+        this.profile = resp;
+        this.loadAssets(this.profile.rol!);
+        if (this.profile.rol === 'admin') {
+          this.t1.splice(1, 0, 'Ultimatix');
+          this.t1.splice(0, 1);
+        } 
+        this.titles = this.t1;
+      }
+    });
   }
 
   openNewAsset(): void {

@@ -11,6 +11,7 @@ export class TableBasic {
   @Output() deliverEvent = new EventEmitter<string>();
   @Input() tableHeader: string[] = [];
   @Input() tableData: Asset[] = [];
+  @Input() rol!: string;
 
   deleteItem(index: string) {
     this.indexToDelete.emit(index);

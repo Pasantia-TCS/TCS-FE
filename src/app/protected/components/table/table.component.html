@@ -1,4 +1,4 @@
-<div class="card shadow p-3 mb-5 overflow-auto" style="border-radius: 2rem; max-height: 100%;">
+<div class="card shadow p-3 mb-5 overflow-auto" style="border-radius: 2rem; max-height: 70vh;">
   <div class="card-body px-3 text-center table-responsive">
     <table id="tableActivos" class="table table-hover align-middle">
       <caption>Tabla de activos</caption>
@@ -9,7 +9,7 @@
       </thead>
       <tbody *ngFor="let activo of tableData">
         <tr *ngIf="activo.borrado_logico === false" [ngClass]="{'table-secondary': activo.estado}">
-          <td>
+          <td *ngIf="rol === 'user'">
             <button mat-icon-button data-bs-toggle="tooltip" data-bs-placement="right" title="Devolver activo"
               (click)="deliverItem(activo.id_activo!)">
               <mat-icon style="color: green;">exit_to_app</mat-icon>
@@ -19,6 +19,7 @@
               <mat-icon style="color: #F7071299;">delete</mat-icon>
             </button>
           </td>
+          <td *ngIf="rol === 'admin'">{{activo.id_ultimatix}}</td>
           <td>{{activo.area}}</td>
           <td>{{activo.edificio}}</td>
           <td>{{activo.tipo}}</td>
