@@ -14,7 +14,7 @@ export class EquiposService {
 
   add(team: Team) {
     const url: string = `${this.baseUrl}/agregar-equipo`;
-    return this.http.post<Team>(url, team);
+    return this.http.post<Team[]>(url, team);
   }
 
   show() {

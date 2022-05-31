@@ -1,5 +1,4 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Subscription } from 'rxjs';
 import { User } from 'src/app/auth/interfaces/user';
 import { UserService } from 'src/app/shared/services/user.service';
 import { Assignment } from '../../interfaces/asignacion';
@@ -30,17 +29,14 @@ export class TableAsignacion implements OnInit {
 
   project: Assignment = {};
 
-  clickEventSubscription: Subscription;
+
 
   users: User[] = [];
 
   constructor(
     private asignacionService: AsignacionService,
     private userService: UserService
-  ) {
-    this.clickEventSubscription = this.asignacionService.getClickEvent()
-      .subscribe(() => setTimeout(() => this.load(), 500))
-  }
+  ) {}
 
   ngOnInit(): void {
     this.asignacionService.obtenerAsignaciones("")

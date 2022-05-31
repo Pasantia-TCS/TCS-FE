@@ -3,7 +3,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { CustomTableComponent } from 'src/app/shared/components/custom-table/custom-table.component';
 import { UserService } from 'src/app/shared/services/user.service';
 import { Assignment } from '../../interfaces/asignacion';
+import { Team } from '../../interfaces/equipo';
 import { AsignacionService } from '../../services/asignacion.service';
+import { EquiposService } from '../../services/equipos.service';
 import { GeneralService } from '../../services/general.service';
 import { DarBajaComponent } from '../dar-baja/dar-baja.component';
 import { NewAssignmentComponent } from '../new-assignment/new-assignment.component';
@@ -18,7 +20,9 @@ export class TasksComponent implements OnInit {
   @ViewChild(CustomTableComponent) table: any;
 
   titles: string[] = ['Acciones', 'Equipo', 'Tipo', 'Asignación (%)', 'Fecha de inicio', 'Fecha de finalización', 'Fecha de salida', 'Estado'];
-  dataBody!: Assignment[];
+  icons: string[] = ['edit', 'delete'];
+  assignments!: Assignment[];  // assignments
+  teams!: Team[];
   proyectos!: Assignment[];
   currentProject!: Assignment;
   ultimatix!: string;
@@ -26,29 +30,76 @@ export class TasksComponent implements OnInit {
   constructor(
     private asignacionService: AsignacionService,
     private userService: UserService,
+    private teamsService: EquiposService,
     private dialog: MatDialog,
     private generalService: GeneralService
   ) { }
 
   ngOnInit(): void {
-    // Get ultimatix
     this.ultimatix = this.userService.getUltimatix()!;
+    this.getAssignments();
+    this.getTeams();
+  }
 
-    // Load assignments
+  getAssignments() {
     this.asignacionService.obtenerAsignaciones(this.ultimatix)
-      .subscribe({ next: resp => this.dataBody = resp });
+      .subscribe({
+        next: resp => this.assignments = resp
+      });
+  }
+
+  getTeams() {
+    this.teamsService.show()
+      .subscribe({
+        next: resp => this.teams = resp
+      })
+  }
+
+  openNewAssignment() {
+    this.dialog.open(NewAssignmentComponent, {
+      data: {
+        assignments: this.assignments,
+        teams: this.teams,
+        edit: false
+      }
+    })
+      .afterClosed()
+      .subscribe({
+        next: resp => {
+          if (resp) {
+            this.assignments = resp;
+          }
+        }
+      });
   }
 
   openUnsubscribe(item: Assignment) {
-    this.dialog.open(DarBajaComponent, { data: { item } });
+    this.dialog.open(DarBajaComponent, { data: item })
+      .afterClosed()
+      .subscribe({
+        next: resp => {
+          if (resp) {
+            this.assignments = resp;
+          }
+        }
+      });
   }
 
-  newAssignment() {
-    this.dialog.open(NewAssignmentComponent, { data: { item: null, edit: false } });
-  }
-
-  update(item: Assignment) {
-    this.dialog.open(NewAssignmentComponent, { data: { item, edit: true } });
+  openEdit(item: Assignment) {
+    this.dialog.open(NewAssignmentComponent, {
+      data: {
+        assignment: item,
+        assignments: this.assignments,
+        teams: this.teams,
+        edit: true
+      }
+    }).afterClosed().subscribe({
+      next: resp => {
+        if (resp) {
+          this.assignments = resp;
+        }
+      }
+    });
   }
 
   exportTable(): void {

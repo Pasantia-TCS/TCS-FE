@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Assignment } from '../interfaces/asignacion';
 import { Team } from '../interfaces/equipo';
@@ -11,17 +10,8 @@ import { Team } from '../interfaces/equipo';
 export class AsignacionService {
 
   private baseUrl: string = `${environment.url}/asignaciones-proyectos`;
-  private subject = new Subject<any>();
 
   constructor(private http: HttpClient) { }
-
-  sendClickEvent() {
-    this.subject.next(true);
-  }
-
-  getClickEvent(): Observable<any> {
-    return this.subject.asObservable();
-  }
 
   agregar(asignacion: Assignment) {
     const url: string = `${this.baseUrl}/agregar-asignacion-proyecto`;
@@ -48,7 +38,6 @@ export class AsignacionService {
   delete(id_asignacion_proyecto_asg: string, id_equipo_asi: string, ultimatix_asi: string, asignacion: number, fecha_baja: string) {
     const url: string = `${this.baseUrl}/dar-baja`;
     const body = { id_asignacion_proyecto_asg, id_equipo_asi, ultimatix_asi, asignacion, fecha_baja };
-    console.log(body);
     return this.http.post<Assignment[]>(url, body);
   }
 

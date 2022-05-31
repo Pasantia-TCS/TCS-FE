@@ -18,6 +18,7 @@ export class DarBajaComponent implements OnInit {
   });
 
   assignment!: Assignment;
+  assignments!: Assignment[];
   ultimatix!: string;
 
   constructor(
@@ -30,11 +31,7 @@ export class DarBajaComponent implements OnInit {
 
   ngOnInit(): void {
     this.ultimatix = this.userService.getUltimatix()!;
-    this.assignment = this.data.item;
-  }
-
-  clickMe() {
-    this.asignacionService.sendClickEvent();
+    this.assignment = this.data;
   }
 
   darBaja(): void {
@@ -58,9 +55,9 @@ export class DarBajaComponent implements OnInit {
             this.assignment.asignacion!,
             this.salidaForm.get('fecha_baja')?.value
           ).subscribe({
-            next: () => {
-              this.clickMe();
-              this.dialogRef.close();
+            next: resp => {
+              this.assignments = resp;
+              this.dialogRef.close(resp);
               Swal.fire('Éxito', 'Fecha de salida guardada con éxito.', 'success');
             },
             error: err => Swal.fire('Error', err.error.mensaje, 'error')

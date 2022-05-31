@@ -18,7 +18,7 @@ export class TeamsComponent implements OnInit {
 
   @ViewChild(TableEquiposComponent) table: any;
   tableHeader: string[] = ['Acciones', 'Nombre', 'Tipo', 'Descripción', 'Líder de equipo', 'Líder técnico', 'Estado'];
-  tableBody!: Team[];
+  teams!: Team[];
 
   currentUser: User = {};
 
@@ -35,7 +35,7 @@ export class TeamsComponent implements OnInit {
 
   loadTeams() {
     this.teamService.show()
-      .subscribe({ next: resp => this.tableBody = resp })
+      .subscribe({ next: resp => this.teams = resp })
   }
 
   loadUser(): void {
@@ -57,7 +57,7 @@ export class TeamsComponent implements OnInit {
           .subscribe(
             {
               next: resp => {
-                this.tableBody = resp;
+                this.teams = resp;
                 Swal.fire('¡Éxito!', 'El estado del equipo se ha actualizado con éxito.', 'success');
               },
               error: err => Swal.fire('Error', err.error.mensaje, 'error')
@@ -68,11 +68,24 @@ export class TeamsComponent implements OnInit {
   }
 
   openCreateModal() {
-    this.dialog.open(NewTeamComponent, { data: { teams: this.tableBody, editTeam: false } });
+    this.dialog.open(NewTeamComponent, { data: { teams: this.teams, editTeam: false } })
+      .afterClosed().subscribe({
+        next: resp => {
+          if (resp) { this.teams = resp }
+        }
+      });
   }
 
   updateTeam(team: Team) {
-    this.dialog.open(NewTeamComponent, { data: { team, editTeam: true } });
+    this.dialog.open(NewTeamComponent, { data: { team, editTeam: true } })
+      .afterClosed()
+      .subscribe({
+        next: resp => {
+          if (resp) {
+            this.teams = resp;
+          }
+        }
+      });
   }
 
   exportTable(): void {

@@ -3,6 +3,7 @@ export interface Assignment {
     nombre_equipo_asi?: string,
     tipo_equipo_asi?: string,
     id_equipo_asi?: string,
+    id_equipo?: string,
     utimatix_asi?: string,
     asignacion?: number,
     fecha_inicio?: Date,

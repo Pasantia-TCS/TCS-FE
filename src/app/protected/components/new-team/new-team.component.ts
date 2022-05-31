@@ -70,9 +70,9 @@ export class NewTeamComponent implements OnInit {
     this.teamsService.add(this.nuevoEquipoForm.value)
       .subscribe({
         next: resp => {
-          this.teams.push(resp);
+          this.teams = resp;
+          this.dialogRef.close(resp);
           Swal.fire('Éxito', 'Equipo registrado con éxito.', 'success');
-          this.dialogRef.close();
         },
         error: err => Swal.fire('Error', err.error.mensaje, 'error')
       });
@@ -86,9 +86,10 @@ export class NewTeamComponent implements OnInit {
       this.teamsService.edit(this.team.id_asi!, nombre_lider, nombre_tecnico)
         .subscribe(
           {
-            next: () => {
+            next: resp => {
+              this.teams = resp;
+              this.dialogRef.close(resp);
               Swal.fire('¡Éxito!', 'Equipo actualizado con éxito.', 'success');
-              this.dialogRef.close();
             },
             error: err => Swal.fire('¡Error!', err.error.mensaje, 'error')
           }

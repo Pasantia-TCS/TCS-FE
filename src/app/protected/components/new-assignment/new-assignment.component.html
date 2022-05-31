@@ -27,7 +27,7 @@
       <!-- Assignment percentage -->
       <div class="form-floating col-12 mb-3">
         <select id="floatingPercent" class="form-select" formControlName="asignacion">
-          <option [value]="asignacion" [value]="i * 100" *ngFor="let i of [0.25, 0.5, 0.75, 1]">{{i | percent}}</option>
+          <option [value]="i * 100" *ngFor="let i of [0.25, 0.5, 0.75, 1]">{{i | percent}}</option>
         </select>
         <label for="floatingPercent">Porcentaje de asignación</label>
       </div>

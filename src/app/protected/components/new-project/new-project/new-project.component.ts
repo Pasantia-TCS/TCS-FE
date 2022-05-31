@@ -71,12 +71,6 @@ export class NewProjectComponent implements OnInit {
       );
   }
 
-  clickMe() {
-    this.asignacionService.sendClickEvent();
-  }
-
-
-
   addUserTemp(user: Profile) {
     this.usersTemp.push(user);
   }
