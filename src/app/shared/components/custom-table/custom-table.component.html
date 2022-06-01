@@ -11,8 +11,8 @@
       <tbody>
         <tr *ngFor="let item of dataBody">
           <td>
-            <button mat-icon-button data-bs-placement="right" title="Editar asignacion" style="cursor: pointer;">
-              <mat-icon [ngStyle]="{'color':'#9B11BF99'}" (click)="update(item)">{{iconNames[0]}}</mat-icon>
+            <button mat-icon-button data-bs-placement="right" title="Editar asignacion" style="cursor: pointer;" (click)="update(item)" [disabled]="item.estado === false">
+              <mat-icon [ngStyle]="{'color':'#9B11BF99'}">{{iconNames[0]}}</mat-icon>
             </button>
             <button mat-icon-button (click)="delete(item)" data-bs-toggle="tooltip" data-bs-placement="right"
               title="Eliminar item" style="cursor: pointer;" [disabled]="item.estado === false">

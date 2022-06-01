@@ -11,7 +11,7 @@
       <tbody>
         <tr *ngFor="let equipo of tableBody" [class.table-secondary]="!equipo.estado_asi">
           <td>
-            <button mat-icon-button style="cursor: pointer;" (click)="updateTeam(equipo)">
+            <button mat-icon-button style="cursor: pointer;" (click)="updateTeam(equipo)" [disabled]="equipo.estado_asi === false">
               <mat-icon style="color: #9B11BF99;">edit</mat-icon>
             </button>
             <button mat-icon-button (click)="changeStatus(equipo.id_asi!)" style="cursor: pointer;">
