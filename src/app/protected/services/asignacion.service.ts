@@ -2,11 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Assignment } from '../interfaces/asignacion';
-import { Team } from '../interfaces/equipo';
+
 @Injectable({
   providedIn: 'root'
 })
-
 export class AsignacionService {
 
   private baseUrl: string = `${environment.url}/asignaciones-proyectos`;
