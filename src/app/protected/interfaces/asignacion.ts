@@ -4,7 +4,7 @@ export interface Assignment {
     tipo_equipo_asi?: string,
     id_equipo_asi?: string,
     id_equipo?: string,
-    utimatix_asi?: string,
+    ultimatix_asi?: string,
     asignacion?: number,
     fecha_inicio?: Date,
     fecha_fin?: Date,

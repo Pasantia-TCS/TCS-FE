@@ -6,6 +6,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -18,6 +19,7 @@ import { DeliverModalComponent } from './components/deliver-modal/deliver-modal.
 import { EditAboutComponent } from './components/edit-about/edit-about.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { EditSkillsComponent } from './components/edit-skills/edit-skills.component';
+import { FilterComponent } from './components/filter/filter.component';
 import { FormsComponent } from './components/forms/forms.component';
 import { HeaderComponent } from './components/header/header.component';
 import { MatTableComponent } from './components/mat-table/mat-table.component';
@@ -32,6 +34,7 @@ import { SearchComponent } from './components/search/search.component';
 import { SelectionComponent } from './components/selection/selection.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { StarRatingComponent } from './components/star-rating/star-rating.component';
+import { SubtitleComponent } from './components/subtitle/subtitle.component';
 import { TableBasic } from './components/table/table.component';
 import { TableAsignacion } from './components/tableAsignacion/tableAsignacion.component';
 import { TableEquiposComponent } from './components/tableEquipos/tableEquipos.component';
@@ -69,7 +72,9 @@ import { ProtectedRoutingModule } from './protected-routing.module';
     EditAboutComponent,
     SettingsComponent,
     ReportsComponent,
-    MatTableComponent
+    MatTableComponent,
+    FilterComponent,
+    SubtitleComponent,
   ],
   imports: [
     CommonModule,
@@ -84,7 +89,8 @@ import { ProtectedRoutingModule } from './protected-routing.module';
     MatFormFieldModule,
     FormsModule,
     MatInputModule,
-    MatTableModule
+    MatTableModule,
+    MatPaginatorModule
   ]
 })
 export class ProtectedModule { }

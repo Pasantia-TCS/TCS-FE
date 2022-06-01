@@ -18,8 +18,7 @@ import { NewAssetComponent } from '../new-asset/new-asset.component';
 })
 export class AssetsComponent implements OnInit {
 
-  t1 = ['Acciones', 'Área', 'Edificio', 'Activo', 'Fecha de adjudicación', 'Fecha de devolución', 'Estado'];
-  titles!: string[];
+  titles: string[] = ['Acciones', 'Área', 'Edificio', 'Activo', 'Fecha de adjudicación', 'Fecha de devolución', 'Estado'];
   assets!: Asset[];
   currentUser!: User;
   ultimatix!: string;
@@ -38,33 +37,21 @@ export class AssetsComponent implements OnInit {
     this.loadProfile();
   }
 
-  loadAssets(rol: string) {
-    if (rol === 'admin') {
-      this.activosService.getAll()
-        .subscribe({
-          next: resp => this.assets = resp
-        })
-    } else {
-      this.activosService.getAssets(this.ultimatix)
-        .subscribe({
-          next: resp => this.assets = resp
-        })
-    }
+  loadAssets() {
+    this.activosService.getAssets(this.ultimatix)
+      .subscribe({
+        next: resp => this.assets = resp
+      });
   }
 
   loadProfile() {
     this.profileService.getProfile(this.ultimatix)
-    .subscribe({
-      next: resp => {
-        this.profile = resp;
-        this.loadAssets(this.profile.rol!);
-        if (this.profile.rol === 'admin') {
-          this.t1.splice(1, 0, 'Ultimatix');
-          this.t1.splice(0, 1);
-        } 
-        this.titles = this.t1;
-      }
-    });
+      .subscribe({
+        next: resp => {
+          this.profile = resp;
+          this.loadAssets();
+        }
+      });
   }
 
   openNewAsset(): void {

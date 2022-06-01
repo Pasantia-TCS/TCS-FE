@@ -29,7 +29,7 @@
             </div>
 
             <!-- Reportes -->
-            <div class="mb-3">
+            <div class="mb-3" *ngIf="profile?.rol === 'admin'">
               <app-button buttonName="Generación de reportes" iconName="insert_drive_file" [buttonIcon]="true"
                 (btnClick)="toReports()"></app-button>
             </div>

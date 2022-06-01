@@ -64,7 +64,7 @@ export class NewAssignmentComponent implements OnInit {
       this.nuevoAsignacionForm.patchValue({
         id_equipo_asi: this.assignment.id_equipo,
         asignacion: this.assignment.asignacion,
-        ultimatix_asi: this.assignment.utimatix_asi,
+        ultimatix_asi: this.assignment.ultimatix_asi,
         fecha_inicio: this.assignment.fecha_inicio,
         fecha_fin: this.assignment.fecha_fin,
       });

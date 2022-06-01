@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { User } from 'src/app/auth/interfaces/user';
 import { UserService } from 'src/app/shared/services/user.service';
+import { Profile } from '../../interfaces/profile';
+import { ProfileService } from '../../services/profile.service';
 
 @Component({
   selector: 'app-selection',
@@ -11,16 +13,23 @@ import { UserService } from 'src/app/shared/services/user.service';
 })
 export class SelectionComponent implements OnInit {
 
-  currentUser: User = {};
+  currentUser!: User;
+  profile!: Profile;
 
   constructor(
     private router: Router,
+    private profileService: ProfileService,
     private userService: UserService,
     private authService: AuthService
   ) { }
 
   ngOnInit(): void {
     this.currentUser = this.userService.getUserData();
+    const ultimatix = this.userService.getUltimatix();
+
+    this.profileService.getProfile(ultimatix!).subscribe({
+      next: resp => this.profile = resp
+    });
   }
 
   toAssets() {
