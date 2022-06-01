@@ -69,7 +69,9 @@ export class EditProfileComponent implements OnInit {
               this.currentUser = resp;
               this.dialogRef.close();
               Swal.fire('¡Éxito!', 'La información de usuario se ha actualizado con éxito.', 'success');
-            }
+            }, 
+            error: err => Swal.fire('Error', err.error.mensaje, 'error')
+
           }
         );
 
