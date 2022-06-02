@@ -35,7 +35,7 @@
       <div class="col-12 col-sm-6 mb-3 form-floating">
         <input id="floatingTeamLeader" type="text" class="form-control rounded-pill" placeholder="Líder de equipo"
           formControlName="nombre_lider">
-        <label for="floatingTeamLeader">Nombre de lider de equipo</label>
+        <label for="floatingTeamLeader">Nombre de lider del grupo</label>
         <div
           *ngIf="(getCtrl('nombre_lider')?.invalid && getCtrl('nombre_lider')?.touched) || getCtrl('nombre_lider')?.dirty">
           <span class="form-text text-danger float-start" *ngIf="getCtrl('nombre_lider')?.errors?.['required']">
@@ -62,7 +62,7 @@
       <!-- Descripcion field -->
       <textarea id="floatingTeamDesc" class="form-control" rows="2" placeholder="Descripción del equipo"
         formControlName="descripcion_asi" style="border-radius: 2rem;" maxlength="200"></textarea>
-      <label for="floatingTeamDesc">Descrpción del equipo</label>
+      <label for="floatingTeamDesc">Descripción del equipo</label>
       <div
         *ngIf="(getCtrl('descripcion_asi')?.invalid && getCtrl('descripcion_asi')?.touched) || getCtrl('descripcion_asi')?.dirty">
         <span class="form-text text-danger float-start" *ngIf="getCtrl('descripcion_asi')?.errors?.['required']">
