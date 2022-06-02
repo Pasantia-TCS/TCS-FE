@@ -19,9 +19,9 @@ export const assetColumns = [
     cell: (element: Asset) => `${element.edificio}`,
   },
   {
-    columnDef: 'area',
-    header: 'Área',
-    cell: (element: Asset) => `${element.area}`,
+    columnDef: 'codigo_barras',
+    header: 'Código de barras',
+    cell: (element: Asset) => `${element.codigo_barras}`,
   },
   {
     columnDef: 'fecha_entrega',
