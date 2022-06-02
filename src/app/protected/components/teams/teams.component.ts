@@ -24,7 +24,6 @@ export class TeamsComponent implements OnInit {
   constructor(
     private teamService: EquiposService,
     private dialog: MatDialog,
-    private generalService: GeneralService
   ) { }
 
   ngOnInit(): void {
@@ -81,9 +80,4 @@ export class TeamsComponent implements OnInit {
         }
       });
   }
-
-  exportTable(): void {
-    this.generalService.exportData('tableEquipos', 'Reporte equipos');
-  }
-
 }

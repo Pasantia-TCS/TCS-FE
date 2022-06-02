@@ -32,7 +32,6 @@ export class TasksComponent implements OnInit {
     private userService: UserService,
     private teamsService: EquiposService,
     private dialog: MatDialog,
-    private generalService: GeneralService
   ) { }
 
   ngOnInit(): void {
@@ -94,10 +93,6 @@ export class TasksComponent implements OnInit {
     if (assignments) {
       this.assignments = assignments;
     }
-  }
-
-  exportTable(): void {
-    this.generalService.exportData('table', 'Reporte asignaciones');
   }
 
 }

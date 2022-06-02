@@ -29,7 +29,6 @@ export class AssetsComponent implements OnInit {
     private userService: UserService,
     private profileService: ProfileService,
     public dialog: MatDialog,
-    public generalService: GeneralService
   ) { }
 
   ngOnInit(): void {
@@ -95,10 +94,6 @@ export class AssetsComponent implements OnInit {
       .subscribe({
         next: resp => { if (resp) { this.assets = resp; } }
       });
-  }
-
-  exportTable(): void {
-    this.generalService.exportData('tableActivos', 'Reporte activos');
   }
 
 }

@@ -5,6 +5,7 @@ import { Assignment } from '../../interfaces/asignacion';
 import { Team } from '../../interfaces/equipo';
 import { AdminService } from '../../services/admin.service';
 import { EquiposService } from '../../services/equipos.service';
+import { GeneralService } from '../../services/general.service';
 import { assignmentColumns, teamColumns, assetColumns } from './structure';
 
 @Component({
@@ -26,6 +27,7 @@ export class ReportsComponent implements OnInit {
   constructor(
     private adminService: AdminService,
     private teamService: EquiposService,
+    private generalService: GeneralService,
   ) { }
 
   ngOnInit(): void {
@@ -37,7 +39,9 @@ export class ReportsComponent implements OnInit {
   loadAssets() {
     this.adminService.getAssets()
       .subscribe({
-        next: resp => this.assets = new MatTableDataSource(resp)
+        next: resp => {
+          this.assets = new MatTableDataSource(resp)
+        }
       });
   }
 
@@ -53,6 +57,10 @@ export class ReportsComponent implements OnInit {
       .subscribe({
         next: resp => this.assignments = new MatTableDataSource(resp)
       });
+  }
+
+  exportTable(data: any, reportName: string): void {
+    this.generalService.exportData(data.filteredData, reportName);
   }
 
 }
