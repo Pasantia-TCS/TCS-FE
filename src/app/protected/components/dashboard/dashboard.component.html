@@ -42,7 +42,7 @@
       </li>
 
       <!-- Teams -->
-      <li>
+      <li *ngIf="profile?.rol === 'admin'">
         <a [routerLink]="['/pages/dashboard/teams']">
           <span>
             <mat-icon>group</mat-icon>

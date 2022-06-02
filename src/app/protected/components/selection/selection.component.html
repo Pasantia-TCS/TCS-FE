@@ -17,7 +17,7 @@
             </div>
 
             <!-- Teams -->
-            <div class="mb-4">
+            <div class="mb-4" *ngIf="profile?.rol === 'admin'">
               <app-button buttonName="Grupos de trabajo" iconName="group" [buttonIcon]="true" (btnClick)="toTeams()">
               </app-button>
             </div>
