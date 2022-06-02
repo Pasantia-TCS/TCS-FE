@@ -6,7 +6,6 @@ import Swal from 'sweetalert2';
 import { Asset } from '../../interfaces/activo';
 import { Profile } from '../../interfaces/profile';
 import { ActivosService } from '../../services/activos.service';
-import { GeneralService } from '../../services/general.service';
 import { ProfileService } from '../../services/profile.service';
 import { DeliverModalComponent } from '../deliver-modal/deliver-modal.component';
 import { NewAssetComponent } from '../new-asset/new-asset.component';

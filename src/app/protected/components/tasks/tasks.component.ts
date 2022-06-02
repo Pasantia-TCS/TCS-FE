@@ -6,7 +6,6 @@ import { Assignment } from '../../interfaces/asignacion';
 import { Team } from '../../interfaces/equipo';
 import { AsignacionService } from '../../services/asignacion.service';
 import { EquiposService } from '../../services/equipos.service';
-import { GeneralService } from '../../services/general.service';
 import { DarBajaComponent } from '../dar-baja/dar-baja.component';
 import { NewAssignmentComponent } from '../new-assignment/new-assignment.component';
 

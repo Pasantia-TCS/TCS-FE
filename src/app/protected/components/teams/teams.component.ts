@@ -1,12 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { User } from 'src/app/auth/interfaces/user';
 import Swal from 'sweetalert2';
 import { Team } from '../../interfaces/equipo';
 import { EquiposService } from '../../services/equipos.service';
-import { GeneralService } from '../../services/general.service';
 import { NewTeamComponent } from '../new-team/new-team.component';
-import { TableEquiposComponent } from '../tableEquipos/tableEquipos.component';
 
 @Component({
   selector: 'app-teams',
@@ -15,7 +13,6 @@ import { TableEquiposComponent } from '../tableEquipos/tableEquipos.component';
 })
 export class TeamsComponent implements OnInit {
 
-  @ViewChild(TableEquiposComponent) table: any;
   tableHeader: string[] = ['Acciones', 'Nombre', 'Tipo', 'Descripción', 'Líder de equipo', 'Líder técnico', 'Estado'];
   teams!: Team[];
 

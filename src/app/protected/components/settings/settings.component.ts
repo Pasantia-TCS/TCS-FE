@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
-import { Subscription } from 'rxjs';
-import { User } from 'src/app/auth/interfaces/user';
 import Swal from 'sweetalert2';
 import { Profile } from '../../interfaces/profile';
 import { SettingsService } from '../../services/settings.service';
