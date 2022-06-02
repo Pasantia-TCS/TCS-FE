@@ -1,43 +1,42 @@
 <div class="container">
-    <app-header title="Configuración"></app-header>
-  
-            
-        <!-- Role Management -->
-        <div class="card custom-card p-3 mb-3">
-            <div class="card-body">
-              
-              <div class="row">
-                <h5 class="card-title fs-2">Administrar roles</h5>
-              </div>
+  <app-header title="Configuración"></app-header>
+  <app-subtitle title="Administración de roles"></app-subtitle>
 
-              <br><br>
+  <!-- Role Management -->
+  <app-filter [data]="dataSource"></app-filter>
 
-              <table id="tableUsers" class="table table-hover align-middle">
-                  <caption>Tabla de usuarios</caption>
-                  <thead class="bg-light">
-                    <tr>
-                      <th *ngFor="let key of tableHeader ">{{key}}</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let user of users" >
-                      <td>
-                        <button mat-icon-button data-bs-placement="right" title="Editar usuario" style="cursor: pointer;"
-                          (click)="update(user.id_ultimatix!)">
-                          <mat-icon [ngStyle]="{'color':'#9B11BF99'}">edit</mat-icon>
-                        </button>
-                      </td>
-                      <td>{{user.id_ultimatix}}</td>
-                      <td>{{user.nombres_completos}}</td>
-                      <td [ngStyle]="{color: user.rol == 'user' ? 'green' : 'red'}">{{user.rol}}</td>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-                    </tr>
+    <ng-container matColumnDef="id_ultimatix">
+      <th mat-header-cell *matHeaderCellDef> Ultimatix </th>
+      <td mat-cell *matCellDef="let element"> {{element.id_ultimatix}} </td>
+    </ng-container>
 
-          
-                  </tbody>
-                </table>
+    <ng-container matColumnDef="nombres_completos">
+      <th mat-header-cell *matHeaderCellDef> Nombre </th>
+      <td mat-cell *matCellDef="let element"> {{element.nombres_completos}} </td>
+    </ng-container>
 
-          </div>
-        </div>
+    <ng-container matColumnDef="rol">
+      <th mat-header-cell *matHeaderCellDef> Rol </th>
+      <td mat-cell *matCellDef="let element"> {{element.rol}} </td>
+    </ng-container>
 
-  </div>
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> Acciones </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button data-bs-placement="right" title="Editar usuario" style="cursor: pointer;"
+          (click)="update(element.id_ultimatix!)">
+          <mat-icon [ngStyle]="{'color':'#9B11BF99'}">edit</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No hay datos que coincidan con el filtro</td>
+    </tr>
+  </table>
+</div>

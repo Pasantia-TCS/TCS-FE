@@ -4,21 +4,21 @@
   <section class="py-3">
     <app-subtitle title="Activos"></app-subtitle>   
     <app-filter [data]="assets"></app-filter>
-    <button mat-raised-button color="primary" style="left: 50%;" (click)="exportTable(this.assets, 'Activos')">Generar Reporte</button>
+    <button mat-raised-button color="primary" class="float-end" (click)="exportTable(this.assets, 'Activos')">Generar Reporte</button>
     <app-mat-table [columns]="assetcolumns" [dataSource]="assets"></app-mat-table>
   </section>
 
   <section class="py-3">
     <app-subtitle title="Grupos de trabajo"></app-subtitle>
     <app-filter [data]="teams"></app-filter>
-    <button mat-raised-button color="primary" style="left: 50%;" (click)="exportTable(this.teams, 'Grupos de trabajo')">Generar Reporte</button>
+    <button mat-raised-button color="primary" class="float-end" (click)="exportTable(this.teams, 'Grupos de trabajo')">Generar Reporte</button>
     <app-mat-table [columns]="teamColumns" [dataSource]="teams"></app-mat-table>
   </section>
 
   <section class="py-3">
     <app-subtitle title="Asignaciones"></app-subtitle>
     <app-filter [data]="assignments"></app-filter>
-    <button mat-raised-button color="primary" style="left: 50%;" (click)="exportTable(this.assignments, 'Asignaciones')">Generar Reporte</button>
+    <button mat-raised-button color="primary" class="float-end" (click)="exportTable(this.assignments, 'Asignaciones')">Generar Reporte</button>
     <app-mat-table [columns]="assignmentColumns" [dataSource]="assignments"></app-mat-table>
   </section>
 

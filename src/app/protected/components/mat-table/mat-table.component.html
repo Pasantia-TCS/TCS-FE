@@ -8,7 +8,7 @@
         {{column.cell(row)}}
       </td>
     </ng-container>
-  
+
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
@@ -17,5 +17,4 @@
       <td class="mat-cell" colspan="4">No hay datos que coincidan con el filtro</td>
     </tr>
   </table>
-  
 </div>
