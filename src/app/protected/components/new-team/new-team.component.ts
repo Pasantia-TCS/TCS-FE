@@ -24,6 +24,7 @@ export class NewTeamComponent implements OnInit {
   teams!: Team[];
   tipos: string[] = ['Proyecto', 'Célula', 'Tribu'];
   updateTeam: boolean = false;
+  count!: number;
 
   constructor(
     private teamsService: EquiposService,
@@ -37,6 +38,7 @@ export class NewTeamComponent implements OnInit {
     this.team = this.data.team;
     this.teams = this.data.teams;
     this.updateForm(this.updateTeam);
+    this.count = this.nuevoEquipoForm.get('descripcion_asi')?.value.length;
   }
 
   updateForm(status: boolean) {
@@ -72,7 +74,7 @@ export class NewTeamComponent implements OnInit {
         next: resp => {
           this.teams = resp;
           this.dialogRef.close(resp);
-          Swal.fire('Éxito', 'Equipo registrado con éxito.', 'success');
+          Swal.fire('Éxito', 'Grupo de trabajo registrado con éxito.', 'success');
         },
         error: err => Swal.fire('Error', err.error.mensaje, 'error')
       });
@@ -95,6 +97,10 @@ export class NewTeamComponent implements OnInit {
           }
         );
     }
+  }
+
+  onKey(event: any) {
+    this.count = event.target.value.length;
   }
 
   exit(): void {

@@ -5,3 +5,8 @@ table {
 .custom-card {
   border-radius: 2rem;
 }
+
+.table-container {
+  max-height: 700px;
+  overflow: auto;
+}

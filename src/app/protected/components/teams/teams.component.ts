@@ -34,7 +34,7 @@ export class TeamsComponent implements OnInit {
 
   changeStatus(id_team: string): void {
     Swal.fire({
-      title: '¿Estás seguro de cambiar el estado del equipo?',
+      title: '¿Estás seguro de cambiar el estado del grupo de trabajo?',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -48,7 +48,7 @@ export class TeamsComponent implements OnInit {
             {
               next: resp => {
                 this.teams = resp;
-                Swal.fire('¡Éxito!', 'El estado del equipo se ha actualizado con éxito.', 'success');
+                Swal.fire('¡Éxito!', 'El estado del grupo de trabajo se ha actualizado con éxito.', 'success');
               },
               error: err => Swal.fire('Error', err.error.mensaje, 'error')
             }
