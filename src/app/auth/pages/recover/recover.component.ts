@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-recover',
   templateUrl: './recover.component.html',
-  styleUrls: ['./recover.component.css']
+  styles: []
 })
 export class RecoverComponent {
 
@@ -29,7 +29,7 @@ export class RecoverComponent {
   get password() {
     return this.recoverForm.get('password');
   }
-  
+
   get securityCode() {
     return this.recoverForm.get('securityCode');
   }
