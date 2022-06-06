@@ -16,12 +16,10 @@ export class LoginComponent {
   currentUser!: User;
   showPwd: boolean = false;
 
-  loginForm: FormGroup = this.fb.group(
-    {
-      ultimatix: ['', Validators.required],
-      password: ['', Validators.required]
-    }
-  );
+  loginForm: FormGroup = this.fb.group({
+    ultimatix: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
+    password: ['', Validators.required]
+  });
 
   constructor(
     private authService: AuthService,
@@ -34,6 +32,10 @@ export class LoginComponent {
     return this.loginForm.controls[field_name].errors && this.loginForm.controls[field_name].touched;
   }
 
+  get ultimatix() {
+    return this.loginForm.get('ultimatix');
+  }
+
   login() {
     const { ultimatix, password } = this.loginForm.value;
 
@@ -41,16 +43,29 @@ export class LoginComponent {
       this.loginForm.markAllAsTouched();
     } else {
       this.authService.login(ultimatix, password)
-        .subscribe(
-          {
-            next: resp => {
-              sessionStorage.setItem('token', resp.id_numero_Ultimatix!);
-              this.userService.updateUser(resp);
-              this.router.navigateByUrl('/pages');
-            },
-            error: err => Swal.fire('Error', err.error.mensaje, 'error')
-          }
-        );
+        .subscribe({
+          next: resp => {
+            sessionStorage.setItem('token', resp.id_numero_Ultimatix!);
+            this.userService.updateUser(resp);
+            this.router.navigateByUrl('/pages');
+          },
+          error: err => Swal.fire('Error', err.error.mensaje, 'error')
+        });
+    }
+  }
+
+  toRecover() {
+    this.router.navigateByUrl('/auth/recover');
+  }
+
+  keyPressNumbers(event: any) {
+    const charCode = (event.which) ? event.which : event.keyCode;
+
+    if (charCode < 48 || charCode > 57) {
+      event.preventDefault();
+      return false;
+    } else {
+      return true;
     }
   }
 

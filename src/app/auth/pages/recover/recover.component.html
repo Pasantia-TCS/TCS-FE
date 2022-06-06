@@ -1,0 +1,65 @@
+<!-- Title -->
+<h1 class="my-4 fs-2 text-uppercase">Recupera tu cuenta</h1>
+
+<!-- Form -->
+<form [formGroup]="recoverForm" autocomplete="off">
+
+  <div class="col mb-3">
+    <input type="text" class="form-control rounded-pill shadow-sm border-0 custom-input" placeholder="Ultimatix"
+      formControlName="ultimatix" />
+    <div class="form-text text-danger float-start"
+      *ngIf="(ultimatix?.invalid && ultimatix?.touched) || ultimatix?.dirty">
+      <span *ngIf="ultimatix?.errors?.['required']">
+        Ingresa tu número de Ultimatix.
+      </span>
+      <span *ngIf="ultimatix?.errors?.['pattern']">
+        Ingresa un número de Ultimatix válido.
+      </span>
+    </div>
+  </div>
+
+  <div class="col mb-3">
+    <div class="input-group">
+      <input formControlName="password" [type]="showPwd ? 'text' : 'password'" class="form-control pwd-input border-0"
+        placeholder="Contraseña" />
+      <div class="input-group-text pwd-eye border-0" (click)="showPwd = !showPwd" (touchstart)="showPwd = !showPwd">
+        <mat-icon style="cursor: pointer;">remove_red_eye</mat-icon>
+      </div>
+    </div>
+    <div class="form-text text-danger float-start" *ngIf="(password?.invalid && password?.touched) || password?.dirty">
+      <span *ngIf="password?.errors?.['required']">
+        Ingresa una contraseña.
+      </span>
+      <span *ngIf="password?.errors?.['pattern']">
+        Ingresa una contraseña válida.
+        <mat-icon style="cursor: pointer; font-size: 1rem;"
+          matTooltip="La contraseña debe tener al menos ocho caracteres, 1 letra mayúsculas, 1 letra minúscula y 1 caracteres especiales.">
+          report</mat-icon>
+      </span>
+    </div>
+  </div>
+
+  <div class="col mb-4">
+    <input type="text" class="form-control rounded-pill shadow-sm border-0 custom-input" formControlName="ultimatix"
+      placeholder="Código de recuperación" />
+    <div class="form-text text-danger float-start"
+      *ngIf="(ultimatix?.invalid && ultimatix?.touched) || ultimatix?.dirty">
+      <span *ngIf="ultimatix?.errors?.['required']">
+        Ingresa tu código de recuperación.
+      </span>
+      <span *ngIf="ultimatix?.errors?.['pattern']">
+        Ingresa un número de Ultimatix válido.
+      </span>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 col-sm-6 mx-auto mb-3">
+      <app-button buttonName="Cancelar" (btnClick)="toLogin()"></app-button>
+    </div>
+    <div class="col-12 col-sm-6 mx-auto mb-3">
+      <app-button buttonName="Cambiar contraseña" (btnClick)="recoverPassword()"></app-button>
+    </div>
+  </div>
+
+</form>

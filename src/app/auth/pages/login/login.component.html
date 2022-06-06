@@ -6,14 +6,20 @@
   <!-- Ultimatix -->
   <div class="mb-3">
     <input formControlName="ultimatix" type="text" class="form-control rounded-pill shadow-sm border-0 custom-input"
-      placeholder="Ultimatix" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" />
-    <span class="form-text text-danger float-start" *ngIf="valid_field('ultimatix')">
-      Ingresa tu número de Ultimatix.
-    </span>
+      placeholder="Ultimatix" (keypress)="keyPressNumbers($event)" />
+    <div class="form-text text-danger float-start"
+      *ngIf="(ultimatix?.invalid && ultimatix?.touched) || ultimatix?.dirty">
+      <span *ngIf="ultimatix?.errors?.['required']">
+        Ingresa tu número de Ultimatix.
+      </span>
+      <span *ngIf="ultimatix?.errors?.['pattern']">
+        Ingresa un número de Ultimatix válido.
+      </span>
+    </div>
   </div>
 
   <!-- Password -->
-  <div class="mb-4">
+  <div class="">
     <div class="input-group">
       <input formControlName="password" [type]="showPwd ? 'text' : 'password'" class="form-control pwd-input border-0"
         placeholder="Contraseña" />
@@ -26,8 +32,12 @@
     </span>
   </div>
 
+  <div class="mb-3 float-end">
+    <a (click)="toRecover()" class="custom-link">¿Olvidaste tu contraseña?</a>
+  </div>
+
   <!-- Login -->
-  <div class="col-12 col-sm-6 mx-auto mb-4 ">
+  <div class="col-12 col-sm-6 mx-auto mb-4">
     <app-button type="submit" buttonName="Inicia sesión" class="w-100"></app-button>
   </div>
 
