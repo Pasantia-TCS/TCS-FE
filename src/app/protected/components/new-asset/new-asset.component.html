@@ -77,11 +77,11 @@
       <div class="col-12 col-sm-6 form-floating mb-3">
         <input id="floatingBarcode" type="text" class="form-control rounded-pill" formControlName="codigo_barras"
           placeholder="00:00:5E:00:53:AF">
-        <label for="floatingBarcode">Código de barras</label>
+        <label for="floatingBarcode">Código de activo</label>
         <div
           *ngIf="(getCtrl('codigo_barras')?.invalid && getCtrl('codigo_barras')?.touched) || getCtrl('codigo_barras')?.dirty">
           <span class="form-text text-danger float-start" *ngIf="getCtrl('codigo_barras')?.errors?.['required']">
-            * Ingrese un código de barras.
+            * Ingrese el código del activo.
           </span>
         </div>
       </div>
