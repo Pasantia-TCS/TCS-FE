@@ -23,4 +23,9 @@ export class SettingsService {
     return this.http.post<Profile>(url, { id_ultimatix });
   }
 
+  unlock(id_ultimatix: number) {
+    const url: string = `${this.baseUrl}/`;
+    return this.http.post<Profile>(url, { id_ultimatix });
+  }
+
 }

@@ -17,7 +17,7 @@ import { NewAssetComponent } from '../new-asset/new-asset.component';
 })
 export class AssetsComponent implements OnInit {
 
-  titles: string[] = ['Acciones', 'Código de barras', 'Edificio', 'Activo', 'Fecha de adjudicación', 'Fecha de devolución', 'Estado'];
+  titles: string[] = ['Acciones', 'Código de activo', 'Edificio', 'Activo', 'Fecha de adjudicación', 'Fecha de devolución', 'Estado'];
   assets!: Asset[];
   currentUser!: User;
   ultimatix!: string;
