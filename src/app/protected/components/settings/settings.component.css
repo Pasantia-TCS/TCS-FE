@@ -1,12 +1,8 @@
+.table-container {
+  max-height: 400px;
+  overflow: auto;
+}
+
 table {
   width: 100%;
-}
-
-.custom-card {
-  border-radius: 2rem;
-}
-
-.table-container {
-  max-height: 700px;
-  overflow: auto;
 }
