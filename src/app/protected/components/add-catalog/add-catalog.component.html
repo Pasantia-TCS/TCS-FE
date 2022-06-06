@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>Nuevo {{data.item}}</h1>
+<div mat-dialog-content>
+  <form [formGroup]="newItemForm">
+    <div class="form-floating">
+      <input id="floatingDeliverDate" type="text" class="form-control rounded-pill" formControlName="nombre">
+      <label for="floatingDeliverDate">Nombre</label>
+    </div>
+  </form>
+  <div
+    *ngIf="(newItemForm.get('nombre')?.invalid && newItemForm.get('nombre')?.touched) || newItemForm.get('nombre')?.dirty">
+    <span class="form-text text-danger float-start" *ngIf="newItemForm.get('nombre')?.errors?.['required']">
+      * Ingrese un(a) nuevo(a) {{data.item}}.
+    </span>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-stroked-button mat-dialog-close>Cancelar</button>
+  <button mat-stroked-button (click)="addItem()">Guardar</button>
+</div>
