@@ -2,8 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import Swal from 'sweetalert2';
-import { ActivosService } from '../../services/activos.service';
-import { ProfileService } from '../../services/profile.service';
+import { SettingsService } from '../../services/settings.service';
 
 @Component({
   selector: 'app-add-catalog',
@@ -18,8 +17,7 @@ export class AddCatalogComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private activoService: ActivosService,
-    private profileService: ProfileService,
+    private settingsService: SettingsService,
     public dialogRef: MatDialogRef<AddCatalogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
 
@@ -29,12 +27,10 @@ export class AddCatalogComponent implements OnInit {
   }
 
   addItem(){
-    console.log(this.data);
-    console.log(this.newItemForm.value);
-    
+    console.log(this.newItemForm.value);    
     
     if(this.data.item == 'habilidad'){
-      this.profileService.addSkill(this.newItemForm.value)
+      this.settingsService.addSkill(this.newItemForm.value)
       .subscribe({
         next: (resp: any) => {
           this.dialogRef.close(resp);
@@ -44,7 +40,7 @@ export class AddCatalogComponent implements OnInit {
       });
 
     } else if (this.data.item == 'activo'){
-      this.activoService.addAssetType(this.newItemForm.value)
+      this.settingsService.addAssetType(this.newItemForm.value)
       .subscribe({
         next: (resp: any) => {
           this.dialogRef.close(resp);
@@ -54,7 +50,7 @@ export class AddCatalogComponent implements OnInit {
       });
 
     } else if(this.data.item == 'área'){
-      this.activoService.addArea(this.newItemForm.value)
+      this.settingsService.addArea(this.newItemForm.value)
       .subscribe({
         next: (resp: any) => {
           this.dialogRef.close(resp);
@@ -63,19 +59,7 @@ export class AddCatalogComponent implements OnInit {
         error: (err: { error: { mensaje: string | undefined; }; }) => Swal.fire('Error', err.error.mensaje, 'error')
       });
 
-    } else if (this.data.item == 'edifício'){
-      this.activoService.addBuilding(this.newItemForm.value)
-      .subscribe({
-        next: (resp: any) => {
-          this.dialogRef.close(resp);
-          Swal.fire('Éxito', 'Edifício registrado con éxito.', 'success');
-        },
-        error: (err: { error: { mensaje: string | undefined; }; }) => Swal.fire('Error', err.error.mensaje, 'error')
-      });
-
-    }
-    
-    
+    } 
   }
 
 }

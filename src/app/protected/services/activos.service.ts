@@ -49,34 +49,4 @@ export class ActivosService {
     return this.http.post<Asset[]>(url, body);
   }
 
-  addAssetType(nombre: string){
-    const url: string = `${this.baseUrl}/`;
-    return this.http.post<AssetType>(url, nombre);
-  }
-
-  addArea(nombre: string){
-    const url: string = `${this.baseUrl}/`;
-    return this.http.post<AssetType>(url, nombre);
-  }
-
-  addBuilding(nombre: string){
-    const url: string = `${this.baseUrl}/`;
-    return this.http.post<AssetType>(url, nombre);
-  }
-
-  deleteAssetType(id: string){
-    const url: string = `${this.baseUrl}/`;
-    return this.http.post<AssetType>(url, id);
-  }
-
-  deleteArea(id: string){
-    const url: string = `${this.baseUrl}/`;
-    return this.http.post<AssetType>(url, id);
-  }
-  
-  deleteBuilding(id: string){
-    const url: string = `${this.baseUrl}/`;
-    return this.http.post<AssetType>(url, id);
-  }
-
 }

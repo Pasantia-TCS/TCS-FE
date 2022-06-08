@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { AssetType } from '../interfaces/activo';
 import { Profile } from '../interfaces/profile';
 
 @Injectable({
@@ -23,9 +24,49 @@ export class SettingsService {
     return this.http.post<Profile>(url, { id_ultimatix });
   }
 
-  unlock(id_ultimatix: number) {
-    const url: string = `${this.baseUrl}/`;
-    return this.http.post<Profile>(url, { id_ultimatix });
+  unlock(id_numero_Ultimatix: number) {
+    const url: string = `${environment.url}/asociados/desbloqueo-asociado`;
+    return this.http.post<Profile>(url, { id_numero_Ultimatix });
+  }
+
+  addSkill(nombre: string){
+    const url: string = `${this.baseUrl}/agregarHabilidad`;
+    return this.http.post<Profile>(url, nombre);
+  }
+
+  deleteSkill(id: string){    
+    const url: string = `${this.baseUrl}/eliminarHabilidad`;
+    return this.http.post<Profile>(url, { id });
+  }
+
+  addAssetType(nombre: string){
+    const url: string = `${environment.url}/activos/agregarTipo`;
+    return this.http.post<AssetType>(url, nombre);
+  }
+
+  deleteAssetType(id: string){
+    const url: string = `${environment.url}/activos/eliminarTipo`;
+    return this.http.post<AssetType>(url, { id });
+  }
+
+  addArea(nombre: string){
+    const url: string = `${environment.url}/activos/agregarArea`;
+    return this.http.post<AssetType>(url, nombre);
+  }
+
+  deleteArea(id: string){
+    const url: string = `${environment.url}/activos/eliminarArea`;
+    return this.http.post<AssetType>(url,  { id });
+  }
+
+  addBuilding(nombre: string){
+    const url: string = `${environment.url}/activos/agregarEdificio`;
+    return this.http.post<AssetType>(url, nombre);
+  }
+  
+  deleteBuilding(id: string){
+    const url: string = `${environment.url}/activos/eliminarEdificio`;
+    return this.http.post<AssetType>(url, { id });
   }
 
 }

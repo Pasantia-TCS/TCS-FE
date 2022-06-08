@@ -33,15 +33,4 @@ export class ProfileService {
     return this.http.post<Profile>(url, body);
   }
 
-  
-  addSkill(nombre: string){
-    const url: string = `${this.baseUrl}/`;
-    return this.http.post<Profile>(url, nombre);
-  }
-
-  deleteSkill(id: string){
-    const url: string = `${this.baseUrl}/`;
-    return this.http.post<Profile>(url, id);
-  }
-
 }

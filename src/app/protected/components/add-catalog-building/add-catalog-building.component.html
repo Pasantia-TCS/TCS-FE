@@ -1,0 +1,32 @@
+<h1 mat-dialog-title>Nuevo edifício</h1>
+<div mat-dialog-content>
+  <form [formGroup]="newItemForm">
+    <div class="form-floating">
+      <input id="floatingDeliverDate" type="text" class="form-control rounded-pill" formControlName="nombre">
+      <label for="floatingDeliverDate">Nombre</label>
+    </div>
+
+    <div class="form-floating">
+      <input id="floatingDeliverDate" type="number" class="form-control rounded-pill" formControlName="piso">
+      <label for="floatingDeliverDate">Pisos</label>
+    </div>
+  </form>
+  <div
+    *ngIf="(newItemForm.get('nombre')?.invalid && newItemForm.get('nombre')?.touched) || newItemForm.get('nombre')?.dirty">
+    <span class="form-text text-danger float-start" *ngIf="newItemForm.get('nombre')?.errors?.['required']">
+      * Ingrese un nuevo edifício.
+    </span>
+  </div>
+
+  <div
+    *ngIf="(newItemForm.get('piso')?.invalid && newItemForm.get('piso')?.touched) || newItemForm.get('piso')?.dirty">
+    <span class="form-text text-danger float-start" *ngIf="newItemForm.get('piso')?.errors?.['required']">
+      * Ingrese la cantidad de pisos del edifício.
+    </span>
+  </div>
+
+</div>
+<div mat-dialog-actions>
+  <button mat-stroked-button mat-dialog-close>Cancelar</button>
+  <button mat-stroked-button (click)="addItem()">Guardar</button>
+</div>

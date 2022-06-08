@@ -43,6 +43,7 @@ import { TeamsComponent } from './components/teams/teams.component';
 import { TemplateComponent } from './components/template/template.component';
 import { ProtectedRoutingModule } from './protected-routing.module';
 import { AddCatalogComponent } from './components/add-catalog/add-catalog.component';
+import { AddCatalogBuildingComponent } from './components/add-catalog-building/add-catalog-building.component';
 
 @NgModule({
   declarations: [
@@ -77,6 +78,7 @@ import { AddCatalogComponent } from './components/add-catalog/add-catalog.compon
     FilterComponent,
     SubtitleComponent,
     AddCatalogComponent,
+    AddCatalogBuildingComponent,
   ],
   imports: [
     CommonModule,

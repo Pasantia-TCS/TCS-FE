@@ -10,6 +10,7 @@ import { ActivosService } from '../../services/activos.service';
 import { Building } from '../../interfaces/edificio';
 import { MatDialog } from '@angular/material/dialog';
 import { AddCatalogComponent } from '../add-catalog/add-catalog.component';
+import { AddCatalogBuildingComponent } from '../add-catalog-building/add-catalog-building.component';
 
 @Component({
   selector: 'app-settings',
@@ -19,7 +20,7 @@ import { AddCatalogComponent } from '../add-catalog/add-catalog.component';
 
 export class SettingsComponent implements OnInit {
 
-  displayedColumns: string[] = ['actions', 'id_ultimatix', 'nombres_completos', 'rol'];
+  displayedColumns: string[] = ['actions', 'id_ultimatix', 'nombres_completos', 'rol', 'estado'];
   dataSource!: MatTableDataSource<Profile>;
 
   //Catalogos
@@ -126,7 +127,7 @@ export class SettingsComponent implements OnInit {
 
   unlock(id_ultimatix: number) {
     Swal.fire({
-      title: '¿Estás seguro que deseas desbloquear este usuario?',
+      title: '¿Estás seguro que deseas desbloquear/bloquear este usuario?',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -134,7 +135,7 @@ export class SettingsComponent implements OnInit {
       confirmButtonText: 'Sí',
       cancelButtonText: 'Cancelar'
     }).then((result) => {
-      if (result.isConfirmed) {
+      if (result.isConfirmed) {        
         this.settingsService.unlock(id_ultimatix)
           .subscribe({
             next: resp => {
@@ -172,13 +173,12 @@ export class SettingsComponent implements OnInit {
   }
 
   openAddBuilding(){
-    this.dialog.open(AddCatalogComponent, { data: { item: 'edifício' } } )
+    this.dialog.open(AddCatalogBuildingComponent)
       .afterClosed()
       .subscribe({
         next: resp => this.loadBuildings()
       });
   }
-
 
   deleteSkill(id: string){
     Swal.fire({
@@ -191,7 +191,7 @@ export class SettingsComponent implements OnInit {
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.profileService.deleteSkill(id)
+        this.settingsService.deleteSkill(id)
           .subscribe({
             next: resp => {
               this.loadSkills();
@@ -214,7 +214,7 @@ export class SettingsComponent implements OnInit {
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.activosService.deleteAssetType(id)
+        this.settingsService.deleteAssetType(id)
           .subscribe({
             next: resp => {
               this.loadAssets();
@@ -237,7 +237,7 @@ export class SettingsComponent implements OnInit {
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.activosService.deleteArea(id)
+        this.settingsService.deleteArea(id)
           .subscribe({
             next: resp => {
               this.loadAreas();
@@ -259,8 +259,8 @@ export class SettingsComponent implements OnInit {
       confirmButtonText: 'Sí',
       cancelButtonText: 'Cancelar'
     }).then((result) => {
-      if (result.isConfirmed) {
-        this.activosService.deleteBuilding(id)
+      if (result.isConfirmed) {        
+        this.settingsService.deleteBuilding(id)
           .subscribe({
             next: resp => {
               this.loadBuildings();
