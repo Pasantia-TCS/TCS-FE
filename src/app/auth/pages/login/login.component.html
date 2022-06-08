@@ -5,7 +5,7 @@
 <form [formGroup]="loginForm" (ngSubmit)="login()" autocomplete="off">
   <!-- Ultimatix -->
   <div class="mb-3">
-    <input formControlName="ultimatix" type="text" class="form-control rounded-pill shadow-sm border-0 custom-input"
+    <input id="ultimatixLogin" formControlName="ultimatix" type="text" class="form-control rounded-pill shadow-sm border-0 custom-input"
       placeholder="Ultimatix" (keypress)="keyPressNumbers($event)" />
     <div class="form-text text-danger float-start"
       *ngIf="(ultimatix?.invalid && ultimatix?.touched) || ultimatix?.dirty">
@@ -21,7 +21,7 @@
   <!-- Password -->
   <div class="">
     <div class="input-group">
-      <input formControlName="password" [type]="showPwd ? 'text' : 'password'" class="form-control pwd-input border-0"
+      <input id="passwordLogin" formControlName="password" [type]="showPwd ? 'text' : 'password'" class="form-control pwd-input border-0"
         placeholder="Contraseña" />
       <div class="input-group-text pwd-eye border-0" (click)="showPwd = !showPwd" (touchstart)="showPwd = !showPwd">
         <mat-icon style="cursor: pointer;">remove_red_eye</mat-icon>
@@ -38,7 +38,7 @@
 
   <!-- Login -->
   <div class="col-12 col-sm-6 mx-auto mb-4">
-    <app-button type="submit" buttonName="Inicia sesión" class="w-100"></app-button>
+    <app-button id="btnLogin" type="submit" buttonName="Inicia sesión" class="w-100"></app-button>
   </div>
 
   <!-- Register -->

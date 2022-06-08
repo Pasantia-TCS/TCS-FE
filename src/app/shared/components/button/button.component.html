@@ -1,4 +1,4 @@
-<button class="btn custom-btn rounded-pill shadow-sm w-100" [type]="type" (click)="onClick()" [disabled]="isDisabled">
+<button [id]="id" class="btn custom-btn rounded-pill shadow-sm w-100" [type]="type" (click)="onClick()" [disabled]="isDisabled">
   <span class="d-flex justify-content-center" style="column-gap: 10%;">
     <mat-icon *ngIf="buttonIcon">{{iconName}}</mat-icon>
     {{buttonName}}

@@ -10,5 +10,6 @@ export class HeaderComponent {
   @Input() title = '';
   @Input() buttonName = '';
   @Input() icon = '';
+  @Input() id!: string;
 
 }

@@ -13,7 +13,7 @@ export class TableAsignacion implements OnInit {
 
   @Output() indexToDelete = new EventEmitter<string>();
 
-  currentUser: User = {}
+  currentUser: User = {};
   ultimatix: string | undefined = '';
 
   tableData: Assignment[] = [];
