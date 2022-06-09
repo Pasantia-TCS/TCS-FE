@@ -8,7 +8,7 @@
     <div class="col-12 col-md-6 mb-3">
       <input formControlName="name" type="text" class="form-control rounded-pill border-0 custom-input"
         placeholder="Nombres" />
-      <span class="form-text text-danger float-start" *ngIf="valid_field('name')">
+      <span class="form-text text-danger float-start" *ngIf="validField('name')">
         Ingresa tus nombres.
       </span>
     </div>
@@ -17,7 +17,7 @@
     <div class="col-12 col-md-6 mb-3">
       <input formControlName="lastname" type="text" class="form-control rounded-pill border-0 custom-input"
         placeholder="Apellidos" />
-      <span class="form-text text-danger float-start" *ngIf="valid_field('lastname')">
+      <span class="form-text text-danger float-start" *ngIf="validField('lastname')">
         Ingresa tus apellidos.
       </span>
     </div>
@@ -87,7 +87,7 @@
         <span *ngIf="password?.errors?.['pattern']">
           Ingresa una contraseña válida.
           <mat-icon style="cursor: pointer; font-size: 1rem;"
-            matTooltip="La contraseña debe tener al menos ocho caracteres, 1 letra mayúsculas, 1 letra minúscula y 1 caracteres especiales.">
+            matTooltip="La contraseña debe tener al menos ocho caracteres, 1 letra mayúsculas, 1 letra minúscula y 1 caracter especial.">
             report</mat-icon>
         </span>
       </div>

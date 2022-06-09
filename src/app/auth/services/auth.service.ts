@@ -30,6 +30,12 @@ export class AuthService {
     return this.http.post<User>(url, body);
   }
 
+  recover(ultimatix: string, securityCode: string, password: string) {
+    const url: string = `${this.baseUrl}/cambio-password`;
+    const body = { id_numero_Ultimatix: ultimatix, token: securityCode, clave: password };
+    return this.http.post(url, body);
+  }
+
   validateToken() {
     const ultimatix = sessionStorage.getItem('token') || '';
     const url: string = `${this.baseUrl}/buscar/${ultimatix}`;

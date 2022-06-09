@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-recover',
@@ -19,7 +21,8 @@ export class RecoverComponent {
 
   constructor(
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) { }
 
   get ultimatix() {
@@ -37,7 +40,20 @@ export class RecoverComponent {
   recoverPassword() {
     if (this.recoverForm.invalid) {
       this.recoverForm.markAllAsTouched();
+    } else {
+      const { ultimatix, password, securityCode } = this.recoverForm.value;
+      this.authService.recover(ultimatix, securityCode, password).subscribe({
+        next: () => {
+          Swal.fire('¡Éxito!', ' Su contraseña ha sido cambiada con éxito.', 'success');
+          this.router.navigateByUrl('/');
+        },
+        error: () => Swal.fire('¡Error!', 'Ha ocurrido un error. Por favor verifica tu código de restablecimiento y vuelve a intentar.', 'error')
+      });
     }
+  }
+
+  message() {
+    Swal.fire('¡Aviso!', 'Para restablecer tu cuenta, ponte en contacto con un administrador.', 'info');
   }
 
   toLogin() {
