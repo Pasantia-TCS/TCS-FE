@@ -12,7 +12,6 @@ import { AuthService } from '../../services/auth.service';
 })
 export class RegisterComponent {
 
-  // Phone
   SearchCountryField = SearchCountryField;
   CountryISO = CountryISO;
   PhoneNumberFormat = PhoneNumberFormat;
@@ -42,7 +41,7 @@ export class RegisterComponent {
 
   get ultimatix() { return this.registerForm.get('ultimatix'); }
 
-  valid_field(field_name: string) {
+  validField(field_name: string) {
     return this.registerForm.controls[field_name].errors && this.registerForm.controls[field_name].touched;
   }
 
@@ -52,16 +51,24 @@ export class RegisterComponent {
     if (this.registerForm.invalid) {
       this.registerForm.markAllAsTouched();
     } else {
-      this.authService.register(ultimatix, password, name, lastname, phone.internationalNumber, email)
-        .subscribe(
-          {
-            next: () => {
-              Swal.fire('¡Éxito!', 'Usuario registrado con éxito.', 'success');
-              this.router.navigateByUrl('/');
-            },
-            error: err => Swal.fire('Error', err.error.mensaje, 'error')
-          }
-        );
+      this.authService
+        .register(ultimatix, password, name, lastname, phone.internationalNumber, email)
+        .subscribe({
+          next: resp => {
+            Swal.fire({
+              title: '¡Éxito!',
+              icon: 'success',
+              html:
+                'Usuario registrado con éxito.' +
+                '<br>' +
+                '<br>' +
+                '<strong>Código de seguridad: </strong>' +
+                resp.token
+            });
+            this.router.navigateByUrl('/');
+          },
+          error: err => Swal.fire('¡Error!', err.error.mensaje, 'error')
+        });
     }
   }
 }

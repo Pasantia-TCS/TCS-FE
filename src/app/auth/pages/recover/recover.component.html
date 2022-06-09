@@ -39,26 +39,27 @@
     </div>
   </div>
 
-  <div class="col mb-4">
-    <input type="text" class="form-control rounded-pill shadow-sm border-0 custom-input" formControlName="ultimatix"
+  <div class="col">
+    <input type="text" class="form-control rounded-pill shadow-sm border-0 custom-input" formControlName="securityCode"
       placeholder="Código de recuperación" />
     <div class="form-text text-danger float-start"
-      *ngIf="(ultimatix?.invalid && ultimatix?.touched) || ultimatix?.dirty">
-      <span *ngIf="ultimatix?.errors?.['required']">
+      *ngIf="(securityCode?.invalid && securityCode?.touched) || securityCode?.dirty">
+      <span *ngIf="securityCode?.errors?.['required']">
         Ingresa tu código de recuperación.
-      </span>
-      <span *ngIf="ultimatix?.errors?.['pattern']">
-        Ingresa un número de Ultimatix válido.
       </span>
     </div>
   </div>
 
+  <div class="row mb-4">
+    <a (click)="message()" class="text-end custom-link">No tengo un código de recuperación.</a>
+  </div>
+
   <div class="row">
     <div class="col-12 col-sm-6 mx-auto mb-3">
-      <app-button buttonName="Cancelar" (btnClick)="toLogin()"></app-button>
+      <app-button id="recoverCancel" buttonName="Cancelar" (btnClick)="toLogin()"></app-button>
     </div>
     <div class="col-12 col-sm-6 mx-auto mb-3">
-      <app-button buttonName="Cambiar contraseña" (btnClick)="recoverPassword()"></app-button>
+      <app-button id="recoverChange" buttonName="Cambiar contraseña" (btnClick)="recoverPassword()"></app-button>
     </div>
   </div>
 

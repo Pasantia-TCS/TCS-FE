@@ -428,6 +428,11 @@ template {
 .custom-link {
   text-decoration: underline;
   color: black;
+  cursor: pointer;
+}
+
+.custom-link:hover {
+  color: var(--tcs-blue);
 }
 
 a:visited {

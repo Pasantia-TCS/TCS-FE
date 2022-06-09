@@ -7,9 +7,9 @@ export interface Profile {
   asignacion_usuario?: number,
   nombres_completos?: string,
   rol?: string,
-
+  estado?: string,
   mensaje?: string,
-  status?: string, 
+  status?: string,
   timestamp?: string,
 }
 
