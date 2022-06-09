@@ -20,7 +20,7 @@ export const assetColumns = [
   },
   {
     columnDef: 'codigo_barras',
-    header: 'Código de barras',
+    header: 'Código de activo',
     cell: (element: Asset) => `${element.codigo_barras}`,
   },
   {

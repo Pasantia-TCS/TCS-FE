@@ -20,9 +20,12 @@ export class ReportsComponent implements OnInit {
   teamColumns = teamColumns;
   assignmentColumns = assignmentColumns;
 
+  assetst!: MatTableDataSource<Asset>;
   assets!: MatTableDataSource<Asset>;
   teams!: MatTableDataSource<Team>;
+  teamst!: MatTableDataSource<Team>;
   assignments!: MatTableDataSource<Assignment>;
+  assignmentst!: MatTableDataSource<Assignment>;
 
   constructor(
     private adminService: AdminService,
@@ -34,7 +37,34 @@ export class ReportsComponent implements OnInit {
     this.loadAssets();
     this.loadTeams();
     this.loadAssignments();
+    this.loadAssetsT();
+    this.loadTeamsT();
+    this.loadAssignmentsT();
   }
+
+loadAssetsT(){
+  this.adminService.getAssetsT()
+  .subscribe({
+    next: resp => {
+      this.assetst = new MatTableDataSource(resp)
+    }
+  });
+}
+
+loadTeamsT(){
+  this.teamService.show()
+  .subscribe({
+    next: resp => {
+      this.teamst = new MatTableDataSource(resp)
+    }
+  });
+}
+loadAssignmentsT() {
+  this.adminService.getAssignmentsT()
+    .subscribe({
+      next: resp => this.assignmentst = new MatTableDataSource(resp)
+    });
+}
 
   loadAssets() {
     this.adminService.getAssets()
@@ -46,7 +76,7 @@ export class ReportsComponent implements OnInit {
   }
 
   loadTeams() {
-    this.teamService.show()
+    this.adminService.getTeam()
       .subscribe({
         next: resp => this.teams = new MatTableDataSource(resp)
       });
