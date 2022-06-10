@@ -47,7 +47,7 @@ export class RecoverComponent {
           Swal.fire('¡Éxito!', ' Su contraseña ha sido cambiada con éxito.', 'success');
           this.router.navigateByUrl('/');
         },
-        error: () => Swal.fire('¡Error!', 'Ha ocurrido un error. Por favor verifica tu código de restablecimiento y vuelve a intentar.', 'error')
+        error: () => Swal.fire('¡Error!', 'Ha ocurrido un error. Por favor verifica que tu código de respaldo sea correcto y vuelve a intentar.', 'error')
       });
     }
   }

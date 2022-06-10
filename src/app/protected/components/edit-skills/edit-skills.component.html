@@ -25,7 +25,7 @@
       <div class="col-sm-9">
         <div class="input-group">
           <select class=" form-select" id="levels" formControlName="levels" required>
-            <option value="">Seleccione el nivel de conocimiento </option>
+            <option value="">Seleccione el nivel de conocimiento</option>
             <option [ngValue]="level" *ngFor="let level of knowledgeLevelList">{{level}}</option>
           </select>
         </div>
@@ -38,7 +38,8 @@
     </div>
 
     <div class="row mb-3">
-      <app-button buttonName="Añadir" [buttonIcon]="true" iconName="add_circle" (btnClick)="addSkill()">
+      <app-button id="add-skill-1" buttonName="Añadir" [buttonIcon]="true" iconName="add_circle"
+                  (btnClick)="addSkill()">
       </app-button>
     </div>
 
@@ -59,16 +60,18 @@
     <div class="row mb-3">
       <div class="col-6">
         <div class="input-group mb-1" *ngFor="let mySkill of tempSkillsList; let i = index">
-          <span class="input-group-text" id="addon-wrapping">{{i + 1}}</span>
+          <span class="input-group-text">{{i + 1}}</span>
           <input type="text" class="form-control" disabled [value]="mySkill">
         </div>
       </div>
 
       <div class="col-6">
         <div class="input-group mb-1" *ngFor="let myLevel of tempKnowledgeLevelList; let i = index">
-          <span class="input-group-text" id="addon-wrapping">{{i + 1}}</span>
+          <span class="input-group-text">{{i + 1}}</span>
           <input type="text" class="form-control" disabled [value]="myLevel">
-          <button type="button" class="btn btn-outline-danger" (click)="deleteSkill(i)">Eliminar</button>
+          <button id="delete-skill-1" type="button" class="btn btn-outline-danger" (click)="deleteSkill(i)">
+            Eliminar
+          </button>
         </div>
       </div>
     </div>
@@ -80,5 +83,5 @@
 </div>
 <div mat-dialog-actions>
   <button mat-stroked-button (click)="exit()">Cancelar</button>
-  <button mat-stroked-button (click)="updateSkills()">Guardar cambios</button>
+  <button id="save-skill-1" mat-stroked-button (click)="updateSkills()">Guardar cambios</button>
 </div>

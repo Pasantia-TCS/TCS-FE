@@ -62,7 +62,10 @@ export class RegisterComponent {
                 'Usuario registrado con éxito.' +
                 '<br>' +
                 '<br>' +
-                '<strong>Código de seguridad: </strong>' +
+                'Puedes utilizar este código de respaldo para restablecer tu cuenta. Manténlo seguro.' +
+                '<br>' +
+                '<br>' +
+                '<strong>Código de respaldo: </strong>' +
                 resp.token
             });
             this.router.navigateByUrl('/');

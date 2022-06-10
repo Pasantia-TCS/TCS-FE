@@ -8,39 +8,41 @@
         <!-- User photo -->
         <div class="col-12 col-sm-3 my-auto text-center">
           <mat-icon class="customIconSize">person</mat-icon>
-          <h1 class="text-center mt-2 mb-0">{{profile?.nombres_completos}}</h1>
+          <h1 id="full-name" class="text-center mt-2 mb-0">{{profile?.nombres_completos}}</h1>
         </div>
 
         <!-- User info -->
         <div class="col-12 col-sm-9 pt-3">
           <div class="row">
             <span class="col-sm-3 mb-0 fw-bold">Ultimatix:</span>
-            <div class="col-sm-9 text-secondary">{{currentUser.id_numero_Ultimatix}}</div>
+            <div id="ultimatix-profile" class="col-sm-9 text-secondary">{{currentUser.id_numero_Ultimatix}}</div>
           </div>
           <hr>
           <div class="row">
             <span class="col-sm-3 mb-0 fw-bold">Rol:</span>
-            <div class="col-sm-9 text-secondary">{{profile?.rol === 'admin' ? 'Administrador' : 'Usuario'}}</div>
+            <div id="rol-profile"
+                 class="col-sm-9 text-secondary">{{profile?.rol === 'admin' ? 'Administrador' : 'Usuario'}}</div>
           </div>
           <hr>
           <div class="row">
             <span class="col-sm-3 mb-0 fw-bold">Correo electrónico:</span>
-            <div class="col-sm-9 text-secondary">{{currentUser.correo}}</div>
+            <div id="email-profile" class="col-sm-9 text-secondary">{{currentUser.correo}}</div>
           </div>
           <hr>
           <div class="row">
             <span class="col-sm-3 mb-0 fw-bold">Teléfono:</span>
-            <div class="col-sm-9 text-secondary">{{currentUser.telefono}}</div>
+            <div id="phone-profile" class="col-sm-9 text-secondary">{{currentUser.telefono}}</div>
           </div>
           <hr>
           <div class="row">
             <span class="col-sm-3 mb-0 fw-bold">Usuario de red:</span>
-            <div class="col-sm-9 text-secondary">{{profile?.usuario_red}}</div>
+            <div id="user-profile" class="col-sm-9 text-secondary">{{profile?.usuario_red}}</div>
           </div>
           <hr>
           <div class="row">
             <span class="col-sm-3 mb-0 fw-bold">Total de asignación (%):</span>
-            <div class="col-sm-9" [ngStyle]="{color: profile?.asignacion_usuario! > 100 ? 'red' : 'green'}">
+            <div id="asignation-profile" class="col-sm-9"
+                 [ngStyle]="{color: profile?.asignacion_usuario! > 100 ? 'red' : 'green'}">
               {{profile?.asignacion_usuario}}
             </div>
           </div>
@@ -48,7 +50,7 @@
         </div>
       </div>
       <div class="col-12 col-sm-2 float-end">
-        <app-button buttonName="Editar" [buttonIcon]="true" iconName="edit" (btnClick)="openUserInfo()">
+        <app-button id="edit-user-profile" buttonName="Editar" [buttonIcon]="true" iconName="edit" (btnClick)="openUserInfo()">
         </app-button>
       </div>
     </div>
@@ -59,8 +61,8 @@
     <div class="card-body">
       <h5 class="card-title fs-2 mb-3">Sobre mí</h5>
       <p class="card-text">{{profile?.sobreMi}}</p>
-      <app-button buttonName="Editar" [buttonIcon]="true" iconName="edit" class="col-12 col-sm-2 float-end"
-        (btnClick)="openAboutMe()">
+      <app-button id="edit-about" buttonName="Editar" [buttonIcon]="true" iconName="edit" class="col-12 col-sm-2 float-end"
+                  (btnClick)="openAboutMe()">
       </app-button>
     </div>
   </div>
@@ -79,8 +81,8 @@
           </div>
         </div>
       </ul>
-      <app-button buttonName="Editar" [buttonIcon]="true" iconName="edit" class="col-12 col-sm-2 float-end"
-        (btnClick)="openSkills()">
+      <app-button id="edit-skills" buttonName="Editar" [buttonIcon]="true" iconName="edit" class="col-12 col-sm-2 float-end"
+                  (btnClick)="openSkills()">
       </app-button>
     </div>
   </div>
