@@ -22,9 +22,13 @@ export class EditSkillsComponent implements OnInit {
 
   // Skills
   tempSkillsList: string[] = [];
+  tempFSkillsList: string[] = [];
+  tempASkillsList: string[] = [];
   tempKnowledgeLevelList: string[] = [];
 
   skillsList: string[] = [];
+  skillsFList: string[] = [];
+  skillsAList: string[] = [];
   knowledgeLevelList: string[] = ['Alto', 'Medio', 'Bajo'];
 
   savedSkills: boolean = true;
@@ -43,9 +47,22 @@ export class EditSkillsComponent implements OnInit {
         next: skills => skills.forEach(element => this.skillsList.push(element.nombre))
       });
 
+    this.profileService.getFuncSkills()
+      .subscribe({
+        next: skills => skills.forEach(element => this.skillsFList.push(element.nombre))
+      });
+
+    this.profileService.getApps()
+      .subscribe({
+        next: skills => skills.forEach(element => this.skillsAList.push(element.nombre))
+      });
+
     this.profile = this.data;
 
     this.tempSkillsList = [...this.profile.habilidades!];
+    this.tempFSkillsList = [...this.profile.habilidadeS_funcionales!];
+    this.tempASkillsList = [...this.profile.aplicaciones!];
+
     this.tempKnowledgeLevelList = [...this.profile.nivel_habilidad!]
   }
 
