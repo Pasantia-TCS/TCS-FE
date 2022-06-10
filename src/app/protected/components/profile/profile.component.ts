@@ -44,7 +44,15 @@ export class ProfileComponent implements OnInit {
     this.dialog.open(EditAboutComponent, { data: this.profile });
   }
 
-  openSkills() {
+  openTechSkills() {
+    this.dialog.open(EditSkillsComponent, { data: this.profile });
+  }
+
+  openFuncSkills() {
+    this.dialog.open(EditSkillsComponent, { data: this.profile });
+  }
+
+  openApps() {
     this.dialog.open(EditSkillsComponent, { data: this.profile });
   }
 

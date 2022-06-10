@@ -22,6 +22,16 @@ export class ProfileService {
     return this.http.get<Skills[]>(url);
   }
 
+  getFuncSkills() {
+    const url: string = `${this.baseUrl}/habilidadesFuncionales`;
+    return this.http.get<Skills[]>(url);
+  }
+
+  getApps() {
+    const url: string = `${this.baseUrl}/aplicaciones`;
+    return this.http.get<Skills[]>(url);
+  }
+
   updateAboutMe(ultimatix: string, aboutMe: string) {
     const url: string = `${this.baseUrl}/sobreMi`;
     return this.http.post<Profile>(url, { id_ultimatix: ultimatix, sobreMi: aboutMe });
