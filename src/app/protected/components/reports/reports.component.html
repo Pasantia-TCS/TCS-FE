@@ -2,7 +2,7 @@
   <app-header title="Reportes"></app-header>
 
   <section class="py-3">
-    <app-subtitle title="Activos"></app-subtitle>   
+    <app-subtitle title="Activos"></app-subtitle>
     <app-filter [data]="assetst"></app-filter>
     <button mat-raised-button color="primary" class="float-end" (click)="exportTable(this.assets, 'Activos')">Generar Reporte</button>
     <app-mat-table [columns]="assetcolumns" [dataSource]="assetst"></app-mat-table>

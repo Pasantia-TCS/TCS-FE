@@ -34,8 +34,28 @@ export class SettingsService {
     return this.http.post<Profile>(url, nombre);
   }
 
-  deleteSkill(id: string){    
+  deleteSkill(id: string){
     const url: string = `${this.baseUrl}/eliminarHabilidad`;
+    return this.http.post<Profile>(url, { id });
+  }
+
+  addSkillFunc(nombre: string){
+    const url: string = `${this.baseUrl}/agregarHabilidadFuncional`;
+    return this.http.post<Profile>(url, nombre);
+  }
+
+  deleteSkillFunc(id: string){
+    const url: string = `${this.baseUrl}/eliminarHabilidadFuncional`;
+    return this.http.post<Profile>(url, { id });
+  }
+
+  addSkillApp(nombre: string){
+    const url: string = `${this.baseUrl}/agregarAplicacion`;
+    return this.http.post<Profile>(url, nombre);
+  }
+
+  deleteSkillApp(id: string){
+    const url: string = `${this.baseUrl}/eliminarAplicacion`;
     return this.http.post<Profile>(url, { id });
   }
 
@@ -63,7 +83,7 @@ export class SettingsService {
     const url: string = `${environment.url}/activos/agregarEdificio`;
     return this.http.post<AssetType>(url, nombre);
   }
-  
+
   deleteBuilding(id: string){
     const url: string = `${environment.url}/activos/eliminarEdificio`;
     return this.http.post<AssetType>(url, { id });

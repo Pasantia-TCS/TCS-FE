@@ -26,30 +26,34 @@ export class SettingsComponent implements OnInit {
   //Catalogos
   displayedCatalogColumns: string[] = ['actions', 'nombre'];
   skillsData!: MatTableDataSource<Skills>;
+  skillsFunc!: MatTableDataSource<Skills>;
+  skillsApp!: MatTableDataSource<Skills>;
 
   assetsData!: MatTableDataSource<AssetType>;
 
   areaData!: MatTableDataSource<AssetType>;
-  
+
   displayedBuildingColumns: string[] = ['actions', 'nombre', 'piso'];
   buildingData!: MatTableDataSource<Building>;
-  
+
 
   filterForm: FormGroup = this.fb.group({
     searchItem: ['', Validators.required],
   });
 
   constructor(
-    private settingsService: SettingsService, 
-    private profileService: ProfileService, 
-    private activosService: ActivosService, 
-    private fb: FormBuilder, 
+    private settingsService: SettingsService,
+    private profileService: ProfileService,
+    private activosService: ActivosService,
+    private fb: FormBuilder,
     private dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
     this.loadUsers();
     this.loadSkills();
+    this.loadSkillsFunctional();
+    this.loadApplication();
     this.loadAssets();
     this.loadAreas();
     this.loadBuildings();
@@ -67,7 +71,27 @@ export class SettingsComponent implements OnInit {
     this.profileService.getSkills()
       .subscribe({
         next: resp => {
-          this.skillsData = new MatTableDataSource(resp)          
+          this.skillsData = new MatTableDataSource(resp)
+        }
+      });
+  }
+
+  // Load skills list
+  loadSkillsFunctional(){
+    this.profileService.getFuncSkills()
+      .subscribe({
+        next: resp => {
+          this.skillsFunc = new MatTableDataSource(resp)
+        }
+      });
+  }
+
+  // Load skills list
+  loadApplication(){
+    this.profileService.getApps()
+      .subscribe({
+        next: resp => {
+          this.skillsApp = new MatTableDataSource(resp)
         }
       });
   }
@@ -77,7 +101,7 @@ export class SettingsComponent implements OnInit {
     this.activosService.getTypes()
       .subscribe({
         next: resp => {
-          this.assetsData = new MatTableDataSource(resp)          
+          this.assetsData = new MatTableDataSource(resp)
         }
       });
   }
@@ -87,7 +111,7 @@ export class SettingsComponent implements OnInit {
     this.activosService.getAreas()
       .subscribe({
         next: resp => {
-          this.areaData = new MatTableDataSource(resp)          
+          this.areaData = new MatTableDataSource(resp)
         }
       });
   }
@@ -97,7 +121,7 @@ export class SettingsComponent implements OnInit {
     this.activosService.getBuildings()
       .subscribe({
         next: resp => {
-          this.buildingData = new MatTableDataSource(resp)          
+          this.buildingData = new MatTableDataSource(resp)
         }
       });
   }
@@ -135,7 +159,7 @@ export class SettingsComponent implements OnInit {
       confirmButtonText: 'Sí',
       cancelButtonText: 'Cancelar'
     }).then((result) => {
-      if (result.isConfirmed) {        
+      if (result.isConfirmed) {
         this.settingsService.unlock(id_ultimatix)
           .subscribe({
             next: resp => {
@@ -148,11 +172,27 @@ export class SettingsComponent implements OnInit {
     });
   }
 
-  openAddSkill(){ 
+  openAddSkill(){
     this.dialog.open(AddCatalogComponent, { data: { item: 'habilidad' } } )
       .afterClosed()
       .subscribe({
         next: resp => this.loadSkills()
+      });
+  }
+
+  openAddSFunctionalSkill(){
+    this.dialog.open(AddCatalogComponent, { data: { item: 'funcional' } } )
+      .afterClosed()
+      .subscribe({
+        next: resp => this.loadSkillsFunctional()
+      });
+  }
+
+  openAddApplications(){
+    this.dialog.open(AddCatalogComponent, { data: { item: 'aplicacion' } } )
+      .afterClosed()
+      .subscribe({
+        next: resp => this.loadApplication()
       });
   }
 
@@ -195,6 +235,52 @@ export class SettingsComponent implements OnInit {
           .subscribe({
             next: resp => {
               this.loadSkills();
+              Swal.fire('¡Esta habilidad ha sido eliminada!', resp.mensaje, 'success');
+            },
+            error: err => Swal.fire('Error', err.error.mensaje, 'error')
+          });
+      }
+    });
+  }
+
+  deleteSkillFunc(id: string){
+    Swal.fire({
+      title: '¿Estás seguro que deseas eliminar esta habilidad?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.settingsService.deleteSkillFunc(id)
+          .subscribe({
+            next: resp => {
+              this.loadSkillsFunctional();
+              Swal.fire('¡Esta habilidad ha sido eliminada!', resp.mensaje, 'success');
+            },
+            error: err => Swal.fire('Error', err.error.mensaje, 'error')
+          });
+      }
+    });
+  }
+
+  deleteSkillApp(id: string){
+    Swal.fire({
+      title: '¿Estás seguro que deseas eliminar esta habilidad?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.settingsService.deleteSkillApp(id)
+          .subscribe({
+            next: resp => {
+              this.loadApplication();
               Swal.fire('¡Esta habilidad ha sido eliminada!', resp.mensaje, 'success');
             },
             error: err => Swal.fire('Error', err.error.mensaje, 'error')
@@ -259,7 +345,7 @@ export class SettingsComponent implements OnInit {
       confirmButtonText: 'Sí',
       cancelButtonText: 'Cancelar'
     }).then((result) => {
-      if (result.isConfirmed) {        
+      if (result.isConfirmed) {
         this.settingsService.deleteBuilding(id)
           .subscribe({
             next: resp => {

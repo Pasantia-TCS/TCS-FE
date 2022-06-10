@@ -27,8 +27,6 @@ export class AddCatalogComponent implements OnInit {
   }
 
   addItem(){
-    console.log(this.newItemForm.value);    
-    
     if(this.data.item == 'habilidad'){
       this.settingsService.addSkill(this.newItemForm.value)
       .subscribe({
@@ -39,6 +37,24 @@ export class AddCatalogComponent implements OnInit {
         error: (err: { error: { mensaje: string | undefined; }; }) => Swal.fire('Error', err.error.mensaje, 'error')
       });
 
+    } else if(this.data.item == 'funcional'){
+      this.settingsService.addSkillFunc(this.newItemForm.value)
+      .subscribe({
+        next: (resp: any) => {
+          this.dialogRef.close(resp);
+          Swal.fire('Éxito', 'Habilidad registrada con éxito.', 'success');
+        },
+        error: (err: { error: { mensaje: string | undefined; }; }) => Swal.fire('Error', err.error.mensaje, 'error')
+      });
+    } else if(this.data.item == 'aplicacion'){
+      this.settingsService.addSkillApp(this.newItemForm.value)
+      .subscribe({
+        next: (resp: any) => {
+          this.dialogRef.close(resp);
+          Swal.fire('Éxito', 'Habilidad registrada con éxito.', 'success');
+        },
+        error: (err: { error: { mensaje: string | undefined; }; }) => Swal.fire('Error', err.error.mensaje, 'error')
+      });
     } else if (this.data.item == 'activo'){
       this.settingsService.addAssetType(this.newItemForm.value)
       .subscribe({
@@ -59,7 +75,7 @@ export class AddCatalogComponent implements OnInit {
         error: (err: { error: { mensaje: string | undefined; }; }) => Swal.fire('Error', err.error.mensaje, 'error')
       });
 
-    } 
+    }
   }
 
 }

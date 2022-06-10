@@ -42,29 +42,30 @@ export class ReportsComponent implements OnInit {
     this.loadAssignmentsT();
   }
 
-loadAssetsT(){
-  this.adminService.getAssetsT()
-  .subscribe({
-    next: resp => {
-      this.assetst = new MatTableDataSource(resp)
-    }
-  });
-}
-
-loadTeamsT(){
-  this.teamService.show()
-  .subscribe({
-    next: resp => {
-      this.teamst = new MatTableDataSource(resp)
-    }
-  });
-}
-loadAssignmentsT() {
-  this.adminService.getAssignmentsT()
+  loadAssetsT(){
+    this.adminService.getAssetsT()
     .subscribe({
-      next: resp => this.assignmentst = new MatTableDataSource(resp)
+      next: resp => {
+        this.assetst = new MatTableDataSource(resp)
+      }
     });
-}
+  }
+
+  loadTeamsT(){
+    this.teamService.show()
+    .subscribe({
+      next: resp => {
+        this.teamst = new MatTableDataSource(resp)
+      }
+    });
+  }
+
+  loadAssignmentsT() {
+    this.adminService.getAssignmentsT()
+      .subscribe({
+        next: resp => this.assignmentst = new MatTableDataSource(resp)
+      });
+  }
 
   loadAssets() {
     this.adminService.getAssets()

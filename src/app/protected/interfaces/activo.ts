@@ -27,3 +27,10 @@ export interface AssetType {
     status?: string,
     timestamp?: string,
 }
+
+export interface AssetReport {
+  Código_de_Activo: "231564"
+  Dirección_IP: ""
+  Dirección_Mac: ""
+
+}
