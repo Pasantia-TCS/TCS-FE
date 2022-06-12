@@ -1,15 +1,14 @@
 <h1 mat-dialog-title>Editar mis habilidades</h1>
 <div mat-dialog-content>
-  <form [formGroup]="skillsForm">
+  <form [formGroup]="funcSkillsForm">
     <div class="row">
       <!-- Add new skill -->
       <div class="col-12 col-sm-6 mb-3">
         <div class="form-floating">
-          <select class=" form-select" id="tech-skills" formControlName="skills">
-            <option value="">Seleccione una habilidad</option>
+          <select class=" form-select" id="func-skills" formControlName="skills">
             <option [ngValue]="skill" *ngFor="let skill of skillsList">{{skill}}</option>
           </select>
-          <label for="tech-skills">Habilidades técnicas</label>
+          <label for="func-skills">Habilidades funcionales</label>
         </div>
         <div *ngIf="skill?.invalid && skill?.touched">
         <span class="form-text text-danger float-start" *ngIf="skill?.invalid">
@@ -22,7 +21,6 @@
       <div class="col-12 col-sm-6 mb-3">
         <div class="form-floating">
           <select class=" form-select" id="levels" formControlName="levels" required>
-            <option value="">Seleccione el nivel de conocimiento</option>
             <option [ngValue]="level" *ngFor="let level of knowledgeLevelList">{{level}}</option>
           </select>
           <label for="levels">Nivel de conocimiento</label>
@@ -43,7 +41,7 @@
 
     <!-- My skills list -->
     <div class="row mb-3 text-center">
-      <label class="text-uppercase fw-bold">Mis habilidades</label>
+      <label class="text-uppercase fw-bold">Mis habilidades funcionales</label>
     </div>
 
     <div class="row">
@@ -76,10 +74,12 @@
   </form>
 
   <span *ngIf="!savedSkills" class="form-text text-danger float-end">
-    * Cambios sin guardar
+    * Cambios sin guardar.
   </span>
 </div>
 <div mat-dialog-actions>
   <button mat-stroked-button (click)="exit()">Cancelar</button>
-  <button id="save-skill-1" mat-stroked-button (click)="updateSkills()">Guardar cambios</button>
+  <button id="save-skill-1" mat-stroked-button (click)="updateSkills()">
+    Guardar cambios
+  </button>
 </div>

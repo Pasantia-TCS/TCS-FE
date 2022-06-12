@@ -9,8 +9,7 @@ import { Profile } from '../../interfaces/profile';
 @Component({
   selector: 'app-edit-profile',
   templateUrl: './edit-profile.component.html',
-  styles: [
-  ]
+  styles: []
 })
 export class EditProfileComponent implements OnInit {
 
@@ -69,7 +68,7 @@ export class EditProfileComponent implements OnInit {
               this.currentUser = resp;
               this.dialogRef.close();
               Swal.fire('¡Éxito!', 'La información de usuario se ha actualizado con éxito.', 'success');
-            }, 
+            },
             error: err => Swal.fire('Error', err.error.mensaje, 'error')
 
           }

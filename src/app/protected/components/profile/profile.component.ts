@@ -7,6 +7,8 @@ import { ProfileService } from '../../services/profile.service';
 import { EditAboutComponent } from '../edit-about/edit-about.component';
 import { EditProfileComponent } from '../edit-profile/edit-profile.component';
 import { EditSkillsComponent } from '../edit-skills/edit-skills.component';
+import { EditFuncSkillsComponent } from "../edit-func-skills/edit-func-skills.component";
+import { EditAppsComponent } from '../edit-apps/edit-apps.component';
 
 @Component({
   selector: 'app-profile',
@@ -49,11 +51,11 @@ export class ProfileComponent implements OnInit {
   }
 
   openFuncSkills() {
-    this.dialog.open(EditSkillsComponent, { data: this.profile });
+    this.dialog.open(EditFuncSkillsComponent, { data: this.profile });
   }
 
   openApps() {
-    this.dialog.open(EditSkillsComponent, { data: this.profile });
+    this.dialog.open(EditAppsComponent, { data: this.profile });
   }
 
 }

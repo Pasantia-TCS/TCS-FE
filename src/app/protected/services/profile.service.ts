@@ -43,4 +43,17 @@ export class ProfileService {
     return this.http.post<Profile>(url, body);
   }
 
+  updateMyFuncSkills(ultimatix: string, skills: string[], knowledgeLevel: string[]) {
+    const url: string = `${this.baseUrl}/editarMisHabilidades-funcionales`;
+    const body = { id_ultimatix: ultimatix, habilidades_funcionales: skills, nivel_habilidad_funcional: knowledgeLevel };
+    console.log
+    return this.http.post<Profile>(url, body);
+  }
+
+  updateMyApps(ultimatix: string, skills: string[], knowledgeLevel: string[]) {
+    const url: string = `${this.baseUrl}/editarAplicaciones`;
+    const body = { id_ultimatix: ultimatix, aplicaciones: skills, nivel_aplicaciones: knowledgeLevel };
+    return this.http.post<Profile>(url, body);
+  }
+
 }

@@ -8,30 +8,21 @@ import { ProfileService } from '../../services/profile.service';
 @Component({
   selector: 'app-edit-skills',
   templateUrl: './edit-skills.component.html',
-  styles: [
-  ]
+  styles: []
 })
 export class EditSkillsComponent implements OnInit {
 
-  skillsForm: FormGroup = this.fb.group({
-    skills: ['', Validators.required],
-    levels: ['', Validators.required]
-  });
-
   profile!: Profile;
-
-  // Skills
   tempSkillsList: string[] = [];
-  tempFSkillsList: string[] = [];
-  tempASkillsList: string[] = [];
   tempKnowledgeLevelList: string[] = [];
-
   skillsList: string[] = [];
-  skillsFList: string[] = [];
-  skillsAList: string[] = [];
   knowledgeLevelList: string[] = ['Alto', 'Medio', 'Bajo'];
-
   savedSkills: boolean = true;
+
+  skillsForm: FormGroup = this.fb.group({
+    skills: ['Java', Validators.required],
+    levels: [this.knowledgeLevelList[0], Validators.required]
+  });
 
   constructor(
     @Inject(MAT_DIALOG_DATA) private data: Profile,
@@ -47,22 +38,8 @@ export class EditSkillsComponent implements OnInit {
         next: skills => skills.forEach(element => this.skillsList.push(element.nombre))
       });
 
-    this.profileService.getFuncSkills()
-      .subscribe({
-        next: skills => skills.forEach(element => this.skillsFList.push(element.nombre))
-      });
-
-    this.profileService.getApps()
-      .subscribe({
-        next: skills => skills.forEach(element => this.skillsAList.push(element.nombre))
-      });
-
     this.profile = this.data;
-
     this.tempSkillsList = [...this.profile.habilidades!];
-    this.tempFSkillsList = [...this.profile.habilidadeS_funcionales!];
-    this.tempASkillsList = [...this.profile.aplicaciones!];
-
     this.tempKnowledgeLevelList = [...this.profile.nivel_habilidad!]
   }
 
@@ -98,14 +75,15 @@ export class EditSkillsComponent implements OnInit {
     if (this.skillsForm.invalid) {
       this.skillsForm.markAllAsTouched();
     } else {
-      this.profileService.updateMySkills(this.profile.id_ultimatix?.toString()!, this.tempSkillsList, this.tempKnowledgeLevelList)
+      this.profileService
+        .updateMySkills(this.profile.id_ultimatix?.toString()!, this.tempSkillsList, this.tempKnowledgeLevelList)
         .subscribe(
           {
             next: () => {
               this.profile.habilidades = [...this.tempSkillsList];
               this.profile.nivel_habilidad = [...this.tempKnowledgeLevelList];
               this.dialogRef.close();
-              Swal.fire('¡Éxito!', 'Habilidades registradas con éxito.', 'success');
+              Swal.fire('¡Éxito!', 'Habilidades técnicas registradas con éxito.', 'success');
             }
           }
         )
