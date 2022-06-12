@@ -87,16 +87,16 @@
     </div>
   </div>
 
-  <div class="card custom-card my-3">
+  <div class="card custom-card py-3 my-3">
     <div class="card-body">
       <h5 class="card-title fs-2 mb-3">Habilidades funcionales</h5>
       <ul class="list-group list-group-flush mb-3">
         <div class="row">
           <div class="col-6 col-sm-2">
-            <li class="list-group-item" *ngFor="let skill of profile?.habilidades">{{skill}}</li>
+            <li class="list-group-item" *ngFor="let skill of profile?.habilidades_funcionales">{{skill}}</li>
           </div>
           <div class="col-6 col-sm-10">
-            <li class="list-group-item" *ngFor="let level of profile?.nivel_habilidad">{{level}}</li>
+            <li class="list-group-item" *ngFor="let level of profile?.nivel_habilidad_funcional">{{level}}</li>
           </div>
         </div>
       </ul>
@@ -106,20 +106,20 @@
     </div>
   </div>
 
-  <div class="card custom-card my-3">
+  <div class="card custom-card py-3 my-3">
     <div class="card-body">
       <h5 class="card-title fs-2 mb-3">Aplicaciones</h5>
       <ul class="list-group list-group-flush mb-3">
         <div class="row">
           <div class="col-6 col-sm-2">
-            <li class="list-group-item" *ngFor="let skill of profile?.habilidades">{{skill}}</li>
+            <li class="list-group-item" *ngFor="let skill of profile?.aplicaciones">{{skill}}</li>
           </div>
           <div class="col-6 col-sm-10">
-            <li class="list-group-item" *ngFor="let level of profile?.nivel_habilidad">{{level}}</li>
+            <li class="list-group-item" *ngFor="let level of profile?.nivel_aplicaciones">{{level}}</li>
           </div>
         </div>
       </ul>
-      <app-button id="edit-apps" buttonName="Editar" [buttonIcon]="true" iconName="edit" class="col-12 col-sm-2 float-end"
+      <app-button id="edit-func-skills" buttonName="Editar" [buttonIcon]="true" iconName="edit" class="col-12 col-sm-2 float-end"
                   (btnClick)="openApps()">
       </app-button>
     </div>

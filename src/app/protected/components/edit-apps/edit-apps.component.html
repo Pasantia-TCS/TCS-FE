@@ -1,19 +1,18 @@
-<h1 mat-dialog-title>Editar mis habilidades</h1>
+<h1 mat-dialog-title>Editar mis aplicaciones</h1>
 <div mat-dialog-content>
-  <form [formGroup]="skillsForm">
+  <form [formGroup]="appsForm">
     <div class="row">
       <!-- Add new skill -->
       <div class="col-12 col-sm-6 mb-3">
         <div class="form-floating">
           <select class=" form-select" id="tech-skills" formControlName="skills">
-            <option value="">Seleccione una habilidad</option>
             <option [ngValue]="skill" *ngFor="let skill of skillsList">{{skill}}</option>
           </select>
-          <label for="tech-skills">Habilidades técnicas</label>
+          <label for="tech-skills">aplicaciones</label>
         </div>
         <div *ngIf="skill?.invalid && skill?.touched">
         <span class="form-text text-danger float-start" *ngIf="skill?.invalid">
-          Selecciona una habilidad.
+          Selecciona una aplicación
         </span>
         </div>
       </div>
@@ -22,7 +21,6 @@
       <div class="col-12 col-sm-6 mb-3">
         <div class="form-floating">
           <select class=" form-select" id="levels" formControlName="levels" required>
-            <option value="">Seleccione el nivel de conocimiento</option>
             <option [ngValue]="level" *ngFor="let level of knowledgeLevelList">{{level}}</option>
           </select>
           <label for="levels">Nivel de conocimiento</label>
@@ -43,12 +41,12 @@
 
     <!-- My skills list -->
     <div class="row mb-3 text-center">
-      <label class="text-uppercase fw-bold">Mis habilidades</label>
+      <label class="text-uppercase fw-bold">Mis aplicaciones</label>
     </div>
 
     <div class="row">
       <div class="col-6">
-        <label class="col-sm-5 col-form-label">Habilidades:</label>
+        <label class="col-sm-5 col-form-label">Aplicaciones:</label>
       </div>
       <div class="col-6">
         <label class="col-sm-5 col-form-label">Nivel:</label>
