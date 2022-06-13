@@ -28,7 +28,7 @@ export class ReportsComponent implements OnInit {
   assignments!: MatTableDataSource<Assignment>;
   assignmentst!: MatTableDataSource<Assignment>;
 
-  private baseUrl: string = `${environment.url}/`;
+  baseUrl: string = `${environment.url}/`;
 
   constructor(
     private adminService: AdminService,
@@ -45,22 +45,22 @@ export class ReportsComponent implements OnInit {
     this.loadAssignmentsT();
   }
 
-  loadAssetsT(){
+  loadAssetsT() {
     this.adminService.getAssetsT()
-    .subscribe({
-      next: resp => {
-        this.assetst = new MatTableDataSource(resp)
-      }
-    });
+      .subscribe({
+        next: resp => {
+          this.assetst = new MatTableDataSource(resp)
+        }
+      });
   }
 
-  loadTeamsT(){
+  loadTeamsT() {
     this.teamService.show()
-    .subscribe({
-      next: resp => {
-        this.teamst = new MatTableDataSource(resp)
-      }
-    });
+      .subscribe({
+        next: resp => {
+          this.teamst = new MatTableDataSource(resp)
+        }
+      });
   }
 
   loadAssignmentsT() {

@@ -4,8 +4,9 @@
   <section class="py-3">
     <app-subtitle title="Activos"></app-subtitle>
     <app-filter [data]="assetst"></app-filter>
-    <button mat-raised-button color="primary" class="float-end" >
-      <a href="http://localhost:8081/reportes/activos-reportes" style="color:white; text-decoration: none">Generar Reporte</a></button>
+    <button mat-raised-button color="primary" class="float-end">
+      <a href="{{ baseUrl + 'reportes/activos-reportes' }}" style="color:white; text-decoration: none">Generar
+        Reporte</a></button>
     <app-mat-table [columns]="assetcolumns" [dataSource]="assetst"></app-mat-table>
   </section>
 
@@ -13,7 +14,8 @@
     <app-subtitle title="Grupos de trabajo"></app-subtitle>
     <app-filter [data]="teamst"></app-filter>
     <button mat-raised-button color="primary" class="float-end">
-      <a href="http://localhost:8081/reportes/equipos-reportes" style="color:white; text-decoration: none">Generar Reporte</a>
+      <a href="{{ baseUrl + 'reportes/equipos-reportes' }}" style="color:white; text-decoration: none">Generar
+        Reporte</a>
     </button>
     <app-mat-table [columns]="teamColumns" [dataSource]="teamst"></app-mat-table>
   </section>
@@ -22,7 +24,8 @@
     <app-subtitle title="Asignaciones"></app-subtitle>
     <app-filter [data]="assignmentst"></app-filter>
     <button mat-raised-button color="primary" class="float-end">
-      <a href="http://localhost:8081/reportes/asignaciones-reportes" style="color:white; text-decoration: none">Generar Reporte</a>
+      <a href="{{ baseUrl + 'reportes/asignaciones-reportes'}}" style="color:white; text-decoration: none">Generar
+        Reporte</a>
     </button>
     <app-mat-table [columns]="assignmentColumns" [dataSource]="assignmentst"></app-mat-table>
   </section>
