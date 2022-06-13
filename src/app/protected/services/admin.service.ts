@@ -14,7 +14,7 @@ export class AdminService {
   constructor(private http: HttpClient) { }
 
   getTeam() {
-    const url: string = `${environment.url}/reportes/reportes-equipos`;
+    const url: string = `${environment.url}/reportes/equipos-reportes`;
     return this.http.get< Team []>(url);
   }
   getAssetsT() {
@@ -22,7 +22,7 @@ export class AdminService {
     return this.http.get<Asset[]>(url);
   }
   getAssets() {
-    const url: string = `${environment.url}/reportes/reportes-activos`;
+    const url: string = `${environment.url}/reportes/activos-reportes`;
     return this.http.get<Asset[]>(url);
   }
   getAssignmentsT() {
@@ -30,7 +30,7 @@ export class AdminService {
     return this.http.get<Assignment[]>(url);
   }
   getAssignments() {
-    const url: string = `${environment.url}/reportes/reportes-asignaciones`;
+    const url: string = `${environment.url}/reportes/asignaciones-reportes`;
     return this.http.get<Assignment[]>(url);
   }
 }

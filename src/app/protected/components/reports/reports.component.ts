@@ -93,22 +93,7 @@ export class ReportsComponent implements OnInit {
       });
   }
 
-  exportTable(reportName: string): void {
 
 
-    if (reportName == 'activos'){
-      console.log('activos');
-      //this.router.navigateByUrl(this.baseUrl + 'reportes/activos-reportes');
-    
-    } else if ( reportName == 'equipos'){
-      this.router.navigateByUrl('http://localhost:4200/reportes/equipos-reportes');
-      //console.log('equipos');
-
-    } else if (reportName == 'asignaciones'){
-      this.router.navigateByUrl('http://localhost:4200/reportes/asignaciones-reportes');
-      //console.log('asig');
-
-    }
-  }
 
 }

@@ -55,7 +55,20 @@ const routes: Routes = [
           {
             path: 'new-template',
             component: TemplateComponent
+          },
+          {
+            path: 'reportes/activos-reportes',
+            component: ReportsComponent
+          },
+          {
+            path: 'reportes/equipos-reportes',
+            component: ReportsComponent
+          },
+          {
+            path: 'reportes/asignaciones-reportes',
+            component: ReportsComponent
           }
+
         ]
       },
       {
