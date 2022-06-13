@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>Editar mis habilidades</h1>
+<h1 mat-dialog-title>Editar mis habilidades funcionales</h1>
 <div mat-dialog-content>
   <form [formGroup]="funcSkillsForm">
     <div class="row">
@@ -11,31 +11,31 @@
           <label for="func-skills">Habilidades funcionales</label>
         </div>
         <div *ngIf="skill?.invalid && skill?.touched">
-        <span class="form-text text-danger float-start" *ngIf="skill?.invalid">
-          Selecciona una habilidad.
-        </span>
+          <span class="form-text text-danger float-start" *ngIf="skill?.invalid">
+            Selecciona una habilidad.
+          </span>
         </div>
       </div>
 
       <!-- Add knowledge level -->
       <div class="col-12 col-sm-6 mb-3">
         <div class="form-floating">
-          <select class=" form-select" id="levels" formControlName="levels" required>
+          <select class=" form-select" id="func-levels" formControlName="levels" required>
             <option [ngValue]="level" *ngFor="let level of knowledgeLevelList">{{level}}</option>
           </select>
-          <label for="levels">Nivel de conocimiento</label>
+          <label for="func-levels">Nivel de conocimiento</label>
         </div>
         <div *ngIf="level?.invalid && level?.touched">
-        <span class="form-text text-danger float-start" *ngIf="level?.invalid">
-          Selecciona un nivel de conocimiento.
-        </span>
+          <span class="form-text text-danger float-start" *ngIf="level?.invalid">
+            Selecciona un nivel de conocimiento.
+          </span>
         </div>
       </div>
     </div>
 
     <div class="row mb-3">
-      <app-button id="add-skill-1" buttonName="Añadir" [buttonIcon]="true" iconName="add_circle"
-                  (btnClick)="addSkill()" class="col-12 col-sm-4">
+      <app-button id="add-func-skill" buttonName="Añadir" [buttonIcon]="true" iconName="add_circle"
+        (btnClick)="addSkill()" class="col-12 col-sm-4">
       </app-button>
     </div>
 
@@ -46,10 +46,10 @@
 
     <div class="row">
       <div class="col-6">
-        <label class="col-sm-5 col-form-label">Habilidades:</label>
+        <label class="col-form-label">Habilidades funcionales:</label>
       </div>
       <div class="col-6">
-        <label class="col-sm-5 col-form-label">Nivel:</label>
+        <label class="col-form-label">Nivel:</label>
       </div>
     </div>
 
@@ -65,7 +65,8 @@
         <div class="input-group mb-1" *ngFor="let myLevel of tempKnowledgeLevelList; let i = index">
           <span class="input-group-text">{{i + 1}}</span>
           <input type="text" class="form-control" disabled [value]="myLevel">
-          <button id="delete-skill-1" type="button" class="btn btn-outline-danger" (click)="deleteSkill(i)">
+          <button id="{{ 'delete-func-skill-' + i }}" type="button" class="btn btn-outline-danger"
+            (click)="deleteSkill(i)">
             Eliminar
           </button>
         </div>
@@ -79,7 +80,7 @@
 </div>
 <div mat-dialog-actions>
   <button mat-stroked-button (click)="exit()">Cancelar</button>
-  <button id="save-skill-1" mat-stroked-button (click)="updateSkills()">
+  <button id="save-func-skill" mat-stroked-button (click)="updateSkills()">
     Guardar cambios
   </button>
 </div>

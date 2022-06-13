@@ -27,20 +27,25 @@ export class EditProfileComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // Load ultimatix
     this.ultimatix = this.userService.getUltimatix()!;
     this.currentUser = this.userService.getUserData();
 
-    // Load profile data
     this.profile = this.data;
 
-    this.userInfoForm = this.fb.group(
-      {
-        email: [this.currentUser.correo, [Validators.required, Validators.pattern(''), Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
-        phone: [this.currentUser.telefono, Validators.required],
-        netuser: [this.profile.usuario_red, [Validators.required, Validators.minLength(9), Validators.pattern('^@.*')]]
-      }
-    );
+    this.userInfoForm = this.fb.group({
+      email: [this.currentUser.correo, [
+        Validators.required,
+        Validators.pattern(''),
+        Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]
+      ],
+      phone: [this.currentUser.telefono, Validators.required],
+      netuser: [this.profile.usuario_red, [
+        Validators.required,
+        Validators.minLength(2),
+        Validators.maxLength(9),
+        Validators.pattern('^@.*')]
+      ]
+    });
   }
 
   get phone() {
@@ -62,17 +67,15 @@ export class EditProfileComponent implements OnInit {
       const { email, phone, netuser } = this.userInfoForm.value;
 
       this.userService.updateUserProfile(this.ultimatix, phone, email)
-        .subscribe(
-          {
-            next: resp => {
-              this.currentUser = resp;
-              this.dialogRef.close();
-              Swal.fire('¡Éxito!', 'La información de usuario se ha actualizado con éxito.', 'success');
-            },
-            error: err => Swal.fire('Error', err.error.mensaje, 'error')
-
-          }
-        );
+        .subscribe({
+          next: resp => {
+            this.currentUser.correo = resp.correo;
+            this.currentUser.telefono = resp.telefono;
+            this.dialogRef.close();
+            Swal.fire('¡Éxito!', 'La información de usuario se ha actualizado con éxito.', 'success');
+          },
+          error: err => Swal.fire('Error', err.error.mensaje, 'error')
+        });
 
       this.userService.updateNetuser(this.ultimatix, netuser)
         .subscribe({

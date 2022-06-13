@@ -20,8 +20,8 @@
           <hr>
           <div class="row">
             <span class="col-sm-3 mb-0 fw-bold">Rol:</span>
-            <div id="rol-profile"
-                 class="col-sm-9 text-secondary">{{profile?.rol === 'admin' ? 'Administrador' : 'Usuario'}}</div>
+            <div id="rol-profile" class="col-sm-9 text-secondary">{{profile?.rol === 'admin' ? 'Administrador' :
+              'Usuario'}}</div>
           </div>
           <hr>
           <div class="row">
@@ -42,7 +42,7 @@
           <div class="row">
             <span class="col-sm-3 mb-0 fw-bold">Total de asignación (%):</span>
             <div id="asignation-profile" class="col-sm-9"
-                 [ngStyle]="{color: profile?.asignacion_usuario! > 100 ? 'red' : 'green'}">
+              [ngStyle]="{color: profile?.asignacion_usuario! > 100 ? 'red' : 'green'}">
               {{profile?.asignacion_usuario}}
             </div>
           </div>
@@ -50,7 +50,8 @@
         </div>
       </div>
       <div class="col-12 col-sm-2 float-end">
-        <app-button id="edit-user-profile" buttonName="Editar" [buttonIcon]="true" iconName="edit" (btnClick)="openUserInfo()">
+        <app-button id="edit-user-profile" buttonName="Editar" [buttonIcon]="true" iconName="edit"
+          (btnClick)="openUserInfo()">
         </app-button>
       </div>
     </div>
@@ -61,8 +62,8 @@
     <div class="card-body">
       <h5 class="card-title fs-2 mb-3">Sobre mí</h5>
       <p class="card-text">{{profile?.sobreMi}}</p>
-      <app-button id="edit-about" buttonName="Editar" [buttonIcon]="true" iconName="edit" class="col-12 col-sm-2 float-end"
-                  (btnClick)="openAboutMe()">
+      <app-button id="edit-about" buttonName="Editar" [buttonIcon]="true" iconName="edit"
+        class="col-12 col-sm-2 float-end" (btnClick)="openAboutMe()">
       </app-button>
     </div>
   </div>
@@ -73,16 +74,16 @@
       <h5 class="card-title fs-2 mb-3">Habilidades técnicas</h5>
       <ul class="list-group list-group-flush mb-3">
         <div class="row">
-          <div class="col-6 col-sm-2">
+          <div class="col-6 col-sm-4">
             <li class="list-group-item" *ngFor="let skill of profile?.habilidades">{{skill}}</li>
           </div>
-          <div class="col-6 col-sm-10">
+          <div class="col-6 col-sm-8">
             <li class="list-group-item" *ngFor="let level of profile?.nivel_habilidad">{{level}}</li>
           </div>
         </div>
       </ul>
-      <app-button id="edit-tech-skills" buttonName="Editar" [buttonIcon]="true" iconName="edit" class="col-12 col-sm-2 float-end"
-                  (btnClick)="openTechSkills()">
+      <app-button id="edit-tech-skills" buttonName="Editar" [buttonIcon]="true" iconName="edit"
+        class="col-12 col-sm-2 float-end" (btnClick)="openTechSkills()">
       </app-button>
     </div>
   </div>
@@ -92,16 +93,16 @@
       <h5 class="card-title fs-2 mb-3">Habilidades funcionales</h5>
       <ul class="list-group list-group-flush mb-3">
         <div class="row">
-          <div class="col-6 col-sm-2">
+          <div class="col-6 col-sm-4">
             <li class="list-group-item" *ngFor="let skill of profile?.habilidades_funcionales">{{skill}}</li>
           </div>
-          <div class="col-6 col-sm-10">
+          <div class="col-6 col-sm-8">
             <li class="list-group-item" *ngFor="let level of profile?.nivel_habilidad_funcional">{{level}}</li>
           </div>
         </div>
       </ul>
-      <app-button id="edit-func-skills" buttonName="Editar" [buttonIcon]="true" iconName="edit" class="col-12 col-sm-2 float-end"
-                  (btnClick)="openFuncSkills()">
+      <app-button id="edit-func-skills" buttonName="Editar" [buttonIcon]="true" iconName="edit"
+        class="col-12 col-sm-2 float-end" (btnClick)="openFuncSkills()">
       </app-button>
     </div>
   </div>
@@ -111,16 +112,16 @@
       <h5 class="card-title fs-2 mb-3">Aplicaciones</h5>
       <ul class="list-group list-group-flush mb-3">
         <div class="row">
-          <div class="col-6 col-sm-2">
+          <div class="col-6 col-sm-4">
             <li class="list-group-item" *ngFor="let skill of profile?.aplicaciones">{{skill}}</li>
           </div>
-          <div class="col-6 col-sm-10">
+          <div class="col-6 col-sm-8">
             <li class="list-group-item" *ngFor="let level of profile?.nivel_aplicaciones">{{level}}</li>
           </div>
         </div>
       </ul>
-      <app-button id="edit-func-skills" buttonName="Editar" [buttonIcon]="true" iconName="edit" class="col-12 col-sm-2 float-end"
-                  (btnClick)="openApps()">
+      <app-button id="edit-apps" buttonName="Editar" [buttonIcon]="true" iconName="edit"
+        class="col-12 col-sm-2 float-end" (btnClick)="openApps()">
       </app-button>
     </div>
   </div>

@@ -5,37 +5,37 @@
       <!-- Add new skill -->
       <div class="col-12 col-sm-6 mb-3">
         <div class="form-floating">
-          <select class=" form-select" id="tech-skills" formControlName="skills">
+          <select class="form-select" id="apps" formControlName="skills">
             <option [ngValue]="skill" *ngFor="let skill of skillsList">{{skill}}</option>
           </select>
-          <label for="tech-skills">aplicaciones</label>
+          <label for="apps">Aplicaciones</label>
         </div>
         <div *ngIf="skill?.invalid && skill?.touched">
-        <span class="form-text text-danger float-start" *ngIf="skill?.invalid">
-          Selecciona una aplicación
-        </span>
+          <span class="form-text text-danger float-start" *ngIf="skill?.invalid">
+            Selecciona una aplicación.
+          </span>
         </div>
       </div>
 
       <!-- Add knowledge level -->
       <div class="col-12 col-sm-6 mb-3">
         <div class="form-floating">
-          <select class=" form-select" id="levels" formControlName="levels" required>
+          <select class="form-select" id="app-levels" formControlName="levels" required>
             <option [ngValue]="level" *ngFor="let level of knowledgeLevelList">{{level}}</option>
           </select>
-          <label for="levels">Nivel de conocimiento</label>
+          <label for="app-levels">Nivel de conocimiento</label>
         </div>
         <div *ngIf="level?.invalid && level?.touched">
-        <span class="form-text text-danger float-start" *ngIf="level?.invalid">
-          Selecciona un nivel de conocimiento.
-        </span>
+          <span class="form-text text-danger float-start" *ngIf="level?.invalid">
+            Selecciona un nivel de conocimiento.
+          </span>
         </div>
       </div>
     </div>
 
     <div class="row mb-3">
-      <app-button id="add-skill-1" buttonName="Añadir" [buttonIcon]="true" iconName="add_circle"
-                  (btnClick)="addSkill()" class="col-12 col-sm-4">
+      <app-button id="add-app" buttonName="Añadir" [buttonIcon]="true" iconName="add_circle" (btnClick)="addSkill()"
+        class="col-12 col-sm-4">
       </app-button>
     </div>
 
@@ -46,10 +46,10 @@
 
     <div class="row">
       <div class="col-6">
-        <label class="col-sm-5 col-form-label">Aplicaciones:</label>
+        <label class="col-form-label">Aplicaciones:</label>
       </div>
       <div class="col-6">
-        <label class="col-sm-5 col-form-label">Nivel:</label>
+        <label class="col-form-label">Nivel:</label>
       </div>
     </div>
 
@@ -65,7 +65,7 @@
         <div class="input-group mb-1" *ngFor="let myLevel of tempKnowledgeLevelList; let i = index">
           <span class="input-group-text">{{i + 1}}</span>
           <input type="text" class="form-control" disabled [value]="myLevel">
-          <button id="delete-skill-1" type="button" class="btn btn-outline-danger" (click)="deleteSkill(i)">
+          <button id="{{ 'delete-apps-' + i }}" type="button" class="btn btn-outline-danger" (click)="deleteSkill(i)">
             Eliminar
           </button>
         </div>
@@ -79,5 +79,5 @@
 </div>
 <div mat-dialog-actions>
   <button mat-stroked-button (click)="exit()">Cancelar</button>
-  <button id="save-skill-1" mat-stroked-button (click)="updateSkills()">Guardar cambios</button>
+  <button id="save-apps" mat-stroked-button (click)="updateSkills()">Guardar cambios</button>
 </div>

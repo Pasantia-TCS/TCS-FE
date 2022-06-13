@@ -39,23 +39,23 @@ export class ProfileComponent implements OnInit {
   }
 
   openUserInfo() {
-    this.dialog.open(EditProfileComponent, { data: this.profile });
+    this.dialog.open(EditProfileComponent, { data: this.profile, minWidth: '400px' });
   }
 
   openAboutMe() {
-    this.dialog.open(EditAboutComponent, { data: this.profile });
+    this.dialog.open(EditAboutComponent, { data: this.profile, minWidth: '400px' });
   }
 
   openTechSkills() {
-    this.dialog.open(EditSkillsComponent, { data: this.profile });
+    this.dialog.open(EditSkillsComponent, { data: this.profile, minWidth: '500px' });
   }
 
   openFuncSkills() {
-    this.dialog.open(EditFuncSkillsComponent, { data: this.profile });
+    this.dialog.open(EditFuncSkillsComponent, { data: this.profile, minWidth: '500px' });
   }
 
   openApps() {
-    this.dialog.open(EditAppsComponent, { data: this.profile });
+    this.dialog.open(EditAppsComponent, { data: this.profile, minWidth: '500px' });
   }
 
 }
