@@ -10,6 +10,7 @@ export interface Profile {
   usuario_red?: string,
   asignacion_usuario?: number,
   nombres_completos?: string,
+  token: string, 
   rol?: string,
   estado?: string,
   mensaje?: string,
