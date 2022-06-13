@@ -12,11 +12,10 @@ describe('Demo de Testing de Inicio de Sesión', () => {
     //before()
     it('Test 1: Número de Ultimatix y Clave Correcto', () => {
         cy.visit('http://localhost:4200/'); // ir a la pagina principal 
-        cy.get('.mb-3 > .form-control').type("0000000");
+        cy.get('.mb-3 > .form-control').type("1111111");
         cy.get('.input-group > .form-control').type("P@ssw0rd");
         cy.get('.btn').click();
         cy.get('.my-4').should('have.text','BIENVENIDO/A JUAN')
-        //cy.get('#swal2-title').should('have.text','Error');
     });
 
     it('Test 2: Número de Ultimatix y Clave Incorrectos', () => {

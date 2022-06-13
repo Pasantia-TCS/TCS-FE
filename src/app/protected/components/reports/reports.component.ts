@@ -5,8 +5,9 @@ import { Assignment } from '../../interfaces/asignacion';
 import { Team } from '../../interfaces/equipo';
 import { AdminService } from '../../services/admin.service';
 import { EquiposService } from '../../services/equipos.service';
-import { GeneralService } from '../../services/general.service';
 import { assignmentColumns, teamColumns, assetColumns } from './structure';
+import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-reports',
@@ -27,10 +28,12 @@ export class ReportsComponent implements OnInit {
   assignments!: MatTableDataSource<Assignment>;
   assignmentst!: MatTableDataSource<Assignment>;
 
+  private baseUrl: string = `${environment.url}/`;
+
   constructor(
     private adminService: AdminService,
     private teamService: EquiposService,
-    private generalService: GeneralService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -90,8 +93,7 @@ export class ReportsComponent implements OnInit {
       });
   }
 
-  exportTable(data: any, reportName: string): void {
-    this.generalService.exportData(data.filteredData, reportName);
-  }
+
+
 
 }

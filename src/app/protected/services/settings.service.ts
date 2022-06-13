@@ -29,6 +29,11 @@ export class SettingsService {
     return this.http.post<Profile>(url, { id_numero_Ultimatix });
   }
 
+  token(id_numero_Ultimatix: number) {
+    const url: string = `${environment.url}/asociados/devolver-token`;
+    return this.http.post<Profile>(url, { id_numero_Ultimatix });
+  }  
+
   addSkill(nombre: string){
     const url: string = `${this.baseUrl}/agregarHabilidad`;
     return this.http.post<Profile>(url, nombre);

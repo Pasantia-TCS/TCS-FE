@@ -172,6 +172,20 @@ export class SettingsComponent implements OnInit {
     });
   }
 
+  token(id_ultimatix: number) {
+   
+    this.settingsService.token(id_ultimatix)
+      .subscribe({
+        next: resp => {
+          this.loadUsers();         
+          Swal.fire('¡Envie este token al usuario!', resp.token, 'warning');
+        },
+        error: (err: { error: { mensaje: string | undefined; }; }) => Swal.fire('Error', err.error.mensaje, 'error')
+      });
+      
+    
+  }
+
   openAddSkill(){
     this.dialog.open(AddCatalogComponent, { data: { item: 'habilidad' } } )
       .afterClosed()
