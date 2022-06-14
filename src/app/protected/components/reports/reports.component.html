@@ -3,34 +3,34 @@
 
   <section class="py-3">
     <app-subtitle title="Activos"></app-subtitle>
-    <app-filter [data]="assetst"></app-filter>
+    <app-filter [data]="assets"></app-filter>
     <button mat-raised-button color="primary" class="float-end">
-      <a href="{{ baseUrl + 'reportes/activos-reportes' }}" style="color:white; text-decoration: none">
+      <a href="{{ baseUrl + 'reportes/activos-reportes' }}" style="color:white; text-decoration: none" target="_blank">
         Generar reporte
       </a>
     </button>
-    <app-mat-table [columns]="assetcolumns" [dataSource]="assetst"></app-mat-table>
+    <app-mat-table [columns]="assetColumns" [dataSource]="assets"></app-mat-table>
   </section>
 
   <section class="py-3">
     <app-subtitle title="Grupos de trabajo"></app-subtitle>
-    <app-filter [data]="teamst"></app-filter>
+    <app-filter [data]="teams"></app-filter>
     <button mat-raised-button color="primary" class="float-end">
-      <a href="{{ baseUrl + 'reportes/equipos-reportes' }}" style="color:white; text-decoration: none">
+      <a href="{{ baseUrl + 'reportes/equipos-reportes' }}" style="color:white; text-decoration: none"  target="_blank">
         Generar reporte
       </a>
     </button>
-    <app-mat-table [columns]="teamColumns" [dataSource]="teamst"></app-mat-table>
+    <app-mat-table [columns]="teamColumns" [dataSource]="teams"></app-mat-table>
   </section>
 
   <section class="py-3">
     <app-subtitle title="Asignaciones"></app-subtitle>
-    <app-filter [data]="assignmentst"></app-filter>
+    <app-filter [data]="assignments"></app-filter>
     <button mat-raised-button color="primary" class="float-end">
-      <a href="{{ baseUrl + 'reportes/asignaciones-reportes'}}" style="color:white; text-decoration: none">
+      <a href="{{ baseUrl + 'reportes/asignaciones-reportes'}}" style="color:white; text-decoration: none"  target="_blank">
         Generar reporte
       </a>
     </button>
-    <app-mat-table [columns]="assignmentColumns" [dataSource]="assignmentst"></app-mat-table>
+    <app-mat-table [columns]="assignmentColumns" [dataSource]="assignments"></app-mat-table>
   </section>
 </div>

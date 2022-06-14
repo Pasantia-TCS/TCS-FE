@@ -6,7 +6,6 @@ import { Team } from '../../interfaces/equipo';
 import { AdminService } from '../../services/admin.service';
 import { EquiposService } from '../../services/equipos.service';
 import { assignmentColumns, teamColumns, assetColumns } from './structure';
-import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -16,70 +15,34 @@ import { environment } from 'src/environments/environment';
 })
 export class ReportsComponent implements OnInit {
 
-  assetcolumns = assetColumns;
+  assetColumns = assetColumns;
   teamColumns = teamColumns;
   assignmentColumns = assignmentColumns;
-
-  assetst!: MatTableDataSource<Asset>;
   assets!: MatTableDataSource<Asset>;
   teams!: MatTableDataSource<Team>;
-  teamst!: MatTableDataSource<Team>;
   assignments!: MatTableDataSource<Assignment>;
-  assignmentst!: MatTableDataSource<Assignment>;
-
   baseUrl: string = `${environment.url}/`;
 
   constructor(
     private adminService: AdminService,
-    private teamService: EquiposService,
-    private router: Router,
+    private teamService: EquiposService
   ) { }
 
   ngOnInit(): void {
-    //this.loadAssets();
-    //this.loadTeams();
-    //this.loadAssignments();
-    this.loadAssetsT();
-    this.loadTeamsT();
-    this.loadAssignmentsT();
-  }
-
-  loadAssetsT() {
-    this.adminService.getAssetsT()
-      .subscribe({
-        next: resp => {
-          this.assetst = new MatTableDataSource(resp)
-        }
-      });
-  }
-
-  loadTeamsT() {
-    this.teamService.show()
-      .subscribe({
-        next: resp => {
-          this.teamst = new MatTableDataSource(resp)
-        }
-      });
-  }
-
-  loadAssignmentsT() {
-    this.adminService.getAssignmentsT()
-      .subscribe({
-        next: resp => this.assignmentst = new MatTableDataSource(resp)
-      });
+    this.loadAssets();
+    this.loadTeams();
+    this.loadAssignments();
   }
 
   loadAssets() {
     this.adminService.getAssets()
       .subscribe({
-        next: resp => {
-          this.assets = new MatTableDataSource(resp)
-        }
+        next: resp => this.assets = new MatTableDataSource(resp)
       });
   }
 
   loadTeams() {
-    this.adminService.getTeam()
+    this.teamService.show()
       .subscribe({
         next: resp => this.teams = new MatTableDataSource(resp)
       });
