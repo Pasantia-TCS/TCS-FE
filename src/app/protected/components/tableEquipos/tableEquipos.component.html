@@ -4,31 +4,32 @@
     <table id="tableEquipos" class="table table-hover align-middle">
       <caption>Tabla de grupos de trabajo</caption>
       <thead class="bg-light">
-        <tr>
-          <th *ngFor="let key of tableHeader">{{key}}</th>
-        </tr>
+      <tr>
+        <th *ngFor="let key of tableHeader">{{key}}</th>
+      </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let equipo of tableBody" [class.table-secondary]="!equipo.estado_asi">
-          <td>
-            <button mat-icon-button style="cursor: pointer;" (click)="updateTeam(equipo)" [disabled]="equipo.estado_asi === false">
-              <mat-icon style="color: #9B11BF99;">edit</mat-icon>
-            </button>
-            <button mat-icon-button (click)="changeStatus(equipo.id_asi!)" style="cursor: pointer;">
-              <mat-icon [ngStyle]="{color: equipo.estado_asi ? '#F7071299' : 'green'}">
-                {{equipo.estado_asi ? 'delete' : 'add_box'}}
-              </mat-icon>
-            </button>
-          </td>
-          <td>{{equipo.nombre_equipo_asi}}</td>
-          <td>{{equipo.tipo_equipo_asi}}</td>
-          <td>{{equipo.descripcion_asi}}</td>
-          <td>{{equipo.nombre_lider}}</td>
-          <td>{{equipo.nombre_tecnico}}</td>
-          <td [ngStyle]="{color: equipo.estado_asi ? 'green' : '#D92344'}">{{equipo.estado_asi ? 'Vigente' : 'No
-            vigente'}}
-          </td>
-        </tr>
+      <tr *ngFor="let equipo of tableBody" [class.table-secondary]="!equipo.estado_asi">
+        <td>
+          <button mat-icon-button style="cursor: pointer;" (click)="updateTeam(equipo)"
+                  [disabled]="equipo.estado_asi === false">
+            <mat-icon style="color: var(--tcs-pink);">edit</mat-icon>
+          </button>
+          <button mat-icon-button (click)="changeStatus(equipo.id_asi!)" style="cursor: pointer;">
+            <mat-icon [ngStyle]="{color: equipo.estado_asi ? 'var(--tcs-red)' : 'var(--tcs-green)'}">
+              {{equipo.estado_asi ? 'delete' : 'add_box'}}
+            </mat-icon>
+          </button>
+        </td>
+        <td>{{equipo.nombre_equipo_asi}}</td>
+        <td>{{equipo.tipo_equipo_asi}}</td>
+        <td>{{equipo.descripcion_asi}}</td>
+        <td>{{equipo.nombre_lider}}</td>
+        <td>{{equipo.nombre_tecnico}}</td>
+        <td [ngStyle]="{color: equipo.estado_asi ? 'var(--tcs-green)' : 'var(--tcs-red)'}">
+          {{equipo.estado_asi ? 'Vigente' : 'No vigente'}}
+        </td>
+      </tr>
       </tbody>
     </table>
 

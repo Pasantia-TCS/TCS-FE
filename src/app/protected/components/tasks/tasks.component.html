@@ -1,14 +1,16 @@
 <div class="container">
-  <app-header title="Asignación de equipos"></app-header>
+  <app-header title="Asignación de grupos de trabajo"></app-header>
 
   <div class="row mb-2">
     <div class="col-12 col-sm-3 mx-auto mb-2">
       <app-button (btnClick)="openNewAssignment()" buttonName="Crear asignación" iconName="add_circle"
-        [buttonIcon]="true">
+                  [buttonIcon]="true">
       </app-button>
     </div>
   </div>
 
-  <app-custom-table [titles]="titles" [dataBody]="assignments" [iconNames]="icons" (deleteEvent)="openUnsubscribe($event)"
-    (updateEvent)="openEdit($event)"></app-custom-table>
+  <app-custom-table [titles]="titles" [dataBody]="assignments" [iconNames]="icons"
+                    (deleteEvent)="openUnsubscribe($event)"
+                    (updateEvent)="openEdit($event)">
+  </app-custom-table>
 </div>

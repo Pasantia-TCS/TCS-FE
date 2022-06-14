@@ -3,29 +3,31 @@
     <table id="tableActivos" class="table table-hover align-middle">
       <caption>Tabla de activos</caption>
       <thead class="bg-light">
-        <tr>
-          <th *ngFor="let key of tableHeader">{{key}}</th>
-        </tr>
+      <tr>
+        <th *ngFor="let key of tableHeader">{{key}}</th>
+      </tr>
       </thead>
       <tbody *ngFor="let activo of tableData">
-        <tr *ngIf="activo.borrado_logico === false" [ngClass]="{'table-secondary': activo.estado}">
-          <td>
-            <button mat-icon-button data-bs-toggle="tooltip" data-bs-placement="right" title="Devolver activo"
-              (click)="deliverItem(activo.id_activo!)" [disabled]="activo.estado">
-              <mat-icon style="color: green;">exit_to_app</mat-icon>
-            </button>
-            <button mat-icon-button data-bs-toggle="tooltip" data-bs-placement="right" title="Eliminar activo"
-              [disabled]="activo.estado" (click)="deleteItem(activo.id_activo!)">
-              <mat-icon style="color: #F7071299;">delete</mat-icon>
-            </button>
-          </td>
-          <td>{{activo.codigo_barras}}</td>
-          <td>{{activo.edificio}}</td>
-          <td>{{activo.tipo}}</td>
-          <td>{{activo.fecha_entrega}}</td>
-          <td>{{activo.fecha_devolucion || '-'}}</td>
-          <td [ngStyle]="{color: activo.estado ? 'green' : 'red'}">{{activo.estado ? 'Devuelto': 'En uso'}}</td>
-        </tr>
+      <tr *ngIf="activo.borrado_logico === false" [ngClass]="{'table-secondary': activo.estado}">
+        <td>
+          <button mat-icon-button data-bs-toggle="tooltip" data-bs-placement="right" title="Devolver activo"
+                  (click)="deliverItem(activo.id_activo!)" [disabled]="activo.estado">
+            <mat-icon style="color: var(--tcs-green);">exit_to_app</mat-icon>
+          </button>
+          <button mat-icon-button data-bs-toggle="tooltip" data-bs-placement="right" title="Eliminar activo"
+                  [disabled]="activo.estado" (click)="deleteItem(activo.id_activo!)">
+            <mat-icon style="color: var(--tcs-red);">delete</mat-icon>
+          </button>
+        </td>
+        <td>{{activo.codigo_barras}}</td>
+        <td>{{activo.edificio}}</td>
+        <td>{{activo.tipo}}</td>
+        <td>{{activo.fecha_entrega}}</td>
+        <td>{{activo.fecha_devolucion || '-'}}</td>
+        <td [ngStyle]="{color: activo.estado ? 'var(--tcs-green)' : 'var(--tcs-red)'}">
+          {{activo.estado ? 'Devuelto' : 'En uso'}}
+        </td>
+      </tr>
       </tbody>
     </table>
   </div>

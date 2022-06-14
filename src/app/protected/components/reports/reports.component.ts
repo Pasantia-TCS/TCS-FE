@@ -12,8 +12,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-reports',
   templateUrl: './reports.component.html',
-  styles: [
-  ]
+  styles: []
 })
 export class ReportsComponent implements OnInit {
 
@@ -37,9 +36,9 @@ export class ReportsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.loadAssets();
-    this.loadTeams();
-    this.loadAssignments();
+    //this.loadAssets();
+    //this.loadTeams();
+    //this.loadAssignments();
     this.loadAssetsT();
     this.loadTeamsT();
     this.loadAssignmentsT();
@@ -92,8 +91,5 @@ export class ReportsComponent implements OnInit {
         next: resp => this.assignments = new MatTableDataSource(resp)
       });
   }
-
-
-
 
 }

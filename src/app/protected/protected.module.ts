@@ -31,7 +31,6 @@ import { SelectionComponent } from './components/selection/selection.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { SubtitleComponent } from './components/subtitle/subtitle.component';
 import { TableBasic } from './components/table/table.component';
-import { TableAsignacion } from './components/tableAsignacion/tableAsignacion.component';
 import { TableEquiposComponent } from './components/tableEquipos/tableEquipos.component';
 import { TasksComponent } from './components/tasks/tasks.component';
 import { TeamsComponent } from './components/teams/teams.component';
@@ -50,7 +49,6 @@ import { EditAppsComponent } from './components/edit-apps/edit-apps.component';
     SelectionComponent,
     ProfileComponent,
     TableBasic,
-    TableAsignacion,
     NewAssetComponent,
     NewProjectComponent,
     DeliverModalComponent,
