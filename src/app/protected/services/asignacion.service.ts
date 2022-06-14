@@ -35,7 +35,7 @@ export class AsignacionService {
   }
 
   obtenerUsuarios() {
-    const url: string = 'http://localhost:8081/asociados/buscarAsociados';
+    const url: string = `${environment.url}/asociados/buscarAsociados`;
     return this.http.get<any>(url);
   }
 

@@ -28,8 +28,8 @@ export class LoginComponent {
     private router: Router
   ) { }
 
-  valid_field(field_name: string) {
-    return this.loginForm.controls[field_name].errors && this.loginForm.controls[field_name].touched;
+  validField(field: string) {
+    return this.loginForm.controls[field].errors && this.loginForm.controls[field].touched;
   }
 
   get ultimatix() {
@@ -56,6 +56,10 @@ export class LoginComponent {
 
   toRecover() {
     this.router.navigateByUrl('/auth/recover');
+  }
+
+  toRegister() {
+    this.router.navigateByUrl('/auth/register');
   }
 
   keyPressNumbers(event: any) {

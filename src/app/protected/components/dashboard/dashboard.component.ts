@@ -26,12 +26,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUser = this.userService.getUserData();
-
-    // Load profile info
-    this.profileService.getProfile(this.currentUser.id_numero_Ultimatix!)
-      .subscribe({
-        next: resp => this.profile = resp
-      });
+    this.profile = this.userService.getProfile();
   }
 
   toggleSidebar() {

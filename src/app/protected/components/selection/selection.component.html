@@ -11,33 +11,29 @@
 
             <!-- Assets -->
             <div class="mb-3">
-              <app-button buttonName="Registro de activos" iconName="ballot" [buttonIcon]="true"
-                (btnClick)="toAssets()">
+              <app-button id="btnAssets" buttonName="Registro de activos" iconName="ballot" [buttonIcon]="true"
+                          (btnClick)="toAssets()">
               </app-button>
             </div>
 
             <!-- Teams -->
-            <div class="mb-4" *ngIf="profile?.rol === 'admin'">
-              <app-button id="btnTeams" buttonName="Grupos de trabajo" iconName="group" [buttonIcon]="true" (btnClick)="toTeams()">
+            <div class="mb-3" *ngIf="profile?.rol === 'admin'">
+              <app-button id="btnTeams" buttonName="Grupos de trabajo" iconName="group" [buttonIcon]="true"
+                          (btnClick)="toTeams()">
               </app-button>
             </div>
 
             <!-- Tasks -->
             <div class="mb-3">
-              <app-button buttonName="Asignación de trabajos" iconName="assignment_ind" [buttonIcon]="true"
-                (btnClick)="toTasks()"></app-button>
+              <app-button id="btnTasks" buttonName="Asignación de trabajos" iconName="assignment_ind"
+                          [buttonIcon]="true" (btnClick)="toTasks()">
+              </app-button>
             </div>
 
-            <!-- Reportes -->
+            <!-- Reports -->
             <div class="mb-3" *ngIf="profile?.rol === 'admin'">
-              <app-button buttonName="Generación de reportes" iconName="insert_drive_file" [buttonIcon]="true"
-                (btnClick)="toReports()"></app-button>
-            </div>
-
-            <!-- Forms -->
-            <div class="mb-4" *ngIf="false">
-              <app-button buttonName="Formularios dinámicos" iconName="view_compact" [buttonIcon]="true"
-                (btnClick)="toForms()">
+              <app-button id="btnReports" buttonName="Generación de reportes" iconName="insert_drive_file"
+                          [buttonIcon]="true" (btnClick)="toReports()">
               </app-button>
             </div>
 

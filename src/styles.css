@@ -404,44 +404,7 @@ template {
   background: linear-gradient(220deg, #9B11BF99 300px, #EE398499, #F7071299, #F4732699, #FFC70899);
 }
 
-.custom-input {
-  height: 3rem;
-  background-color: var(--bg_field);
-}
-
-.custom-input:focus,
-.custom-input:active {
-  background-color: var(--bg_field);
-}
-
-.custom-btn {
-  height: 3rem;
-  background-color: var(--primary);
-  color: white;
-}
-
-.custom-btn:hover {
-  background-color: var(--secondary);
-  color: white;
-}
-
-.custom-link {
-  text-decoration: underline;
-  color: black;
-  cursor: pointer;
-}
-
-.custom-link:hover {
-  color: var(--tcs-blue);
-}
-
-a:visited {
-  color: black;
-}
-
-/*****************************************************
-	Custom styling (phone field)
-*****************************************************/
+/* Custom styling (phone field) */
 
 .iti {
   display: block !important;
@@ -481,21 +444,64 @@ ngx-intl-tel-input input {
   box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075);
 }
 
-/* Password */
+/* Password input */
 .pwd-eye {
-  background-color: var(--bg_field);
+  background-color: var(--tcs-gray);
   border-radius: 0 2rem 2rem 0;
   border: none;
 }
 
 .pwd-input {
-  background-color: var(--bg_field);
+  background-color: var(--tcs-gray);
   height: 3rem;
   border-radius: 2rem 0 0 2rem;
+  border: 0;
 }
 
 /* Table alignment */
 th,
 td {
   text-align: left;
+}
+
+/* Custom input */
+.custom-input {
+  height: 3rem;
+  background-color: var(--tcs-gray);
+  border: 0;
+  border-radius: 2rem;
+}
+
+.custom-input:focus,
+.custom-input:active {
+  background-color: var(--tcs-gray);
+}
+
+/* Custom button */
+.custom-btn {
+  height: 3rem;
+  background-color: var(--primary);
+  color: white;
+  border-radius: 2rem;
+}
+
+.custom-btn:hover {
+  background-color: var(--secondary);
+  color: white;
+}
+
+/* Custom link */
+.custom-link {
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+}
+
+.custom-link:hover {
+  color: var(--tcs-blue);
+  text-decoration: underline;
+}
+
+a:visited {
+  color: black;
 }

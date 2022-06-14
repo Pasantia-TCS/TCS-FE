@@ -8,8 +8,6 @@ nav {
 }
 
 #sidebar {
-  /* position: inherit;
-  height: 100vh; */
   min-width: 276px;
   max-width: 276px;
   background: transparent linear-gradient(194deg, #9B11BFB3 0%, #EE3984B3 34%, #F70712B3 53%, #F47326B3 69%, #FFC708B3 100%);
@@ -35,20 +33,8 @@ nav {
   margin-right: 0;
 }
 
-#sidebar .bars {
-  padding: 10px 3px;
-}
-
-#sidebar.active .bars {
-  padding: 10px 0;
-}
-
 #sidebar.active .footer {
   display: none;
-}
-
-.bars {
-  display: block;
 }
 
 #sidebar ul li {
@@ -102,7 +88,7 @@ nav {
 }
 
 @media (max-width: 991.98px) {
-  #sidebarCollapse span {
+  #sidebar-collapse {
     display: none;
   }
 }
@@ -169,4 +155,11 @@ nav button {
   width: 100%;
   height: 100%;
   z-index: 10;
+}
+
+.menu {
+  padding-top: 1rem;
+  font-size: 3rem;
+  height: 3rem;
+  width: 3rem;
 }

@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  url: 'http://54.91.126.120',
+  url: 'https://middleware-1655149242056.azurewebsites.net',
 };

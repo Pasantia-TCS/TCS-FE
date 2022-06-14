@@ -5,7 +5,7 @@
 <form [formGroup]="recoverForm" autocomplete="off">
 
   <div class="col mb-3">
-    <input type="text" class="form-control rounded-pill shadow-sm border-0 custom-input" placeholder="Ultimatix"
+    <input type="text" class="form-control shadow-sm custom-input" placeholder="Ultimatix"
            formControlName="ultimatix"/>
     <div class="form-text text-danger float-start"
          *ngIf="(ultimatix?.invalid && ultimatix?.touched) || ultimatix?.dirty">
@@ -20,9 +20,9 @@
 
   <div class="col mb-3">
     <div class="input-group">
-      <input formControlName="password" [type]="showPwd ? 'text' : 'password'" class="form-control pwd-input border-0"
+      <input formControlName="password" [type]="showPwd ? 'text' : 'password'" class="form-control pwd-input"
              placeholder="Nueva contraseña"/>
-      <div class="input-group-text pwd-eye border-0" (click)="showPwd = !showPwd" (touchstart)="showPwd = !showPwd">
+      <div class="input-group-text pwd-eye" (click)="showPwd = !showPwd" (touchstart)="showPwd = !showPwd">
         <mat-icon style="cursor: pointer;">remove_red_eye</mat-icon>
       </div>
     </div>
@@ -33,14 +33,16 @@
       <span *ngIf="password?.errors?.['pattern']">
         Ingresa una contraseña válida.
         <mat-icon style="cursor: pointer; font-size: 1rem;"
-                  matTooltip="La contraseña debe tener al menos ocho caracteres, 1 letra mayúsculas, 1 letra minúscula y 1 caracteres especiales.">
-          report</mat-icon>
+                  matTooltip="La contraseña debe tener al menos ocho caracteres, 1 letra mayúscula, 1 letra minúscula
+                  y 1 caracter especial.">
+          report
+        </mat-icon>
       </span>
     </div>
   </div>
 
   <div class="col">
-    <input type="text" class="form-control rounded-pill shadow-sm border-0 custom-input" formControlName="securityCode"
+    <input type="text" class="form-control shadow-sm custom-input" formControlName="securityCode"
            placeholder="Código de respaldo"/>
     <div class="form-text text-danger float-start"
          *ngIf="(securityCode?.invalid && securityCode?.touched) || securityCode?.dirty">

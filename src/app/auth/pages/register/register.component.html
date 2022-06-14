@@ -6,16 +6,16 @@
   <div class="row">
     <!-- Name -->
     <div class="col-12 col-md-6 mb-3">
-      <input formControlName="name" type="text" class="form-control rounded-pill border-0 custom-input"
+      <input formControlName="name" type="text" class="form-control custom-input"
              placeholder="Nombres"/>
       <span class="form-text text-danger float-start" *ngIf="validField('name')">
         Ingresa tus nombres.
       </span>
     </div>
 
-    <!-- Lastame -->
+    <!-- Lastname -->
     <div class="col-12 col-md-6 mb-3">
-      <input formControlName="lastname" type="text" class="form-control rounded-pill border-0 custom-input"
+      <input formControlName="lastname" type="text" class="form-control custom-input"
              placeholder="Apellidos"/>
       <span class="form-text text-danger float-start" *ngIf="validField('lastname')">
         Ingresa tus apellidos.
@@ -42,7 +42,7 @@
 
     <!-- Email -->
     <div class="col-12 col-md-6 mb-3">
-      <input formControlName="email" type="email" class="form-control rounded-pill border-0 custom-input"
+      <input formControlName="email" type="email" class="form-control custom-input"
              placeholder="Correo electrónico"/>
       <div class="form-text text-danger float-start" *ngIf="(email?.invalid && email?.touched) || email?.dirty">
         <span *ngIf="email?.errors?.['required']">
@@ -58,9 +58,9 @@
   <div class="row">
     <!-- Ultimatix -->
     <div class="col-12 col-md-6 mb-3">
-      <input formControlName="ultimatix" type="text" class="form-control rounded-pill border-0 custom-input"
+      <input formControlName="ultimatix" type="text" class="form-control custom-input"
              placeholder="Ultimatix"
-             onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;"/>
+             onKeypress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;"/>
       <div class="form-text text-danger float-start"
            *ngIf="(ultimatix?.invalid && ultimatix?.touched) || ultimatix?.dirty">
         <span *ngIf="ultimatix?.errors?.['required']">
@@ -75,9 +75,9 @@
     <!-- Password -->
     <div class="col-12 col-md-6 mb-4">
       <div class="input-group">
-        <input formControlName="password" [type]="showPwd ? 'text' : 'password'" class="form-control pwd-input border-0"
+        <input formControlName="password" [type]="showPwd ? 'text' : 'password'" class="form-control pwd-input"
                placeholder="Contraseña"/>
-        <div class="input-group-text pwd-eye border-0" (click)="showPwd = !showPwd" (touchstart)="showPwd = !showPwd">
+        <div class="input-group-text pwd-eye" (click)="showPwd = !showPwd" (touchstart)="showPwd = !showPwd">
           <mat-icon style="cursor: pointer;">remove_red_eye</mat-icon>
         </div>
       </div>
@@ -89,7 +89,8 @@
         <span *ngIf="password?.errors?.['pattern']">
           Ingresa una contraseña válida.
           <mat-icon style="cursor: pointer; font-size: 1rem;"
-                    matTooltip="La contraseña debe tener al menos ocho caracteres, 1 letra mayúsculas, 1 letra minúscula y 1 caracter especial.">
+                    matTooltip="La contraseña debe tener al menos ocho caracteres, 1 letra mayúscula, 1 letra
+                    minúscula y 1 caracter especial.">
             report</mat-icon>
         </span>
       </div>
@@ -104,7 +105,7 @@
   <!-- Login -->
   <span>
     ¿Ya tienes una cuenta?
-    <a [routerLink]="['/auth/login']" class="custom-link"><strong>Inicia sesión</strong></a>
+    <a (click)="toLogin()" class="custom-link"><strong>Inicia sesión</strong></a>
   </span>
 
 </form>

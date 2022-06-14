@@ -15,7 +15,10 @@ export class RecoverComponent {
 
   recoverForm: FormGroup = this.fb.group({
     ultimatix: ['', Validators.required],
-    password: ['', Validators.required],
+    password: ['', [
+      Validators.required,
+      Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*]).{8,}$')]
+    ],
     securityCode: ['', Validators.required]
   });
 

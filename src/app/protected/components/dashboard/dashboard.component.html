@@ -1,24 +1,14 @@
 <div class="wrapper d-flex align-items-stretch">
   <!-- Sidebar -->
-  <nav id="sidebar" [class.active]="collapse">
+  <nav id="sidebar" class="overflow-auto" [class.active]="collapse">
 
-    <button type="button" id="sidebarCollapse" class="btn border-0" (click)="toggleSidebar()">
-      <span class="bars">
-        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="white" class="bi bi-list"
-          viewBox="0 0 16 16">
-          <path fill-rule="evenodd"
-            d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
-        </svg>
-      </span>
-    </button>
+    <mat-icon id="sidebar-collapse" class="menu" style="color: white;" (click)="toggleSidebar()">
+      reorder
+    </mat-icon>
 
     <!-- Profile -->
     <div class="profile mt-3">
-      <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-person"
-        viewBox="0 0 16 16">
-        <path
-          d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
-      </svg>
+      <mat-icon class="menu" style="color: white;">person_outline</mat-icon>
       <a [routerLink]="['/pages/dashboard/profile']" id="enlace"></a>
       <h3 class="name">{{currentUser.id_numero_Ultimatix}}</h3>
     </div>
@@ -28,15 +18,7 @@
       <!-- Assets -->
       <li class="active">
         <a [routerLink]="['/pages/dashboard/assets']">
-          <span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: white">
-              <path
-                d="M21 5c0-1.103-.897-2-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2V5zM5 19V5h14l.002 14H5z">
-              </path>
-              <path d="M7 7h1.998v2H7zm4 0h6v2h-6zm-4 4h1.998v2H7zm4 0h6v2h-6zm-4 4h1.998v2H7zm4 0h6v2h-6z">
-              </path>
-            </svg>
-          </span>
+          <span><mat-icon>ballot</mat-icon></span>
           Activos
         </a>
       </li>
@@ -44,9 +26,7 @@
       <!-- Teams -->
       <li *ngIf="profile?.rol === 'admin'">
         <a [routerLink]="['/pages/dashboard/teams']">
-          <span>
-            <mat-icon>group</mat-icon>
-          </span>
+          <span><mat-icon>group</mat-icon></span>
           Grupos de trabajo
         </a>
       </li>
@@ -54,37 +34,15 @@
       <!-- Tasks -->
       <li>
         <a [routerLink]="['/pages/dashboard/tasks']">
-          <span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: white">
-              <path
-                d="M19 4h-3V2h-2v2h-4V2H8v2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2zM5 20V7h14V6l.002 14H5z" />
-              <path d="M7 9h10v2H7zm0 4h5v2H7z" />
-            </svg>
-          </span>
+          <span><mat-icon>assignment_ind</mat-icon></span>
           Asignaciones
-        </a>
-      </li>
-
-      <!-- Forms -->
-      <li *ngIf="false">
-        <a [routerLink]="['/pages/dashboard/forms']">
-          <span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: white">
-              <path
-                d="M19 3H5c-1.103 0-2 .897-2 2v4h18V5c0-1.103-.897-2-2-2zM3 19c0 1.103.897 2 2 2h8V11H3v8zm12 2h4c1.103 0 2-.897 2-2v-8h-6v10z">
-              </path>
-            </svg>
-          </span>
-          Formularios
         </a>
       </li>
 
       <!-- Reports -->
       <li *ngIf="profile?.rol === 'admin'">
         <a [routerLink]="['/pages/dashboard/reports']">
-          <span>
-            <mat-icon>insert_drive_file</mat-icon>
-          </span>
+          <span><mat-icon>insert_drive_file</mat-icon></span>
           Reportes
         </a>
       </li>
@@ -92,9 +50,7 @@
       <!-- Settings -->
       <li *ngIf="profile?.rol === 'admin'">
         <a [routerLink]="['/pages/dashboard/settings']">
-          <span>
-            <mat-icon>settings</mat-icon>
-          </span>
+          <span><mat-icon>settings</mat-icon></span>
           Configuración
         </a>
       </li>
@@ -102,14 +58,7 @@
       <!-- Logout -->
       <li class="mt-1 pt-4">
         <a (click)="toLogin()" style="cursor: pointer;">
-          <span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: white">
-              <path d="M16 13v-2H7V8l-5 4 5 4v-3z"></path>
-              <path
-                d="M20 3h-9c-1.103 0-2 .897-2 2v4h2V5h9v14h-9v-4H9v4c0 1.103.897 2 2 2h9c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2z">
-              </path>
-            </svg>
-          </span>
+          <span><mat-icon>exit_to_app</mat-icon></span>
           Cerrar sesión
         </a>
       </li>

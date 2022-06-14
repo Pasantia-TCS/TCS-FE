@@ -41,8 +41,8 @@ export class RegisterComponent {
 
   get ultimatix() { return this.registerForm.get('ultimatix'); }
 
-  validField(field_name: string) {
-    return this.registerForm.controls[field_name].errors && this.registerForm.controls[field_name].touched;
+  validField(field: string) {
+    return this.registerForm.controls[field].errors && this.registerForm.controls[field].touched;
   }
 
   register() {
@@ -74,4 +74,9 @@ export class RegisterComponent {
         });
     }
   }
+
+  toLogin() {
+    this.router.navigateByUrl('/auth/login');
+  }
+
 }

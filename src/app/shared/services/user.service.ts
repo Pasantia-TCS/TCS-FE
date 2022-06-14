@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { User } from 'src/app/auth/interfaces/user';
 import { Profile } from 'src/app/protected/interfaces/profile';
 import { environment } from 'src/environments/environment';
+import {ProfileService} from "../../protected/services/profile.service";
 
 @Injectable({
   providedIn: 'root'
@@ -11,11 +12,16 @@ export class UserService {
 
   private baseUrl: string = environment.url;
   private currentUser!: User;
-  
-  constructor(private http: HttpClient) { }
+  private currentProfile!: Profile;
+
+  constructor(private http: HttpClient, private profileService: ProfileService) { }
 
   updateUser(currentUser: User) {
-    this.currentUser = { ...currentUser };
+    this.currentUser = currentUser;
+    this.profileService.getProfile(currentUser.id_numero_Ultimatix!)
+      .subscribe({
+        next: resp => this.currentProfile = resp
+      });
   }
 
   updateUserProfile(ultimatix: string, phone: string, email: string) {
@@ -33,7 +39,12 @@ export class UserService {
     return this.currentUser;
   }
 
+  getProfile(): Profile {
+    return this.currentProfile;
+  }
+
   getUltimatix() {
     return this.currentUser.id_numero_Ultimatix;
   }
+
 }

@@ -28,14 +28,8 @@ export class ProfileComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // Load user info
     this.currentUser = this.userService.getUserData();
-
-    // Load profile info
-    this.profileService.getProfile(this.currentUser.id_numero_Ultimatix!)
-      .subscribe({
-        next: resp => this.profile = resp
-      });
+    this.profile = this.userService.getProfile();
   }
 
   openUserInfo() {

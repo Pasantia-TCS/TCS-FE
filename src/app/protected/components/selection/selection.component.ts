@@ -26,10 +26,7 @@ export class SelectionComponent implements OnInit {
   ngOnInit(): void {
     this.currentUser = this.userService.getUserData();
     const ultimatix = this.userService.getUltimatix();
-
-    this.profileService.getProfile(ultimatix!).subscribe({
-      next: resp => this.profile = resp
-    });
+    this.profile = this.userService.getProfile();
   }
 
   toAssets() {
@@ -46,10 +43,6 @@ export class SelectionComponent implements OnInit {
 
   toReports() {
     this.router.navigateByUrl('/pages/dashboard/reports');
-  }
-
-  toForms() {
-    this.router.navigateByUrl('/pages/dashboard/forms');
   }
 
   toLogin() {

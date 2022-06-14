@@ -6,10 +6,10 @@
   <!-- Ultimatix -->
   <div class="mb-3">
     <input id="ultimatixLogin" formControlName="ultimatix" type="text"
-      class="form-control rounded-pill shadow-sm border-0 custom-input" placeholder="Ultimatix"
-      (keypress)="keyPressNumbers($event)" />
+           class="form-control rounded-pill custom-input" placeholder="Ultimatix"
+           (keypress)="keyPressNumbers($event)"/>
     <div class="form-text text-danger float-start"
-      *ngIf="(ultimatix?.invalid && ultimatix?.touched) || ultimatix?.dirty">
+         *ngIf="(ultimatix?.invalid && ultimatix?.touched) || ultimatix?.dirty">
       <span *ngIf="ultimatix?.errors?.['required']">
         Ingresa tu número de Ultimatix.
       </span>
@@ -20,15 +20,15 @@
   </div>
 
   <!-- Password -->
-  <div class="">
+  <div class="mb-0">
     <div class="input-group">
       <input id="passwordLogin" formControlName="password" [type]="showPwd ? 'text' : 'password'"
-        class="form-control pwd-input border-0" placeholder="Contraseña" />
-      <div class="input-group-text pwd-eye border-0" (click)="showPwd = !showPwd" (touchstart)="showPwd = !showPwd">
+             class="form-control pwd-input" placeholder="Contraseña"/>
+      <div class="input-group-text pwd-eye" (click)="showPwd = !showPwd" (touchstart)="showPwd = !showPwd">
         <mat-icon style="cursor: pointer;">remove_red_eye</mat-icon>
       </div>
     </div>
-    <span class="form-text text-danger float-start" *ngIf="valid_field('password')">
+    <span class="form-text text-danger float-start" *ngIf="validField('password')">
       Ingresa tu contraseña.
     </span>
   </div>
@@ -45,7 +45,7 @@
   <!-- Register -->
   <span>
     ¿No tienes una cuenta?
-    <a [routerLink]="['/auth/register']" class="custom-link">
+    <a (click)="toRegister()" class="custom-link">
       <strong>Regístrate</strong>
     </a>
   </span>
