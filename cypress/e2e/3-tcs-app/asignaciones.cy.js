@@ -4,20 +4,15 @@ Cypress.Commands.add('login', (username, password) => {
     cy.get('#passwordLogin').type(password)
     cy.get('#btnLogin').click()
     cy.get(':nth-child(3) > app-button > #undefined').click();
-    // cy.url().should('contain', '/pages')
     cy.wait(1000)
   });
 
-
-
-  
 describe('Test Pantalla Asignaciones', () => {
 
     beforeEach(() => {
       cy.login('1111111', 'P@ssw0rd')
     });
-  
-    
+
     it('Test 1: La ventana de Asignaciones es Accesible', () => {
       cy.get('.p-3 > #undefined').should("have.text","Asignación de equipos");
       cy.wait(2000)
@@ -48,8 +43,6 @@ describe('Test Pantalla Asignaciones', () => {
         cy.wait(2000)
       });
 
-      
-
       it('Test 4: Campos Obligatorios para Ingresar', () => {
         cy.get('app-button > #undefined').click();
         cy.get('#floatingOptions').select(0);
@@ -64,7 +57,6 @@ describe('Test Pantalla Asignaciones', () => {
         cy.get(':nth-child(2) > div.ng-star-inserted > .form-text').should("have.text"," * Seleccione una fecha válida. ");
         cy.wait(2000)
       });
-
 
       it('Test 5: Editar un registro', () => {
         cy.get(':nth-child(3) > :nth-child(1) > [title="Editar asignacion"] > .mat-button-wrapper > .mat-icon').click()
@@ -102,9 +94,7 @@ describe('Test Pantalla Asignaciones', () => {
         cy.get('.mat-dialog-actions > :nth-child(2)').click();
         cy.get('#swal2-title').should("have.text","Error");
         cy.get('.swal2-confirm').click();
-        //cy.get('.cdk-focused').click();
         cy.wait(2000)
       });
 
 });
-  
