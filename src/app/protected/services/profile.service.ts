@@ -17,6 +17,11 @@ export class ProfileService {
     return this.http.post<Profile>(url, { id_ultimatix: ultimatix });
   }
 
+  getProfiles() {
+    const url: string = `${this.baseUrl}/perfiles`;
+    return this.http.get<Profile[]>(url);
+  }
+
   getSkills() {
     const url: string = `${this.baseUrl}/habilidades`;
     return this.http.get<Skills[]>(url);

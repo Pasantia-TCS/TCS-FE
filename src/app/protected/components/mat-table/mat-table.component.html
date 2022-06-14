@@ -5,8 +5,47 @@
         {{column.header}}
       </th>
       <td mat-cell *matCellDef="let row">
-        {{column.cell(row)}}
-      </td>
+        <div *ngIf="column.header != 'Habilidades Técnicas' && column.header != 'Nivel habilidad técnica'
+                && column.header != 'Habilidades Funcionales' && column.header != 'Nivel habilidad funcional'
+                && column.header != 'Aplicaciones' && column.header != 'Nivel aplicaciones'">
+
+          {{column.cell(row)}}
+        </div>
+
+        <div *ngIf="column.header == 'Habilidades Técnicas' ">
+          <div *ngFor="let item of row.habilidades" style="word-wrap: break-word;">
+          {{item}}
+          </div>
+        </div>
+        <div *ngIf="column.header == 'Nivel habilidad técnica' ">
+          <div *ngFor="let item of row.nivel_habilidad" style="word-wrap: break-word;">
+          {{item}}
+          </div>
+        </div>
+
+        <div *ngIf="column.header == 'Habilidades Funcionales' ">
+          <div *ngFor="let item of row.habilidades_funcionales" style="word-wrap: break-word;">
+          {{item}}
+          </div>
+        </div>
+        <div *ngIf="column.header == 'Nivel habilidad funcional' ">
+          <div *ngFor="let item of row.nivel_habilidad_funcional" style="word-wrap: break-word;">
+          {{item}}
+          </div>
+        </div>
+
+        <div *ngIf="column.header == 'Aplicaciones' ">
+          <div *ngFor="let item of row.aplicaciones" style="word-wrap: break-word;">
+          {{item}}
+          </div>
+        </div>
+        <div *ngIf="column.header == 'Nivel aplicaciones' ">
+          <div *ngFor="let item of row.nivel_aplicaciones" style="word-wrap: break-word;">
+          {{item}}
+          </div>
+        </div>
+
+    </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>

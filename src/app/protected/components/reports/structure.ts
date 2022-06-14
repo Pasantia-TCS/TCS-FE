@@ -1,6 +1,7 @@
 import { Asset } from "../../interfaces/activo";
 import { Assignment } from "../../interfaces/asignacion";
 import { Team } from "../../interfaces/equipo";
+import { Profile } from "../../interfaces/profile";
 
 export const assetColumns = [
   {
@@ -114,4 +115,47 @@ export const assignmentColumns = [
     header: 'Estado',
     cell: (element: Assignment) => element.estado ? 'Vigente' : 'No vigente',
   }
+];
+
+export const profileColumns = [
+  {
+    columnDef: 'id_ultimatix',
+    header: 'Ultimatix',
+    cell: (element: Profile) => `${element.id_ultimatix}`,
+  },
+  {
+    columnDef: 'nombres_completos',
+    header: 'Nombre',
+    cell: (element: Profile) => `${element.nombres_completos}`,
+  },
+  {
+    columnDef: 'habilidades',
+    header: 'Habilidades Técnicas',
+    cell: (element: Profile) => `${element.habilidades}`,
+  },
+  {
+    columnDef: 'nivel_habilidad',
+    header: 'Nivel habilidad técnica',
+    cell: (element: Profile) => `${element.nivel_habilidad}`,
+  },
+  {
+    columnDef: 'habilidades_funcionales',
+    header: 'Habilidades Funcionales',
+    cell: (element: Profile) => `${element.habilidades_funcionales}`,
+  },
+  {
+    columnDef: 'nivel_habilidad_funcional',
+    header: 'Nivel habilidad funcional',
+    cell: (element: Profile) => `${element.nivel_habilidad_funcional}`,
+  },
+  {
+    columnDef: 'aplicaciones',
+    header: 'Aplicaciones',
+    cell: (element: Profile) => `${element.aplicaciones}`,
+  },
+  {
+    columnDef: 'nivel_aplicaciones',
+    header: 'Nivel aplicaciones',
+    cell: (element: Profile) => `${element.nivel_aplicaciones}`,
+  },
 ];
