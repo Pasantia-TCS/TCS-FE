@@ -25,7 +25,6 @@ export class SelectionComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUser = this.userService.getUserData();
-    const ultimatix = this.userService.getUltimatix();
     this.profile = this.userService.getProfile();
   }
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import Swal from 'sweetalert2';
 import { Profile, Skills } from '../../interfaces/profile';
@@ -11,35 +11,30 @@ import { Building } from '../../interfaces/edificio';
 import { MatDialog } from '@angular/material/dialog';
 import { AddCatalogComponent } from '../add-catalog/add-catalog.component';
 import { AddCatalogBuildingComponent } from '../add-catalog-building/add-catalog-building.component';
+import {buildingColumns, structure} from "./mat-table-structure";
 
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.css']
 })
-
 export class SettingsComponent implements OnInit {
 
   displayedColumns: string[] = ['actions', 'id_ultimatix', 'nombres_completos', 'rol', 'estado'];
   dataSource!: MatTableDataSource<Profile>;
+  skillColumns = structure('Habilidades');
+  appColumns = structure('Aplicaciones');
+  assetColumns = structure('Activos');
+  areaColumns = structure('Áreas');
+  buildingColumns = buildingColumns;
 
   //Catalogos
-  displayedCatalogColumns: string[] = ['actions', 'nombre'];
   skillsData!: MatTableDataSource<Skills>;
   skillsFunc!: MatTableDataSource<Skills>;
   skillsApp!: MatTableDataSource<Skills>;
-
   assetsData!: MatTableDataSource<AssetType>;
-
   areaData!: MatTableDataSource<AssetType>;
-
-  displayedBuildingColumns: string[] = ['actions', 'nombre', 'piso'];
   buildingData!: MatTableDataSource<Building>;
-
-
-  filterForm: FormGroup = this.fb.group({
-    searchItem: ['', Validators.required],
-  });
 
   constructor(
     private settingsService: SettingsService,
@@ -63,16 +58,14 @@ export class SettingsComponent implements OnInit {
     this.settingsService.getUsers()
       .subscribe({
         next: resp => this.dataSource = new MatTableDataSource(resp)
-      })
+      });
   }
 
   // Load skills list
   loadSkills(){
     this.profileService.getSkills()
       .subscribe({
-        next: resp => {
-          this.skillsData = new MatTableDataSource(resp)
-        }
+        next: resp => this.skillsData = new MatTableDataSource(resp)
       });
   }
 
@@ -80,9 +73,7 @@ export class SettingsComponent implements OnInit {
   loadSkillsFunctional(){
     this.profileService.getFuncSkills()
       .subscribe({
-        next: resp => {
-          this.skillsFunc = new MatTableDataSource(resp)
-        }
+        next: resp => this.skillsFunc = new MatTableDataSource(resp)
       });
   }
 
@@ -90,9 +81,7 @@ export class SettingsComponent implements OnInit {
   loadApplication(){
     this.profileService.getApps()
       .subscribe({
-        next: resp => {
-          this.skillsApp = new MatTableDataSource(resp)
-        }
+        next: resp => this.skillsApp = new MatTableDataSource(resp)
       });
   }
 
@@ -100,9 +89,7 @@ export class SettingsComponent implements OnInit {
   loadAssets(){
     this.activosService.getTypes()
       .subscribe({
-        next: resp => {
-          this.assetsData = new MatTableDataSource(resp)
-        }
+        next: resp => this.assetsData = new MatTableDataSource(resp)
       });
   }
 
@@ -110,9 +97,7 @@ export class SettingsComponent implements OnInit {
   loadAreas(){
     this.activosService.getAreas()
       .subscribe({
-        next: resp => {
-          this.areaData = new MatTableDataSource(resp)
-        }
+        next: resp => this.areaData = new MatTableDataSource(resp)
       });
   }
 
@@ -120,9 +105,7 @@ export class SettingsComponent implements OnInit {
   loadBuildings(){
     this.activosService.getBuildings()
       .subscribe({
-        next: resp => {
-          this.buildingData = new MatTableDataSource(resp)
-        }
+        next: resp => this.buildingData = new MatTableDataSource(resp)
       });
   }
 
@@ -173,24 +156,21 @@ export class SettingsComponent implements OnInit {
   }
 
   token(id_ultimatix: number) {
-   
     this.settingsService.token(id_ultimatix)
       .subscribe({
         next: resp => {
-          this.loadUsers();         
+          this.loadUsers();
           Swal.fire('¡Envie este token al usuario!', resp.token, 'warning');
         },
-        error: (err: { error: { mensaje: string | undefined; }; }) => Swal.fire('Error', err.error.mensaje, 'error')
+        error: err => Swal.fire('Error', err.error.mensaje, 'error')
       });
-      
-    
   }
 
   openAddSkill(){
     this.dialog.open(AddCatalogComponent, { data: { item: 'habilidad' } } )
       .afterClosed()
       .subscribe({
-        next: resp => this.loadSkills()
+        next: _resp => this.loadSkills()
       });
   }
 
@@ -198,7 +178,7 @@ export class SettingsComponent implements OnInit {
     this.dialog.open(AddCatalogComponent, { data: { item: 'funcional' } } )
       .afterClosed()
       .subscribe({
-        next: resp => this.loadSkillsFunctional()
+        next: _resp => this.loadSkillsFunctional()
       });
   }
 
@@ -206,7 +186,7 @@ export class SettingsComponent implements OnInit {
     this.dialog.open(AddCatalogComponent, { data: { item: 'aplicacion' } } )
       .afterClosed()
       .subscribe({
-        next: resp => this.loadApplication()
+        next: _resp => this.loadApplication()
       });
   }
 
@@ -214,7 +194,7 @@ export class SettingsComponent implements OnInit {
     this.dialog.open(AddCatalogComponent, { data: { item: 'activo' } } )
       .afterClosed()
       .subscribe({
-        next: resp => this.loadAssets()
+        next: _resp => this.loadAssets()
       });
   }
 
@@ -222,7 +202,7 @@ export class SettingsComponent implements OnInit {
     this.dialog.open(AddCatalogComponent, { data: { item: 'área' } } )
       .afterClosed()
       .subscribe({
-        next: resp => this.loadAreas()
+        next: _resp => this.loadAreas()
       });
   }
 
@@ -230,7 +210,7 @@ export class SettingsComponent implements OnInit {
     this.dialog.open(AddCatalogBuildingComponent)
       .afterClosed()
       .subscribe({
-        next: resp => this.loadBuildings()
+        next: _resp => this.loadBuildings()
       });
   }
 

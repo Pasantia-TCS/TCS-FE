@@ -39,6 +39,7 @@ import { AddCatalogComponent } from './components/add-catalog/add-catalog.compon
 import { AddCatalogBuildingComponent } from './components/add-catalog-building/add-catalog-building.component';
 import { EditFuncSkillsComponent } from './components/edit-func-skills/edit-func-skills.component';
 import { EditAppsComponent } from './components/edit-apps/edit-apps.component';
+import { MatIconTableComponent } from './components/mat-icon-table/mat-icon-table.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { EditAppsComponent } from './components/edit-apps/edit-apps.component';
     AddCatalogBuildingComponent,
     EditFuncSkillsComponent,
     EditAppsComponent,
+    MatIconTableComponent,
   ],
   imports: [
     CommonModule,

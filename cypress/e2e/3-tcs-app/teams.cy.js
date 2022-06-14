@@ -6,7 +6,6 @@ Cypress.Commands.add('login', (username, password) => {
   cy.wait(500)
 })
 
-
 describe('Ingreso a la pantalla de grupos de trabajo desde un usuario administrador', () => {
 
   // Ingreso con usuario admin
@@ -26,7 +25,6 @@ describe('Ingreso a la pantalla de grupos de trabajo desde un usuario administra
 
 });
 
-
 describe('Intento de ingreso a la pantalla de grupos de trabajo desde un usuario no administrador', () => {
 
   // Ingreso con usuario no admin
@@ -45,7 +43,6 @@ describe('Intento de ingreso a la pantalla de grupos de trabajo desde un usuario
   });
 
 });
-
 
 describe('Agregar nuevo grupo de trabajo', () => {
 
@@ -128,7 +125,6 @@ describe('Agregar nuevo grupo de trabajo', () => {
 
 });
 
-
 describe('Intentar agregar un nuevo grupo de trabajo duplicado', () => {
 
   // Ingreso con usuario admin
@@ -209,7 +205,6 @@ describe('Intentar agregar un nuevo grupo de trabajo duplicado', () => {
   });
 });
 
-
 describe('Editar un grupo de trabajo', () => {
 
   // Ingreso con usuario admin
@@ -243,7 +238,6 @@ describe('Editar un grupo de trabajo', () => {
   });
 });
 
-
 describe('Eliminar un grupo de trabajo', () => {
 
   // Ingreso con usuario admin
@@ -270,7 +264,6 @@ describe('Eliminar un grupo de trabajo', () => {
       });
   });
 });
-
 
 describe('Restablecer un grupo de trabajo', () => {
 
