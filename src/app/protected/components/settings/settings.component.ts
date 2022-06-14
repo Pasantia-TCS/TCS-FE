@@ -11,6 +11,7 @@ import { Building } from '../../interfaces/edificio';
 import { MatDialog } from '@angular/material/dialog';
 import { AddCatalogComponent } from '../add-catalog/add-catalog.component';
 import { AddCatalogBuildingComponent } from '../add-catalog-building/add-catalog-building.component';
+import {buildingColumns, structure} from "./mat-table-structure";
 
 @Component({
   selector: 'app-settings',
@@ -21,15 +22,18 @@ export class SettingsComponent implements OnInit {
 
   displayedColumns: string[] = ['actions', 'id_ultimatix', 'nombres_completos', 'rol', 'estado'];
   dataSource!: MatTableDataSource<Profile>;
+  skillColumns = structure('Habilidades');
+  appColumns = structure('Aplicaciones');
+  assetColumns = structure('Activos');
+  areaColumns = structure('Áreas');
+  buildingColumns = buildingColumns;
 
   //Catalogos
-  displayedCatalogColumns: string[] = ['actions', 'nombre'];
   skillsData!: MatTableDataSource<Skills>;
   skillsFunc!: MatTableDataSource<Skills>;
   skillsApp!: MatTableDataSource<Skills>;
   assetsData!: MatTableDataSource<AssetType>;
   areaData!: MatTableDataSource<AssetType>;
-  displayedBuildingColumns: string[] = ['actions', 'nombre', 'piso'];
   buildingData!: MatTableDataSource<Building>;
 
   constructor(
