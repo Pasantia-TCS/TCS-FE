@@ -11,10 +11,10 @@ describe('Pantalla perfil de usuario', () => {
   const user = {
     fullName: 'Bryan Simbaña',
     ultimatix: '2254677',
-    rol: 'Usuario',
-    email: 'bryanp@tcs.com',
-    phone: '+593 98 493 0849',
-    netUser: '@tcsbryan',
+    rol: 'Administrador',
+    email: 'bryan@tcs.com',
+    phone: '+593 98 493 0944',
+    netUser: '@bryan',
     asignation: ' 0 ',
   }
 
@@ -24,7 +24,6 @@ describe('Pantalla perfil de usuario', () => {
 
   it('Test 1: Acceder al perfil de usuario', () => {
     cy.visit('http://localhost:4200/pages/dashboard/profile')
-    cy.wait(2000)
   });
 
   it('Test 2: Se visualiza la información del usuario', () => {
@@ -37,10 +36,9 @@ describe('Pantalla perfil de usuario', () => {
     cy.get('#phone-profile').should('have.text', user.phone)
     cy.get('#user-profile').should('have.text', user.netUser)
     cy.get('#asignation-profile').should('have.text', user.asignation)
-    cy.wait(2000)
   });
 
-  it('Test 3: Los siguientes campos no se pueden editar: Nombres, Ultimatix, Total de asignación.', () => {
+  it('Test 3: Los siguientes campos no se pueden editar: Nombre completo, Ultimatix, Total de asignación.', () => {
     cy.visit('http://localhost:4200/pages/dashboard/profile')
     cy.get('#edit-user-profile').click()
     cy.get('#floatingFullname').should('be.disabled')
@@ -67,74 +65,74 @@ describe('Pantalla perfil de usuario', () => {
     cy.wait(2000)
   });
 
-  it('Test 5: Actualizar la información sobre mí', () => {
-    cy.visit('http://localhost:4200/pages/dashboard/profile')
-    cy.wait(2000)
-    cy.get('#edit-about').click()
-    cy.get('#textAreaAboutMe').type('{selectall}{backspace}')
-    cy.get('#textAreaAboutMe').type('Esto es una prueba.')
-    cy.get('#save-about').click()
-    cy.get('#swal2-title').should('have.text', '¡Éxito!')
-    cy.wait(1000)
-    cy.get('.swal2-confirm').click()
-    cy.get('#content').scrollTo('center')
-    cy.wait(2000)
-  });
-
-  it('Test 6: Actualizar las habilidades técnicas del usuario', () => {
-    cy.visit('http://localhost:4200/pages/dashboard/profile')
-    cy.wait(2000)
-    cy.get('#edit-tech-skills').click()
-    cy.get('#tech-skills').select('AWS')
-    cy.get('#tech-levels').select('Medio')
-    cy.get('#add-tech-skill').click()
-    cy.get('#tech-skills').select('Docker')
-    cy.get('#tech-levels').select('Medio')
-    cy.get('#add-tech-skill').click()
-    cy.wait(2000)
-    cy.get('#delete-tech-skill-4').click()
-    cy.get('#save-tech-skill').click()
-    cy.get('#swal2-title').should('have.text', '¡Éxito!')
-    cy.wait(1000)
-    cy.get('.swal2-confirm').click()
-    cy.get('#content').scrollTo('center')
-    cy.wait(2000)
-  });
-
-  it('Test 7: Actualizar las habilidades funcionales del usuario', () => {
-    cy.visit('http://localhost:4200/pages/dashboard/profile')
-    cy.get('#content').scrollTo('bottom')
-    cy.wait(2000)
-    cy.get('#edit-func-skills').click()
-    cy.get('#func-skills').select('Cartera')
-    cy.get('#func-levels').select('Bajo')
-    cy.get('#add-func-skill').click()
-    cy.wait(1000)
-    cy.get('#delete-func-skill-0').click()
-    cy.wait(1000)
-    cy.get('#save-func-skill').click()
-    cy.get('#swal2-title').should('have.text', '¡Éxito!')
-    cy.wait(1000)
-    cy.get('.swal2-confirm').click()
-    cy.wait(1000)
-    cy.get('#content').scrollTo('bottom')
-    cy.wait(2000)
-  });
-
-  it('Test 8: Actualizar las aplicaciones', () => {
-    cy.visit('http://localhost:4200/pages/dashboard/profile')
-    cy.get('#content').scrollTo('bottom')
-    cy.wait(2000)
-    cy.get('#edit-apps').click()
-    cy.get('#apps').select('Spring Tools')
-    cy.get('#app-levels').select('Bajo')
-    cy.get('#add-app').click()
-    cy.wait(1000)
-    cy.get('#save-apps').click()
-    cy.get('#swal2-title').should('have.text', '¡Éxito!')
-    cy.wait(1000)
-    cy.get('.swal2-confirm').click()
-    cy.wait(2000)
-  });
+  // it('Test 5: Actualizar la información sobre mí', () => {
+  //   cy.visit('http://localhost:4200/pages/dashboard/profile')
+  //   cy.wait(2000)
+  //   cy.get('#edit-about').click()
+  //   cy.get('#textAreaAboutMe').type('{selectall}{backspace}')
+  //   cy.get('#textAreaAboutMe').type('Esto es una prueba.')
+  //   cy.get('#save-about').click()
+  //   cy.get('#swal2-title').should('have.text', '¡Éxito!')
+  //   cy.wait(1000)
+  //   cy.get('.swal2-confirm').click()
+  //   cy.get('#content').scrollTo('center')
+  //   cy.wait(2000)
+  // });
+  //
+  // it('Test 6: Actualizar las habilidades técnicas del usuario', () => {
+  //   cy.visit('http://localhost:4200/pages/dashboard/profile')
+  //   cy.wait(2000)
+  //   cy.get('#edit-tech-skills').click()
+  //   cy.get('#tech-skills').select('AWS')
+  //   cy.get('#tech-levels').select('Medio')
+  //   cy.get('#add-tech-skill').click()
+  //   cy.get('#tech-skills').select('Docker')
+  //   cy.get('#tech-levels').select('Medio')
+  //   cy.get('#add-tech-skill').click()
+  //   cy.wait(2000)
+  //   cy.get('#delete-tech-skill-4').click()
+  //   cy.get('#save-tech-skill').click()
+  //   cy.get('#swal2-title').should('have.text', '¡Éxito!')
+  //   cy.wait(1000)
+  //   cy.get('.swal2-confirm').click()
+  //   cy.get('#content').scrollTo('center')
+  //   cy.wait(2000)
+  // });
+  //
+  // it('Test 7: Actualizar las habilidades funcionales del usuario', () => {
+  //   cy.visit('http://localhost:4200/pages/dashboard/profile')
+  //   cy.get('#content').scrollTo('bottom')
+  //   cy.wait(2000)
+  //   cy.get('#edit-func-skills').click()
+  //   cy.get('#func-skills').select('Cartera')
+  //   cy.get('#func-levels').select('Bajo')
+  //   cy.get('#add-func-skill').click()
+  //   cy.wait(1000)
+  //   cy.get('#delete-func-skill-0').click()
+  //   cy.wait(1000)
+  //   cy.get('#save-func-skill').click()
+  //   cy.get('#swal2-title').should('have.text', '¡Éxito!')
+  //   cy.wait(1000)
+  //   cy.get('.swal2-confirm').click()
+  //   cy.wait(1000)
+  //   cy.get('#content').scrollTo('bottom')
+  //   cy.wait(2000)
+  // });
+  //
+  // it('Test 8: Actualizar las aplicaciones', () => {
+  //   cy.visit('http://localhost:4200/pages/dashboard/profile')
+  //   cy.get('#content').scrollTo('bottom')
+  //   cy.wait(2000)
+  //   cy.get('#edit-apps').click()
+  //   cy.get('#apps').select('Spring Tools')
+  //   cy.get('#app-levels').select('Bajo')
+  //   cy.get('#add-app').click()
+  //   cy.wait(1000)
+  //   cy.get('#save-apps').click()
+  //   cy.get('#swal2-title').should('have.text', '¡Éxito!')
+  //   cy.wait(1000)
+  //   cy.get('.swal2-confirm').click()
+  //   cy.wait(2000)
+  // });
 
 });
