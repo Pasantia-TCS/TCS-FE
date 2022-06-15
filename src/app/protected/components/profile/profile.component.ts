@@ -3,7 +3,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { User } from 'src/app/auth/interfaces/user';
 import { UserService } from 'src/app/shared/services/user.service';
 import { Profile } from '../../interfaces/profile';
-import { ProfileService } from '../../services/profile.service';
 import { EditAboutComponent } from '../edit-about/edit-about.component';
 import { EditProfileComponent } from '../edit-profile/edit-profile.component';
 import { EditSkillsComponent } from '../edit-skills/edit-skills.component';
@@ -22,14 +21,15 @@ export class ProfileComponent implements OnInit {
   profile!: Profile;
 
   constructor(
-    private profileService: ProfileService,
     private userService: UserService,
     private dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
     this.currentUser = this.userService.getUserData();
-    this.profile = this.userService.getProfile();
+    setTimeout(() => {
+      this.profile = this.userService.getProfile();
+    }, 150);
   }
 
   openUserInfo() {

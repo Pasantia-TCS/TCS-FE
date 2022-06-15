@@ -4,7 +4,6 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 import { User } from 'src/app/auth/interfaces/user';
 import { UserService } from 'src/app/shared/services/user.service';
 import { Profile } from '../../interfaces/profile';
-import { ProfileService } from '../../services/profile.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,7 +17,6 @@ export class DashboardComponent implements OnInit {
   profile!: Profile;
 
   constructor(
-    private profileService: ProfileService,
     private userService: UserService,
     private authService: AuthService,
     private router: Router
@@ -26,7 +24,9 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUser = this.userService.getUserData();
-    this.profile = this.userService.getProfile();
+    setTimeout(() => {
+      this.profile = this.userService.getProfile();
+    }, 200);
   }
 
   toggleSidebar() {

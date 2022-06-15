@@ -1,31 +1,36 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { User } from 'src/app/auth/interfaces/user';
 import { UserService } from 'src/app/shared/services/user.service';
 import { Profile } from '../../interfaces/profile';
-import { ProfileService } from '../../services/profile.service';
 
 @Component({
   selector: 'app-selection',
   templateUrl: './selection.component.html',
   styles: []
 })
-export class SelectionComponent implements OnInit {
+export class SelectionComponent implements OnInit, OnChanges {
 
   currentUser!: User;
   profile!: Profile;
+  rol!: string;
 
   constructor(
     private router: Router,
-    private profileService: ProfileService,
     private userService: UserService,
     private authService: AuthService
   ) { }
 
+  ngOnChanges(): void {
+    this.rol = this.profile.rol!;
+  }
+
   ngOnInit(): void {
     this.currentUser = this.userService.getUserData();
-    this.profile = this.userService.getProfile();
+    setTimeout(() => {
+      this.profile = this.userService.getProfile();
+    }, 100);
   }
 
   toAssets() {

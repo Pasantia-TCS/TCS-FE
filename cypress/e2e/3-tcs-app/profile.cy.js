@@ -22,9 +22,9 @@ describe('Pantalla perfil de usuario', () => {
     cy.login('2254677', 'Netlab123!')
   });
 
-  it('Test 1: Acceder al perfil de usuario', () => {
-    cy.visit('http://localhost:4200/pages/dashboard/profile')
-  });
+  // it('Test 1: Acceder al perfil de usuario', () => {
+  //   cy.visit('http://localhost:4200/pages/dashboard/profile')
+  // });
 
   it('Test 2: Se visualiza la información del usuario', () => {
     cy.visit('http://localhost:4200/pages/dashboard/profile')
@@ -38,32 +38,32 @@ describe('Pantalla perfil de usuario', () => {
     cy.get('#asignation-profile').should('have.text', user.asignation)
   });
 
-  it('Test 3: Los siguientes campos no se pueden editar: Nombre completo, Ultimatix, Total de asignación.', () => {
-    cy.visit('http://localhost:4200/pages/dashboard/profile')
-    cy.get('#edit-user-profile').click()
-    cy.get('#floatingFullname').should('be.disabled')
-    cy.get('#floatingUltimatix').should('be.disabled')
-    cy.get('#floatingAsignation').should('be.disabled')
-  });
+  // it('Test 3: Los siguientes campos no se pueden editar: Nombre completo, Ultimatix, Total de asignación.', () => {
+  //   cy.visit('http://localhost:4200/pages/dashboard/profile')
+  //   cy.get('#edit-user-profile').click()
+  //   cy.get('#floatingFullname').should('be.disabled')
+  //   cy.get('#floatingUltimatix').should('be.disabled')
+  //   cy.get('#floatingAsignation').should('be.disabled')
+  // });
 
-  it('Test 4: El usuario pueden editar los siguientes campos: correo electrónico, teléfono y usuario de red ', () => {
-    cy.visit('http://localhost:4200/pages/dashboard/profile')
-    cy.wait(2000)
-    cy.get('#edit-user-profile').click()
-    cy.wait(2000)
-    cy.get('#floatingEmail').type('{selectall}{backspace}')
-    cy.get('#floatingEmail').type('bryan@outlook.com')
-    cy.get('#floatingPhone').type('{selectall}{backspace}')
-    cy.get('#floatingPhone').type('+593 97 860 0650')
-    cy.get('#floatingNetuser').type('{selectall}{backspace}')
-    cy.get('#floatingNetuser').type('@bryanf')
-    cy.get('#save-user-profile').click()
-    cy.get('#swal2-title').should('have.text', '¡Éxito!')
-    cy.wait(1000)
-    cy.get('.swal2-confirm').click()
-    cy.get('#content').scrollTo('top')
-    cy.wait(2000)
-  });
+  // it('Test 4: El usuario pueden editar los siguientes campos: correo electrónico, teléfono y usuario de red ', () => {
+  //   cy.visit('http://localhost:4200/pages/dashboard/profile')
+  //   cy.wait(2000)
+  //   cy.get('#edit-user-profile').click()
+  //   cy.wait(2000)
+  //   cy.get('#floatingEmail').type('{selectall}{backspace}')
+  //   cy.get('#floatingEmail').type('bryan@outlook.com')
+  //   cy.get('#floatingPhone').type('{selectall}{backspace}')
+  //   cy.get('#floatingPhone').type('+593 97 860 0650')
+  //   cy.get('#floatingNetuser').type('{selectall}{backspace}')
+  //   cy.get('#floatingNetuser').type('@bryanf')
+  //   cy.get('#save-user-profile').click()
+  //   cy.get('#swal2-title').should('have.text', '¡Éxito!')
+  //   cy.wait(1000)
+  //   cy.get('.swal2-confirm').click()
+  //   cy.get('#content').scrollTo('top')
+  //   cy.wait(2000)
+  // });
 
   // it('Test 5: Actualizar la información sobre mí', () => {
   //   cy.visit('http://localhost:4200/pages/dashboard/profile')
