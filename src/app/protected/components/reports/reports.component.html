@@ -36,4 +36,15 @@
     </button>
     <app-mat-table [columns]="assignmentColumns" [dataSource]="assignments"></app-mat-table>
   </section>
+
+  <section class="py-3">
+    <app-subtitle title="Habilidades"></app-subtitle>
+    <app-filter [data]="profiles"></app-filter>
+    <button mat-raised-button color="primary" class="float-end">
+      <a href="{{ baseUrl + 'reportes/habilidades-reportes'}}" style="color:white; text-decoration: none">
+        Generar reporte
+      </a>
+    </button>
+    <app-mat-table [columns]="profileColumns" [dataSource]="profiles"></app-mat-table>
+  </section>
 </div>
