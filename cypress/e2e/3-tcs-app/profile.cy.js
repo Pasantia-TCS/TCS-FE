@@ -26,20 +26,21 @@ describe('Pantalla perfil de usuario', () => {
   //   cy.visit('http://localhost:4200/pages/dashboard/profile')
   // });
 
-  it('Test 2: Se visualiza la información del usuario', () => {
-    cy.visit('http://localhost:4200/pages/dashboard/profile')
-    cy.get('#profileTitle').should('have.text', 'PERFIL DE USUARIO')
-    cy.get('#full-name').should('have.text', user.fullName)
-    cy.get('#ultimatix-profile').should('have.text', user.ultimatix)
-    cy.get('#rol-profile').should('have.text', user.rol)
-    cy.get('#email-profile').should('have.text', user.email)
-    cy.get('#phone-profile').should('have.text', user.phone)
-    cy.get('#user-profile').should('have.text', user.netUser)
-    cy.get('#asignation-profile').should('have.text', user.asignation)
-  });
+  // it('Test 2: Se visualiza la información del usuario', () => {
+  //   cy.visit('http://localhost:4200/pages/dashboard/profile')
+  //   cy.get('#profileTitle').should('have.text', 'PERFIL DE USUARIO')
+  //   cy.get('#full-name').should('have.text', user.fullName)
+  //   cy.get('#ultimatix-profile').should('have.text', user.ultimatix)
+  //   cy.get('#rol-profile').should('have.text', user.rol)
+  //   cy.get('#email-profile').should('have.text', user.email)
+  //   cy.get('#phone-profile').should('have.text', user.phone)
+  //   cy.get('#user-profile').should('have.text', user.netUser)
+  //   cy.get('#asignation-profile').should('have.text', user.asignation)
+  // });
 
   // it('Test 3: Los siguientes campos no se pueden editar: Nombre completo, Ultimatix, Total de asignación.', () => {
   //   cy.visit('http://localhost:4200/pages/dashboard/profile')
+  //   cy.wait(2000)
   //   cy.get('#edit-user-profile').click()
   //   cy.get('#floatingFullname').should('be.disabled')
   //   cy.get('#floatingUltimatix').should('be.disabled')
@@ -50,13 +51,12 @@ describe('Pantalla perfil de usuario', () => {
   //   cy.visit('http://localhost:4200/pages/dashboard/profile')
   //   cy.wait(2000)
   //   cy.get('#edit-user-profile').click()
-  //   cy.wait(2000)
   //   cy.get('#floatingEmail').type('{selectall}{backspace}')
-  //   cy.get('#floatingEmail').type('bryan@outlook.com')
+  //   cy.get('#floatingEmail').type('bryan@tcs.com')
   //   cy.get('#floatingPhone').type('{selectall}{backspace}')
-  //   cy.get('#floatingPhone').type('+593 97 860 0650')
+  //   cy.get('#floatingPhone').type('+593 98 493 0944')
   //   cy.get('#floatingNetuser').type('{selectall}{backspace}')
-  //   cy.get('#floatingNetuser').type('@bryanf')
+  //   cy.get('#floatingNetuser').type('@bryan')
   //   cy.get('#save-user-profile').click()
   //   cy.get('#swal2-title').should('have.text', '¡Éxito!')
   //   cy.wait(1000)
@@ -78,8 +78,8 @@ describe('Pantalla perfil de usuario', () => {
   //   cy.get('#content').scrollTo('center')
   //   cy.wait(2000)
   // });
-  //
-  // it('Test 6: Actualizar las habilidades técnicas del usuario', () => {
+
+  // it('Test 6: Añadir nuevas habilidades técnicas al usuario vigente', () => {
   //   cy.visit('http://localhost:4200/pages/dashboard/profile')
   //   cy.wait(2000)
   //   cy.get('#edit-tech-skills').click()
