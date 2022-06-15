@@ -41,6 +41,7 @@ export class ReportsComponent implements OnInit {
     this.loadAssets();
     this.loadTeams();
     this.loadAssignments();
+    this.loadProfiles();
   }
 
   loadAssets() {
