@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  url: 'https://back-end-tcs.azurewebsites.net',
+  url: 'https://mid-tcs.azurewebsites.net',
 };

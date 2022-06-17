@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  url: 'http://localhost:8081',
+  url: 'https://mid-tcs.azurewebsites.net',
 };
 
 /*
