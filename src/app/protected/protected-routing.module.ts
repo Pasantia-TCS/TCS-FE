@@ -9,6 +9,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { TeamsComponent } from './components/teams/teams.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { ReportsComponent } from './components/reports/reports.component';
+import { CheckRolGuard } from './guards/check-rol.guard';
 
 const routes: Routes = [
   {
