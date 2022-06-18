@@ -5,6 +5,7 @@ import { User } from 'src/app/auth/interfaces/user';
 import { UserService } from 'src/app/shared/services/user.service';
 import Swal from 'sweetalert2';
 import { AuthService } from '../../services/auth.service';
+import { ultimatixPattern } from '../../validators/validations';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,7 @@ export class LoginComponent {
   showPwd: boolean = false;
 
   loginForm: FormGroup = this.fb.group({
-    ultimatix: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
+    ultimatix: ['', [Validators.required, Validators.minLength(7), Validators.pattern(ultimatixPattern)]],
     password: ['', Validators.required]
   });
 

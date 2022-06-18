@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { AuthService } from '../../services/auth.service';
+import { passwordPattern, ultimatixPattern } from '../../validators/validations';
 
 @Component({
   selector: 'app-recover',
@@ -14,11 +15,8 @@ export class RecoverComponent {
   showPwd: boolean = false;
 
   recoverForm: FormGroup = this.fb.group({
-    ultimatix: ['', Validators.required],
-    password: ['', [
-      Validators.required,
-      Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*]).{8,}$')]
-    ],
+    ultimatix: ['', [Validators.required, Validators.minLength(7), Validators.pattern(ultimatixPattern)]],
+    password: ['', [Validators.required, Validators.pattern(passwordPattern)]],
     securityCode: ['', Validators.required]
   });
 
@@ -61,6 +59,17 @@ export class RecoverComponent {
 
   toLogin() {
     this.router.navigateByUrl('/');
+  }
+
+  keyPressNumbers(event: any) {
+    const charCode = (event.which) ? event.which : event.keyCode;
+
+    if (charCode < 48 || charCode > 57) {
+      event.preventDefault();
+      return false;
+    } else {
+      return true;
+    }
   }
 
 }

@@ -13,7 +13,7 @@
       <span *ngIf="ultimatix?.errors?.['required']">
         Ingresa tu número de Ultimatix.
       </span>
-      <span *ngIf="ultimatix?.errors?.['pattern']">
+      <span *ngIf="ultimatix?.errors?.['minlength'] || ultimatix?.errors?.['pattern']">
         Ingresa un número de Ultimatix válido.
       </span>
     </div>

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { CountryISO, PhoneNumberFormat, SearchCountryField } from 'ngx-intl-tel-input';
 import Swal from 'sweetalert2';
 import { AuthService } from '../../services/auth.service';
+import { emailPattern, passwordPattern, ultimatixPattern } from '../../validators/validations';
 
 @Component({
   selector: 'app-register',
@@ -22,9 +23,9 @@ export class RegisterComponent {
     name: ['', Validators.required],
     lastname: ['', Validators.required],
     phone: ['', Validators.required],
-    email: ['', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
-    ultimatix: ['', [Validators.required, Validators.minLength(7)]],
-    password: ['', [Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*]).{8,}$')]]
+    email: ['', [Validators.required, Validators.pattern(emailPattern)]],
+    ultimatix: ['', [Validators.required, Validators.minLength(7), Validators.pattern(ultimatixPattern)]],
+    password: ['', [Validators.required, Validators.pattern(passwordPattern)]]
   });
 
   constructor(

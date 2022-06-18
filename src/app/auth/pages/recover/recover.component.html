@@ -6,13 +6,13 @@
 
   <div class="col mb-3">
     <input type="text" class="form-control shadow-sm custom-input" placeholder="Ultimatix"
-           formControlName="ultimatix"/>
+           formControlName="ultimatix" (keypress)="keyPressNumbers($event)"/>
     <div class="form-text text-danger float-start"
          *ngIf="(ultimatix?.invalid && ultimatix?.touched) || ultimatix?.dirty">
       <span *ngIf="ultimatix?.errors?.['required']">
         Ingresa tu número de Ultimatix.
       </span>
-      <span *ngIf="ultimatix?.errors?.['pattern']">
+      <span *ngIf="ultimatix?.errors?.['minlength'] || ultimatix?.errors?.['pattern']">
         Ingresa un número de Ultimatix válido.
       </span>
     </div>
