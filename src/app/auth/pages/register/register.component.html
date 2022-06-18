@@ -25,20 +25,20 @@
 
   <div class="row">
     <!-- Phone -->
-    <div class="col-12 col-md-6 mb-3">
-      <ngx-intl-tel-input [cssClass]="'custom'" [enableAutoCountrySelect]="true" [enablePlaceholder]="true"
-                          [searchCountryFlag]="true" [preferredCountries]="[CountryISO.Ecuador]" [searchCountryField]="[
-            SearchCountryField.Iso2,
-            SearchCountryField.Name
-          ]" searchCountryPlaceholder="Buscar país" customPlaceholder="Teléfono"
-                          [selectedCountryISO]="CountryISO.Ecuador" [maxLength]="15" [phoneValidation]="true"
-                          [separateDialCode]="true"
-                          [numberFormat]="PhoneNumberFormat.National" name="phone" formControlName="phone">
-      </ngx-intl-tel-input>
-      <span class="form-text text-danger text-start" *ngIf="phone?.invalid && phone?.touched">
-        Ingresa un número de teléfono válido.
-      </span>
-    </div>
+   <div class="col-12 col-md-6 mb-3">
+     <ngx-intl-tel-input [cssClass]="'custom'" [enableAutoCountrySelect]="true" [enablePlaceholder]="true"
+                         [searchCountryFlag]="true" [preferredCountries]="[CountryISO.Ecuador]" [searchCountryField]="[
+           SearchCountryField.Iso2,
+           SearchCountryField.Name
+         ]" searchCountryPlaceholder="Buscar país" customPlaceholder="Teléfono"
+                         [selectedCountryISO]="CountryISO.Ecuador" [maxLength]="15" [phoneValidation]="true"
+                         [separateDialCode]="true"
+                         [numberFormat]="PhoneNumberFormat.National" name="phone" formControlName="phone">
+     </ngx-intl-tel-input>
+     <span class="form-text text-danger text-start" *ngIf="phone?.invalid && phone?.touched">
+       Ingresa un número de teléfono válido.
+     </span>
+   </div>
 
     <!-- Email -->
     <div class="col-12 col-md-6 mb-3">
