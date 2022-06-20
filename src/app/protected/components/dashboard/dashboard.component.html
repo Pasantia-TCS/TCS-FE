@@ -1,76 +1,86 @@
-<div class="wrapper d-flex align-items-stretch">
+<div class="dashboard">
   <!-- Sidebar -->
-  <nav id="sidebar" class="overflow-auto" [class.active]="collapse">
+  <nav class="sidebar" [class.active]="collapse">
+    <!-- Sidebar header -->
+    <ul class="sidebar__list sidebar__list--header">
+      <!-- Open -->
+      <li>
+        <a class="menu" (click)="toggleSidebar()" style="cursor: pointer;">
+          <mat-icon>
+            reorder
+          </mat-icon>
+          <span>MENÚ</span>
+        </a>
+      </li>
 
-    <mat-icon id="sidebar-collapse" class="menu" style="color: white;" (click)="toggleSidebar()">
-      reorder
-    </mat-icon>
-
-    <!-- Profile -->
-    <div class="profile mt-3">
-      <mat-icon class="menu" style="color: white;">person_outline</mat-icon>
-      <a [routerLink]="['/pages/dashboard/profile']" id="enlace"></a>
-      <h3 class="name">{{currentUser.id_numero_Ultimatix}}</h3>
-    </div>
+      <!-- Profile -->
+      <li>
+        <a [routerLink]="['/pages/dashboard/profile']">
+          <mat-icon>person_outline</mat-icon>
+          <span>{{currentUser.id_numero_Ultimatix}}</span>
+        </a>
+      </li>
+    </ul>
 
     <!-- Items -->
-    <ul class="list-unstyled components mb-5">
+    <ul class="sidebar__list sidebar__items">
       <!-- Assets -->
-      <li class="active">
+      <li>
         <a [routerLink]="['/pages/dashboard/assets']">
-          <span><mat-icon>ballot</mat-icon></span>
-          Activos
+          <mat-icon>ballot</mat-icon>
+          <span>Activos</span>
         </a>
       </li>
 
       <!-- Teams -->
       <li *ngIf="profile?.rol === 'admin'">
         <a [routerLink]="['/pages/dashboard/teams']">
-          <span><mat-icon>group</mat-icon></span>
-          Grupos de trabajo
+          <mat-icon>group</mat-icon>
+          <span>Grupos de trabajo</span>
         </a>
       </li>
 
       <!-- Tasks -->
       <li>
         <a [routerLink]="['/pages/dashboard/tasks']">
-          <span><mat-icon>assignment_ind</mat-icon></span>
-          Asignaciones
+          <mat-icon>assignment_ind</mat-icon>
+          <span>Asignaciones</span>
         </a>
       </li>
 
       <!-- Reports -->
       <li *ngIf="profile?.rol === 'admin'">
         <a [routerLink]="['/pages/dashboard/reports']">
-          <span><mat-icon>insert_drive_file</mat-icon></span>
-          Reportes
+          <mat-icon>insert_drive_file</mat-icon>
+          <span>Reportes</span>
         </a>
       </li>
 
       <!-- Settings -->
       <li *ngIf="profile?.rol === 'admin'">
         <a [routerLink]="['/pages/dashboard/settings']">
-          <span><mat-icon>settings</mat-icon></span>
-          Configuración
-        </a>
-      </li>
-
-      <!-- Logout -->
-      <li class="mt-1 pt-4">
-        <a (click)="toLogin()" style="cursor: pointer;">
-          <span><mat-icon>exit_to_app</mat-icon></span>
-          Cerrar sesión
+          <mat-icon>settings</mat-icon>
+          <span>Configuración</span>
         </a>
       </li>
     </ul>
 
-    <div class="footer">
-      <p>©Copyright 2022</p>
-    </div>
+    <ul class="sidebar__list sidebar__footer">
+      <!-- Logout -->
+      <li>
+        <a (click)="toLogin()" style="cursor: pointer;">
+          <mat-icon>exit_to_app</mat-icon>
+          <span>Cerrar sesión</span>
+        </a>
+      </li>
+      <li id="copy" style="color: white" class="text-center">
+        ©Copyright 2022
+      </li>
+    </ul>
   </nav>
 
   <!-- Body  -->
-  <div id="content" class="p-2 p-md-5 overflow-auto" style="background-color: #f8f9fa; font-size: 1rem;">
+  <div class="content">
     <router-outlet></router-outlet>
   </div>
 </div>

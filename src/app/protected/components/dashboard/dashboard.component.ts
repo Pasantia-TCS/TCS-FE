@@ -33,6 +33,10 @@ export class DashboardComponent implements OnInit {
     this.collapse = !this.collapse;
   }
 
+  toProfile() {
+    this.router.navigateByUrl('/pages/dashboard/profile');
+  }
+
   toLogin() {
     this.router.navigateByUrl('/auth');
     this.authService.logout();
