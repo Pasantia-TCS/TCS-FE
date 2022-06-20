@@ -1,6 +1,6 @@
 Cypress.Commands.add('recover', (name, lastname) => {
 
-    cy.visit('http://localhost:4200/')
+    cy.visit('https://tcs-fe.vercel.app/auth/login')
     cy.get('#name').type(name)
     cy.get('#lastname').type(lastname)
     cy.get('#btnLogin').click()
