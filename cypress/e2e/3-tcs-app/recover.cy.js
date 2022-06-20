@@ -8,7 +8,7 @@ Cypress.Commands.add('recover', (name, lastname) => {
     cy.wait(1000)
 })
 beforeEach(() => {
-    cy.visit('http://localhost:4200/auth/recover')
+    cy.visit('https://tcs-fe.vercel.app/auth/login')
     cy.wait(2000)
 })
 

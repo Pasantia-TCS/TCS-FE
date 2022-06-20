@@ -1,6 +1,6 @@
 Cypress.Commands.add('register', (name, lastname) => {
 
-    cy.visit('http://localhost:4200/')
+    cy.visit('https://tcs-fe.vercel.app/auth/login')
     cy.get('#name').type(name)
     cy.get('#lastname').type(lastname)
     cy.get('#btnLogin').click()
@@ -8,7 +8,7 @@ Cypress.Commands.add('register', (name, lastname) => {
     cy.wait(1000)
 })
 beforeEach(() => {
-    cy.visit('http://localhost:4200/auth/register')
+    cy.visit('https://tcs-fe.vercel.app/auth/login')
     cy.wait(2000)
 })
 
