@@ -54,7 +54,7 @@ it('Test 1 Registro de un Activo', () => {
     cy.get('[formcontrolname="edificio"]').select('Condado')
     cy.get('[formcontrolname="piso"]').select('1')
     cy.get('#floatingBrand').type('Logitech')
-    cy.get('[formcontrolname="modelo"]').click
+    cy.get('[formcontrolname="modelo"]').click('')
     cy.get('[formcontrolname="serie"]').type('G51000')
     cy.get('[formcontrolname="codigo_barras"]').type('LOGI510')
     cy.get('[formcontrolname="fecha_entrega"]').click('').type('2022-06-21')
@@ -70,7 +70,7 @@ it('Test 1 Registro de un Activo', () => {
     cy.get('[formcontrolname="piso"]').select('7')
     cy.get('#floatingBrand').type('Samsung')
     cy.get('[formcontrolname="modelo"]').type('InfoSamPro')
-    cy.get('[formcontrolname="serie"]').click
+    cy.get('[formcontrolname="serie"]').click('')
     cy.get('[formcontrolname="codigo_barras"]').type('Samif85163')
     cy.get('[formcontrolname="fecha_entrega"]').click('').type('2022-06-21')
     cy.get('.mat-dialog-actions > :nth-child(2) > .mat-button-wrapper').click('')
@@ -85,7 +85,7 @@ it('Test 1 Registro de un Activo', () => {
     cy.get('#floatingBrand').type('Sony')
     cy.get('[formcontrolname="modelo"]').type('Xperia')
     cy.get('[formcontrolname="serie"]').type('X258716')
-    cy.get('[formcontrolname="codigo_barras"]').click
+    cy.get('[formcontrolname="codigo_barras"]').click('')
     cy.get('[formcontrolname="fecha_entrega"]').click('').type('2022-06-21')
     cy.get('.mat-dialog-actions > :nth-child(2) > .mat-button-wrapper').click('')
     cy.get('.form-text').should('have.text' , ' * Ingrese el código del activo. ')
