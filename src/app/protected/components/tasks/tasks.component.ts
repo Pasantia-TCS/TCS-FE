@@ -19,7 +19,7 @@ export class TasksComponent implements OnInit {
   @ViewChild(CustomTableComponent) table: any;
 
   titles: string[] = ['Acciones', 'Equipo', 'Tipo', 'Asignación (%)', 'Fecha de inicio', 'Fecha de finalización', 'Fecha de salida', 'Estado'];
-  icons: string[] = ['edit', 'delete'];
+  icons: string[] = ['edit', 'exit_to_app'];
   assignments!: Assignment[];  // assignments
   teams!: Team[];
   proyectos!: Assignment[];

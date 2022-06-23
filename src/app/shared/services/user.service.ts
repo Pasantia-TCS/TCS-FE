@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { User } from 'src/app/auth/interfaces/user';
 import { Profile } from 'src/app/protected/interfaces/profile';
 import { environment } from 'src/environments/environment';
-import {ProfileService} from "../../protected/services/profile.service";
+import { ProfileService } from "../../protected/services/profile.service";
 
 @Injectable({
   providedIn: 'root'
@@ -41,6 +41,10 @@ export class UserService {
 
   getProfile(): Profile {
     return this.currentProfile;
+  }
+
+  updateProfile(profile: Profile) {
+    this.currentProfile = profile;
   }
 
   getUltimatix() {

@@ -8,6 +8,7 @@ import { EditProfileComponent } from '../edit-profile/edit-profile.component';
 import { EditSkillsComponent } from '../edit-skills/edit-skills.component';
 import { EditFuncSkillsComponent } from "../edit-func-skills/edit-func-skills.component";
 import { EditAppsComponent } from '../edit-apps/edit-apps.component';
+import { ProfileService } from '../../services/profile.service';
 
 @Component({
   selector: 'app-profile',
@@ -22,14 +23,16 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private userService: UserService,
+    private profileService: ProfileService,
     private dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
     this.currentUser = this.userService.getUserData();
-    setTimeout(() => {
-      this.profile = this.userService.getProfile();
-    }, 150);
+    this.profileService.getProfile(this.currentUser.id_numero_Ultimatix!)
+      .subscribe({
+        next: resp => this.profile = resp
+      });
   }
 
   openUserInfo() {
